@@ -266,7 +266,7 @@
                 
                 <!-- Image -->
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/images.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
@@ -284,7 +284,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project2.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
@@ -298,7 +298,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project.webp') }}" alt="">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
@@ -314,7 +314,7 @@
                 
                 <!-- Image -->
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/images.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
@@ -332,7 +332,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project2.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
@@ -346,7 +346,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project.webp') }}" alt="">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
@@ -362,7 +362,7 @@
                 
                 <!-- Image -->
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/images.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
@@ -380,7 +380,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project2.jpg') }}" alt="">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
@@ -394,7 +394,7 @@
 
             <div class="swiper-slide acheivement-card">
                 <div class="acheivement-image">
-                    <img src="{{ asset('images/project.webp') }}" alt="">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
 
                 <div class="acheivement-content">
