@@ -1,8 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-
 :root {
   --light-blue: #088bf6;
   --normal-blue: #0046f6;
@@ -23,6 +21,9 @@
   --header-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.2);
 
   --light-text: hsl(0, 0%, 50%);
+
+  --night-color: #0f172a;
+  
 }
 
 
@@ -39,6 +40,11 @@ html{
     overflow-x: hidden;
     color: var(--normal-black);
     font-size: 16px;
+
+}
+
+body {
+    background-color: var(--body-color);
 }
 
 

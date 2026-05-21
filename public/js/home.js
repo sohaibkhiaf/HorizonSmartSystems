@@ -4,9 +4,11 @@ const swiper = new Swiper(".services-swiper", {
     grabCursor: true,
 });
 
-new Swiper(".realisations-swiper", {
+new Swiper(".acheivements-swiper", {
     slidesPerView: "auto",
     spaceBetween: 20,
     grabCursor: true
 });
+
+
 

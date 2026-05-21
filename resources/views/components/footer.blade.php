@@ -1,9 +1,8 @@
 <footer class="site-footer">
     <div class="footer-container">
 
-        <!-- Section 1 -->
         <div class="footer-section">
-            <img src="{{ asset('images/hss_logo_w.png') }}" alt="Logo" class="footer-logo">
+            <img src="{{ asset('images/hss_logo_1.png') }}" alt="Logo" class="footer-logo">
 
             <p class="footer-description">
                 Agence de développement web et logiciel engagée pour votre réussite digitale.
@@ -16,38 +15,38 @@
             </div>
         </div>
 
-        <!-- Section 2 -->
         <div class="footer-section">
             <h3>Liens rapides</h3>
             <ul>
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">À propos</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Méthode</a></li>
-                <li><a href="#">Réalisations</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/"><i class="fa-solid fa-house"></i> Accueil</a></li>
+                <li><a href="/about"><i class="fa-solid fa-circle-question"></i> À propos</a></li>
+                <li><a href="/services"><i class="fa-solid fa-arrow-pointer"></i> Services</a></li>
+                <li><a href="/achievements"><i class="fa-solid fa-medal"></i> Réalisations</a></li>
+                <li><a href="/contact"><i class="fa-solid fa-message"></i> Contact</a></li>
             </ul>
         </div>
 
-        <!-- Section 3 -->
         <div class="footer-section">
             <h3>Nos services</h3>
             <ul>
-                <li>Création de sites web</li>
-                <li>Applications sur mesure</li>
-                <li>Systèmes de gestion</li>
-                <li>Assistance informatique</li>
+                <li><i class="fa-solid fa-globe"></i> Création de sites web</li>
+                <li><i class="fa-solid fa-code"></i> Applications sur mesure</li>
+                <li><i class="fa-solid fa-gears"></i> Systèmes de gestion</li>
+                <li><i class="fa-solid fa-desktop"></i> Assistance informatique</li>
             </ul>
         </div>
 
-        <!-- Section 4 -->
         <div class="footer-section footer-contact">
             <h3>Contactez-nous</h3>
             <ul>
                 <li><i class="fa-solid fa-phone"></i> +213 561 65 51 00</li>
                 <li><i class="fa-solid fa-phone"></i> +213 782 94 07 60</li>
                 <li><i class="fa-solid fa-envelope"></i> horizonsmartsystems@gmail.com</li>
-                <li><i class="fa-solid fa-location-dot"></i> Rue Zaatcha, en face du centre des impôts, Biskra, Algérie</li>
+                <li><i class="fa-solid fa-location-dot"></i> 
+                    <a href="https://maps.app.goo.gl/KbLsAEh2LawQRG129" target="_blank">
+                        Rue Zaatcha, en face du centre des impôts, Biskra, Algérie
+                    </a>
+                </li>
             </ul>
         </div>
 

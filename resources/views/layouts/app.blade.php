@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <link rel="icon" href="{{asset('images/hss_logo_i2.png')}}"/>
+    <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
     <title>@yield('title', 'Horizon Smart Systems')</title>
 
@@ -26,7 +26,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header :active="$active" />
+    <x-header :page="$page" />
 
     {{-- Main Content --}}
     <main>

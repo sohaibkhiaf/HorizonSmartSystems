@@ -12,7 +12,7 @@ class Header extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $active
+        public string $page
     )
     {
         //

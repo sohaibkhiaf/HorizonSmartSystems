@@ -3,26 +3,22 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('/home', ['active' => 'accueil']);
+    return view('/home', ['page' => 'home']);
 });
 
 Route::get('/about', function () {
-    return view('/about', ['active' => 'apropos']);
+    return view('/about', ['page' => 'about']);
 });
 
 Route::get('/services', function () {
-    return view('/services', ['active' => 'services']);
+    return view('/services', ['page' => 'services']);
 });
 
-Route::get('/methods', function () {
-    return view('/methods', ['active' => 'methode']);
-});
-
-Route::get('/realisations', function () {
-    return view('/realisations', ['active' => 'realisations']);
+Route::get('/achievements', function () {
+    return view('/achievements', ['page' => 'achievements']);
 });
 
 Route::get('/contact', function () {
-    return view('/contact', ['active' => 'contact']);
+    return view('/contact', ['page' => 'contact']);
 });
 

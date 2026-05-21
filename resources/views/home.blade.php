@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-container">
 
@@ -24,8 +25,8 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">demander un devis &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#" class="btn btn-outline">voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/devis" class="btn btn-primary">demander un devis &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/services" class="btn btn-outline">voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -33,10 +34,10 @@
         <div class="hero-image">
             <img src="{{ asset('images/hero_image.png') }}" alt="Hero Image">
         </div>
-
     </div>
 </section>
 
+<!-- About Section -->
 <section class="about">
     <div class="about-container">
 
@@ -53,7 +54,7 @@
         <!-- Right Cards -->
         <div class="about-cards">
 
-            <!-- Card 1 -->
+            <!-- Innovation Card -->
             <div class="about-card">
                 <div class="card-content">
                     <div class="icon-circle">
@@ -68,7 +69,7 @@
                 
             </div>
 
-            <!-- Card 2 -->
+            <!-- Performance Card -->
             <div class="about-card">
                 <div class="card-content">
                     <div class="icon-circle">
@@ -82,7 +83,7 @@
                 
             </div>
 
-            <!-- Card 3 -->
+            <!-- Confiance Card -->
             <div class="about-card">
                 <div class="card-content">
                     <div class="icon-circle">
@@ -100,6 +101,7 @@
     </div>
 </section>
 
+<!-- Proposed Services Section -->
 <section class="services">
     <div class="services-container">
 
@@ -108,35 +110,30 @@
         <div class="swiper services-swiper">
             <div class="swiper-wrapper">
 
-                <!-- Card 1 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-globe"></i></div>
                     <h3>Création de sites web</h3>
                     <p>Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>Création d'application sur mesure</h3>
                     <p>Applications web et desktop sur mesure adaptées à vos besoins spécifiques.</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Gestion commerciale, paie et autres solutions</h3>
                     <p>Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.</p>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <h3>Systèmes de gestion personnalisés</h3>
                     <p>Logiciels de gestion sur mesure pour un meilleur suivi et une productivité accrue.</p>
                 </div>
 
-                <!-- Card 5 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-headset"></i></div>
                     <h3>Assistance logicielle et informatique</h3>
@@ -149,6 +146,7 @@
     </div>
 </section>
 
+<!-- Other Services Section -->
 <section class="services">
     <div class="services-container">
 
@@ -157,28 +155,24 @@
         <div class="swiper services-swiper">
             <div class="swiper-wrapper">
 
-                <!-- Card 1 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-earth-europe"></i></div>
                     <h3>Acquisition de logiciels internationaux</h3>
                     <p>Fourniture de logiciels internationaux selon vos besoins et budget.</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
                     <h3>Abonnements logiciels</h3>
                     <p>Proposition et gestion d'abonnements IA (ChatGPT, Gemini...), Steam Cards, Adobe, Microsoft...</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                     <h3>Hébergement de sites web</h3>
                     <p>Hébergement sécurisé, performant et évolutif pour vos sites et applications.</p>
                 </div>
 
-                <!-- Card 4 -->
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
                     <h3>Conseil et accompagnement</h3>
@@ -191,19 +185,19 @@
     </div>
 </section>
 
-<section class="about-section">
-    <div class="about-container">
+<!-- Features Section -->
+<section class="features">
+    <div class="features-container">
 
         <!-- Left Content -->
-        <div class="about-left">
-            <h2 class="about-title">Pourquoi choisir HSS ?</h2>
+        <div class="features-left">
+            <h2 class="features-title">Pourquoi choisir HSS ?</h2>
         </div>
 
         <!-- Right Cards -->
-        <div class="about-right">
+        <div class="features-right">
 
-            <!-- Card 1 -->
-            <div class="about-card">
+            <div class="feature-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fas fa-lightbulb"></i>
@@ -216,8 +210,7 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="about-card">
+            <div class="feature-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fas fa-chart-line"></i>
@@ -229,8 +222,7 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="about-card">
+            <div class="feature-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fas fa-handshake"></i>
@@ -242,8 +234,7 @@
                 </div>
             </div>
 
-            <!-- Card 4 -->
-            <div class="about-card">
+            <div class="feature-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fas fa-headset"></i>
@@ -259,30 +250,29 @@
     </div>
 </section>
 
-<section class="realisations">
-<div class="realisations-header">
-    <h2 class="realisations-title">Nos réalisations</h2>
+<section class="acheivements">
+<div class="acheivements-header">
+    <h2 class="acheivements-title">Nos réalisations</h2>
 
-    <a href="#" class="realisations-link">
+    <a href="#" class="acheivements-link">
         voir toutes nos réalisations <i class="fas fa-arrow-right"></i>
     </a>
 </div>
 
-    <div class="swiper realisations-swiper">
+    <div class="swiper acheivements-swiper">
         <div class="swiper-wrapper">
 
-            <!-- Card 1 -->
-            <div class="swiper-slide realisation-card">
+            <div class="swiper-slide acheivement-card">
                 
                 <!-- Image -->
-                <div class="realisation-image">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/images.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
-                <div class="realisation-content">
+                <div class="acheivement-content">
 
-                    <div class="realisation-header">
+                    <div class="acheivement-header">
                         <h3>Site E-commerce</h3>
                         <span class="type">Web App</span>
                     </div>
@@ -292,14 +282,13 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project2.jpg') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Système de gestion</h3>
                         <span class="type">ERP</span>
                     </div>
@@ -307,14 +296,13 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project.webp') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Application mobile</h3>
                         <span class="type">Mobile</span>
                     </div>
@@ -322,18 +310,17 @@
                 </div>
             </div>
 
-            <!-- Card 1 -->
-            <div class="swiper-slide realisation-card">
+            <div class="swiper-slide acheivement-card">
                 
                 <!-- Image -->
-                <div class="realisation-image">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/images.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
-                <div class="realisation-content">
+                <div class="acheivement-content">
 
-                    <div class="realisation-header">
+                    <div class="acheivement-header">
                         <h3>Site E-commerce</h3>
                         <span class="type">Web App</span>
                     </div>
@@ -343,14 +330,13 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project2.jpg') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Système de gestion</h3>
                         <span class="type">ERP</span>
                     </div>
@@ -358,14 +344,13 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project.webp') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Application mobile</h3>
                         <span class="type">Mobile</span>
                     </div>
@@ -373,18 +358,17 @@
                 </div>
             </div>
 
-                <!-- Card 1 -->
-            <div class="swiper-slide realisation-card">
+            <div class="swiper-slide acheivement-card">
                 
                 <!-- Image -->
-                <div class="realisation-image">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/images.jpg') }}" alt="">
                 </div>
 
                 <!-- Content -->
-                <div class="realisation-content">
+                <div class="acheivement-content">
 
-                    <div class="realisation-header">
+                    <div class="acheivement-header">
                         <h3>Site E-commerce</h3>
                         <span class="type">Web App</span>
                     </div>
@@ -394,14 +378,13 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project2.jpg') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Système de gestion</h3>
                         <span class="type">ERP</span>
                     </div>
@@ -409,14 +392,13 @@
                 </div>
             </div>
 
-            <!-- Card 3 -->
-            <div class="swiper-slide realisation-card">
-                <div class="realisation-image">
+            <div class="swiper-slide acheivement-card">
+                <div class="acheivement-image">
                     <img src="{{ asset('images/project.webp') }}" alt="">
                 </div>
 
-                <div class="realisation-content">
-                    <div class="realisation-header">
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
                         <h3>Application mobile</h3>
                         <span class="type">Mobile</span>
                     </div>
@@ -449,7 +431,7 @@
 
             <!-- RIGHT -->
             <div class="cta-right">
-                <a href="#" class="cta-btn">
+                <a href="/devis" class="cta-btn">
                     Demander un devis <i class="fas fa-arrow-right"></i>
                 </a>
             </div>

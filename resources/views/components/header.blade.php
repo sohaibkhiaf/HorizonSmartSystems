@@ -1,23 +1,19 @@
 <header class="header" id="mainHeader">
 
-    <!-- Left: Logo (image asset) -->
     <div class="logo">
         <a href="/">
-            <img src="{{ asset('images/hss_logo.png') }}" alt="Logo">
+            <img src="{{ asset('images/hss_logo_1.png') }}" alt="Logo">
         </a>
     </div>
 
-    <!-- Center: Navigation -->
     <nav class="nav">
-        <a href="/" class="{{ $active === 'accueil' ? 'active' : '' }}">Accueil</a>
-        <a href="/about" class="{{ $active === 'apropos' ? 'active' : '' }}">À propos</a>
-        <a href="/services" class="{{ $active === 'services' ? 'active' : '' }}">Services</a>
-        <a href="/methods" class="{{ $active === 'methode' ? 'active' : '' }}">Méthode</a>
-        <a href="/realisations" class="{{ $active === 'realisations' ? 'active' : '' }}">Réalisations</a>
-        <a href="/contact" class="{{ $active === 'contact' ? 'active' : '' }}">Contact</a>
+        <a href="/" class="{{ $page === 'home' ? 'active' : '' }}">Accueil</a>
+        <a href="/about" class="{{ $page === 'about' ? 'active' : '' }}">À propos</a>
+        <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">Services</a>
+        <a href="/achievements" class="{{ $page === 'achievements' ? 'active' : '' }}">Réalisations</a>
+        <a href="/contact" class="{{ $page === 'contact' ? 'active' : '' }}">Contact</a>
     </nav>
 
-    <!-- Right: Button -->
     <div class="actions">
         <a href="/devis" class="btn">Demander un devis &nbsp; <i class="fa-solid fa-arrow-right"></i></a>
     </div>
