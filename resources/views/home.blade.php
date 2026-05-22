@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Accueil — Horizon Smart Systems')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -25,8 +25,8 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="/devis" class="btn btn-primary">demander un devis &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
-                <a href="/services" class="btn btn-outline">voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/services" class="btn btn-primary">voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-outline">contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -254,7 +254,7 @@
 <div class="acheivements-header">
     <h2 class="acheivements-title">Nos réalisations</h2>
 
-    <a href="#" class="acheivements-link">
+    <a href="/achievements" class="acheivements-link">
         voir toutes nos réalisations <i class="fas fa-arrow-right"></i>
     </a>
 </div>
@@ -410,6 +410,7 @@
     </div>
 </section>
 
+<!-- Call To Action -->
 
 <section class="cta">
     <div class="cta-overlay">
@@ -431,8 +432,8 @@
 
             <!-- RIGHT -->
             <div class="cta-right">
-                <a href="/devis" class="cta-btn">
-                    Demander un devis <i class="fas fa-arrow-right"></i>
+                <a href="/contact" class="cta-btn">
+                    Contactez-nous <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
 

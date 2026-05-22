@@ -60,7 +60,7 @@
 
 /* Button */
 .actions .btn {
-    background: var(--normal-blue);
+    background: #2563eb;
     color: white;
     padding: 10px 16px;
     border-radius: 20px;
@@ -68,7 +68,7 @@
 }
 
 .actions .btn:hover {
-    background: var(--darker-blue);
+    background: #1d4ed8;
 }
 
 

@@ -15,7 +15,7 @@
     </nav>
 
     <div class="actions">
-        <a href="/devis" class="btn">Demander un devis &nbsp; <i class="fa-solid fa-arrow-right"></i></a>
+        <a href="/contact" class="btn">Contactez-nous &nbsp; <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
 </header>
