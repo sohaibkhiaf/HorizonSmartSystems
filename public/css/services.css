@@ -319,3 +319,59 @@ color: #111827;
 
 
 
+/* RESPONSIVE ***********************************************/
+
+@media (max-width: 900px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-cards {
+        flex-direction: column;
+        width: 100%;
+    }
+    .about-description {
+        margin: 0 auto;
+    }
+
+    .features-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .features-right{
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cta-center {
+        max-width: 100%;
+    }
+
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-description {
+        margin: 0 auto 30px;
+    }
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+
+
+
+
