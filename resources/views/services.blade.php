@@ -24,7 +24,7 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-primary">Contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -158,22 +158,20 @@
 
 
 <!-- Method Section -->
-<section class="features">
-    <div class="features-container">
+<section class="method">
+    <div class="method-container">
 
-        <!-- Left Content -->
-        <div class="features-left">
-            <h2 class="features-title">Une approche simple et transparente</h2>
+        <div class="method-left">
+            <h2 class="method-title">Une approche simple et transparente</h2>
 
-            <p class="features-description">
+            <p class="method-description">
                 De l'analyse de vos besoins à la livraison, nous suivons un processus clair pour garantir la réussite de votre projet.
             </p>
         </div>
 
-        <!-- Right Cards -->
-        <div class="features-right">
+        <div class="method-right">
 
-            <div class="feature-card">
+            <div class="method-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fa-solid fa-1"></i>
@@ -186,7 +184,7 @@
                 </div>
             </div>
 
-            <div class="feature-card">
+            <div class="method-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fa-solid fa-2"></i>
@@ -198,7 +196,7 @@
                 </div>
             </div>
 
-            <div class="feature-card">
+            <div class="method-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fa-solid fa-3"></i>
@@ -210,7 +208,7 @@
                 </div>
             </div>
 
-            <div class="feature-card">
+            <div class="method-card">
                 <div class="card-inner">
                     <div class="icon">
                         <i class="fa-solid fa-4"></i>
@@ -233,13 +231,11 @@
 
         <div class="cta-container">
 
-            <!-- LEFT -->
             <div class="cta-left">
                 <h2>Prêt à démarrer votre projet ?  </h2>
                 <h3>Parlons de vos besoins et construisons ensemble la meilleure solution.</h3>
             </div>
 
-            <!-- RIGHT -->
             <div class="cta-right">
                 <a href="/contact" class="cta-btn">
                     Contactez-nous <i class="fas fa-arrow-right"></i>
@@ -251,15 +247,9 @@
     </div>
 </section>
 
-
 @endsection
-
-
 
 @section('script')
     <script type="module" src="{{ asset('js/services.js') }}"></script>
 @endsection
-
-
-
 

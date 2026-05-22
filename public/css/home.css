@@ -10,7 +10,6 @@
     gap: 60px;
 }
 
-/* LEFT SIDE */
 .hero-text {
     flex: 1;
 }
@@ -580,5 +579,153 @@ color: #111827;
         flex-wrap: wrap;
     }
 }
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-description {
+        margin: 0 auto 30px;
+    }
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* ===========================
+   SMALL TABLETS / LARGE PHONES
+   =========================== */
+@media (max-width: 600px) {
+
+    /* HERO */
+    .hero {
+        padding: 30px 5%;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* ABOUT */
+    .about {
+        margin: 0 5% 20px;
+        padding: 15px;
+    }
+
+    /* SERVICES */
+    .services {
+        margin: 20px 5%;
+        padding: 15px;
+    }
+
+    .service-card {
+        width: 100% !important;
+        height: auto;
+    }
+
+    .swiper-slide {
+        width: 100% !important;
+    }
+
+    /* FEATURES */
+    .features {
+        margin: 0 5% 20px;
+        padding: 15px;
+    }
+
+    .feature-card {
+        width: 100%;
+    }
+
+    /* ACHIEVEMENTS */
+    .acheivements {
+        margin: 20px 5%;
+        padding: 15px;
+    }
+
+    .acheivement-card {
+        width: 100% !important;
+    }
+
+    /* CTA */
+    .cta {
+        margin: 20px 5%;
+    }
+
+    .cta-left h2 {
+        font-size: 18px;
+    }
+
+    .cta-left h3 {
+        font-size: 16px;
+    }
+}
+
+
+/* ===========================
+   VERY SMALL PHONES (≤ 480px)
+   =========================== */
+@media (max-width: 480px) {
+
+    /* HERO */
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    /* ABOUT CARDS STACK */
+    .about-cards {
+        flex-direction: column;
+    }
+
+    .about-card {
+        width: 100%;
+    }
+
+    /* FEATURES STACK */
+    .features-right {
+        flex-direction: column;
+    }
+
+    /* ACHIEVEMENTS HEADER STACK */
+    .acheivements-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* CTA TEXT */
+    .cta-center p {
+        font-size: 13px;
+    }
+
+    .cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 
 

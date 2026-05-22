@@ -7,22 +7,21 @@
 @endsection
 
 @section('content')
+
 <!-- Hero Banner -->
 <section class="hero-about">
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1>A propos de HSS</h1>
+            <h1>À propos de HSS</h1>
             <p>Votre partenaire en solutions web et digitales.</p>
         </div>
     </div>
 </section>
 
-
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-container">
 
-        <!-- Left Side -->
         <div class="hero-text">
             <p class="hero-small">QUI SOMMES-NOUS ?</p>
 
@@ -30,7 +29,7 @@
                 Horizon Smart Systems
             </h1>
             <h3 class="hero-subtitle">
-                Votre partenaire digital de confience.
+                Votre partenaire digital de confiance.
             </h3>
 
             <p class="hero-description">
@@ -42,19 +41,18 @@
 
         </div>
 
-        <!-- Right Side -->
         <div class="hero-image">
-            <img src="{{ asset('images/hss_agency.png') }}" alt="Hero Image">
+            <img src="{{ asset('images/hss_agency.png') }}" alt="Development Agency">
         </div>
     </div>
 </section>
 
 
-<!-- About Section -->
-<section class="about">
-    <div class="about-container">
+<!-- Values Section -->
+<section class="values">
+    <div class="values-container">
         <!-- Notre vision Card -->
-        <div class="about-card">
+        <div class="values-card">
             <div class="card-content">
                 <div class="icon-circle">
                     <i class="fas fa-lightbulb"></i>
@@ -69,7 +67,7 @@
         </div>
 
         <!-- Notre mission Card -->
-        <div class="about-card">
+        <div class="values-card">
             <div class="card-content">
                 <div class="icon-circle">
                     <i class="fa-solid fa-bullseye"></i>
@@ -83,18 +81,19 @@
         </div>
 
         <!-- Nos valeurs Card -->
-        <div class="about-card">
+        <div class="values-card">
             <div class="card-content">
                 <div class="icon-circle">
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <div class="card-text">
                     <h3>Nos valeurs</h3>
-                    <p>Innovation</p>
-                    <p>Qualité</p>
-                    <p>Fiabilité</p>
-                    <p>Transparence</p>
-                    <p>Engagement</p>
+                    <p>Innovation
+                        Qualité
+                        Fiabilité
+                        Transparence
+                        Engagement
+                    </p>
                 </div>
             </div>
         </div>
@@ -107,7 +106,6 @@
 <section class="team">
     <div class="team-container">
 
-        <!-- LEFT -->
         <div class="team-left">
             <h2>Notre équipe</h2>
             <p>
@@ -122,10 +120,8 @@
             </a>
         </div>
 
-        <!-- RIGHT -->
         <div class="team-right">
 
-            <!-- Card 1 -->
             <div class="team-card">
                 <div class="avatar">
                     <i class="fa-solid fa-user"></i>
@@ -140,13 +136,26 @@
                 </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="team-card">
                 <div class="avatar">
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <h3>Amine S</h3>
                 <span>Designer</span>
+
+                <div class="socials">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h3>Said</h3>
+                <span>Programmeur</span>
 
                 <div class="socials">
                     <i class="fa-brands fa-facebook-f"></i>
@@ -166,13 +175,11 @@
 
         <div class="cta-container">
 
-            <!-- LEFT -->
             <div class="cta-left">
                 <h2>Vous avez un projet ? <br> Nous sommes là pour le réaliser. </h2>
                 <h3>Discutons de vos idées et transformons-les en réalité.</h3>
             </div>
 
-            <!-- RIGHT -->
             <div class="cta-right">
                 <a href="/contact" class="cta-btn">
                     Contactez-nous <i class="fas fa-arrow-right"></i>
@@ -180,10 +187,8 @@
             </div>
 
         </div>
-
     </div>
 </section>
-
 
 
 @endsection

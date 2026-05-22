@@ -15,7 +15,6 @@
     flex: 1;
 }
 
-
 .hero-title {
     font-size: 42px;
     font-weight: 700;
@@ -70,13 +69,10 @@
     height: auto;
 }
 
-
-
 /* Services Sections ****************************************************** */
 
-
 .services {
-    padding: 20px;
+    padding: 20px 40px;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
     margin: 20px 8%;
@@ -164,9 +160,9 @@ color: #111827;
 }
 
 
-/* Features Section ******************************************* */
+/* Method Section ******************************************* */
 
-.features {
+.method {
     padding: 20px 3%;
     background: #eff6ff;
     border: 1px solid #e5e7eb;
@@ -174,44 +170,41 @@ color: #111827;
     margin: 0 8% 20px 8%;
 }
 
-.features-container {
+.method-container {
     display: flex;
     flex-direction: column;
-
     gap: 20px;
 }
 
 /* LEFT */
-.features-left {
-    /* flex: 0.3; */
-
+.method-left {
+    display: flex;
+    flex-direction: column;
 }
 
-.features-title {
+.method-title {
     font-size: 18px;
     font-weight: 700;
     color: #111827;
     margin-bottom: 5px;
 }
 
-.features-description {
+.method-description {
     font-size: 14px;
     color: #6b7280;
     line-height: 1.4;
-    /* max-width: 350px; */
 }
 
 /* RIGHT */
-.features-right {
-    /* flex: 2.5; */
+.method-right {
     display: flex;
     gap: 20px;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-between;
 }
 
 /* CARD */
-.feature-card {
+.method-card {
     background: #fff;
     padding: 20px;
     border-radius: 12px;
@@ -220,7 +213,7 @@ color: #111827;
     transition: 0.3s;
 }
 
-.feature-card:hover {
+.method-card:hover {
     transform: translateY(-5px);
 }
 
@@ -334,11 +327,11 @@ color: #111827;
         margin: 0 auto;
     }
 
-    .features-container {
+    .method-container {
         flex-direction: column;
         text-align: center;
     }
-    .features-right{
+    .method-right{
         flex-direction: column;
         width: 100%;
     }

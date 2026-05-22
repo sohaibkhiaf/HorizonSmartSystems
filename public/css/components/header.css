@@ -44,18 +44,18 @@
 /* Nav links */
 .nav a {
     text-decoration: none;
-    color: var(--dark-blue);
+    color: #111827;
     position: relative;
     padding-bottom: 5px;
 }
 
 .nav a:hover {
-    color: var(--light-blue);
+    color: #2563eb;
 }
 
 .nav a.active {
     font-weight: 600;
-    color: var(--light-blue);
+    color: #2563eb;
 }
 
 /* Button */
@@ -69,6 +69,55 @@
 
 .actions .btn:hover {
     background: #1d4ed8;
+}
+
+/* Hamburger hidden on desktop */
+.menu-toggle {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    /* hide nav by default */
+    .nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--body-color);
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        display: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    /* show nav when active */
+    .nav.active {
+        display: flex;
+    }
+
+    /* hide CTA button or move it */
+    .actions {
+        display: none;
+    }
+
+    /* show hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo img {
+        height: 30px;
+    }
 }
 
 

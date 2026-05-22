@@ -36,6 +36,252 @@
     opacity: 0.9;
 }
 
+/* /////////////////////////////// */
+
+.contact-section {
+    padding: 80px 20px;
+    background: hsl(0, 0%, 98%);
+}
+
+.contact-container {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr; /* smaller left side */
+    gap: 50px;
+}
+
+/* LEFT SIDE */
+.contact-info {
+    padding: 10px;
+}
+
+.contact-title {
+    font-size: 24px;
+    color: #2563eb;
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: white;
+    transition: 0.3s;
+}
+
+.contact-item:hover {
+    border-color: #2563eb;
+}
+
+.contact-item i {
+    font-size: 16px;
+    color: #2563eb;
+    margin-top: 4px;
+}
+
+.contact-item h4 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.contact-item p {
+    font-size: 13px;
+    color: #555;
+    margin: 3px 0 0;
+}
+
+/* RIGHT SIDE */
+.contact-form {
+    background: #eff6ff; /* light blue */
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.contact-form h2 {
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+/* FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* TEXTAREA IMPROVEMENTS */
+.message-group {
+    margin-top: 20px; /* space from telephone/sujet */
+}
+
+.form-group textarea {
+    height: 160px;
+    resize: none; /* disable resize */
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+/* CHECKBOX */
+.form-check {
+    margin: 15px 0;
+    font-size: 13px;
+    color: #555;
+}
+
+/* BUTTON */
+.btn-submit {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background: #1d4ed8;
+}
+/* //////////////// */
+.map-hours-section {
+    padding: 60px 20px;
+    background: hsl(0, 0%, 98%);
+}
+
+/* MAIN BOX WITH BORDER */
+.map-hours-box {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 20px;
+
+    border: 1px solid #dbe7f5;
+    border-radius: 18px;
+    padding: 18px;
+    background: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* MAP SMALLER */
+.map-part iframe {
+    width: 100%;
+    height: 260px;
+    border-radius: 14px;
+    border: none;
+}
+
+/* HOURS */
+.hours-part {
+    background: #f3f8ff;
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* HEADER */
+.hours-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.hours-header i {
+    color: #1e88e5;
+    font-size: 18px;
+}
+
+.hours-header h3 {
+    font-size: 18px;
+    margin: 0;
+    color: #1e88e5;
+}
+
+/* ROWS */
+.hours-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hour-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid #e6eef8;
+}
+
+.hour-row.closed {
+    opacity: 0.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .map-hours-box {
+        grid-template-columns: 1fr;
+    }
+
+    .map-part iframe {
+        height: 220px;
+    }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
 
 /* Responsive ********************** */
