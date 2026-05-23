@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Réalisations — Horizon Smart Systems')
+@section('title', __('achievements.page_title'))
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/achievements.css') }}">
@@ -15,14 +15,15 @@
         <div class="hero-text">
 
             <h1 class="hero-title">
-                Nos réalisations
+                {{ __('achievements.hero_title') }}
             </h1>
 
             <p class="hero-description">
-                Découvrez quelques projets web, logiciels et solutions digitales conçus pour accompagner la réussite de nos clients.</p>
+                {{ __('achievements.hero_description') }}
+            </p>
 
             <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">Contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-primary">{{ __('achievements.hero_btn_contact') }} &nbsp;<i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i></a>
             </div>
         </div>
 
@@ -33,16 +34,16 @@
 </section>
 
 
-<!-- Method Section -->
+<!-- Features Section -->
 <section class="features">
     <div class="features-container">
 
         <!-- Left Content -->
         <div class="features-left">
-            <h2 class="features-title">Des solutions concrètes, pensées pour des besoins réels.</h2>
+            <h2 class="features-title">{{ __('achievements.features_title') }}</h2>
 
             <p class="features-description">
-                Chaque projet est unique. Nous concevons des solutions adaptées aux objectifs, au secteur et aux utilisateurs de nos clients.
+                {{ __('achievements.features_description') }}
             </p>
         </div>
 
@@ -54,10 +55,9 @@
                     <div class="icon">
                         <i class="fa-solid fa-globe"></i>
                     </div>
-
                     <div class="card-text">
-                        <h3>Sites web</h3>
-                        <p>Des sites modernes, rapides et performants.</p>
+                        <h3>{{ __('achievements.feature_web_title') }}</h3>
+                        <p>{{ __('achievements.feature_web_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -68,8 +68,8 @@
                         <i class="fa-solid fa-cart-shopping"></i>
                     </div>
                     <div class="card-text">
-                        <h3>Sites E-commerce</h3>
-                        <p>Sites e-commerce avec catalogue, panier, commandes et gestion simple.</p>
+                        <h3>{{ __('achievements.feature_ecom_title') }}</h3>
+                        <p>{{ __('achievements.feature_ecom_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -80,8 +80,8 @@
                         <i class="fa-solid fa-user-gear"></i>
                     </div>
                     <div class="card-text">
-                        <h3>Systèmes de gestion</h3>
-                        <p>Solutions complètes pour optimiser votre activité.</p>
+                        <h3>{{ __('achievements.feature_sys_title') }}</h3>
+                        <p>{{ __('achievements.feature_sys_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -92,8 +92,8 @@
                         <i class="fa-solid fa-headset"></i>
                     </div>
                     <div class="card-text">
-                        <h3> Support & optimisation</h3>
-                        <p>Accompagnement continu et amélioration continue.</p>
+                        <h3>{{ __('achievements.feature_support_title') }}</h3>
+                        <p>{{ __('achievements.feature_support_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -109,22 +109,22 @@
         <div class="tabs">
             <div class="tab active" data-type="all">
                 <i class="fa-solid fa-layer-group"></i>
-                Tous
+                {{ __('achievements.tab_all') }}
             </div>
 
             <div class="tab" data-type="web">
                 <i class="fa-solid fa-globe"></i>
-                Sites Web
+                {{ __('achievements.tab_web') }}
             </div>
 
             <div class="tab" data-type="app">
                 <i class="fa-solid fa-code"></i>
-                Applications
+                {{ __('achievements.tab_app') }}
             </div>
 
             <div class="tab" data-type="software">
                 <i class="fa-solid fa-laptop-code"></i>
-                Logiciels
+                {{ __('achievements.tab_software') }}
             </div>
         </div>
     </div>
@@ -136,18 +136,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Site vitrine</h3>
-                        <span class="type">Web</span>
+                        <h3>{{ __('achievements.project_vitrine_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_web') }}</span>
                     </div>
-
-                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
-
+                    <p>{{ __('achievements.project_vitrine_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -156,18 +153,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Application métier</h3>
-                        <span class="type">App</span>
+                        <h3>{{ __('achievements.project_app_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_app') }}</span>
                     </div>
-
-                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
-
+                    <p>{{ __('achievements.project_app_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -176,18 +170,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Système de gestion</h3>
-                        <span class="type">ERP</span>
+                        <h3>{{ __('achievements.project_erp_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_erp') }}</span>
                     </div>
-
-                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
-
+                    <p>{{ __('achievements.project_erp_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -196,18 +187,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Site vitrine</h3>
-                        <span class="type">Web</span>
+                        <h3>{{ __('achievements.project_vitrine_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_web') }}</span>
                     </div>
-
-                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
-
+                    <p>{{ __('achievements.project_vitrine_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -216,18 +204,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Application métier</h3>
-                        <span class="type">App</span>
+                        <h3>{{ __('achievements.project_app_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_app') }}</span>
                     </div>
-
-                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
-
+                    <p>{{ __('achievements.project_app_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -236,18 +221,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Système de gestion</h3>
-                        <span class="type">ERP</span>
+                        <h3>{{ __('achievements.project_erp_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_erp') }}</span>
                     </div>
-
-                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
-
+                    <p>{{ __('achievements.project_erp_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -256,18 +238,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Site vitrine</h3>
-                        <span class="type">Web</span>
+                        <h3>{{ __('achievements.project_vitrine_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_web') }}</span>
                     </div>
-
-                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
-
+                    <p>{{ __('achievements.project_vitrine_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -276,18 +255,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_2.webp') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Application métier</h3>
-                        <span class="type">App</span>
+                        <h3>{{ __('achievements.project_app_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_app') }}</span>
                     </div>
-
-                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
-
+                    <p>{{ __('achievements.project_app_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -296,18 +272,15 @@
                 <div class="acheivement-image">
                     <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
                 </div>
-
                 <div class="acheivement-content">
                     <div class="acheivement-header">
-                        <h3>Système de gestion</h3>
-                        <span class="type">ERP</span>
+                        <h3>{{ __('achievements.project_erp_title') }}</h3>
+                        <span class="type">{{ __('achievements.type_erp') }}</span>
                     </div>
-
-                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
-
+                    <p>{{ __('achievements.project_erp_desc') }}</p>
                     <a class="view-link">
-                        Voir le projet
-                        <i class="fa-solid fa-arrow-right"></i>
+                        {{ __('achievements.view_project') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
             </div>
@@ -326,14 +299,14 @@
 
             <!-- LEFT -->
             <div class="cta-left">
-                <h2>Prêt à concrétiser votre projet ?  </h2>
-                <h3>Discutons de vos besoins et construisons ensemble une solution efficace et sur mesure.</h3>
+                <h2>{{ __('achievements.cta_title') }}</h2>
+                <h3>{{ __('achievements.cta_subtitle') }}</h3>
             </div>
 
             <!-- RIGHT -->
             <div class="cta-right">
                 <a href="/contact" class="cta-btn">
-                    Contactez-nous <i class="fas fa-arrow-right"></i>
+                    {{ __('achievements.cta_btn') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
             </div>
 
@@ -341,7 +314,6 @@
 
     </div>
 </section>
-
 
 @endsection
 

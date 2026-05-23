@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Nos services — Horizon Smart Systems')
+@section('title', __('services.page_title'))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/services.css') }}">
@@ -17,15 +17,15 @@
         <div class="hero-text">
 
             <h1 class="hero-title">
-                Nos services
+                {{ __('services.hero_title') }}
             </h1>
 
             <p class="hero-description">
-                Des solutions digitales complètes et sur mesure pour accompagner la croissance de votre entreprise et optimiser vos performances.
+                {{ __('services.hero_description') }}
             </p>
 
             <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">Contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-primary">{{ __('services.hero_btn_contact') }} &nbsp;<i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i></a>
             </div>
         </div>
 
@@ -41,58 +41,53 @@
 <section class="services">
     <div class="services-container">
 
-        <h2 class="services-title">Nos services principaux</h2>
+        <h2 class="services-title">{{ __('services.main_services_title') }}</h2>
 
         <div class="swiper services-swiper">
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-globe"></i></div>
-                    <h3>Création de sites web</h3>
-                    <p>Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.</p>
-
+                    <h3>{{ __('services.service_web_title') }}</h3>
+                    <p>{{ __('services.service_web_desc') }}</p>
                     <a href="/services/webdev" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                    <h3>Création d'application sur mesure</h3>
-                    <p>Applications web et desktop sur mesure adaptées à vos besoins spécifiques.</p>
-
+                    <h3>{{ __('services.service_app_title') }}</h3>
+                    <p>{{ __('services.service_app_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Gestion commerciale, paie et autres solutions</h3>
-                    <p>Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.</p>
-
+                    <h3>{{ __('services.service_erp_title') }}</h3>
+                    <p>{{ __('services.service_erp_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-cogs"></i></div>
-                    <h3>Systèmes de gestion personnalisés</h3>
-                    <p>Logiciels de gestion sur mesure pour un meilleur suivi et une productivité accrue.</p>
-
+                    <h3>{{ __('services.service_sys_title') }}</h3>
+                    <p>{{ __('services.service_sys_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-headset"></i></div>
-                    <h3>Assistance logicielle et informatique</h3>
-                    <p>Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.</p>
-
+                    <h3>{{ __('services.service_support_title') }}</h3>
+                    <p>{{ __('services.service_support_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -106,48 +101,44 @@
 <section class="services">
     <div class="services-container">
 
-        <h2 class="services-title">Autres services</h2>
+        <h2 class="services-title">{{ __('services.other_services_title') }}</h2>
 
         <div class="swiper services-swiper">
             <div class="swiper-wrapper">
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-earth-europe"></i></div>
-                    <h3>Acquisition de logiciels internationaux</h3>
-                    <p>Fourniture de logiciels internationaux selon vos besoins et budget.</p>
-
+                    <h3>{{ __('services.other_intl_title') }}</h3>
+                    <p>{{ __('services.other_intl_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
-                    <h3>Abonnements logiciels</h3>
-                    <p>Proposition et gestion d'abonnements IA (ChatGPT, Gemini...), Steam Cards, Adobe, Microsoft...</p>
-                
+                    <h3>{{ __('services.other_subscriptions_title') }}</h3>
+                    <p>{{ __('services.other_subscriptions_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                    <h3>Hébergement de sites web</h3>
-                    <p>Hébergement sécurisé, performant et évolutif pour vos sites et applications.</p>
-
+                    <h3>{{ __('services.other_hosting_title') }}</h3>
+                    <p>{{ __('services.other_hosting_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
-                    <h3>Conseil et accompagnement</h3>
-                    <p>Conseil stratégique et accompagnement à chaque étape de la réussite de vos projets.</p>
-
+                    <h3>{{ __('services.other_consulting_title') }}</h3>
+                    <p>{{ __('services.other_consulting_desc') }}</p>
                     <a href="#" class="plus-link">
-                        En savoir plus <i class="fas fa-arrow-right"></i>
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -163,10 +154,10 @@
     <div class="method-container">
 
         <div class="method-left">
-            <h2 class="method-title">Une approche simple et transparente</h2>
+            <h2 class="method-title">{{ __('services.method_title') }}</h2>
 
             <p class="method-description">
-                De l'analyse de vos besoins à la livraison, nous suivons un processus clair pour garantir la réussite de votre projet.
+                {{ __('services.method_description') }}
             </p>
         </div>
 
@@ -177,10 +168,9 @@
                     <div class="icon">
                         <i class="fa-solid fa-1"></i>
                     </div>
-
                     <div class="card-text">
-                        <h3>Analyse & découverte <i class="fa-solid fa-magnifying-glass"></i></h3>
-                        <p>Nous analysons vos besoins, vos objectifs et votre marché pour définir la meilleure approche.</p>
+                        <h3>{{ __('services.method_step1_title') }} <i class="fa-solid fa-magnifying-glass"></i></h3>
+                        <p>{{ __('services.method_step1_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -191,8 +181,8 @@
                         <i class="fa-solid fa-2"></i>
                     </div>
                     <div class="card-text">
-                        <h3>Conception & planification <i class="fa-regular fa-pen-to-square"></i></h3>
-                        <p>Nous concevons l'architecture et planifions les étapes clés de votre projet.</p>
+                        <h3>{{ __('services.method_step2_title') }} <i class="fa-regular fa-pen-to-square"></i></h3>
+                        <p>{{ __('services.method_step2_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -203,8 +193,8 @@
                         <i class="fa-solid fa-3"></i>
                     </div>
                     <div class="card-text">
-                        <h3> Développement & tests <i class="fa-solid fa-code"></i></h3>
-                        <p>Nous développons, testons et assurons la qualité tout au long du processus.</p>
+                        <h3>{{ __('services.method_step3_title') }} <i class="fa-solid fa-code"></i></h3>
+                        <p>{{ __('services.method_step3_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -215,8 +205,8 @@
                         <i class="fa-solid fa-4"></i>
                     </div>
                     <div class="card-text">
-                        <h3> Livraison & suivi <i class="fa-solid fa-rocket"></i></h3>
-                        <p>Nous livrons votre solution et restons à vos côtés pour assurer son évolution.</p>
+                        <h3>{{ __('services.method_step4_title') }} <i class="fa-solid fa-rocket"></i></h3>
+                        <p>{{ __('services.method_step4_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -233,13 +223,13 @@
         <div class="cta-container">
 
             <div class="cta-left">
-                <h2>Prêt à démarrer votre projet ?  </h2>
-                <h3>Parlons de vos besoins et construisons ensemble la meilleure solution.</h3>
+                <h2>{{ __('services.cta_title') }}</h2>
+                <h3>{{ __('services.cta_subtitle') }}</h3>
             </div>
 
             <div class="cta-right">
                 <a href="/contact" class="cta-btn">
-                    Contactez-nous <i class="fas fa-arrow-right"></i>
+                    {{ __('services.cta_btn') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
             </div>
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'À propos — Horizon Smart Systems')
+@section('title', __('about.page_title'))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
@@ -12,8 +12,8 @@
 <section class="hero-about">
     <div class="hero-overlay">
         <div class="hero-content">
-            <h1>À propos de HSS</h1>
-            <p>Votre partenaire en solutions web et digitales.</p>
+            <h1>{{ __('about.banner_title') }}</h1>
+            <p>{{ __('about.banner_subtitle') }}</p>
         </div>
     </div>
 </section>
@@ -23,22 +23,20 @@
     <div class="hero-container">
 
         <div class="hero-text">
-            <p class="hero-small">QUI SOMMES-NOUS ?</p>
+            <p class="hero-small">{{ __('about.hero_label') }}</p>
 
             <h1 class="hero-title">
-                Horizon Smart Systems
+                {{ __('about.hero_title') }}
             </h1>
             <h3 class="hero-subtitle">
-                Votre partenaire digital de confiance.
+                {{ __('about.hero_subtitle') }}
             </h3>
 
             <p class="hero-description">
-                Horizon Smart Systems (HSS) est une agence spécialisée dans le développement web, logiciel et les solutions digitales. Nous accompagnons les entreprises, commerçants et professionnels dans la création d'outils modernes, performants et adaptés à leurs objectifs.
-                <br>
-                <br>
-                Notre mission est simple : fournir des solutions innovantes qui optimisent vos processus, améliorent votre productivité et contribuent à la croissance durable de votre activité.
+                {{ __('about.hero_description_1') }}
+                <br><br>
+                {{ __('about.hero_description_2') }}
             </p>
-
         </div>
 
         <div class="hero-image">
@@ -51,19 +49,18 @@
 <!-- Values Section -->
 <section class="values">
     <div class="values-container">
+
         <!-- Notre vision Card -->
         <div class="values-card">
             <div class="card-content">
                 <div class="icon-circle">
                     <i class="fas fa-lightbulb"></i>
                 </div>
-
                 <div class="card-text">
-                    <h3>Notre vision</h3>
-                    <p>Devenir un acteur incontournable des solutions digitales en offrant des services innovants, fiables et accessibles à tous.</p>
+                    <h3>{{ __('about.vision_title') }}</h3>
+                    <p>{{ __('about.vision_desc') }}</p>
                 </div>
             </div>
-            
         </div>
 
         <!-- Notre mission Card -->
@@ -73,11 +70,10 @@
                     <i class="fa-solid fa-bullseye"></i>
                 </div>
                 <div class="card-text">
-                    <h3>Notre mission</h3>
-                    <p>Accompagner nos clients avec des solutions sur mesure qui répondent réellement à leurs besoins et leur apportent de la valeur.</p>
+                    <h3>{{ __('about.mission_title') }}</h3>
+                    <p>{{ __('about.mission_desc') }}</p>
                 </div>
             </div>
-            
         </div>
 
         <!-- Nos valeurs Card -->
@@ -87,13 +83,8 @@
                     <i class="fa-solid fa-gem"></i>
                 </div>
                 <div class="card-text">
-                    <h3>Nos valeurs</h3>
-                    <p>Innovation
-                        Qualité
-                        Fiabilité
-                        Transparence
-                        Engagement
-                    </p>
+                    <h3>{{ __('about.values_title') }}</h3>
+                    <p>{!! nl2br(e(__('about.values_list'))) !!}</p>
                 </div>
             </div>
         </div>
@@ -107,16 +98,15 @@
     <div class="team-container">
 
         <div class="team-left">
-            <h2>Notre équipe</h2>
+            <h2>{{ __('about.team_title') }}</h2>
             <p>
-                Notre équipe est composée de développeurs, designers, intégrateurs et experts en solutions digitales passionnés par la technologie et l'innovation.
-                <br>
-                <br>
-                Nous travaillons ensemble pour transformer vos idées en produits performants, ergonomiques et adaptés à votre domaine d'activité.
+                {{ __('about.team_description_1') }}
+                <br><br>
+                {{ __('about.team_description_2') }}
             </p>
 
             <a href="/contact" class="team-btn">
-                Contactez-nous <i class="fa-solid fa-arrow-right"></i>
+                {{ __('about.team_btn') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
             </a>
         </div>
 
@@ -127,8 +117,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <h3>Sohaib K</h3>
-                <span>Programmeur</span>
-
+                <span>{{ __('about.member_sohaib_role') }}</span>
                 <div class="socials">
                     <i class="fa-brands fa-facebook-f"></i>
                     <i class="fa-brands fa-linkedin-in"></i>
@@ -141,8 +130,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <h3>Amine S</h3>
-                <span>Designer</span>
-
+                <span>{{ __('about.member_amine_role') }}</span>
                 <div class="socials">
                     <i class="fa-brands fa-facebook-f"></i>
                     <i class="fa-brands fa-linkedin-in"></i>
@@ -155,8 +143,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <h3>Said</h3>
-                <span>Programmeur</span>
-
+                <span>{{ __('about.member_said_role') }}</span>
                 <div class="socials">
                     <i class="fa-brands fa-facebook-f"></i>
                     <i class="fa-brands fa-linkedin-in"></i>
@@ -176,20 +163,19 @@
         <div class="cta-container">
 
             <div class="cta-left">
-                <h2>Vous avez un projet ? <br> Nous sommes là pour le réaliser. </h2>
-                <h3>Discutons de vos idées et transformons-les en réalité.</h3>
+                <h2>{{ __('about.cta_title') }}</h2>
+                <h3>{{ __('about.cta_subtitle') }}</h3>
             </div>
 
             <div class="cta-right">
                 <a href="/contact" class="cta-btn">
-                    Contactez-nous <i class="fas fa-arrow-right"></i>
+                    {{ __('about.cta_btn') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
             </div>
 
         </div>
     </div>
 </section>
-
 
 @endsection
 
