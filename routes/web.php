@@ -22,5 +22,3 @@ Route::get('/contact', function () {
     return view('/contact', ['page' => 'contact']);
 });
 
-
-// hello from work

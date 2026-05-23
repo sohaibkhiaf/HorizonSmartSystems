@@ -30,7 +30,7 @@
 
         <!-- Right Side -->
         <div class="hero-image">
-            <img src="{{ asset('images/hero_image.png') }}" alt="Hero Image">
+            <img src="{{ asset('images/hero_image_nos_services.png') }}" alt="Hero Image">
         </div>
     </div>
 </section>

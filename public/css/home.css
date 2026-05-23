@@ -395,6 +395,9 @@ color: #111827;
     overflow: hidden;
     transition: 0.3s ease;
     margin: 5px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .acheivement-card:hover {
@@ -406,6 +409,7 @@ color: #111827;
 .acheivement-image {
     height: 150px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .acheivement-image img {
@@ -417,6 +421,9 @@ color: #111827;
 /* CONTENT */
 .acheivement-content {
     padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* HEADER (title + type) */
@@ -450,11 +457,26 @@ color: #111827;
     color: #6b7280;
     line-height: 1.4;
     margin: 0;
+    font-size: 12.5px;
+    color: #6b7280;
+    line-height: 1.4;
+    margin: 0;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.swiper-wrapper {
+    align-items: stretch;
 }
 
 /* SWIPER */
 .swiper-slide {
     width: 280px;
+    height: auto;
+    display: flex;
 }
 
 /* Call To Action Section *************************************************/

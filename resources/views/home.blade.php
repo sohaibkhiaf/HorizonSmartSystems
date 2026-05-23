@@ -25,8 +25,8 @@
             </p>
 
             <div class="hero-buttons">
-                <a href="/services" class="btn btn-primary">voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
-                <a href="/contact" class="btn btn-outline">contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/services" class="btn btn-primary">Voir nos services &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-outline">Contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
@@ -255,7 +255,7 @@
     <h2 class="acheivements-title">Nos réalisations</h2>
 
     <a href="/achievements" class="acheivements-link">
-        voir toutes nos réalisations <i class="fas fa-arrow-right"></i>
+        Voir toutes nos réalisations <i class="fas fa-arrow-right"></i>
     </a>
 </div>
 
@@ -277,7 +277,7 @@
                         <span class="type">Web App</span>
                     </div>
 
-                    <p>Création d'une plateforme e-commerce moderne avec gestion complète des produits et commandes.</p>
+                    <p>Création d'une plateforme e-commerce.</p>
 
                 </div>
             </div>
