@@ -88,7 +88,7 @@
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-headset"></i></div>
                     <h3>Assistance logicielle et informatique</h3>
-                    <p>Support technique, résolution de problèmes et réseaux.</p>
+                    <p>Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.</p>
 
                     <a href="#" class="plus-link">
                         En savoir plus <i class="fas fa-arrow-right"></i>

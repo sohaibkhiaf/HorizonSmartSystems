@@ -69,7 +69,7 @@
                     </div>
                     <div class="card-text">
                         <h3>Sites E-commerce</h3>
-                        <p>Des sites modernes, rapides et performants.</p>
+                        <p>Sites e-commerce avec catalogue, panier, commandes et gestion simple.</p>
                     </div>
                 </div>
             </div>

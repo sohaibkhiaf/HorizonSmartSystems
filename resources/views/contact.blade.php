@@ -15,8 +15,8 @@
         <div class="hero-content">
             <p>CONTACTEZ-NOUS</p>
             <h1>Parlons de votre projet</h1>
-            <p>Une idee, un besoin, un projet digital? 
-                <br> Notre equipe est a votre ecoute pour vous accompagner.
+            <p>Une idée, un besoin, un projet digital ? 
+                <br> Notre équipe est à votre écoute pour vous accompagner.
             </p>
         </div>
     </div>
@@ -36,7 +36,7 @@
                 <i class="fas fa-phone"></i>
                 <div>
                     <h4>Téléphone</h4>
-                    <p>05 40 29 62 00 | 07 47 74 36 72</p>
+                    <p>0561 65 51 00 | 0782 94 07 60</p>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                 <i class="fab fa-facebook-f"></i>
                 <div>
                     <h4>Facebook</h4>
-                    <p>facebook.com/hss.agency</p>
+                    <p>facebook.com/HorizonSmartSystems</p>
                 </div>
             </div>
 
@@ -63,7 +63,7 @@
                 <i class="fas fa-location-dot"></i>
                 <div>
                     <h4>Adresse</h4>
-                    <p>Batna, Algérie - Rue de l'Innovation 120</p>
+                    <p>Rue Zaatcha, en face du centre des impôts</p>
                 </div>
             </div>
 
