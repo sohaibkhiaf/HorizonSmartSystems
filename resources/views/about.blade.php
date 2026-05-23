@@ -3,7 +3,7 @@
 @section('title', 'À propos — Horizon Smart Systems')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 @endsection
 
 @section('content')

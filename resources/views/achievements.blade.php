@@ -8,11 +8,10 @@
 
 @section('content')
 
-
+<!-- Hero Section -->
 <section class="hero">
     <div class="hero-container">
 
-        <!-- Left Side -->
         <div class="hero-text">
 
             <h1 class="hero-title">
@@ -23,18 +22,15 @@
                 Découvrez quelques projets web, logiciels et solutions digitales conçus pour accompagner la réussite de nos clients.</p>
 
             <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                <a href="/contact" class="btn btn-primary">Contactez-nous &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
 
-        <!-- Right Side -->
         <div class="hero-image">
             <img src="{{ asset('images/hero_image_realisations.png') }}" alt="Hero Image">
         </div>
     </div>
 </section>
-
-
 
 
 <!-- Method Section -->
@@ -43,10 +39,10 @@
 
         <!-- Left Content -->
         <div class="features-left">
-            <h2 class="features-title">Des solutions concretes, pensees pour des besoins reels.</h2>
+            <h2 class="features-title">Des solutions concrètes, pensées pour des besoins réels.</h2>
 
             <p class="features-description">
-                Chaque projet est unique. Nous concevons des solutions adaptees aux objectifs, au secteur et aux utilisateurs de nos clients.
+                Chaque projet est unique. Nous concevons des solutions adaptées aux objectifs, au secteur et aux utilisateurs de nos clients.
             </p>
         </div>
 
@@ -61,7 +57,7 @@
 
                     <div class="card-text">
                         <h3>Sites web</h3>
-                        <p>Des sites modernes, rapides et performats.</p>
+                        <p>Des sites modernes, rapides et performants.</p>
                     </div>
                 </div>
             </div>
@@ -73,7 +69,7 @@
                     </div>
                     <div class="card-text">
                         <h3>Sites E-commerce</h3>
-                        <p>Des sites modernes, rapides et performats.</p>
+                        <p>Des sites modernes, rapides et performants.</p>
                     </div>
                 </div>
             </div>
@@ -84,8 +80,8 @@
                         <i class="fa-solid fa-user-gear"></i>
                     </div>
                     <div class="card-text">
-                        <h3>Systemes de gestion</h3>
-                        <p>Solutions completes pour optimiser votre activite.</p>
+                        <h3>Systèmes de gestion</h3>
+                        <p>Solutions complètes pour optimiser votre activité.</p>
                     </div>
                 </div>
             </div>
@@ -97,7 +93,7 @@
                     </div>
                     <div class="card-text">
                         <h3> Support & optimisation</h3>
-                        <p>Accompagnement continu et amelioration continue.</p>
+                        <p>Accompagnement continu et amélioration continue.</p>
                     </div>
                 </div>
             </div>
@@ -106,249 +102,219 @@
     </div>
 </section>
 
-
-<!-- Tabs Section -->
+<!-- Projects Section -->
 <section class="projects-tabs-section">
-    <div class="tabs-container">
 
-        <!-- Tabs -->
+    <div class="tabs-box">
         <div class="tabs">
-            <button class="tab active" data-type="all">
+            <div class="tab active" data-type="all">
                 <i class="fa-solid fa-layer-group"></i>
                 Tous
-            </button>
+            </div>
 
-            <button class="tab" data-type="web">
+            <div class="tab" data-type="web">
                 <i class="fa-solid fa-globe"></i>
-                Sites web
-            </button>
-
-            <button class="tab" data-type="management">
-                <i class="fa-solid fa-diagram-project"></i>
-                Gestion
-            </button>
-
-            <button class="tab" data-type="ecommerce">
-                <i class="fa-solid fa-cart-shopping"></i>
-                E-commerce
-            </button>
-        </div>
-
-        <!-- Projects (example structure) -->
-<div class="projects-grid">
-
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
-
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Site web vitrine</h3>
-                <span class="type">Web</span>
+                Sites Web
             </div>
-            <p>Création de sites modernes et rapides adaptés à tous les écrans.</p>
 
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-        
-    </div>
-
-    <div class="acheivement-card" data-type="ecommerce">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-        </div>
-
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Shop en ligne</h3>
-                <span class="type">E-commerce</span>
+            <div class="tab" data-type="app">
+                <i class="fa-solid fa-code"></i>
+                Applications
             </div>
-            <p>Plateforme e-commerce performante avec gestion complète des produits.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="management">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
-
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>ERP Gestion</h3>
-                <span class="type">Gestion</span>
+            <div class="tab" data-type="software">
+                <i class="fa-solid fa-laptop-code"></i>
+                Logiciels
             </div>
-            <p>Solution de gestion interne pour optimiser les opérations de l’entreprise.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
         </div>
     </div>
 
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-        </div>
+    <div class="projects-box">
+        <div class="projects-grid">
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Landing page</h3>
-                <span class="type">Web</span>
+            <div class="acheivement-card" data-type="web">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
+                </div>
+
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Site vitrine</h3>
+                        <span class="type">Web</span>
+                    </div>
+
+                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Pages d’atterrissage optimisées pour conversion et performance SEO.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="app">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Site web vitrine</h3>
-                <span class="type">Web</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Application métier</h3>
+                        <span class="type">App</span>
+                    </div>
+
+                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Création de sites modernes et rapides adaptés à tous les écrans.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="ecommerce">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="software">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Shop en ligne</h3>
-                <span class="type">E-commerce</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Système de gestion</h3>
+                        <span class="type">ERP</span>
+                    </div>
+
+                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Plateforme e-commerce performante avec gestion complète des produits.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-        
-    </div>
 
-    <div class="acheivement-card" data-type="management">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="web">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>ERP Gestion</h3>
-                <span class="type">Gestion</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Site vitrine</h3>
+                        <span class="type">Web</span>
+                    </div>
+
+                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Solution de gestion interne pour optimiser les opérations de l’entreprise.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="app">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Landing page</h3>
-                <span class="type">Web</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Application métier</h3>
+                        <span class="type">App</span>
+                    </div>
+
+                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Pages d’atterrissage optimisées pour conversion et performance SEO.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="software">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Site web vitrine</h3>
-                <span class="type">Web</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Système de gestion</h3>
+                        <span class="type">ERP</span>
+                    </div>
+
+                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Création de sites modernes et rapides adaptés à tous les écrans.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="ecommerce">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="web">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Shop en ligne</h3>
-                <span class="type">E-commerce</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Site vitrine</h3>
+                        <span class="type">Web</span>
+                    </div>
+
+                    <p>Création d’un site moderne pour présenter les services d’une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Plateforme e-commerce performante avec gestion complète des produits.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="management">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="app">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>ERP Gestion</h3>
-                <span class="type">Gestion</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Application métier</h3>
+                        <span class="type">App</span>
+                    </div>
+
+                    <p>Développement d’une solution personnalisée adaptée aux besoins du client.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Solution de gestion interne pour optimiser les opérations de l’entreprise.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
 
-    <div class="acheivement-card" data-type="web">
-        <div class="acheivement-image">
-            <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-        </div>
+            <div class="acheivement-card" data-type="software">
+                <div class="acheivement-image">
+                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
+                </div>
 
-        <div class="acheivement-content">
-            <div class="acheivement-header">
-                <h3>Landing page</h3>
-                <span class="type">Web</span>
+                <div class="acheivement-content">
+                    <div class="acheivement-header">
+                        <h3>Système de gestion</h3>
+                        <span class="type">ERP</span>
+                    </div>
+
+                    <p>Solution de gestion interne pour optimiser les opérations d'une entreprise.</p>
+
+                    <a class="view-link">
+                        Voir le projet
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <p>Pages d’atterrissage optimisées pour conversion et performance SEO.</p>
-            <a href="#" class="plus-link">
-                voir le projet <i class="fas fa-arrow-right"></i>
-            </a>
+
         </div>
     </div>
 
-
-
-</div>
-
-    </div>
 </section>
 
 
@@ -360,8 +326,8 @@
 
             <!-- LEFT -->
             <div class="cta-left">
-                <h2>Prêt à concretiser votre projet ?  </h2>
-                <h3>Discutons de vos besoins et construsions ensemble une solution efficace et sur mesure.</h3>
+                <h2>Prêt à concrétiser votre projet ?  </h2>
+                <h3>Discutons de vos besoins et construisons ensemble une solution efficace et sur mesure.</h3>
             </div>
 
             <!-- RIGHT -->
@@ -379,9 +345,7 @@
 
 @endsection
 
-
 @section('script')
     <script type="module" src="{{ asset('js/achievements.js') }}"></script>
 @endsection
-
 

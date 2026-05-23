@@ -68,11 +68,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## TODO
 
-1_complete contact and realizations
-2_generate images
 3_revise content
-4_admin dashboard
 5_multilingual
 6_service page
-
+4_admin dashboard
 

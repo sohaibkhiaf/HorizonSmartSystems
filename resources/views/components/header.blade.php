@@ -2,7 +2,7 @@
 
     <div class="logo">
         <a href="/">
-            <img src="{{ asset('images/hss_logo_1.png') }}" alt="Logo">
+            <img src="{{ asset('images/hss_logo.png') }}" alt="Logo">
         </a>
     </div>
 

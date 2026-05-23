@@ -8,6 +8,7 @@
 
 
 @section('content')
+
 <!-- Hero Banner -->
 <section class="hero-about">
     <div class="hero-overlay">
@@ -21,14 +22,14 @@
     </div>
 </section>
 
-
+<!-- Contact Section -->
 <section class="contact-section">
     <div class="contact-container">
 
         <!-- LEFT: CONTACT INFOS -->
         <div class="contact-info">
 
-            <h2 class="contact-title">Contact</h2>
+            <h2 class="contact-title">Contactez-nous</h2>
 
             <!-- Item -->
             <div class="contact-item">
@@ -77,29 +78,29 @@
                 <div class="form-grid">
 
                     <div class="form-group">
-                        <label>Nom complet *</label>
-                        <input type="text" placeholder="Ex: Ahmed Benali" required>
+                        <label>Nom complet (*)</label>
+                        <input type="text" placeholder="Votre nom" required>
                     </div>
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" placeholder="Ex: ahmed@email.com">
+                        <input type="email" placeholder="votre@email.com">
                     </div>
 
                     <div class="form-group">
-                        <label>Téléphone *</label>
-                        <input type="tel" placeholder="Ex: 0550 00 00 00" required>
+                        <label>Téléphone (*)</label>
+                        <input type="tel" placeholder="+213 XXX XX XX XX" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Sujet *</label>
-                        <input type="text" placeholder="Ex: Demande de devis" required>
+                        <label>Sujet (*)</label>
+                        <input type="text" placeholder="Décrivez brièvement l’objet de votre demande" required>
                     </div>
 
                 </div>
 
                 <div class="form-group message-group">
-                    <label>Message *</label>
+                    <label>Message (*)</label>
                     <textarea placeholder="Décrivez votre projet ou votre besoin en détail..." required></textarea>
                 </div>
 
@@ -111,7 +112,7 @@
                 </div>
 
                 <button type="submit" class="btn-submit">
-                    Envoyer le message
+                    Envoyer le message <i class="fa-regular fa-paper-plane"></i>
                 </button>
             </form>
 
@@ -119,6 +120,8 @@
 
     </div>
 </section>
+
+<!-- Map & Hours Section -->
 
 <section class="map-hours-section">
 
@@ -142,7 +145,27 @@
 
             <div class="hours-content">
                 <div class="hour-row">
-                    <span>Samedi - Mercredi</span>
+                    <span>Samedi</span>
+                    <span>08:30 - 16:30</span>
+                </div>
+
+                <div class="hour-row">
+                    <span>Dimanche</span>
+                    <span>08:30 - 16:30</span>
+                </div>
+
+                <div class="hour-row">
+                    <span>Lundi</span>
+                    <span>08:30 - 16:30</span>
+                </div>
+
+                <div class="hour-row">
+                    <span>Mardi</span>
+                    <span>08:30 - 16:30</span>
+                </div>
+
+                <div class="hour-row">
+                    <span>Mercredi</span>
                     <span>08:30 - 16:30</span>
                 </div>
 

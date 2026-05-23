@@ -2,7 +2,7 @@
     <div class="footer-container">
 
         <div class="footer-section">
-            <img src="{{ asset('images/hss_logo_1.png') }}" alt="Logo" class="footer-logo">
+            <img src="{{ asset('images/hss_logo.png') }}" alt="Logo" class="footer-logo">
 
             <p class="footer-description">
                 Agence de développement web et logiciel engagée pour votre réussite digitale.

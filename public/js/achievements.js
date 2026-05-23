@@ -1,12 +1,13 @@
 const tabs = document.querySelectorAll(".tab");
 const projects = document.querySelectorAll(".acheivement-card");
 
-
 tabs.forEach(tab => {
     tab.addEventListener("click", () => {
 
-        // remove active
+        // Remove active class from all tabs
         tabs.forEach(t => t.classList.remove("active"));
+
+        // Add active class to clicked tab
         tab.classList.add("active");
 
         const type = tab.dataset.type;
@@ -22,3 +23,4 @@ tabs.forEach(tab => {
         });
     });
 });
+
