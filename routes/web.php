@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'fr', 'ar'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('language-switcher');
+
+
 Route::get('/', function () {
     return view('/home', ['page' => 'home']);
 });

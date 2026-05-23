@@ -69,12 +69,12 @@
                 <h3>Fonctionnalités de base</h3>
 
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Design moderne et responsive</li>
-                    <li><i class="fa-solid fa-check"></i> Page d’accueil professionnelle</li>
-                    <li><i class="fa-solid fa-check"></i> Pages services, à propos et contact</li>
-                    <li><i class="fa-solid fa-check"></i> Formulaire de contact</li>
-                    <li><i class="fa-solid fa-check"></i> Intégration Google Maps</li>
-                    <li><i class="fa-solid fa-check"></i> Optimisation de base pour les moteurs de recherche</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Design moderne et responsive</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Page d’accueil professionnelle</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Pages services, à propos et contact</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Formulaire de contact</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Intégration Google Maps</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Optimisation de base pour les moteurs de recherche</li>
                 </ul>
             </div>
 
@@ -104,12 +104,12 @@
                 <h3>Fonctionnalités de base</h3>
 
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Interface moderne et responsive</li>
-                    <li><i class="fa-solid fa-check"></i> Catalogue de produits</li>
-                    <li><i class="fa-solid fa-check"></i> Pages catégories et détails produit</li>
-                    <li><i class="fa-solid fa-check"></i> Panier d’achat</li>
-                    <li><i class="fa-solid fa-check"></i> Formulaire de commande</li>
-                    <li><i class="fa-solid fa-check"></i> Tableau de gestion simple</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Interface moderne et responsive</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Catalogue de produits</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Pages catégories et détails produit</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Panier d’achat</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Formulaire de commande</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Tableau de gestion simple</li>
                 </ul>
             </div>
 

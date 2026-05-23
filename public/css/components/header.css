@@ -58,19 +58,6 @@
     color: #2563eb;
 }
 
-/* Button */
-.actions .btn {
-    background: #2563eb;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 20px;
-    text-decoration: none;
-}
-
-.actions .btn:hover {
-    background: #1d4ed8;
-}
-
 /* Hamburger hidden on desktop */
 .menu-toggle {
     display: none;
@@ -79,7 +66,41 @@
     color: var(--dark-blue);
 }
 
-/* ===== MOBILE ===== */
+
+/* ===== Language Switcher ================================== */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+/* links */
+.language-switcher a {
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 15px;
+    color: #374151;
+    transition: 0.2s ease;
+}
+
+/* hover */
+.language-switcher a:hover {
+    background: #e2e8f0;
+}
+
+/* active language */
+.language-switcher a.active {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+}
+
+
+/* ===== Responsive  ======================================= */
 @media (max-width: 900px) {
 
     .header {
@@ -117,6 +138,21 @@
 
     .logo img {
         height: 30px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .language-switcher {
+        background: transparent;
+        padding: 0;
+    }
+
+    .language-switcher a {
+        padding: 5px 8px;
+        font-size: 12px;
     }
 }
 
