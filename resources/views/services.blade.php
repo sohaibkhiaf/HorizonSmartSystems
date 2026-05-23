@@ -3,11 +3,12 @@
 @section('title', 'Nos services — Horizon Smart Systems')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/services.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/services.css') }}">
 @endsection
 
 
 @section('content')
+
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-container">
@@ -50,7 +51,7 @@
                     <h3>Création de sites web</h3>
                     <p>Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.</p>
 
-                    <a href="#" class="plus-link">
+                    <a href="/services/webdev" class="plus-link">
                         En savoir plus <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>

@@ -22,3 +22,7 @@ Route::get('/contact', function () {
     return view('/contact', ['page' => 'contact']);
 });
 
+Route::get('/services/webdev', function () {
+    return view('/services/webdev', ['page' => 'services']);
+});
+

@@ -1,0 +1,325 @@
+/* Hero Section ******************************** */
+.hero {
+    padding: 40px 8%;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 550px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+    border: 1px solid #2563eb;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* Description Section ******************************** */
+.web-description {
+    margin: 20px 8%;
+    padding: 28px 40px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.web-description-container h2 {
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.web-description-container p {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.7;
+    max-width: 950px;
+}
+
+
+/* Website Types Section ******************************** */
+.website-types {
+    margin: 20px 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.website-type-card {
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    transition: 0.3s ease;
+}
+
+.website-type-card:hover {
+    border-color: #2563eb;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.12);
+    transform: translateY(-2px);
+}
+
+.type-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.type-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.type-header h2 {
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.type-header p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.type-content {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.features-box,
+.price-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.features-box h3 {
+    font-size: 17px;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.features-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.features-box li {
+    font-size: 14px;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.features-box li i {
+    color: #2563eb;
+    font-size: 13px;
+}
+
+.price-box {
+    background: #eff6ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.price-box span {
+    font-size: 15px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.price-box h3 {
+    font-size: 24px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.price-box p {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+/* Call To Action Section ******************************** */
+.cta {
+    background: url('/images/cta_background.png') center/cover no-repeat;
+    overflow: hidden;
+    border-radius: 14px;
+    margin: 20px 8%;
+}
+
+.cta-overlay {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 30px 12%;
+}
+
+.cta-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.cta-left h2 {
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+}
+
+.cta-left h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid #fff;
+    color: #fff;
+    background: transparent;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+    background: #fff;
+    color: #111;
+}
+
+
+/* Responsive ******************************** */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-description {
+        margin: 0 auto 30px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .type-content {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 30px 6%;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .web-description,
+    .website-types,
+    .cta {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .web-description,
+    .website-type-card {
+        padding: 22px;
+    }
+
+    .type-header {
+        flex-direction: column;
+    }
+
+    .price-box h3 {
+        font-size: 20px;
+    }
+}
+
