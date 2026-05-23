@@ -22,3 +22,5 @@ Route::get('/contact', function () {
     return view('/contact', ['page' => 'contact']);
 });
 
+
+// example change
