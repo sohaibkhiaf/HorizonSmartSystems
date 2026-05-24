@@ -17,12 +17,10 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Sohaib Khiaf',
             'email' => 'sohaibkhiaf@gmail.com',
-            'is_admin' => true,
         ]);
         User::factory()->create([
             'name' => 'Salem Mohamed Amine',
             'email' => 'salemamine@gmail.com',
-            'is_admin' => true,
         ]);
         
     }

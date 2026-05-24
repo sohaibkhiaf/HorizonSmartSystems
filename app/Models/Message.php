@@ -11,7 +11,6 @@ class Message extends Model
 {
     /** @use HasFactory<\Database\Factories\MessageFactory> */
     use HasFactory;
-
     use SoftDeletes;
 
     protected $fillable = [
@@ -24,7 +23,4 @@ class Message extends Model
         'admin_note',
     ];
 
-    protected $casts = [
-        'seen' => 'boolean',
-    ];
 }

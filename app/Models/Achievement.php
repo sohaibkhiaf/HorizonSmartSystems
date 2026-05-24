@@ -11,7 +11,6 @@ class Achievement extends Model
 {
     /** @use HasFactory<\Database\Factories\AchievementFactory> */
     use HasFactory;
-
     use SoftDeletes;
 
     protected $fillable = [

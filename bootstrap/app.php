@@ -20,7 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => Admin::class,
         ]);
-        $middleware->redirectGuestsTo(fn () => route('admin.login.page'));
+        $middleware->redirectGuestsTo(fn () => route('login.page'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

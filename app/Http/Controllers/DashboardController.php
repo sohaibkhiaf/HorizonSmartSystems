@@ -11,8 +11,8 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard', [
-            'realisationsCount' => Achievement::count(),
-            'publishedRealisationsCount' => Achievement::where('is_published', true)->count(),
+            'achievementsCount' => Achievement::count(),
+            'publishedAchievementsCount' => Achievement::where('is_published', true)->count(),
             'waitingMessagesCount' => Message::where('seen', false)->count(),
             'seenMessagesCount' => Message::where('seen', true)->count(),
         ]);

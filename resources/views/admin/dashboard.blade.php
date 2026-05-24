@@ -13,8 +13,8 @@
             <i class="fas fa-briefcase"></i>
         </div>
         <div>
-            <h3>{{ $realisationsCount }}</h3>
-            <p>Total Realisations</p>
+            <h3>{{ $achievementsCount }}</h3>
+            <p>Total Achievements</p>
         </div>
     </div>
 
@@ -23,8 +23,8 @@
             <i class="fas fa-eye"></i>
         </div>
         <div>
-            <h3>{{ $publishedRealisationsCount }}</h3>
-            <p>Published Realisations</p>
+            <h3>{{ $publishedAchievementsCount }}</h3>
+            <p>Published Achievements</p>
         </div>
     </div>
 
@@ -53,13 +53,13 @@
 <div class="admin-tabs">
     <a href="{{ route('admin.realisations.create') }}" class="tab-card">
         <i class="fas fa-plus"></i>
-        <h3>Create Realisation</h3>
+        <h3>Create Achievement</h3>
         <p>Add a new project to your website.</p>
     </a>
 
     <a href="{{ route('admin.realisations.index') }}" class="tab-card">
         <i class="fas fa-pen"></i>
-        <h3>Edit Realisation</h3>
+        <h3>Edit Achievement</h3>
         <p>Update, publish, or delete existing projects.</p>
     </a>
 
