@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Admin Panel')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -32,16 +33,16 @@
                 Dashboard
             </a>
 
-            <div class="nav-group-title">Realisations</div>
+            <div class="nav-group-title">Achievements</div>
 
-            <a href="{{ route('admin.realisations.create') }}" class="{{ request()->routeIs('admin.realisations.create') ? 'active' : '' }}">
+            <a href="{{ route('admin.achievements.create') }}" class="{{ request()->routeIs('admin.achievements.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
-                Create Realisation
+                Create Achievement
             </a>
 
-            <a href="{{ route('admin.realisations.index') }}" class="{{ request()->routeIs('admin.realisations.index') || request()->routeIs('admin.realisations.edit') ? 'active' : '' }}">
+            <a href="{{ route('admin.achievements.index') }}" class="{{ request()->routeIs('admin.achievements.index') || request()->routeIs('admin.achievements.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>
-                Our Realisations
+                Our Achievements
             </a>
 
             <div class="nav-group-title">Messages</div>

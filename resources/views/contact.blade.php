@@ -164,27 +164,7 @@
 
             <div class="hours-content">
                 <div class="hour-row">
-                    <span>{{ __('contact.saturday') }}</span>
-                    <span>08:30 - 16:30</span>
-                </div>
-
-                <div class="hour-row">
-                    <span>{{ __('contact.sunday') }}</span>
-                    <span>08:30 - 16:30</span>
-                </div>
-
-                <div class="hour-row">
-                    <span>{{ __('contact.monday') }}</span>
-                    <span>08:30 - 16:30</span>
-                </div>
-
-                <div class="hour-row">
-                    <span>{{ __('contact.tuesday') }}</span>
-                    <span>08:30 - 16:30</span>
-                </div>
-
-                <div class="hour-row">
-                    <span>{{ __('contact.wednesday') }}</span>
+                    <span>{{ __('contact.saturday') }} - {{ __('contact.wednesday') }}</span>
                     <span>08:30 - 16:30</span>
                 </div>
 

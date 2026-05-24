@@ -8,16 +8,16 @@ use Illuminate\Support\Facades\Storage;
 
 class AchievementController extends Controller
 {
-public function index()
+    public function index()
     {
-        $realisations = Achievement::latest()->paginate(9);
+        $achievements = Achievement::latest()->paginate(9);
 
-        return view('admin.realisations.index', compact('realisations'));
+        return view('admin.achievements.index', compact('achievements'));
     }
 
     public function create()
     {
-        return view('admin.realisations.create');
+        return view('admin.achievements.create');
     }
 
     public function store(Request $request)
@@ -35,19 +35,19 @@ public function index()
         $data['is_published'] = $request->boolean('is_published');
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('realisations', 'public');
+            $data['image'] = $request->file('image')->store('achievements', 'public');
         }
 
         Achievement::create($data);
 
         return redirect()
-            ->route('admin.realisations.index')
-            ->with('success', 'Realisation created successfully.');
+            ->route('admin.achievements.index')
+            ->with('success', 'Achievement created successfully.');
     }
 
     public function edit(Achievement $achievement)
     {
-        return view('admin.realisations.edit', compact('achievement'));
+        return view('admin.achievements.edit', compact('achievement'));
     }
 
     public function update(Request $request, Achievement $achievement)
@@ -70,14 +70,14 @@ public function index()
                 Storage::disk('public')->delete($achievement->image);
             }
 
-            $data['image'] = $request->file('image')->store('realisations', 'public');
+            $data['image'] = $request->file('image')->store('achievements', 'public');
         }
 
         $achievement->update($data);
 
         return redirect()
-            ->route('admin.realisations.index')
-            ->with('success', 'Realisation updated successfully.');
+            ->route('admin.achievements.index')
+            ->with('success', 'Achievement updated successfully.');
     }
 
     public function destroy(Achievement $achievement)
@@ -85,8 +85,8 @@ public function index()
         $achievement->delete();
 
         return redirect()
-            ->route('admin.realisations.index')
-            ->with('success', 'Realisation deleted successfully.');
+            ->route('admin.achievements.index')
+            ->with('success', 'Achievement deleted successfully.');
     }
 
 

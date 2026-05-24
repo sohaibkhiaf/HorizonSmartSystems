@@ -19,7 +19,7 @@ class Message extends Model
         'phone',
         'subject',
         'message',
-        'seen',
+        'is_seen',
         'admin_note',
     ];
 

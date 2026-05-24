@@ -26,7 +26,7 @@ return [
     // Tabs
     'tab_all'      => 'الكل',
     'tab_web'      => 'مواقع ويب',
-    'tab_app'      => 'تطبيقات',
+    'tab_ecommerce'      => 'تجارة إلكترونية',
     'tab_software' => 'برمجيات',
 
     // Project Cards

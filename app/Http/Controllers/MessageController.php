@@ -5,30 +5,30 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
+
 class MessageController extends Controller
 {
-public function waiting()
-    {
-        $messages = Message::where('seen', false)
+    public function waiting(){
+        $messages = Message::where('is_seen', false)
             ->latest()
             ->paginate(9);
 
         return view('admin.messages.index', [
             'messages' => $messages,
-            'seen' => false,
+            'is_seen' => false,
             'title' => 'Waiting Messages',
         ]);
     }
 
-    public function seen()
-    {
-        $messages = Message::where('seen', true)
+    public function seen(){
+        
+        $messages = Message::where('is_seen', true)
             ->latest()
             ->paginate(9);
 
         return view('admin.messages.index', [
             'messages' => $messages,
-            'seen' => true,
+            'is_seen' => true,
             'title' => 'Seen Messages',
         ]);
     }
@@ -41,26 +41,26 @@ public function waiting()
     public function update(Request $request, Message $message)
     {
         $request->validate([
-            'seen' => ['required', 'boolean'],
+            'is_seen' => ['nullable', 'boolean'],
             'admin_note' => ['nullable', 'string'],
         ]);
 
-        $seen = $request->boolean('seen');
+        $is_seen = $request->boolean('is_seen');
 
         $message->update([
-            'seen' => $seen,
+            'is_seen' => $is_seen,
             'admin_note' => $request->input('admin_note'),
         ]);
 
         return redirect()
-            ->route($seen ? 'admin.messages.seen' : 'admin.messages.waiting')
+            ->route($is_seen ? 'admin.messages.seen' : 'admin.messages.waiting')
             ->with('success', 'Message updated successfully.');
     }
 
     public function markSeen(Message $message)
     {
         $message->update([
-            'seen' => true,
+            'is_seen' => true,
         ]);
 
         return back()->with('success', 'Message marked as seen.');
@@ -69,7 +69,7 @@ public function waiting()
     public function markWaiting(Message $message)
     {
         $message->update([
-            'seen' => false,
+            'is_seen' => false,
         ]);
 
         return back()->with('success', 'Message moved to waiting.');

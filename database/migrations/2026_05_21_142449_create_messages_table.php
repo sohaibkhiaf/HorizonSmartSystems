@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('subject')->nullable();
             $table->text('message');
 
-            $table->boolean('seen')->default(false);
+            $table->boolean('is_seen')->default(false);
 
             $table->text('admin_note')->nullable();
 

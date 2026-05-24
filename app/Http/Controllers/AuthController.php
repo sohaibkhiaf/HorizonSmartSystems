@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class AuthController extends Controller
 {
-  public function loginPage()
+    public function loginPage()
     {
         if (auth()->check() && auth()->user()->is_admin) {
             return redirect()->route('admin.dashboard');

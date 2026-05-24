@@ -258,122 +258,26 @@
     <div class="swiper acheivements-swiper">
         <div class="swiper-wrapper">
 
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_ecommerce_title') }}</h3>
-                        <span class="type">{{ __('home.type_webapp') }}</span>
+            @foreach($achievements as $achievement)
+                <div class="swiper-slide acheivement-card">
+                    <div class="acheivement-image">
+                        @if($achievement->image)
+                            <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
+                        @else
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        @endif
                     </div>
-                    <p>{{ __('home.achievement_ecommerce_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_erp_title') }}</h3>
-                        <span class="type">{{ __('home.type_erp') }}</span>
+                    <div class="acheivement-content">
+                        <div class="acheivement-header">
+                            <h3>{{ $achievement->title }}</h3>
+                            <span class="type">{{ $achievement->type }}</span>
+                        </div>
+                        <p>{{ $achievement->short_description }}</p>
                     </div>
-                    <p>{{ __('home.achievement_erp_desc') }}</p>
                 </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_mobile_title') }}</h3>
-                        <span class="type">{{ __('home.type_mobile') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_mobile_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_ecommerce_title') }}</h3>
-                        <span class="type">{{ __('home.type_webapp') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_ecommerce_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_erp_title') }}</h3>
-                        <span class="type">{{ __('home.type_erp') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_erp_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_mobile_title') }}</h3>
-                        <span class="type">{{ __('home.type_mobile') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_mobile_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_ecommerce_title') }}</h3>
-                        <span class="type">{{ __('home.type_webapp') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_ecommerce_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_erp_title') }}</h3>
-                        <span class="type">{{ __('home.type_erp') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_erp_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide acheivement-card">
-                <div class="acheivement-image">
-                    <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-                </div>
-                <div class="acheivement-content">
-                    <div class="acheivement-header">
-                        <h3>{{ __('home.achievement_mobile_title') }}</h3>
-                        <span class="type">{{ __('home.type_mobile') }}</span>
-                    </div>
-                    <p>{{ __('home.achievement_mobile_desc') }}</p>
-                </div>
-            </div>
+            @endforeach
 
         </div>
     </div>

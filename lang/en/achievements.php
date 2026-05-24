@@ -26,7 +26,7 @@ return [
     // Tabs
     'tab_all'      => 'All',
     'tab_web'      => 'Websites',
-    'tab_app'      => 'Applications',
+    'tab_ecommerce'      => 'E-commerce',
     'tab_software' => 'Software',
 
     // Project Cards

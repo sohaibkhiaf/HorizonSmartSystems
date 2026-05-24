@@ -117,9 +117,9 @@
                 {{ __('achievements.tab_web') }}
             </div>
 
-            <div class="tab" data-type="app">
-                <i class="fa-solid fa-code"></i>
-                {{ __('achievements.tab_app') }}
+            <div class="tab" data-type="ecommerce">
+                <i class="fa-solid fa-cart-shopping"></i>
+                {{ __('achievements.tab_ecommerce') }}
             </div>
 
             <div class="tab" data-type="software">
@@ -132,10 +132,16 @@
     <div class="projects-box">
         <div class="projects-grid">
 
-            @forelse($achievements as $achievement)
+            @foreach($achievements as $achievement)
                 <div class="acheivement-card" data-type="{{ \Illuminate\Support\Str::slug($achievement->type ?: 'all') }}">
                     <div class="acheivement-image">
-                        <img src="{{ $achievement->image ? asset('storage/' . $achievement->image) : asset('images/achievement_1.jpg') }}" alt="{{ $achievement->title }}">
+                        @if($achievement->image)
+                            <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
+                        @else
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        @endif
                     </div>
                     <div class="acheivement-content">
                         <div class="acheivement-header">
@@ -153,58 +159,7 @@
                         @endif
                     </div>
                 </div>
-            @empty
-                <div class="acheivement-card" data-type="web">
-                    <div class="acheivement-image">
-                        <img src="{{ asset('images/achievement_1.jpg') }}" alt="">
-                    </div>
-                    <div class="acheivement-content">
-                        <div class="acheivement-header">
-                            <h3>{{ __('achievements.project_vitrine_title') }}</h3>
-                            <span class="type">{{ __('achievements.type_web') }}</span>
-                        </div>
-                        <p>{{ __('achievements.project_vitrine_desc') }}</p>
-                        <a class="view-link">
-                            {{ __('achievements.view_project') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="acheivement-card" data-type="app">
-                    <div class="acheivement-image">
-                        <img src="{{ asset('images/achievement_2.webp') }}" alt="">
-                    </div>
-                    <div class="acheivement-content">
-                        <div class="acheivement-header">
-                            <h3>{{ __('achievements.project_app_title') }}</h3>
-                            <span class="type">{{ __('achievements.type_app') }}</span>
-                        </div>
-                        <p>{{ __('achievements.project_app_desc') }}</p>
-                        <a class="view-link">
-                            {{ __('achievements.view_project') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="acheivement-card" data-type="software">
-                    <div class="acheivement-image">
-                        <img src="{{ asset('images/achievement_3.jpg') }}" alt="">
-                    </div>
-                    <div class="acheivement-content">
-                        <div class="acheivement-header">
-                            <h3>{{ __('achievements.project_erp_title') }}</h3>
-                            <span class="type">{{ __('achievements.type_erp') }}</span>
-                        </div>
-                        <p>{{ __('achievements.project_erp_desc') }}</p>
-                        <a class="view-link">
-                            {{ __('achievements.view_project') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-                </div>
-            @endforelse
+            @endforeach
 
         </div>
     </div>

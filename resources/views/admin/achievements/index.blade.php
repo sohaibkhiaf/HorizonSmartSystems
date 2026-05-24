@@ -1,26 +1,26 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Our Realisations')
-@section('page_title', 'Our Realisations')
+@section('title', 'Our Achievements')
+@section('page_title', 'Our Achievements')
 @section('page_subtitle', 'Manage all website projects')
 
 @section('content')
 
 <div class="page-actions">
-    <a href="{{ route('admin.realisations.create') }}" class="btn-main">
+    <a href="{{ route('admin.achievements.create') }}" class="btn-main">
         <i class="fas fa-plus"></i>
-        Create Realisation
+        Create Achievement 
     </a>
 </div>
 
 <div class="cards-grid">
 
-    @forelse($realisations as $realisation)
+    @forelse($achievements as $achievement)
         <div class="admin-card">
 
             <div class="admin-card-image">
-                @if($realisation->image)
-                    <img src="{{ asset('storage/' . $realisation->image) }}" alt="{{ $realisation->title }}">
+                @if($achievement->image)
+                    <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
                 @else
                     <div class="image-placeholder">
                         <i class="fas fa-image"></i>
@@ -30,28 +30,28 @@
 
             <div class="admin-card-content">
                 <div class="card-row">
-                    <h3>{{ $realisation->title }}</h3>
+                    <h3>{{ $achievement->title }}</h3>
 
-                    @if($realisation->is_published)
+                    @if($achievement->is_published)
                         <span class="badge success">Published</span>
                     @else
                         <span class="badge muted">Hidden</span>
                     @endif
                 </div>
 
-                @if($realisation->type)
-                    <span class="type-badge">{{ $realisation->type }}</span>
+                @if($achievement->type)
+                    <span class="type-badge">{{ $achievement->type }}</span>
                 @endif
 
-                <p>{{ $realisation->short_description }}</p>
+                <p>{{ $achievement->short_description }}</p>
 
                 <div class="card-actions">
-                    <a href="{{ route('admin.realisations.edit', $realisation) }}" class="action-btn edit">
+                    <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>
                         Edit
                     </a>
 
-                    <form method="POST" action="{{ route('admin.realisations.destroy', $realisation) }}" onsubmit="return confirm('Delete this realisation?')">
+                    <form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm('Delete this achievement?')">
                         @csrf
                         @method('DELETE')
 
@@ -66,14 +66,14 @@
         </div>
     @empty
         <div class="empty-box">
-            No realisations found.
+            No achievements found.
         </div>
     @endforelse
 
 </div>
 
 <div class="pagination-box">
-    {{ $realisations->links() }}
+    {{ $achievements->links() }}
 </div>
 
 @endsection

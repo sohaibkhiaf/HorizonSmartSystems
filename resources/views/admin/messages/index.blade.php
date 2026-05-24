@@ -7,11 +7,11 @@
 @section('content')
 
 <div class="sub-tabs">
-    <a href="{{ route('admin.messages.waiting') }}" class="{{ !$seen ? 'active' : '' }}">
+    <a href="{{ route('admin.messages.waiting') }}" class="{{ !$is_seen ? 'active' : '' }}">
         Waiting Messages
     </a>
 
-    <a href="{{ route('admin.messages.seen') }}" class="{{ $seen ? 'active' : '' }}">
+    <a href="{{ route('admin.messages.seen') }}" class="{{ $is_seen ? 'active' : '' }}">
         Seen Messages
     </a>
 </div>
@@ -27,7 +27,7 @@
                     <p>{{ $message->name }}</p>
                 </div>
 
-                @if(!$message->seen)
+                @if(!$message->is_seen)
                     <span class="badge warning">Waiting</span>
                 @else
                     <span class="badge success">Seen</span>
@@ -54,7 +54,7 @@
                     Edit
                 </a>
 
-                @if(!$message->seen)
+                @if(!$message->is_seen)
                     <form method="POST" action="{{ route('admin.messages.markSeen', $message) }}">
                         @csrf
                         @method('PATCH')

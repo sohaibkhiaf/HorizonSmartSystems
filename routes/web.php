@@ -20,7 +20,16 @@ Route::get('/language/{locale}', function ($locale) {
 // Public Routes
 
 Route::get('/', function () {
-    return view('/home', ['page' => 'home']);
+
+    $achievements = Achievement::where('is_published', true)
+        ->latest()
+        ->limit(10)
+        ->get();
+
+    return view('/home', [
+        'page' => 'home', 
+        'achievements' => $achievements, 
+    ]);
 });
 
 Route::get('/about', function () {
@@ -69,7 +78,7 @@ Route::prefix('admin')
         
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('realisations', AchievementController::class)
+    Route::resource('achievements', AchievementController::class)
         ->except(['show']);
 
     Route::patch('/messages/{message}/mark-seen', [MessageController::class, 'markSeen'])

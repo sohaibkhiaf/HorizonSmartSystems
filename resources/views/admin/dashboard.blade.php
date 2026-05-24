@@ -51,13 +51,13 @@
 </div>
 
 <div class="admin-tabs">
-    <a href="{{ route('admin.realisations.create') }}" class="tab-card">
+    <a href="{{ route('admin.achievements.create') }}" class="tab-card">
         <i class="fas fa-plus"></i>
         <h3>Create Achievement</h3>
         <p>Add a new project to your website.</p>
     </a>
 
-    <a href="{{ route('admin.realisations.index') }}" class="tab-card">
+    <a href="{{ route('admin.achievements.index') }}" class="tab-card">
         <i class="fas fa-pen"></i>
         <h3>Edit Achievement</h3>
         <p>Update, publish, or delete existing projects.</p>

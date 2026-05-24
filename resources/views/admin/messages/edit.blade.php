@@ -43,16 +43,15 @@
         @method('PUT')
 
         <div class="form-grid">
-            <div class="form-group">
-                <label>Status</label>
-                <select name="seen" required>
-                    <option value="0" {{ (int) old('seen', $message->seen) === 0 ? 'selected' : '' }}>
-                        Waiting
-                    </option>
-                    <option value="1" {{ (int) old('seen', $message->seen) === 1 ? 'selected' : '' }}>
-                        Seen
-                    </option>
-                </select>
+            <div class="form-group full">
+                <label class="checkbox-row">
+                    <input 
+                        type="checkbox" 
+                        name="is_seen" 
+                        value="1"
+                        {{ old('is_seen', $message->is_seen ?? true) ? 'checked' : '' }}>
+                    <span>Seen</span>
+                </label>
             </div>
 
             <div class="form-group full">
