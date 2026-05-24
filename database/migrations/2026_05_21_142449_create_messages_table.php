@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+
+            $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+
+            $table->string('subject')->nullable();
+            $table->text('message');
+
+            $table->boolean('seen')->default(false);
+
+            $table->text('admin_note')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }

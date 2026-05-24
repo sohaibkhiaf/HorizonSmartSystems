@@ -471,3 +471,29 @@
     }
 }
 
+
+/* Contact form feedback banners */
+.contact-form .form-alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.contact-form .form-alert.success {
+    background: #e6f7ed;
+    color: #1b7a43;
+    border: 1px solid #9fdcb8;
+}
+
+.contact-form .form-alert.danger {
+    background: #fdecec;
+    color: #b42318;
+    border: 1px solid #f3b4b0;
+}
+
+.contact-form .form-alert ul {
+    margin: 0;
+    padding-inline-start: 18px;
+}

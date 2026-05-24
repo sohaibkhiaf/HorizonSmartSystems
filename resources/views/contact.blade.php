@@ -77,34 +77,51 @@
 
             <h2>{{ __('contact.form_title') }}</h2>
 
-            <form>
+            @if(session('success'))
+                <div class="form-alert success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="form-alert danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('contact.store') }}">
+                @csrf
                 <div class="form-grid">
 
                     <div class="form-group">
                         <label>{{ __('contact.form_fullname') }}</label>
-                        <input type="text" placeholder="{{ __('contact.form_fullname_ph') }}" required>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('contact.form_fullname_ph') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('contact.form_email') }}</label>
-                        <input type="email" placeholder="{{ __('contact.form_email_ph') }}">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('contact.form_email_ph') }}">
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('contact.form_phone') }}</label>
-                        <input type="tel" placeholder="{{ __('contact.form_phone_ph') }}" required>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('contact.form_phone_ph') }}" required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('contact.form_subject') }}</label>
-                        <input type="text" placeholder="{{ __('contact.form_subject_ph') }}" required>
+                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('contact.form_subject_ph') }}" required>
                     </div>
 
                 </div>
 
                 <div class="form-group message-group">
                     <label>{{ __('contact.form_message') }}</label>
-                    <textarea placeholder="{{ __('contact.form_message_ph') }}" required></textarea>
+                    <textarea name="message" placeholder="{{ __('contact.form_message_ph') }}" required>{{ old('message') }}</textarea>
                 </div>
 
                 <div class="form-check">

@@ -13,6 +13,19 @@ return new class extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
+
+            $table->string('title');
+            $table->string('type');
+
+            $table->string('short_description', 300);
+            $table->text('description')->nullable();
+
+            $table->string('image')->nullable();
+            $table->string('project_url')->nullable();
+
+            $table->boolean('is_published')->default(true);
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
