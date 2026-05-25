@@ -1,0 +1,286 @@
+/* =========================
+   HERO
+========================= */
+
+.appdev-hero {
+    padding: 40px 8%;
+}
+
+.appdev-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.appdev-hero-text {
+    flex: 1;
+}
+
+.appdev-hero-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.appdev-hero-description {
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 550px;
+}
+
+.appdev-hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+/* BUTTONS */
+.appdev-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.appdev-btn-primary {
+    background: #2563eb;
+    color: white;
+    border: 1px solid #2563eb;
+}
+
+.appdev-btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.appdev-hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.appdev-hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+.appdev-description {
+    margin: 20px 8%;
+    padding: 28px 40px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.appdev-description-container h2 {
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.appdev-description-container p {
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.7;
+    max-width: 950px;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.appdev-services {
+    margin: 20px 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.appdev-card {
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.appdev-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.appdev-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.appdev-card-header h2 {
+    font-size: 22px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.appdev-card-header p {
+    font-size: 14px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+
+.appdev-price {
+    margin-top: 18px;
+    padding: 16px;
+    background: #eff6ff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    transition: 0.3s ease;
+}
+
+.appdev-price:hover {
+    border-color: #2563eb;
+    box-shadow: 0 6px 10px rgba(37, 99, 235, 0.12);
+    transform: translateY(-2px);
+}
+
+.appdev-price span {
+    font-size: 13px;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.appdev-price h3 {
+    font-size: 20px;
+    color: #111827;
+    margin: 6px 0;
+}
+
+.appdev-price p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* =========================
+   CTA
+========================= */
+
+.appdev-cta {
+    background: url('/images/cta_background.png') center/cover no-repeat;
+    border-radius: 14px;
+    margin: 20px 8%;
+    overflow: hidden;
+}
+
+.appdev-cta-overlay {
+    background: rgba(0,0,0,0.3);
+    padding: 30px 12%;
+}
+
+.appdev-cta-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.appdev-cta-left h2 {
+    font-size: 20px;
+    color: #fff;
+    margin: 0;
+    font-weight: 600;
+}
+
+.appdev-cta-left h3 {
+    font-size: 16px;
+    color: #fff;
+    margin-top: 8px;
+    font-weight: 400;
+}
+
+.appdev-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.appdev-cta-btn:hover {
+    background: #fff;
+    color: #111;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .appdev-hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .appdev-hero-description {
+        margin: 0 auto 30px;
+    }
+
+    .appdev-hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .appdev-card-header {
+        flex-direction: column;
+    }
+
+    .appdev-cta-container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .appdev-hero {
+        padding: 30px 6%;
+    }
+
+    .appdev-hero-title {
+        font-size: 32px;
+    }
+
+    .appdev-description,
+    .appdev-services,
+    .appdev-cta {
+        margin-left: 6%;
+        margin-right: 6%;
+    }
+
+    .appdev-card {
+        padding: 22px;
+    }
+}
+

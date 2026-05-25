@@ -59,7 +59,7 @@
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>{{ __('services.service_app_title') }}</h3>
                     <p>{{ __('services.service_app_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="/services/appdev" class="plus-link">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>

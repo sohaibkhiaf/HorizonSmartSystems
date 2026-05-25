@@ -59,6 +59,10 @@ Route::get('/services/webdev', function () {
     return view('/services/webdev', ['page' => 'services']);
 });
 
+Route::get('/services/appdev', function () {
+    return view('/services/appdev', ['page' => 'services']);
+});
+
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
