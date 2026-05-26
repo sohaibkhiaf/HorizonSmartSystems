@@ -15,9 +15,35 @@
             {{ __('header.about') }}
         </a>
 
-        <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
+        <!-- <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
             {{ __('header.services') }}
-        </a>
+        </a> -->
+        <div class="nav-item has-dropdown">
+            <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
+                {{ __('header.services') }} <i class="fa-solid fa-angle-down"></i>
+            </a>
+
+            <!-- Mega Menu -->
+            <div class="mega-menu">
+                <div class="mega-column">
+                    <h4>{{__('header.services_title')}}</h4>
+                    <a class="service-link" href="/services/webdev"><i class="fa-solid fa-globe"></i> &nbsp; {{ __('header.service_web_title') }}</a>
+                    <a class="service-link" href="/services/appdev"><i class="fa-solid fa-laptop-code"></i> &nbsp; {{ __('header.service_app_title') }}</a>
+                    <a class="service-link" href="/services/erp"><i class="fa-solid fa-chart-pie"></i> &nbsp; {{__('header.service_erp_title')}}</a>
+                    <a class="service-link" href="/services/systems"><i class="fa-solid fa-gears"></i> &nbsp; {{__('header.service_sys_title')}}</a>
+                    <a class="service-link" href="/services/support"><i class="fa-solid fa-headset"></i> &nbsp; {{__('header.service_support_title')}}</a>
+                </div>
+
+                <div class="mega-column">
+                    <h4>{{__('header.other_services_title')}}</h4>
+                    <a class="service-link" href="/services"><i class="fa-solid fa-earth-europe"></i> &nbsp; {{ __('header.other_intl_title') }}</a>
+                    <a class="service-link" href="/services"><i class="fa-solid fa-credit-card"></i> &nbsp; {{ __('header.other_subscriptions_title') }}</a>
+                    <a class="service-link" href="/services"><i class="fa-solid fa-cloud-arrow-up"></i> &nbsp; {{ __('header.other_hosting_title') }}</a>
+                    <a class="service-link" href="/services"><i class="fa-solid fa-circle-info"></i> &nbsp; {{ __('header.other_consulting_title') }}</a>
+                </div>
+
+            </div>
+        </div>
 
         <a href="/achievements" class="{{ $page === 'achievements' ? 'active' : '' }}">
             {{ __('header.achievements') }}

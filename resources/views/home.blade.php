@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 <!-- Hero  -->
 <section class="hero">
     <div class="hero-container">
@@ -290,6 +291,12 @@
                             <span class="type">{{ $achievement->type }}</span>
                         </div>
                         <p>{{ $achievement->short_description }}</p>
+                        @if($achievement->project_url)
+                            <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
+                                {{ __('home.view_project') }}
+                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
             @endforeach

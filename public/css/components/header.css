@@ -99,6 +99,91 @@
     font-weight: 600;
 }
 
+/* ===== Services Dropdown  ======================================= */
+
+/* ===== NAV ITEM WRAPPER ===== */
+.nav-item {
+    position: relative;
+}
+
+/* ===== MEGA MENU BASE ===== */
+.mega-menu {
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    width: 720px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+    z-index: 999;
+}
+
+/* ===== SHOW ON HOVER ===== */
+.nav-item.has-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== SECTION COLUMN ===== */
+.mega-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== HEADERS ===== */
+.mega-column h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+/* ===== LINKS ===== */
+.mega-menu .service-link {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+/* hover effect */
+.mega-menu .service-link:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+
+
 
 /* ===== Responsive  ======================================= */
 @media (max-width: 900px) {

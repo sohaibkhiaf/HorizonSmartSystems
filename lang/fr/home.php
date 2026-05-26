@@ -60,15 +60,7 @@ return [
     // Achievements 
     'achievements_title'         => 'Nos réalisations',
     'achievements_link'          => 'Voir toutes nos réalisations',
-    'achievement_ecommerce_title'  => 'Site E-commerce',
-    'achievement_ecommerce_desc'   => 'Création d\'une plateforme e-commerce moderne avec gestion complète des produits et commandes.',
-    'achievement_erp_title'        => 'Système de gestion',
-    'achievement_erp_desc'         => 'Solution de gestion interne pour optimiser les opérations d\'une entreprise.',
-    'achievement_mobile_title'     => 'Application mobile',
-    'achievement_mobile_desc'      => 'Application mobile moderne avec interface fluide et performance optimisée.',
-    'type_webapp'                  => 'Web App',
-    'type_erp'                     => 'ERP',
-    'type_mobile'                  => 'Mobile',
+    'view_project' => 'Voir le projet',
 
     // CTA 
     'cta_title'       => 'Un projet en tête ?',

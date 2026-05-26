@@ -32,18 +32,6 @@ return [
     // Project Cards
     'view_project' => 'Voir le projet',
 
-    'project_vitrine_title' => 'Site vitrine',
-    'project_vitrine_desc'  => 'Création d\'un site moderne pour présenter les services d\'une entreprise.',
-    'type_web'              => 'Web',
-
-    'project_app_title' => 'Application métier',
-    'project_app_desc'  => 'Développement d\'une solution personnalisée adaptée aux besoins du client.',
-    'type_app'          => 'App',
-
-    'project_erp_title' => 'Système de gestion',
-    'project_erp_desc'  => 'Solution de gestion interne pour optimiser les opérations d\'une entreprise.',
-    'type_erp'          => 'ERP',
-
     // CTA 
     'cta_title'    => 'Prêt à concrétiser votre projet ?',
     'cta_subtitle' => 'Discutons de vos besoins et construisons ensemble une solution efficace et sur mesure.',

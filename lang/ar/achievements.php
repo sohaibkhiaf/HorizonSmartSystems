@@ -32,18 +32,6 @@ return [
     // Project Cards
     'view_project' => 'عرض المشروع',
 
-    'project_vitrine_title' => 'موقع عرض',
-    'project_vitrine_desc'  => 'إنشاء موقع حديث لعرض خدمات شركة.',
-    'type_web'              => 'ويب',
-
-    'project_app_title' => 'تطبيق مهني',
-    'project_app_desc'  => 'تطوير حل مُخصَّص يُلبِّي احتياجات العميل.',
-    'type_app'          => 'تطبيق',
-
-    'project_erp_title' => 'نظام إدارة',
-    'project_erp_desc'  => 'حل إداري داخلي لتحسين عمليات المؤسسة.',
-    'type_erp'          => 'ERP',
-
     // CTA 
     'cta_title'    => 'مستعد لتحقيق مشروعك؟',
     'cta_subtitle' => 'دعنا نناقش احتياجاتك ونبني معاً حلاً فعّالاً ومُخصَّصاً.',

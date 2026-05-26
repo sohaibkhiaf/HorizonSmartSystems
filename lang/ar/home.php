@@ -60,15 +60,7 @@ return [
     // Achievements 
     'achievements_title'         => 'إنجازاتنا',
     'achievements_link'          => 'عرض جميع إنجازاتنا',
-    'achievement_ecommerce_title'  => 'موقع تجارة إلكترونية',
-    'achievement_ecommerce_desc'   => 'إنشاء منصة تجارة إلكترونية حديثة مع إدارة كاملة للمنتجات والطلبات.',
-    'achievement_erp_title'        => 'نظام إدارة',
-    'achievement_erp_desc'         => 'حل إداري داخلي لتحسين عمليات المؤسسة.',
-    'achievement_mobile_title'     => 'تطبيق جوال',
-    'achievement_mobile_desc'      => 'تطبيق جوال حديث بواجهة سلسة وأداء مُحسَّن.',
-    'type_webapp'                  => 'تطبيق ويب',
-    'type_erp'                     => 'ERP',
-    'type_mobile'                  => 'جوال',
+    'view_project' => 'عرض المشروع',
 
     // CTA 
     'cta_title'       => 'لديك مشروع في ذهنك؟',

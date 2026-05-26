@@ -32,18 +32,6 @@ return [
     // Project Cards
     'view_project' => 'View project',
 
-    'project_vitrine_title' => 'Showcase Website',
-    'project_vitrine_desc'  => 'Creation of a modern website to present a company\'s services.',
-    'type_web'              => 'Web',
-
-    'project_app_title' => 'Business Application',
-    'project_app_desc'  => 'Development of a custom solution tailored to the client\'s needs.',
-    'type_app'          => 'App',
-
-    'project_erp_title' => 'Management System',
-    'project_erp_desc'  => 'Internal management solution to optimize a company\'s operations.',
-    'type_erp'          => 'ERP',
-
     // CTA 
     'cta_title'    => 'Ready to bring your project to life?',
     'cta_subtitle' => 'Let\'s discuss your needs and build an effective, tailor-made solution together.',

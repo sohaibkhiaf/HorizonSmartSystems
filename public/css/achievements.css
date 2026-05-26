@@ -235,6 +235,7 @@
 
 /* Project card */
 .acheivement-card {
+    width: 280px;
     background: #fff;
     border-radius: 14px;
     overflow: hidden;
@@ -286,19 +287,20 @@
 .acheivement-header h3 {
     font-size: 16px;
     font-weight: 600;
+    color: #2563eb;
 }
 
 .acheivement-header .type {
     font-size: 12px;
     padding: 4px 10px;
     border-radius: 20px;
-    background: #eef3ff;
-    color: #1e66ff;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
 }
 
 .acheivement-content p {
     font-size: 14px;
-    color: #666;
+    color: #6b7280;
     line-height: 1.4;
     margin-bottom: 10px;
     line-clamp: 2;

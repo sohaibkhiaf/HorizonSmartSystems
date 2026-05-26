@@ -60,15 +60,7 @@ return [
     // Achievements 
     'achievements_title'         => 'Our Achievements',
     'achievements_link'          => 'View all our achievements',
-    'achievement_ecommerce_title'  => 'E-commerce Website',
-    'achievement_ecommerce_desc'   => 'Creation of a modern e-commerce platform with complete product and order management.',
-    'achievement_erp_title'        => 'Management System',
-    'achievement_erp_desc'         => 'Internal management solution to optimize a company\'s operations.',
-    'achievement_mobile_title'     => 'Mobile Application',
-    'achievement_mobile_desc'      => 'Modern mobile application with smooth interface and optimized performance.',
-    'type_webapp'                  => 'Web App',
-    'type_erp'                     => 'ERP',
-    'type_mobile'                  => 'Mobile',
+    'view_project' => 'View project',
 
     // CTA 
     'cta_title'       => 'Have a project in mind?',
