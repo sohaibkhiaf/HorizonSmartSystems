@@ -5,12 +5,12 @@ return [
     // Meta
     'page_title' => 'Achievements — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'Our Achievements',
     'hero_description' => 'Discover some of our web, software and digital solution projects designed to support the success of our clients.',
     'hero_btn_contact' => 'Contact us',
 
-    // Features Section
+    // Features 
     'features_title'       => 'Concrete solutions, designed for real needs.',
     'features_description' => 'Every project is unique. We design solutions tailored to our clients\' goals, industry and users.',
 
@@ -44,7 +44,7 @@ return [
     'project_erp_desc'  => 'Internal management solution to optimize a company\'s operations.',
     'type_erp'          => 'ERP',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'Ready to bring your project to life?',
     'cta_subtitle' => 'Let\'s discuss your needs and build an effective, tailor-made solution together.',
     'cta_btn'      => 'Contact us',

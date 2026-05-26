@@ -18,7 +18,7 @@
     </div>
 </section>
 
-<!-- Hero Section -->
+<!-- Hero  -->
 <section class="hero">
     <div class="hero-container">
 
@@ -46,7 +46,7 @@
 </section>
 
 
-<!-- Values Section -->
+<!-- Values  -->
 <section class="values">
     <div class="values-container">
 
@@ -93,7 +93,7 @@
 </section>
 
 
-<!-- Team Section -->
+<!-- Team  -->
 <section class="team">
     <div class="team-container">
 
@@ -156,7 +156,7 @@
     </div>
 </section>
 
-<!-- Call To Action Section -->
+<!-- Call To Action  -->
 <section class="cta">
     <div class="cta-overlay">
 

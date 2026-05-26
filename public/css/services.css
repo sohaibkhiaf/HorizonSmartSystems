@@ -1,4 +1,4 @@
-/* Hero Section ******************************** */
+/* Hero  ******************************** */
 .hero {
     padding: 40px 8%;
 }
@@ -69,7 +69,7 @@
     height: auto;
 }
 
-/* Services Sections ****************************************************** */
+/* Services s ******************************** */
 
 .services {
     padding: 20px 40px;
@@ -160,7 +160,7 @@ color: #111827;
 }
 
 
-/* Method Section ******************************************* */
+/* Method  ************************************ */
 
 .method {
     padding: 20px 3%;
@@ -251,7 +251,7 @@ color: #111827;
     line-height: 1.5;
 }
 
-/* Call To Action Section *************************************************/
+/* CTA  *****************************************/
 
 .cta {
     background: url('/images/cta_background.png') center/cover no-repeat;
@@ -310,8 +310,6 @@ color: #111827;
     color: #111;
 }
 
-
-
 /* RESPONSIVE ***********************************************/
 
 @media (max-width: 900px) {
@@ -346,8 +344,6 @@ color: #111827;
 
 }
 
-
-
 /* RESPONSIVE */
 @media (max-width: 768px) {
     .hero-container {
@@ -362,9 +358,6 @@ color: #111827;
         flex-wrap: wrap;
     }
 }
-
-
-
 
 
 

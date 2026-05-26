@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<!-- Hero Section -->
+<!-- Hero  -->
 <section class="hero">
     <div class="hero-container">
 
@@ -36,7 +36,7 @@
     </div>
 </section>
 
-<!-- About Section -->
+<!-- About  -->
 <section class="about">
     <div class="about-container">
 
@@ -97,7 +97,7 @@
     </div>
 </section>
 
-<!-- Proposed Services Section -->
+<!-- Proposed Services  -->
 <section class="services">
     <div class="services-container">
 
@@ -157,7 +157,7 @@
     </div>
 </section>
 
-<!-- Other Services Section -->
+<!-- Other Services  -->
 <section class="services">
     <div class="services-container">
 
@@ -196,7 +196,7 @@
     </div>
 </section>
 
-<!-- Features Section -->
+<!-- Features  -->
 <section class="features">
     <div class="features-container">
 
@@ -260,7 +260,7 @@
     </div>
 </section>
 
-<!-- Achievements Section -->
+<!-- Achievements  -->
 <section class="acheivements">
     <div class="acheivements-header">
         <h2 class="acheivements-title">{{ __('home.achievements_title') }}</h2>

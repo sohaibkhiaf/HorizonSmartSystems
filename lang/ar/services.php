@@ -5,12 +5,12 @@ return [
     // Meta
     'page_title' => 'خدماتنا — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'خدماتنا',
     'hero_description' => 'حلول رقمية متكاملة ومُخصَّصة لدعم نمو شركتك وتحسين أدائك.',
     'hero_btn_contact' => 'تواصل معنا',
 
-    // Main Services Section
+    // Main Services 
     'main_services_title'  => 'خدماتنا الرئيسية',
     'learn_more'           => 'اعرف أكثر',
 
@@ -25,7 +25,7 @@ return [
     'service_support_title' => 'الدعم البرمجي والتقني',
     'service_support_desc'  => 'المساعدة والإصلاح لبرامجك وأنظمتك المعلوماتية واتصالاتك وشبكاتك.',
 
-    // Other Services Section
+    // Other Services 
     'other_services_title'       => 'خدمات أخرى',
     'other_intl_title'           => 'توفير البرمجيات الدولية',
     'other_intl_desc'            => 'توريد البرمجيات الدولية وفق احتياجاتك وميزانيتك.',
@@ -36,7 +36,7 @@ return [
     'other_consulting_title'     => 'الاستشارة والمرافقة',
     'other_consulting_desc'      => 'استشارة استراتيجية ومرافقة في كل مرحلة من مراحل نجاح مشاريعك.',
 
-    // Method Section
+    // Method 
     'method_title'       => 'نهج بسيط وشفاف',
     'method_description' => 'من تحليل احتياجاتك حتى التسليم، نتّبع عملية واضحة لضمان نجاح مشروعك.',
 
@@ -49,7 +49,7 @@ return [
     'method_step4_title' => 'التسليم والمتابعة',
     'method_step4_desc'  => 'نُسلِّم حلّك ونبقى إلى جانبك لدعم تطوّره.',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'مستعد لبدء مشروعك؟',
     'cta_subtitle' => 'دعنا نتحدث عن احتياجاتك ونبني معاً أفضل حل.',
     'cta_btn'      => 'تواصل معنا',

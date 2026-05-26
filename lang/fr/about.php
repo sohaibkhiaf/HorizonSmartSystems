@@ -9,14 +9,14 @@ return [
     'banner_title'       => 'À propos de HSS',
     'banner_subtitle'    => 'Votre partenaire en solutions web et digitales.',
 
-    // Hero Section
+    // Hero 
     'hero_label'         => 'QUI SOMMES-NOUS ?',
     'hero_title'         => 'Horizon Smart Systems',
     'hero_subtitle'      => 'Votre partenaire digital de confiance.',
     'hero_description_1' => 'Horizon Smart Systems (HSS) est une agence spécialisée dans le développement web, logiciel et les solutions digitales. Nous accompagnons les entreprises, commerçants et professionnels dans la création d\'outils modernes, performants et adaptés à leurs objectifs.',
     'hero_description_2' => 'Notre mission est simple : fournir des solutions innovantes qui optimisent vos processus, améliorent votre productivité et contribuent à la croissance durable de votre activité.',
 
-    // Values Section
+    // Values 
     'vision_title'       => 'Notre vision',
     'vision_desc'        => 'Devenir un acteur incontournable des solutions digitales en offrant des services innovants, fiables et accessibles à tous.',
     'mission_title'      => 'Notre mission',
@@ -24,7 +24,7 @@ return [
     'values_title'       => 'Nos valeurs',
     'values_list'        => "Innovation\nQualité\nFiabilité\nTransparence\nEngagement",
 
-    // Team Section
+    // Team 
     'team_title'         => 'Notre équipe',
     'team_description_1' => 'Notre équipe est composée de développeurs, designers, intégrateurs et experts en solutions digitales passionnés par la technologie et l\'innovation.',
     'team_description_2' => 'Nous travaillons ensemble pour transformer vos idées en produits performants, ergonomiques et adaptés à votre domaine d\'activité.',
@@ -33,7 +33,7 @@ return [
     'member_amine_role'  => 'Designer',
     'member_said_role'   => 'Programmeur',
 
-    // CTA Section
+    // CTA 
     'cta_title'          => 'Vous avez un projet ? Nous sommes là pour le réaliser.',
     'cta_subtitle'       => 'Discutons de vos idées et transformons-les en réalité.',
     'cta_btn'            => 'Contactez-nous',

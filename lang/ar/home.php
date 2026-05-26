@@ -5,14 +5,14 @@ return [
     // Meta
     'page_title' => 'الرئيسية — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_agency_label'   => 'وكالة تطوير مواقع وبرمجيات',
     'hero_title'          => 'حلول رقمية حديثة لتنمية أعمالك',
     'hero_description'    => 'تُرافق Horizon Smart Systems الشركات والمؤسسات في تحوّلها الرقمي من خلال حلول ويب وبرمجيات موثوقة وآمنة ومُكيَّفة تمامًا مع احتياجاتها.',
     'hero_btn_services'   => 'اكتشف خدماتنا',
     'hero_btn_contact'    => 'تواصل معنا',
 
-    // About Section
+    // About 
     'about_title'         => 'من نحن؟',
     'about_description'   => 'Horizon Smart Systems مكتب متخصص في تطوير البرمجيات والمواقع الإلكترونية، يقوم على الابتكار والجودة والقرب من العميل.',
     'about_innovation'    => 'الابتكار',
@@ -22,7 +22,7 @@ return [
     'about_trust'         => 'الثقة',
     'about_trust_desc'    => 'شريك موثوق لبناء علاقة تدوم.',
 
-    // Services Section
+    // Services 
     'services_title'      => 'الخدمات المقدَّمة',
     'service_web_title'   => 'إنشاء مواقع ويب',
     'service_web_desc'    => 'مواقع ويب حديثة وسريعة ومتجاوبة، مصمَّمة لإبراز نشاطك التجاري.',
@@ -35,7 +35,7 @@ return [
     'service_support_title' => 'الدعم البرمجي والتقني',
     'service_support_desc'  => 'المساعدة والإصلاح لبرامجك وأنظمتك المعلوماتية واتصالاتك وشبكاتك.',
 
-    // Other Services Section
+    // Other Services 
     'other_services_title'       => 'خدمات أخرى',
     'other_intl_title'           => 'توفير البرمجيات الدولية',
     'other_intl_desc'            => 'توريد البرمجيات الدولية وفق احتياجاتك وميزانيتك.',
@@ -46,7 +46,7 @@ return [
     'other_consulting_title'     => 'الاستشارة والمرافقة',
     'other_consulting_desc'      => 'استشارة استراتيجية ومرافقة في كل مرحلة من مراحل نجاح مشاريعك.',
 
-    // Features Section
+    // Features 
     'features_title'             => 'لماذا تختار HSS؟',
     'feature_custom_title'       => 'حلول مخصصة',
     'feature_custom_desc'        => 'مُكيَّفة مع احتياجاتك وميزانياتك.',
@@ -57,7 +57,7 @@ return [
     'feature_support_title'      => 'الدعم الاحترافي',
     'feature_support_desc'       => 'فريق جاهز للاستماع إليك ومساعدتك.',
 
-    // Achievements Section
+    // Achievements 
     'achievements_title'         => 'إنجازاتنا',
     'achievements_link'          => 'عرض جميع إنجازاتنا',
     'achievement_ecommerce_title'  => 'موقع تجارة إلكترونية',
@@ -70,7 +70,7 @@ return [
     'type_erp'                     => 'ERP',
     'type_mobile'                  => 'جوال',
 
-    // CTA Section
+    // CTA 
     'cta_title'       => 'لديك مشروع في ذهنك؟',
     'cta_subtitle'    => 'تحدّث معنا اليوم.',
     'cta_description' => 'احصل على رد سريع واقتراح مُكيَّف مع احتياجاتك.',

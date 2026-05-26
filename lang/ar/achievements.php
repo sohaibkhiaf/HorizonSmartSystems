@@ -5,12 +5,12 @@ return [
     // Meta
     'page_title' => 'إنجازاتنا — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'إنجازاتنا',
     'hero_description' => 'اكتشف بعض مشاريعنا في مجال الويب والبرمجيات والحلول الرقمية المُصمَّمة لدعم نجاح عملائنا.',
     'hero_btn_contact' => 'تواصل معنا',
 
-    // Features Section
+    // Features 
     'features_title'       => 'حلول ملموسة، مُصمَّمة لاحتياجات حقيقية.',
     'features_description' => 'كل مشروع فريد من نوعه. نُصمِّم حلولاً مُكيَّفة مع أهداف عملائنا وقطاعاتهم ومستخدميهم.',
 
@@ -44,7 +44,7 @@ return [
     'project_erp_desc'  => 'حل إداري داخلي لتحسين عمليات المؤسسة.',
     'type_erp'          => 'ERP',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'مستعد لتحقيق مشروعك؟',
     'cta_subtitle' => 'دعنا نناقش احتياجاتك ونبني معاً حلاً فعّالاً ومُخصَّصاً.',
     'cta_btn'      => 'تواصل معنا',

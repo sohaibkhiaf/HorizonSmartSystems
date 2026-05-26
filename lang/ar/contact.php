@@ -34,7 +34,7 @@ return [
     'form_consent'           => 'أوافق على أن تتواصل معي Horizon Smart Systems.',
     'form_submit'            => 'إرسال الرسالة',
 
-    // Hours Section
+    // Hours 
     'hours_title'  => 'ساعات العمل',
     'saturday'     => 'السبت',
     'sunday'       => 'الأحد',

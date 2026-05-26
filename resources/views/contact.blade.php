@@ -22,7 +22,7 @@
     </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact  -->
 <section class="contact-section">
     <div class="contact-container">
 
@@ -141,7 +141,7 @@
     </div>
 </section>
 
-<!-- Map & Hours Section -->
+<!-- Map & Hours  -->
 <section class="map-hours-section">
 
     <div class="map-hours-box">

@@ -1,21 +1,23 @@
 <?php
 
 return [
-    'page_title' => 'Application Development',
+    // Meta 
+    'page_title' => 'Application Development — Horizon Smart Systems',
 
+    // Hero 
     'hero_title' => 'Custom Application Development',
     'hero_description' => 'We build powerful applications for mobile, web, and desktop platforms tailored to your business needs.',
     'hero_btn_contact' => 'Contact Us',
 
+    // Description
     'desc_title' => 'Full-Cycle Application Development',
-    'desc_text' => 'We design, develop, and deploy modern applications across all platforms including mobile, web, and desktop solutions.',
+    'desc_text' => 'Application development is the process of designing, building, testing, and deploying software solutions tailored to meet user and business needs. We create modern, scalable, and high-performance applications across mobile, web, and desktop platforms. Our team focuses on delivering intuitive user experiences, secure architectures, and clean, maintainable code. From concept to deployment and ongoing support, we ensure every solution is optimized for performance, reliability, and future growth.',
+    
+    // Core Features
+    'core_features'    => 'Core Features',
 
-    'corporate_features'    => 'Core Features',
-    /*
-    |--------------------------------------------------
-    | Mobile Applications
-    |--------------------------------------------------
-    */
+    // Application Types 
+    // — Mobile Applications
     'mobile_title' => 'Mobile Applications',
     'mobile_subtitle' => 'iOS & Android native and cross-platform apps',
 
@@ -27,11 +29,8 @@ return [
         'App Store & Google Play deployment',
     ],
 
-    /*
-    |--------------------------------------------------
-    | Web Applications
-    |--------------------------------------------------
-    */
+
+    // — Web Applications
     'web_title' => 'Web Applications',
     'web_subtitle' => 'Modern, responsive, and scalable web apps',
 
@@ -43,40 +42,29 @@ return [
         'High performance & SEO optimization',
     ],
 
-    /*
-    |--------------------------------------------------
-    | Desktop Applications
-    |--------------------------------------------------
-    */
+
+    // — Desktop Applications
     'desktop_title' => 'Desktop Applications',
-    'desktop_subtitle' => 'Powerful software for Windows, macOS, and Linux',
+    'desktop_subtitle' => 'Powerful software for Windows',
 
     'desktop_features' => [
-        'Cross-platform desktop apps (Electron, .NET)',
         'Offline functionality & local storage',
         'System-level integrations',
         'Custom business software solutions',
         'Performance optimization & security',
     ],
 
-    /*
-    |--------------------------------------------------
-    | Call To Action
-    |--------------------------------------------------
-    */
+    // CTA
     'cta_title' => 'Ready to Build Your Application?',
     'cta_subtitle' => 'Let’s turn your idea into a real product.',
-    'cta_btn' => 'Start Your Project',
+    'cta_btn' => 'Contact us',
 
-    /*
-    |--------------------------------------------------
-    | Pricing
-    |--------------------------------------------------
-    */
+    // Pricing 
     'price_label' => 'Starting from',
     'mobile_price' => 'From 70,000 DA',
     'web_price' => 'From 90,000 DA',
     'desktop_price' => 'From 110,000 DA',
     'price_note' => 'Final price depends on project complexity and required features.',
+
 ];
 

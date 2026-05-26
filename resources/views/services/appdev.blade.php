@@ -3,48 +3,48 @@
 @section('title', __('appdev.page_title'))
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/services/appdev.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
 @endsection
 
 @section('content')
 
 <!-- Hero -->
-<section class="appdev-hero">
-    <div class="appdev-hero-container">
+<section class="hero">
+    <div class="hero-container">
 
-        <div class="appdev-hero-text">
-            <h1 class="appdev-hero-title">{{ __('appdev.hero_title') }}</h1>
-            <p class="appdev-hero-description">{{ __('appdev.hero_description') }}</p>
+        <div class="hero-text">
+            <h1 class="hero-title">{{ __('appdev.hero_title') }}</h1>
+            <p class="hero-description">{{ __('appdev.hero_description') }}</p>
 
-            <div class="appdev-hero-buttons">
-                <a href="/contact" class="appdev-btn appdev-btn-primary">
+            <div class="hero-buttons">
+                <a href="/contact" class="btn btn-primary">
                     {{ __('appdev.hero_btn_contact') }}
                     <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
             </div>
         </div>
 
-        <div class="appdev-hero-image">
-            <img src="{{ asset('images/webdev.png') }}" alt="App Development">
+        <div class="hero-image">
+            <img src="{{ asset('images/webdev.png') }}" alt="{{ __('webdev.hero_title') }}">
         </div>
 
     </div>
 </section>
 
 <!-- Description -->
-<section class="appdev-description">
-    <div class="appdev-description-container">
+<section class="description">
+    <div class="description-container">
         <h2>{{ __('appdev.desc_title') }}</h2>
         <p>{{ __('appdev.desc_text') }}</p>
     </div>
 </section>
 
 
-<!-- Types Section -->
-<section class="website-types">
+<!-- Service Types  -->
+<section class="service-types">
 
-    <!-- Corporate -->
-    <div class="website-type-card">
+    <!-- Mobile Application -->
+    <div class="service-type-card">
         <div class="type-header">
             <div class="type-icon">
                 <i class="fa-solid fa-mobile-screen-button"></i>
@@ -58,7 +58,7 @@
 
         <div class="type-content">
             <div class="features-box">
-                <h3>{{ __('appdev.corporate_features') }}</h3>
+                <h3>{{ __('appdev.core_features') }}</h3>
 
                 <ul>
                     @foreach(__('appdev.mobile_features') as $feature)
@@ -76,11 +76,11 @@
     </div>
 
 
-    <!-- E-commerce -->
-    <div class="website-type-card">
+    <!-- Web Applications -->
+    <div class="service-type-card">
         <div class="type-header">
             <div class="type-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-solid fa-globe"></i>
             </div>
 
             <div>
@@ -91,7 +91,7 @@
 
         <div class="type-content">
             <div class="features-box">
-                <h3>{{ __('appdev.corporate_features') }}</h3>
+                <h3>{{ __('appdev.core_features') }}</h3>
 
                 <ul>
                     @foreach(__('appdev.web_features') as $feature)
@@ -108,11 +108,11 @@
         </div>
     </div>
 
-    <!-- E-commerce -->
-    <div class="website-type-card">
+    <!-- Desktop Applications -->
+    <div class="service-type-card">
         <div class="type-header">
             <div class="type-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-solid fa-laptop"></i>
             </div>
 
             <div>
@@ -123,7 +123,7 @@
 
         <div class="type-content">
             <div class="features-box">
-                <h3>{{ __('appdev.corporate_features') }}</h3>
+                <h3>{{ __('appdev.core_features') }}</h3>
 
                 <ul>
                     @foreach(__('appdev.desktop_features') as $feature)
@@ -143,18 +143,18 @@
 </section>
 
 <!-- CTA -->
-<section class="appdev-cta">
-    <div class="appdev-cta-overlay">
+<section class="cta">
+    <div class="cta-overlay">
 
-        <div class="appdev-cta-container">
+        <div class="cta-container">
 
-            <div class="appdev-cta-left">
+            <div class="cta-left">
                 <h2>{{ __('appdev.cta_title') }}</h2>
                 <h3>{{ __('appdev.cta_subtitle') }}</h3>
             </div>
 
-            <div class="appdev-cta-right">
-                <a href="/contact" class="appdev-cta-btn">
+            <div class="cta-right">
+                <a href="/contact" class="cta-btn">
                     {{ __('appdev.cta_btn') }}
                     <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>

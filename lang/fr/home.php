@@ -5,14 +5,14 @@ return [
     // Meta
     'page_title' => 'Accueil — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_agency_label'   => 'Agence de développement web & logiciel',
     'hero_title'          => 'Des solutions digitales modernes pour développer votre activité',
     'hero_description'    => 'Horizon Smart Systems accompagne les entreprises et organisations dans leur transformation digitale grâce à des solutions web et logiciel fiables, sécurisées et parfaitement adaptées à leurs besoins.',
     'hero_btn_services'   => 'Voir nos services',
     'hero_btn_contact'    => 'Contactez-nous',
 
-    // About Section
+    // About 
     'about_title'         => 'Qui sommes-nous ?',
     'about_description'   => 'Horizon Smart Systems est un bureau de développement logiciel et de sites web basé sur l\'innovation, la qualité et la proximité client.',
     'about_innovation'    => 'Innovation',
@@ -22,7 +22,7 @@ return [
     'about_trust'         => 'Confiance',
     'about_trust_desc'    => 'Un partenaire fiable pour construire dans la durée.',
 
-    // Services Section
+    // Services 
     'services_title'      => 'Services proposés',
     'service_web_title'   => 'Création de sites web',
     'service_web_desc'    => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
@@ -35,7 +35,7 @@ return [
     'service_support_title' => 'Assistance logicielle et informatique',
     'service_support_desc'  => 'Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.',
 
-    // Other Services Section
+    // Other Services 
     'other_services_title'       => 'Autres services',
     'other_intl_title'           => 'Acquisition de logiciels internationaux',
     'other_intl_desc'            => 'Fourniture de logiciels internationaux selon vos besoins et budget.',
@@ -46,7 +46,7 @@ return [
     'other_consulting_title'     => 'Conseil et accompagnement',
     'other_consulting_desc'      => 'Conseil stratégique et accompagnement à chaque étape de la réussite de vos projets.',
 
-    // Features Section
+    // Features 
     'features_title'             => 'Pourquoi choisir HSS ?',
     'feature_custom_title'       => 'Solutions sur mesure',
     'feature_custom_desc'        => 'Adaptées à vos besoins et budgets.',
@@ -57,7 +57,7 @@ return [
     'feature_support_title'      => 'Support professionnel',
     'feature_support_desc'       => 'Une équipe à votre écoute pour vous accompagner.',
 
-    // Achievements Section
+    // Achievements 
     'achievements_title'         => 'Nos réalisations',
     'achievements_link'          => 'Voir toutes nos réalisations',
     'achievement_ecommerce_title'  => 'Site E-commerce',
@@ -70,7 +70,7 @@ return [
     'type_erp'                     => 'ERP',
     'type_mobile'                  => 'Mobile',
 
-    // CTA Section
+    // CTA 
     'cta_title'       => 'Un projet en tête ?',
     'cta_subtitle'    => 'Parlons-en dès aujourd\'hui.',
     'cta_description' => 'Recevez une réponse rapide et une proposition adaptée à vos besoins.',

@@ -1,52 +1,41 @@
-
 <?php
 
 return [
-    'page_title' => 'Solutions d’entreprise',
+    // Meta
+    'page_title' => 'Systèmes de Gestion Personnalisés — Horizon Smart Systems',
 
-    'hero_title' => 'Gestion d’entreprise & Solutions IT',
-    'hero_description' => 'Des solutions intégrées pour gérer votre entreprise et optimiser vos processus.',
+    // Hero 
+    'hero_title' => 'Des Systèmes de Gestion Adaptés à Votre Entreprise',
+    'hero_description' => 'Nous concevons et développons des systèmes de gestion puissants qui aident les entreprises à organiser leurs opérations, gérer efficacement leurs données et améliorer leur productivité grâce à des solutions numériques sur mesure.',
     'hero_btn_contact' => 'Contactez-nous',
 
-    'desc_title' => 'Solutions intelligentes pour entreprises',
-    'desc_text' => 'Nous proposons des systèmes sur mesure, des solutions de paie et du support IT pour améliorer votre efficacité.',
-    'corporate_features'    => 'Core Features',
-    /*
-    |--------------------------------------------------
-    | Custom Management Systems
-    |--------------------------------------------------
-    */
-    'web_title' => 'Systèmes de gestion sur mesure',
-    'web_subtitle' => 'Logiciels adaptés à vos besoins',
+    // Description
+    'desc_title' => 'Solutions Intelligentes de Gestion d’Entreprise',
+    'desc_text' => 'Les systèmes de gestion personnalisés sont des solutions logicielles conçues pour simplifier et automatiser vos opérations. De la gestion des flux de travail à l’analyse des données et à la prise de décision, nous créons des systèmes évolutifs adaptés à la croissance de votre entreprise.',
 
-    'web_features' => [
-        'Tableaux de bord personnalisés',
-        'Suivi des données et analyses',
-        'Gestion des tâches et workflows',
-        'Solutions évolutives',
-        'Intégration avec vos outils existants',
+    // Core Features
+    'core_features' => 'Fonctionnalités Principales',
+
+    // Custom Management Systems
+    'systems_title' => 'Systèmes de Gestion Personnalisés',
+    'systems_subtitle' => 'Des logiciels adaptés à vos besoins professionnels',
+
+    'systems_features' => [
+        'Tableaux de bord et rapports personnalisés',
+        'Suivi des données et analyse des performances',
+        'Gestion des flux de travail et des tâches',
+        'Architecture évolutive pour les entreprises en croissance',
+        'Intégration avec les outils et plateformes existants',
     ],
 
+    // CTA
+    'cta_title' => 'Besoin d’aide pour gérer votre entreprise ?',
+    'cta_subtitle' => 'Simplifions et optimisons vos opérations.',
+    'cta_btn' => 'Contactez-nous',
 
-
-    /*
-    |--------------------------------------------------
-    | CTA
-    |--------------------------------------------------
-    */
-    'cta_title' => 'Besoin d’optimiser votre entreprise ?',
-    'cta_subtitle' => 'Simplifions et améliorons vos opérations.',
-    'cta_btn' => 'Démarrer votre projet',
-
-    /*
-    |--------------------------------------------------
-    | Pricing
-    |--------------------------------------------------
-    */
+    // Pricing 
     'price_label' => 'À partir de',
-    'mobile_price' => 'À partir de 60 000 DA',
-    'web_price' => 'À partir de 80 000 DA',
-    'desktop_price' => 'À partir de 40 000 DA',
-    'price_note' => 'Le prix final dépend de la complexité et des fonctionnalités.',
+    'system_price' => 'À partir de 80 000 DA',
+    'price_note' => 'Le prix final dépend de la complexité du projet et des fonctionnalités requises.',
 ];
 

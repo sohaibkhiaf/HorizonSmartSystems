@@ -5,12 +5,12 @@ return [
     // Meta
     'page_title' => 'Réalisations — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'Nos réalisations',
     'hero_description' => 'Découvrez quelques projets web, logiciels et solutions digitales conçus pour accompagner la réussite de nos clients.',
     'hero_btn_contact' => 'Contactez-nous',
 
-    // Features Section
+    // Features 
     'features_title'       => 'Des solutions concrètes, pensées pour des besoins réels.',
     'features_description' => 'Chaque projet est unique. Nous concevons des solutions adaptées aux objectifs, au secteur et aux utilisateurs de nos clients.',
 
@@ -44,7 +44,7 @@ return [
     'project_erp_desc'  => 'Solution de gestion interne pour optimiser les opérations d\'une entreprise.',
     'type_erp'          => 'ERP',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'Prêt à concrétiser votre projet ?',
     'cta_subtitle' => 'Discutons de vos besoins et construisons ensemble une solution efficace et sur mesure.',
     'cta_btn'      => 'Contactez-nous',

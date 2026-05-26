@@ -5,14 +5,14 @@ return [
     // Meta
     'page_title' => 'Home — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_agency_label'   => 'Web & Software Development Agency',
     'hero_title'          => 'Modern digital solutions to grow your business',
     'hero_description'    => 'Horizon Smart Systems supports businesses and organizations in their digital transformation through reliable, secure, and perfectly tailored web and software solutions.',
     'hero_btn_services'   => 'View our services',
     'hero_btn_contact'    => 'Contact us',
 
-    // About Section
+    // About 
     'about_title'         => 'Who are we?',
     'about_description'   => 'Horizon Smart Systems is a software and web development firm built on innovation, quality, and client proximity.',
     'about_innovation'    => 'Innovation',
@@ -22,7 +22,7 @@ return [
     'about_trust'         => 'Trust',
     'about_trust_desc'    => 'A reliable partner to build lasting relationships.',
 
-    // Services Section
+    // Services 
     'services_title'      => 'Our Services',
     'service_web_title'   => 'Website Creation',
     'service_web_desc'    => 'Modern, fast and responsive websites designed to showcase your business.',
@@ -35,7 +35,7 @@ return [
     'service_support_title' => 'Software & IT Support',
     'service_support_desc'  => 'Assistance and troubleshooting for your software, computer systems, internet connection and network issues.',
 
-    // Other Services Section
+    // Other Services 
     'other_services_title'       => 'Other Services',
     'other_intl_title'           => 'International Software Procurement',
     'other_intl_desc'            => 'Supply of international software according to your needs and budget.',
@@ -46,7 +46,7 @@ return [
     'other_consulting_title'     => 'Consulting & Support',
     'other_consulting_desc'      => 'Strategic advice and support at every stage of your project\'s success.',
 
-    // Features Section
+    // Features 
     'features_title'             => 'Why choose HSS?',
     'feature_custom_title'       => 'Custom Solutions',
     'feature_custom_desc'        => 'Tailored to your needs and budgets.',
@@ -57,7 +57,7 @@ return [
     'feature_support_title'      => 'Professional Support',
     'feature_support_desc'       => 'A team ready to listen and assist you.',
 
-    // Achievements Section
+    // Achievements 
     'achievements_title'         => 'Our Achievements',
     'achievements_link'          => 'View all our achievements',
     'achievement_ecommerce_title'  => 'E-commerce Website',
@@ -70,7 +70,7 @@ return [
     'type_erp'                     => 'ERP',
     'type_mobile'                  => 'Mobile',
 
-    // CTA Section
+    // CTA 
     'cta_title'       => 'Have a project in mind?',
     'cta_subtitle'    => 'Let\'s talk about it today.',
     'cta_description' => 'Receive a quick response and a proposal tailored to your needs.',

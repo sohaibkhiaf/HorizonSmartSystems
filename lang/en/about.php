@@ -9,14 +9,14 @@ return [
     'banner_title'       => 'About HSS',
     'banner_subtitle'    => 'Your partner in web and digital solutions.',
 
-    // Hero Section
+    // Hero 
     'hero_label'         => 'WHO ARE WE?',
     'hero_title'         => 'Horizon Smart Systems',
     'hero_subtitle'      => 'Your trusted digital partner.',
     'hero_description_1' => 'Horizon Smart Systems (HSS) is an agency specializing in web development, software and digital solutions. We support businesses, merchants and professionals in creating modern, high-performance tools tailored to their goals.',
     'hero_description_2' => 'Our mission is simple: to provide innovative solutions that optimize your processes, improve your productivity and contribute to the sustainable growth of your business.',
 
-    // Values Section
+    // Values 
     'vision_title'       => 'Our Vision',
     'vision_desc'        => 'To become a key player in digital solutions by offering innovative, reliable and accessible services to all.',
     'mission_title'      => 'Our Mission',
@@ -24,7 +24,7 @@ return [
     'values_title'       => 'Our Values',
     'values_list'        => "Innovation\nQuality\nReliability\nTransparency\nCommitment",
 
-    // Team Section
+    // Team 
     'team_title'         => 'Our Team',
     'team_description_1' => 'Our team is made up of developers, designers, integrators and digital solutions experts who are passionate about technology and innovation.',
     'team_description_2' => 'We work together to transform your ideas into high-performance, ergonomic products tailored to your field of activity.',
@@ -33,7 +33,7 @@ return [
     'member_amine_role'  => 'Designer',
     'member_said_role'   => 'Developer',
 
-    // CTA Section
+    // CTA 
     'cta_title'          => 'Have a project? We are here to make it happen.',
     'cta_subtitle'       => 'Let\'s discuss your ideas and turn them into reality.',
     'cta_btn'            => 'Contact us',

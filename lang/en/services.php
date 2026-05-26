@@ -5,12 +5,12 @@ return [
     // Meta
     'page_title' => 'Our Services — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'Our Services',
     'hero_description' => 'Complete and tailor-made digital solutions to support your company\'s growth and optimize your performance.',
     'hero_btn_contact' => 'Contact us',
 
-    // Main Services Section
+    // Main Services 
     'main_services_title'  => 'Our Main Services',
     'learn_more'           => 'Learn more',
 
@@ -25,7 +25,7 @@ return [
     'service_support_title' => 'Software & IT Support',
     'service_support_desc'  => 'Assistance and troubleshooting for your software, computer systems, internet connection and network issues.',
 
-    // Other Services Section
+    // Other Services 
     'other_services_title'       => 'Other Services',
     'other_intl_title'           => 'International Software Procurement',
     'other_intl_desc'            => 'Supply of international software according to your needs and budget.',
@@ -36,7 +36,7 @@ return [
     'other_consulting_title'     => 'Consulting & Support',
     'other_consulting_desc'      => 'Strategic advice and support at every stage of your project\'s success.',
 
-    // Method Section
+    // Method 
     'method_title'       => 'A simple and transparent approach',
     'method_description' => 'From analyzing your needs to delivery, we follow a clear process to ensure the success of your project.',
 
@@ -49,7 +49,7 @@ return [
     'method_step4_title' => 'Delivery & Follow-up',
     'method_step4_desc'  => 'We deliver your solution and remain by your side to support its evolution.',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'Ready to start your project?',
     'cta_subtitle' => 'Let\'s talk about your needs and build the best solution together.',
     'cta_btn'      => 'Contact us',

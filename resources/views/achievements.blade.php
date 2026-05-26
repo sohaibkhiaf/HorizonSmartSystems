@@ -8,7 +8,7 @@
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- Hero  -->
 <section class="hero">
     <div class="hero-container">
 
@@ -34,7 +34,7 @@
 </section>
 
 
-<!-- Features Section -->
+<!-- Features  -->
 <section class="features">
     <div class="features-container">
 
@@ -102,7 +102,7 @@
     </div>
 </section>
 
-<!-- Projects Section -->
+<!-- Projects  -->
 <section class="projects-tabs-section">
 
     <div class="tabs-box">
@@ -167,7 +167,7 @@
 </section>
 
 
-<!-- Call To Action Section -->
+<!-- Call To Action  -->
 <section class="cta">
     <div class="cta-overlay">
 

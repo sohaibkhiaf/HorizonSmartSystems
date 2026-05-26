@@ -3,12 +3,12 @@
 @section('title', __('webdev.page_title'))
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/services/webdev.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
 @endsection
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- Hero -->
 <section class="hero">
     <div class="hero-container">
 
@@ -36,20 +36,20 @@
 </section>
 
 
-<!-- Description Section -->
-<section class="web-description">
-    <div class="web-description-container">
+<!-- Description  -->
+<section class="description">
+    <div class="description-container">
         <h2>{{ __('webdev.desc_title') }}</h2>
         <p>{{ __('webdev.desc_text') }}</p>
     </div>
 </section>
 
 
-<!-- Website Types Section -->
-<section class="website-types">
+<!-- Service Types  -->
+<section class="service-types">
 
     <!-- Corporate -->
-    <div class="website-type-card">
+    <div class="service-type-card">
         <div class="type-header">
             <div class="type-icon">
                 <i class="fa-solid fa-building"></i>
@@ -85,7 +85,7 @@
 
 
     <!-- E-commerce -->
-    <div class="website-type-card">
+    <div class="service-type-card">
         <div class="type-header">
             <div class="type-icon">
                 <i class="fa-solid fa-cart-shopping"></i>
@@ -122,7 +122,7 @@
 </section>
 
 
-<!-- Call To Action Section -->
+<!-- CTA  -->
 <section class="cta">
     <div class="cta-overlay">
 

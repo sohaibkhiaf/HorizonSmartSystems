@@ -5,16 +5,16 @@ return [
     // Meta
     'page_title' => 'Website Creation — Horizon Smart Systems',
 
-    // Hero Section
+    // Hero 
     'hero_title'       => 'Professional Website Creation',
     'hero_description' => 'We design modern, fast and responsive websites tailored to your business, to strengthen your online presence and attract more clients.',
     'hero_btn_contact' => 'Contact us',
 
-    // Description Section
+    // Description 
     'desc_title' => 'Web development tailored to your needs',
     'desc_text'  => 'A website is much more than a simple showcase. It is a professional tool that presents your company, reassures your clients and facilitates contact with your audience. At Horizon Smart Systems, we create clear, high-performance and easy-to-use websites, built around your project\'s objectives.',
 
-    // Website Types Section
+    // Website Types 
     // — Corporate
     'corporate_title'       => 'Corporate & Professional Websites',
     'corporate_subtitle'    => 'Ideal for presenting your business, services, achievements and contact information.',
@@ -43,7 +43,7 @@ return [
     'ecom_price'       => 'From 75,000 DA',
     'ecom_price_note'  => 'Price depends on the number of products, payment options and advanced features.',
 
-    // CTA Section
+    // CTA 
     'cta_title'    => 'Do you have a website project?',
     'cta_subtitle' => 'Contact us to discuss your needs and receive a tailored proposal.',
     'cta_btn'      => 'Contact us',

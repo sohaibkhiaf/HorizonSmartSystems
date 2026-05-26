@@ -1,4 +1,4 @@
-/* Hero Section ******************************** */
+/* Hero  ******************************** */
 .hero {
     padding: 40px 8%;
 }
@@ -85,7 +85,7 @@
     height: auto;
 }
 
-/* About Section ********************************************** */
+/* About  ******************************** */
 
 .about {
     padding: 10px 3%;
@@ -180,7 +180,7 @@
     margin-bottom: 5px;
 }
 
-/* Services Sections ****************************************************** */
+/* Services s ********************************* */
 
 
 .services {
@@ -272,7 +272,7 @@
 }
 
 
-/* Features Section ******************************************* */
+/* Features  ************************************** */
 
 .features {
     padding: 10px 3%;
@@ -355,7 +355,7 @@
     line-height: 1.5;
 }
 
-/* Acheivements Section ****************************************** */
+/* Acheivements  ************************************** */
 
 .acheivements {
     padding: 20px;
@@ -501,7 +501,7 @@
     display: flex;
 }
 
-/* Call To Action Section *************************************************/
+/* CTA  ***********************************************/
 
 .cta {
     background: url('/images/cta_background.png') center/cover no-repeat;
@@ -607,7 +607,20 @@
 
 }
 
-
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-description {
+        margin: 0 auto 30px;
+    }
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
@@ -625,25 +638,7 @@
 }
 
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .hero-description {
-        margin: 0 auto 30px;
-    }
-    .hero-buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
-
-/* ===========================
-   SMALL TABLETS / LARGE PHONES
-   =========================== */
+/* SMALL TABLETS / LARGE PHONES */
 @media (max-width: 600px) {
 
     /* HERO */
@@ -725,9 +720,7 @@
 }
 
 
-/* ===========================
-   VERY SMALL PHONES (≤ 480px)
-   =========================== */
+/* VERY SMALL PHONES  */
 @media (max-width: 480px) {
 
     /* HERO */

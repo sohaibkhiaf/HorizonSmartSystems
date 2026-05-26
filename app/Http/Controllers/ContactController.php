@@ -19,6 +19,6 @@ class ContactController extends Controller
 
         Message::create($data);
 
-        return back()->with('success', 'Votre message a été envoyé avec succès.');
+        return back()->with('success', __('messages.message_sent'));
     }
 }
