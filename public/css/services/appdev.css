@@ -94,32 +94,32 @@
     max-width: 950px;
 }
 
-/* =========================
-   SERVICES
-========================= */
 
-.appdev-services {
+/* Website Types Section ******************************** */
+.website-types {
     margin: 20px 8%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.appdev-card {
+.website-type-card {
     padding: 28px;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+
 }
 
-.appdev-card-header {
+.type-header {
     display: flex;
     align-items: flex-start;
     gap: 18px;
+    margin-bottom: 25px;
 }
 
-.appdev-icon {
+.type-icon {
     width: 55px;
     height: 55px;
     min-width: 55px;
@@ -132,50 +132,96 @@
     font-size: 22px;
 }
 
-.appdev-card-header h2 {
+.type-header h2 {
     font-size: 22px;
     color: #111827;
     margin-bottom: 8px;
 }
 
-.appdev-card-header p {
+.type-header p {
     font-size: 14px;
     color: #6b7280;
     line-height: 1.5;
 }
 
-
-.appdev-price {
-    margin-top: 18px;
-    padding: 16px;
-    background: #eff6ff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    transition: 0.3s ease;
+.type-content {
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 24px;
+    align-items: stretch;
 }
 
-.appdev-price:hover {
+
+.features-box{
+    background: var(--body-color);
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.features-box h3 {
+    font-size: 17px;
+    color: #111827;
+    margin-bottom: 15px;
+}
+
+.features-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.features-box li {
+    font-size: 14px;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.features-box li i {
+    color: #2563eb;
+    font-size: 13px;
+}
+
+.price-box {
+    background: #eff6ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.3s ease;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.price-box:hover {
     border-color: #2563eb;
     box-shadow: 0 6px 10px rgba(37, 99, 235, 0.12);
     transform: translateY(-2px);
 }
 
-.appdev-price span {
-    font-size: 13px;
+.price-box span {
+    font-size: 15px;
     color: #2563eb;
     font-weight: 600;
+    margin-bottom: 8px;
 }
 
-.appdev-price h3 {
-    font-size: 20px;
+.price-box h3 {
+    font-size: 24px;
     color: #111827;
-    margin: 6px 0;
+    margin-bottom: 12px;
 }
 
-.appdev-price p {
-    font-size: 13px;
+.price-box p {
+    font-size: 15px;
     color: #6b7280;
+    line-height: 1.5;
 }
+
 
 /* =========================
    CTA

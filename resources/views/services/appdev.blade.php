@@ -39,63 +39,104 @@
     </div>
 </section>
 
-<!-- Services -->
-<section class="appdev-services">
 
-    <!-- Mobile -->
-    <div class="appdev-card">
-        <div class="appdev-card-header">
-            <div class="appdev-icon">
-                <i class="fa-solid fa-mobile-screen"></i>
+<!-- Types Section -->
+<section class="website-types">
+
+    <!-- Corporate -->
+    <div class="website-type-card">
+        <div class="type-header">
+            <div class="type-icon">
+                <i class="fa-solid fa-mobile-screen-button"></i>
             </div>
+
             <div>
                 <h2>{{ __('appdev.mobile_title') }}</h2>
                 <p>{{ __('appdev.mobile_subtitle') }}</p>
             </div>
         </div>
 
-        <div class="appdev-price">
-            <span>{{ __('appdev.price_label') }}</span>
-            <h3>{{ __('appdev.mobile_price') }}</h3>
-            <p>{{ __('appdev.price_note') }}</p>
+        <div class="type-content">
+            <div class="features-box">
+                <h3>{{ __('appdev.corporate_features') }}</h3>
+
+                <ul>
+                    @foreach(__('appdev.mobile_features') as $feature)
+                        <li><i class="fa-solid fa-circle-check"></i> {{ $feature }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="price-box">
+                <span>{{ __('appdev.price_label') }}</span>
+                <h3>{{ __('appdev.mobile_price') }}</h3>
+                <p>{{ __('appdev.price_note') }}</p>
+            </div>
         </div>
     </div>
 
-    <!-- Web -->
-    <div class="appdev-card">
-        <div class="appdev-card-header">
-            <div class="appdev-icon">
-                <i class="fa-solid fa-globe"></i>
+
+    <!-- E-commerce -->
+    <div class="website-type-card">
+        <div class="type-header">
+            <div class="type-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
             </div>
+
             <div>
                 <h2>{{ __('appdev.web_title') }}</h2>
                 <p>{{ __('appdev.web_subtitle') }}</p>
             </div>
         </div>
 
-        <div class="appdev-price">
-            <span>{{ __('appdev.price_label') }}</span>
-            <h3>{{ __('appdev.web_price') }}</h3>
-            <p>{{ __('appdev.price_note') }}</p>
+        <div class="type-content">
+            <div class="features-box">
+                <h3>{{ __('appdev.corporate_features') }}</h3>
+
+                <ul>
+                    @foreach(__('appdev.web_features') as $feature)
+                        <li><i class="fa-solid fa-circle-check"></i> {{ $feature }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="price-box">
+                <span>{{ __('appdev.price_label') }}</span>
+                <h3>{{ __('appdev.web_price') }}</h3>
+                <p>{{ __('appdev.price_note') }}</p>
+            </div>
         </div>
     </div>
 
-    <!-- Desktop -->
-    <div class="appdev-card">
-        <div class="appdev-card-header">
-            <div class="appdev-icon">
-                <i class="fa-solid fa-desktop"></i>
+    <!-- E-commerce -->
+    <div class="website-type-card">
+        <div class="type-header">
+            <div class="type-icon">
+                <i class="fa-solid fa-cart-shopping"></i>
             </div>
+
             <div>
                 <h2>{{ __('appdev.desktop_title') }}</h2>
                 <p>{{ __('appdev.desktop_subtitle') }}</p>
             </div>
         </div>
 
-        <div class="appdev-price">
-            <span>{{ __('appdev.price_label') }}</span>
-            <h3>{{ __('appdev.desktop_price') }}</h3>
-            <p>{{ __('appdev.price_note') }}</p>
+        <div class="type-content">
+            <div class="features-box">
+                <h3>{{ __('appdev.corporate_features') }}</h3>
+
+                <ul>
+                    @foreach(__('appdev.desktop_features') as $feature)
+                        <li><i class="fa-solid fa-circle-check"></i> {{ $feature }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+            <div class="price-box">
+                <span>{{ __('appdev.price_label') }}</span>
+                <h3>{{ __('appdev.desktop_price') }}</h3>
+                <p>{{ __('appdev.price_note') }}</p>
+            </div>
         </div>
     </div>
 

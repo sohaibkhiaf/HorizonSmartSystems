@@ -110,30 +110,45 @@
                     <div class="icon"><i class="fas fa-globe"></i></div>
                     <h3>{{ __('home.service_web_title') }}</h3>
                     <p>{{ __('home.service_web_desc') }}</p>
+                    <a href="/services/webdev" class="plus-link">
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>{{ __('home.service_app_title') }}</h3>
                     <p>{{ __('home.service_app_desc') }}</p>
+                    <a href="/services/appdev" class="plus-link">
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-chart-line"></i></div>
                     <h3>{{ __('home.service_erp_title') }}</h3>
                     <p>{{ __('home.service_erp_desc') }}</p>
+                    <a href="/services/erp" class="plus-link">
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <h3>{{ __('home.service_sys_title') }}</h3>
                     <p>{{ __('home.service_sys_desc') }}</p>
+                    <a href="/services/systems" class="plus-link">
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
                 <div class="swiper-slide service-card">
                     <div class="icon"><i class="fas fa-headset"></i></div>
                     <h3>{{ __('home.service_support_title') }}</h3>
                     <p>{{ __('home.service_support_desc') }}</p>
+                    <a href="/services/support" class="plus-link">
+                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
             </div>

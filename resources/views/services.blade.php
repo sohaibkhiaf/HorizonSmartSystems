@@ -68,7 +68,7 @@
                     <div class="icon"><i class="fas fa-chart-line"></i></div>
                     <h3>{{ __('services.service_erp_title') }}</h3>
                     <p>{{ __('services.service_erp_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="/services/erp" class="plus-link">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -77,7 +77,7 @@
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <h3>{{ __('services.service_sys_title') }}</h3>
                     <p>{{ __('services.service_sys_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="/services/systems" class="plus-link">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -86,7 +86,7 @@
                     <div class="icon"><i class="fas fa-headset"></i></div>
                     <h3>{{ __('services.service_support_title') }}</h3>
                     <p>{{ __('services.service_support_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="/services/support" class="plus-link">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -110,7 +110,7 @@
                     <div class="icon"><i class="fa-solid fa-earth-europe"></i></div>
                     <h3>{{ __('services.other_intl_title') }}</h3>
                     <p>{{ __('services.other_intl_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="#" class="plus-link" style="display:none;">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -119,7 +119,7 @@
                     <div class="icon"><i class="fa-solid fa-credit-card"></i></div>
                     <h3>{{ __('services.other_subscriptions_title') }}</h3>
                     <p>{{ __('services.other_subscriptions_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="#" class="plus-link" style="display:none;">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -128,7 +128,7 @@
                     <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                     <h3>{{ __('services.other_hosting_title') }}</h3>
                     <p>{{ __('services.other_hosting_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="#" class="plus-link" style="display:none;">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -137,7 +137,7 @@
                     <div class="icon"><i class="fa-solid fa-circle-info"></i></div>
                     <h3>{{ __('services.other_consulting_title') }}</h3>
                     <p>{{ __('services.other_consulting_desc') }}</p>
-                    <a href="#" class="plus-link">
+                    <a href="#" class="plus-link" style="display:none;">
                         {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>

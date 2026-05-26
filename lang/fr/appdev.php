@@ -3,30 +3,81 @@
 return [
     'page_title' => 'Développement d’Applications',
 
-    'hero_title' => 'Développement d’Applications sur Mesure',
+    'hero_title' => 'Développement d’applications sur mesure',
     'hero_description' => 'Nous créons des applications puissantes pour mobile, web et desktop adaptées à vos besoins.',
     'hero_btn_contact' => 'Contactez-nous',
 
-    'desc_title' => 'Développement d’Applications Complet',
-    'desc_text' => 'Nous concevons, développons et déployons des applications modernes pour mobile, web et desktop.',
+    'desc_title' => 'Développement complet d’applications',
+    'desc_text' => 'Nous concevons, développons et déployons des applications modernes sur toutes les plateformes.',
 
-    'mobile_title' => 'Applications Mobiles',
-    'mobile_subtitle' => 'Applications iOS et Android natives ou multiplateformes',
+    'corporate_features'    => 'Fonctionnalités de base',
+    
+    /*
+    |--------------------------------------------------
+    | Mobile Applications
+    |--------------------------------------------------
+    */
+    'mobile_title' => 'Applications mobiles',
+    'mobile_subtitle' => 'Applications iOS & Android natives et multiplateformes',
 
-    'web_title' => 'Applications Web',
-    'web_subtitle' => 'Applications web modernes, responsives et évolutives',
+    'mobile_features' => [
+        'Design UI/UX optimisé pour mobile',
+        'Développement natif et cross-platform (Flutter, React Native)',
+        'Intégration API et backend',
+        'Notifications push et fonctionnalités temps réel',
+        'Publication sur App Store et Google Play',
+    ],
 
-    'desktop_title' => 'Applications Desktop',
-    'desktop_subtitle' => 'Logiciels pour Windows, macOS et Linux',
+    /*
+    |--------------------------------------------------
+    | Web Applications
+    |--------------------------------------------------
+    */
+    'web_title' => 'Applications web',
+    'web_subtitle' => 'Applications modernes, responsives et évolutives',
 
-    'cta_title' => 'Prêt à lancer votre application ?',
+    'web_features' => [
+        'Design responsive pour tous les écrans',
+        'Tableaux de bord et panneaux d’administration',
+        'Intégration REST API et services tiers',
+        'Authentification et sécurité (JWT, OAuth)',
+        'Haute performance et optimisation SEO',
+    ],
+
+    /*
+    |--------------------------------------------------
+    | Desktop Applications
+    |--------------------------------------------------
+    */
+    'desktop_title' => 'Applications desktop',
+    'desktop_subtitle' => 'Logiciels puissants pour Windows, macOS et Linux',
+
+    'desktop_features' => [
+        'Applications multiplateformes (Electron, .NET)',
+        'Fonctionnement hors ligne et stockage local',
+        'Intégration au système',
+        'Solutions logicielles métier sur mesure',
+        'Optimisation des performances et sécurité',
+    ],
+
+    /*
+    |--------------------------------------------------
+    | CTA
+    |--------------------------------------------------
+    */
+    'cta_title' => 'Prêt à créer votre application ?',
     'cta_subtitle' => 'Transformons votre idée en produit réel.',
-    'cta_btn' => 'Démarrer le projet',
+    'cta_btn' => 'Démarrer votre projet',
 
+    /*
+    |--------------------------------------------------
+    | Pricing
+    |--------------------------------------------------
+    */
     'price_label' => 'À partir de',
     'mobile_price' => 'À partir de 70 000 DA',
     'web_price' => 'À partir de 90 000 DA',
     'desktop_price' => 'À partir de 110 000 DA',
-    'price_note' => 'Le prix final dépend de la complexité du projet et des fonctionnalités requises.',
+    'price_note' => 'Le prix final dépend de la complexité et des fonctionnalités.',
 ];
 
