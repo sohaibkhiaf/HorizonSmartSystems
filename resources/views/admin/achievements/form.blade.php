@@ -1,12 +1,12 @@
 <div class="form-grid">
 
     <div class="form-group">
-        <label>Title</label>
+        <label>Titre</label>
         <input 
             type="text" 
             name="title" 
             value="{{ old('title', $achievement->title ?? '') }}" 
-            placeholder="Enter project title (e.g. Company Website)"
+            placeholder="Entrez le titre du projet (ex. Site d'entreprise)"
             required
         >
     </div>
@@ -14,27 +14,27 @@
     <div class="form-group">
         <label>Type</label>
         <select name="type">
-            <option value="" disabled selected>Select project type</option>
+            <option value="" disabled selected>Sélectionner le type de projet</option>
             <option value="web" {{ old('type', $achievement->type ?? '') === "web" ? 'selected' : '' }}>
-                Website
+                Site web
             </option>
             <option value="ecommerce" {{ old('type', $achievement->type ?? '') === "ecommerce" ? 'selected' : '' }}>
                 E-commerce
             </option>
             <option value="software" {{ old('type', $achievement->type ?? '') === "software" ? 'selected' : '' }}>
-                Software
+                Logiciel
             </option>
         </select>
     </div>
 
     <div class="form-group full">
-        <label>Short Description</label>
+        <label>Description courte</label>
         <input 
             type="text" 
             name="short_description" 
             maxlength="300" 
             value="{{ old('short_description', $achievement->short_description ?? '') }}" 
-            placeholder="Brief summary (max 300 characters)"
+            placeholder="Résumé bref (300 caractères max)"
             required
         >
     </div>
@@ -44,17 +44,17 @@
         <textarea 
             name="description" 
             rows="5"
-            placeholder="Write a detailed description of the project..."
+            placeholder="Rédigez une description détaillée du projet..."
         >{{ old('description', $achievement->description ?? '') }}</textarea>
     </div>
 
     <div class="form-group full">
-        <label>Project URL</label>
+        <label>URL du projet</label>
         <input 
             type="url" 
             name="project_url" 
             value="{{ old('project_url', $achievement->project_url ?? '') }}" 
-            placeholder="https://example.com"
+            placeholder="https://exemple.com"
         >
     </div>
 
@@ -65,7 +65,7 @@
             name="image" 
             accept="image/*"
         >
-        <small>Upload a project image (JPG, PNG, etc.)</small>
+        <small>Télécharger une image du projet (JPG, PNG, etc.)</small>
 
         @if(!empty($achievement?->image))
             <div class="current-image">
@@ -81,7 +81,7 @@
                 name="is_published" 
                 value="1"
                 {{ old('is_published', $achievement->is_published ?? true) ? 'checked' : '' }}>
-            <span>Published (visible on website)</span>
+            <span>Publié (visible sur le site)</span>
         </label>
     </div>
 
@@ -89,11 +89,11 @@
 
 <div class="form-actions">
     <button type="submit" class="btn-main">
-        {{ $buttonText ?? 'Save' }}
+        {{ $buttonText ?? 'Enregistrer' }}
     </button>
 
     <a href="{{ route('admin.achievements.index') }}" class="btn-secondary">
-        Cancel
+        Annuler
     </a>
 </div>
 

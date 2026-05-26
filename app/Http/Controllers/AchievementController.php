@@ -42,7 +42,7 @@ class AchievementController extends Controller
 
         return redirect()
             ->route('admin.achievements.index')
-            ->with('success', 'Achievement created successfully.');
+            ->with('success', 'Réalisation créée avec succès.');
     }
 
     public function edit(Achievement $achievement)
@@ -77,7 +77,7 @@ class AchievementController extends Controller
 
         return redirect()
             ->route('admin.achievements.index')
-            ->with('success', 'Achievement updated successfully.');
+            ->with('success', 'Réalisation mise à jour avec succès.');
     }
 
     public function destroy(Achievement $achievement)
@@ -86,7 +86,7 @@ class AchievementController extends Controller
 
         return redirect()
             ->route('admin.achievements.index')
-            ->with('success', 'Achievement deleted successfully.');
+            ->with('success', 'Réalisation supprimée avec succès.');
     }
 
 

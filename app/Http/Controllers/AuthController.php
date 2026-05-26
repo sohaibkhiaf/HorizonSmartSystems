@@ -28,7 +28,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials, $remember)) {
             return back()
-                ->withErrors(['email' => 'Invalid email or password.'])
+                ->withErrors(['email' => 'E-mail ou mot de passe invalide.'])
                 ->onlyInput('email');
         }
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
             Auth::logout();
 
             return back()->withErrors([
-                'email' => 'This account is not allowed to access admin panel.',
+                'email' => 'Ce compte n\'est pas autorisé à accéder au panneau d\'administration.',
             ]);
         }
 

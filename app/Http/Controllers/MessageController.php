@@ -16,7 +16,7 @@ class MessageController extends Controller
         return view('admin.messages.index', [
             'messages' => $messages,
             'is_seen' => false,
-            'title' => 'Waiting Messages',
+            'title' => 'Messages en attente',
         ]);
     }
 
@@ -29,7 +29,7 @@ class MessageController extends Controller
         return view('admin.messages.index', [
             'messages' => $messages,
             'is_seen' => true,
-            'title' => 'Seen Messages',
+            'title' => 'Messages consultés',
         ]);
     }
 
@@ -54,7 +54,7 @@ class MessageController extends Controller
 
         return redirect()
             ->route($is_seen ? 'admin.messages.seen' : 'admin.messages.waiting')
-            ->with('success', 'Message updated successfully.');
+            ->with('success', 'Message mis à jour avec succès.');
     }
 
     public function markSeen(Message $message)
@@ -63,7 +63,7 @@ class MessageController extends Controller
             'is_seen' => true,
         ]);
 
-        return back()->with('success', 'Message marked as seen.');
+        return back()->with('success', 'Message marqué comme consulté.');
     }
 
     public function markWaiting(Message $message)
@@ -72,13 +72,13 @@ class MessageController extends Controller
             'is_seen' => false,
         ]);
 
-        return back()->with('success', 'Message moved to waiting.');
+        return back()->with('success', 'Message déplacé en attente.');
     }
 
     public function destroy(Message $message)
     {
         $message->delete();
 
-        return back()->with('success', 'Message deleted successfully.');
+        return back()->with('success', 'Message supprimé avec succès.');
     }
 }

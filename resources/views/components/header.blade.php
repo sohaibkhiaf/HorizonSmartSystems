@@ -15,9 +15,6 @@
             {{ __('header.about') }}
         </a>
 
-        <!-- <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
-            {{ __('header.services') }}
-        </a> -->
         <div class="nav-item has-dropdown">
             <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
                 {{ __('header.services') }} <i class="fa-solid fa-angle-down"></i>

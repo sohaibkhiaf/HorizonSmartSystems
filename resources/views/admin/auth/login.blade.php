@@ -2,8 +2,9 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>Connexion Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,8 +18,8 @@
         <i class="fas fa-lock"></i>
     </div>
 
-    <h1>Admin Login</h1>
-    <p>Access your website management panel</p>
+    <h1>Connexion Admin</h1>
+    <p>Accédez à votre panneau de gestion du site</p>
 
     @if($errors->any())
         <div class="alert danger">
@@ -30,22 +31,22 @@
         @csrf
 
         <div class="form-group">
-            <label>Email</label>
+            <label>E-mail</label>
             <input type="email" name="email" value="{{ old('email') }}" required autofocus>
         </div>
 
         <div class="form-group">
-            <label>Password</label>
+            <label>Mot de passe</label>
             <input type="password" name="password" required>
         </div>
 
         <label class="checkbox-row">
             <input type="checkbox" name="remember">
-            <span>Remember me</span>
+            <span>Se souvenir de moi</span>
         </label>
 
         <button type="submit" class="btn-main full">
-            Login
+            Se connecter
         </button>
     </form>
 </div>

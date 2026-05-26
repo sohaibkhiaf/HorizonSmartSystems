@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Admin Dashboard')
-@section('page_title', 'Dashboard')
-@section('page_subtitle', 'Overview of your website content')
+@section('title', 'Tableau de bord Admin')
+@section('page_title', 'Tableau de bord')
+@section('page_subtitle', 'Vue d\'ensemble du contenu de votre site')
 
 @section('content')
 
@@ -14,7 +14,7 @@
         </div>
         <div>
             <h3>{{ $achievementsCount }}</h3>
-            <p>Total Achievements</p>
+            <p>Total des réalisations</p>
         </div>
     </div>
 
@@ -24,7 +24,7 @@
         </div>
         <div>
             <h3>{{ $publishedAchievementsCount }}</h3>
-            <p>Published Achievements</p>
+            <p>Réalisations publiées</p>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
         </div>
         <div>
             <h3>{{ $waitingMessagesCount }}</h3>
-            <p>Waiting Messages</p>
+            <p>Messages en attente</p>
         </div>
     </div>
 
@@ -44,7 +44,7 @@
         </div>
         <div>
             <h3>{{ $seenMessagesCount }}</h3>
-            <p>Seen Messages</p>
+            <p>Messages consultés</p>
         </div>
     </div>
 
@@ -53,26 +53,26 @@
 <div class="admin-tabs">
     <a href="{{ route('admin.achievements.create') }}" class="tab-card">
         <i class="fas fa-plus"></i>
-        <h3>Create Achievement</h3>
-        <p>Add a new project to your website.</p>
+        <h3>Créer une réalisation</h3>
+        <p>Ajouter un nouveau projet à votre site.</p>
     </a>
 
     <a href="{{ route('admin.achievements.index') }}" class="tab-card">
         <i class="fas fa-pen"></i>
-        <h3>Edit Achievement</h3>
-        <p>Update, publish, or delete existing projects.</p>
+        <h3>Modifier une réalisation</h3>
+        <p>Mettre à jour, publier ou supprimer des projets existants.</p>
     </a>
 
     <a href="{{ route('admin.messages.waiting') }}" class="tab-card">
         <i class="fas fa-envelope"></i>
-        <h3>Waiting Messages</h3>
-        <p>Check new contact messages.</p>
+        <h3>Messages en attente</h3>
+        <p>Consulter les nouveaux messages de contact.</p>
     </a>
 
     <a href="{{ route('admin.messages.seen') }}" class="tab-card">
         <i class="fas fa-check-circle"></i>
-        <h3>Seen Messages</h3>
-        <p>Manage already reviewed messages.</p>
+        <h3>Messages consultés</h3>
+        <p>Gérer les messages déjà examinés.</p>
     </a>
 </div>
 

@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Admin Panel')</title>
+    <title>@yield('title', 'Panneau Admin')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
@@ -23,38 +23,38 @@
             </div>
             <div>
                 <h2>HSS Admin</h2>
-                <p>Website Manager</p>
+                <p>Gestionnaire du site</p>
             </div>
         </div>
 
         <nav class="admin-nav">
             <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <i class="fas fa-chart-line"></i>
-                Dashboard
+                Tableau de bord
             </a>
 
-            <div class="nav-group-title">Achievements</div>
+            <div class="nav-group-title">Réalisations</div>
 
             <a href="{{ route('admin.achievements.create') }}" class="{{ request()->routeIs('admin.achievements.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
-                Create Achievement
+                Créer une réalisation
             </a>
 
             <a href="{{ route('admin.achievements.index') }}" class="{{ request()->routeIs('admin.achievements.index') || request()->routeIs('admin.achievements.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>
-                Our Achievements
+                Nos réalisations
             </a>
 
             <div class="nav-group-title">Messages</div>
 
             <a href="{{ route('admin.messages.waiting') }}" class="{{ request()->routeIs('admin.messages.waiting') ? 'active' : '' }}">
                 <i class="fas fa-clock"></i>
-                Waiting Messages
+                Messages en attente
             </a>
 
             <a href="{{ route('admin.messages.seen') }}" class="{{ request()->routeIs('admin.messages.seen') ? 'active' : '' }}">
                 <i class="fas fa-check-circle"></i>
-                Seen Messages
+                Messages consultés
             </a>
         </nav>
 
@@ -62,7 +62,7 @@
             @csrf
             <button type="submit">
                 <i class="fas fa-right-from-bracket"></i>
-                Logout
+                Déconnexion
             </button>
         </form>
     </aside>
@@ -70,8 +70,8 @@
     <main class="admin-main">
         <header class="admin-topbar">
             <div>
-                <h1>@yield('page_title', 'Admin Panel')</h1>
-                <p>@yield('page_subtitle', 'Manage your website content')</p>
+                <h1>@yield('page_title', 'Panneau Admin')</h1>
+                <p>@yield('page_subtitle', 'Gérez le contenu de votre site')</p>
             </div>
         </header>
 

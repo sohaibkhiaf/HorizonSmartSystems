@@ -1,15 +1,15 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Our Achievements')
-@section('page_title', 'Our Achievements')
-@section('page_subtitle', 'Manage all website projects')
+@section('title', 'Nos réalisations')
+@section('page_title', 'Nos réalisations')
+@section('page_subtitle', 'Gérer tous les projets du site')
 
 @section('content')
 
 <div class="page-actions">
     <a href="{{ route('admin.achievements.create') }}" class="btn-main">
         <i class="fas fa-plus"></i>
-        Create Achievement 
+        Créer une réalisation
     </a>
 </div>
 
@@ -33,9 +33,9 @@
                     <h3>{{ $achievement->title }}</h3>
 
                     @if($achievement->is_published)
-                        <span class="badge success">Published</span>
+                        <span class="badge success">Publié</span>
                     @else
-                        <span class="badge muted">Hidden</span>
+                        <span class="badge muted">Masqué</span>
                     @endif
                 </div>
 
@@ -48,16 +48,16 @@
                 <div class="card-actions">
                     <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>
-                        Edit
+                        Modifier
                     </a>
 
-                    <form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm('Delete this achievement?')">
+                    <form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm('Supprimer cette réalisation ?')">
                         @csrf
                         @method('DELETE')
 
                         <button type="submit" class="action-btn delete">
                             <i class="fas fa-trash"></i>
-                            Delete
+                            Supprimer
                         </button>
                     </form>
                 </div>
@@ -66,7 +66,7 @@
         </div>
     @empty
         <div class="empty-box">
-            No achievements found.
+            Aucune réalisation trouvée.
         </div>
     @endforelse
 

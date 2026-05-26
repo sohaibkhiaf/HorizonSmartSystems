@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Create Achievement')
-@section('page_title', 'Create Achievement')
-@section('page_subtitle', 'Add a new project to your website')
+@section('title', 'Créer une réalisation')
+@section('page_title', 'Créer une réalisation')
+@section('page_subtitle', 'Ajouter un nouveau projet à votre site')
 
 @section('content')
 
@@ -12,7 +12,7 @@
 
         @include('admin.achievements.form', [
             'realisation' => null,
-            'buttonText' => 'Create Achievement'
+            'buttonText' => 'Créer une réalisation'
         ])
     </form>
 </div>

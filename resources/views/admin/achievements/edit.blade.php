@@ -1,8 +1,8 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Edit Achievement')
-@section('page_title', 'Edit Achievement')
-@section('page_subtitle', 'Update achievement information')
+@section('title', 'Modifier une réalisation')
+@section('page_title', 'Modifier une réalisation')
+@section('page_subtitle', 'Mettre à jour les informations de la réalisation')
 
 @section('content')
 
@@ -15,9 +15,10 @@
 
         @include('admin.achievements.form', [
             'achievement' => $achievement,
-            'buttonText' => 'Update Achievement'
+            'buttonText' => 'Mettre à jour la réalisation'
         ])
     </form>
 </div>
 
 @endsection
+
