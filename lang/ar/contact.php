@@ -24,7 +24,7 @@ return [
     'form_fullname'          => 'الاسم الكامل (*)',
     'form_fullname_ph'       => 'اسمك',
     'form_email'             => 'البريد الإلكتروني',
-    'form_email_ph'          => 'بريدك@الإلكتروني.com',
+    'form_email_ph'          => 'votre@email.com',
     'form_phone'             => 'الهاتف (*)',
     'form_phone_ph'          => '+213 XXX XX XX XX',
     'form_subject'           => 'الموضوع (*)',

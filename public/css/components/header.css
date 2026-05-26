@@ -216,6 +216,12 @@
         display: none;
     }
 
+    /* disable services dropdown menu */
+    .caret-down, 
+    .mega-menu{
+        display: none;
+    }
+
     /* show hamburger */
     .menu-toggle {
         display: block;

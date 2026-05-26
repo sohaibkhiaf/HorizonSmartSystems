@@ -39,7 +39,7 @@
 /* Contact  ******************************** */
 
 .contact-section {
-    margin: 50px 8%;
+    margin: 20px 8%;
     background: var(--body-color);
 }
 
@@ -61,7 +61,7 @@
 
 .contact-title {
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     color: #111827;
     margin-bottom: 25px;
     position: relative;
@@ -100,7 +100,7 @@
 
 .contact-item h4 {
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 500;
     color: #111827;
     margin: 0 0 5px;
 }
@@ -127,7 +127,7 @@
     position: relative;
     margin-bottom: 28px;
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 600;
     color: #111827;
 }
 
@@ -149,7 +149,7 @@
 
 .form-group label {
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 8px;
     color: #334155;
 }
@@ -219,7 +219,7 @@
     border-radius: 12px;
     cursor: pointer;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 500;
     transition: 0.3s ease;
 }
 
@@ -294,7 +294,7 @@
 
 .hours-header h3 {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
     margin: 0;
     color: #1f2937;
 }
@@ -336,7 +336,7 @@
 
 .hour-row span:last-child {
     color: #1e88e5;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 /* CLOSED ROWS */
@@ -348,9 +348,6 @@
 .hour-row.closed span:last-child {
     color: #ef4444;
 }
-
-
-/* RESPONSIVE ****************************************************  */
 
 
 /* RESPONSIVE **************************************************** */
