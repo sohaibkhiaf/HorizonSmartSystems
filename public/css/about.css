@@ -37,7 +37,7 @@
 
 /* Hero  ******************************** */
 .hero {
-    padding: 40px 8% 20px 8%;
+    padding: 40px 8%;
 }
 
 .hero-container {
@@ -103,7 +103,7 @@
     background: #eff6ff; /* light blue */
     border: 1px solid #e5e7eb;
     border-radius: 16px;
-    margin: 0 8% 50px 8%;
+    margin: 0 8% 40px 8%;
 }
 
 .values-container {
@@ -275,6 +275,10 @@
     display: flex;
     justify-content: center;
     gap: 12px;
+}
+
+.socials a {
+    line-height: 0;
 }
 
 .socials i {

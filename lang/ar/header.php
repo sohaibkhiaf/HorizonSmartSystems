@@ -4,7 +4,7 @@ return [
     'home' => 'الرئيسية',
     'about' => 'حول',
     'services' => 'الخدمات',
-    'achievements' => 'الإنجازات',
+    'achievements' => 'انجازاتنا',
     'contact' => 'اتصل بنا',
 
     // Services 

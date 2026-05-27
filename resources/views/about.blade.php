@@ -119,9 +119,12 @@
                 <h3>Sohaib K</h3>
                 <span>{{ __('about.member_sohaib_role') }}</span>
                 <div class="socials">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-linkedin-in"></i>
-                    <i class="fa-solid fa-envelope"></i>
+                    <a href="https://www.facebook.com/sohaib.khiaf" target="_blank">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sohaib-khiaf/" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
 
@@ -132,9 +135,12 @@
                 <h3>Amine S</h3>
                 <span>{{ __('about.member_amine_role') }}</span>
                 <div class="socials">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-linkedin-in"></i>
-                    <i class="fa-solid fa-envelope"></i>
+                    <a href="#" >
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" >
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
 
@@ -145,9 +151,12 @@
                 <h3>Said</h3>
                 <span>{{ __('about.member_said_role') }}</span>
                 <div class="socials">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-linkedin-in"></i>
-                    <i class="fa-solid fa-envelope"></i>
+                    <a href="#" >
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" >
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
 

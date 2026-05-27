@@ -7,13 +7,13 @@ return [
 
     // Hero Banner
     'banner_title'       => 'About HSS',
-    'banner_subtitle'    => 'Your partner in web and digital solutions.',
+    'banner_subtitle'    => 'Your partner in digital and web solutions.',
 
     // Hero 
     'hero_label'         => 'WHO ARE WE?',
     'hero_title'         => 'Horizon Smart Systems',
     'hero_subtitle'      => 'Your trusted digital partner.',
-    'hero_description_1' => 'Horizon Smart Systems (HSS) is an agency specializing in web development, software and digital solutions. We support businesses, merchants and professionals in creating modern, high-performance tools tailored to their goals.',
+    'hero_description_1' => 'Horizon Smart Systems (HSS) is an agency specializing in digital solutions and web development. We support businesses, merchants and professionals in creating modern, high-performance tools tailored to their goals.',
     'hero_description_2' => 'Our mission is simple: to provide innovative solutions that optimize your processes, improve your productivity and contribute to the sustainable growth of your business.',
 
     // Values 

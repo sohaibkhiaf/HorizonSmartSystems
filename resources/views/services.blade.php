@@ -65,7 +65,7 @@
                 </div>
 
                 <div class="swiper-slide service-card">
-                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
                     <h3>{{ __('services.service_erp_title') }}</h3>
                     <p>{{ __('services.service_erp_desc') }}</p>
                     <a href="/services/erp" class="plus-link">
