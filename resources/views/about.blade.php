@@ -40,7 +40,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="{{ asset('images/hss_agency.png') }}" alt="Development Agency">
+            <img src="{{ asset('images/hss_agency.png') }}" alt="{{ __('about.hero_title') }}">
         </div>
     </div>
 </section>

@@ -17,7 +17,7 @@ return [
     'service_web_title'     => 'Website Creation',
     'service_web_desc'      => 'Modern, fast and responsive websites designed to showcase your business.',
     'service_app_title'     => 'Custom Application Development',
-    'service_app_desc'      => 'Custom web and desktop applications tailored to your specific needs.',
+    'service_app_desc'      => 'Custom applications tailored to your specific needs.',
     'service_erp_title'     => 'Business Management, Payroll & Other Solutions',
     'service_erp_desc'      => 'Integrated solutions to manage your business and optimize your processes.',
     'service_sys_title'     => 'Custom Management Systems',
