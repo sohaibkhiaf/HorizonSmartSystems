@@ -6,9 +6,9 @@ return [
     'page_title' => 'Home — Horizon Smart Systems',
 
     // Hero 
-    'hero_agency_label'   => 'Web & Software Development Agency',
+    'hero_agency_label'   => 'Software & Web Development Agency',
     'hero_title'          => 'Modern digital solutions to grow your business',
-    'hero_description'    => 'Horizon Smart Systems supports businesses and organizations in their digital transformation through reliable, secure, and perfectly tailored web and software solutions.',
+    'hero_description'    => 'Horizon Smart Systems supports businesses and organizations in their digital transformation through reliable, secure, and perfectly tailored software and web solutions.',
     'hero_btn_services'   => 'View our services',
     'hero_btn_contact'    => 'Contact us',
 
@@ -27,7 +27,7 @@ return [
     'service_web_title'   => 'Website Creation',
     'service_web_desc'    => 'Modern, fast and responsive websites designed to showcase your business.',
     'service_app_title'   => 'Custom Application Development',
-    'service_app_desc'    => 'Tailor-made web applications adapted to your specific needs.',
+    'service_app_desc'    => 'Tailor-made applications adapted to your specific needs.',
     'service_erp_title'   => 'Business Management, Payroll & Other Solutions',
     'service_erp_desc'    => 'Integrated solutions to manage your business and optimize your processes.',
     'service_sys_title'   => 'Custom Management Systems',

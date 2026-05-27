@@ -6,9 +6,9 @@ return [
     'page_title' => 'الرئيسية — Horizon Smart Systems',
 
     // Hero 
-    'hero_agency_label'   => 'وكالة تطوير مواقع وبرمجيات',
+    'hero_agency_label'   => 'مكتب تطوير برمجيات ومواقع الكترونية',
     'hero_title'          => 'حلول رقمية حديثة لتنمية أعمالك',
-    'hero_description'    => 'تُرافق Horizon Smart Systems الشركات والمؤسسات في تحوّلها الرقمي من خلال حلول ويب وبرمجيات موثوقة وآمنة ومُكيَّفة تمامًا مع احتياجاتها.',
+    'hero_description'    => 'تُرافق Horizon Smart Systems الشركات والمؤسسات في تحوّلها الرقمي من خلال حلول برمجية موثوقة وآمنة ومُكيَّفة تمامًا مع احتياجاتها.',
     'hero_btn_services'   => 'اكتشف خدماتنا',
     'hero_btn_contact'    => 'تواصل معنا',
 
@@ -27,7 +27,7 @@ return [
     'service_web_title'   => 'إنشاء مواقع ويب',
     'service_web_desc'    => 'مواقع ويب حديثة وسريعة ومتجاوبة، مصمَّمة لإبراز نشاطك التجاري.',
     'service_app_title'   => 'تطوير تطبيقات مخصصة',
-    'service_app_desc'    => 'تطبيقات ويب مُخصَّصة ومُكيَّفة مع احتياجاتك الخاصة.',
+    'service_app_desc'    => 'تطبيقات مُخصَّصة ومُكيَّفة مع احتياجاتك الخاصة.',
     'service_erp_title'   => 'الإدارة التجارية والرواتب وحلول أخرى',
     'service_erp_desc'    => 'حلول متكاملة لإدارة نشاطك وتحسين عملياتك.',
     'service_sys_title'   => 'أنظمة إدارة مخصصة',
@@ -38,9 +38,9 @@ return [
     // Other Services 
     'other_services_title'       => 'خدمات أخرى',
     'other_intl_title'           => 'توفير البرمجيات الدولية',
-    'other_intl_desc'            => 'توريد البرمجيات الدولية وفق احتياجاتك وميزانيتك.',
+    'other_intl_desc'            => 'توفير البرمجيات الدولية وفق احتياجاتك وميزانيتك.',
     'other_subscriptions_title'  => 'اشتراكات البرمجيات',
-    'other_subscriptions_desc'   => 'عرض وإدارة اشتراكات الذكاء الاصطناعي (ChatGPT, Gemini...)، Steam Cards، Adobe، Microsoft...',
+    'other_subscriptions_desc'   => 'توفير وإدارة اشتراكات الذكاء الاصطناعي (ChatGPT, Gemini...)، Steam Cards، Adobe، Microsoft...',
     'other_hosting_title'        => 'استضافة المواقع الإلكترونية',
     'other_hosting_desc'         => 'استضافة آمنة وعالية الأداء وقابلة للتوسع لمواقعك وتطبيقاتك.',
     'other_consulting_title'     => 'الاستشارة والمرافقة',
@@ -65,7 +65,7 @@ return [
     // CTA 
     'cta_title'       => 'لديك مشروع في ذهنك؟',
     'cta_subtitle'    => 'تحدّث معنا اليوم.',
-    'cta_description' => 'احصل على رد سريع واقتراح مُكيَّف مع احتياجاتك.',
+    'cta_description' => 'احصل على رد سريع واقتراح متناسب مع احتياجاتك.',
     'cta_btn'         => 'تواصل معنا',
 
 ];

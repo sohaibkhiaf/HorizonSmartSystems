@@ -8,7 +8,7 @@ return [
     // Hero 
     'hero_agency_label'   => 'Agence de développement web & logiciel',
     'hero_title'          => 'Des solutions digitales modernes pour développer votre activité',
-    'hero_description'    => 'Horizon Smart Systems accompagne les entreprises et organisations dans leur transformation digitale grâce à des solutions web et logiciel fiables, sécurisées et parfaitement adaptées à leurs besoins.',
+    'hero_description'    => 'Horizon Smart Systems accompagne les entreprises et organisations dans leur transformation digitale grâce à des solutions logiciel et web fiables, sécurisées et parfaitement adaptées à leurs besoins.',
     'hero_btn_services'   => 'Voir nos services',
     'hero_btn_contact'    => 'Contactez-nous',
 
@@ -27,7 +27,7 @@ return [
     'service_web_title'   => 'Création de sites web',
     'service_web_desc'    => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
     'service_app_title'   => 'Création d\'application sur mesure',
-    'service_app_desc'    => 'Applications web sur mesure adaptées à vos besoins spécifiques.',
+    'service_app_desc'    => 'Applications sur mesure adaptées à vos besoins spécifiques.',
     'service_erp_title'   => 'Gestion commerciale, paie et autres solutions',
     'service_erp_desc'    => 'Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.',
     'service_sys_title'   => 'Systèmes de gestion personnalisés',
