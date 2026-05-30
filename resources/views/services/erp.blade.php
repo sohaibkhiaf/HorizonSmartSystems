@@ -25,7 +25,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="{{ asset('images/appdev.png') }}" {{ __('erp.hero_title') }}>
+            <img src="{{ asset('images/erp.png') }}" {{ __('erp.hero_title') }}>
         </div>
 
     </div>
