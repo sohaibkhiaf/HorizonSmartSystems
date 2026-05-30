@@ -15,7 +15,8 @@ return [
 
     'service_web' => 'إنشاء مواقع الويب',
     'service_apps' => 'تطبيقات مخصصة',
-    'service_systems' => 'أنظمة إدارة',
+    'service_erp' => 'حلول إدارة الأعمال',
+    'service_systems' => 'أنظمة إدارة مخصصة',
     'service_support' => 'الدعم التقني',
 
     'location' => 'شارع الزعاطشة، مقابل مركز الضرائب، بسكرة، الجزائر',

@@ -15,7 +15,8 @@ return [
 
     'service_web' => 'Création de sites web',
     'service_apps' => 'Applications sur mesure',
-    'service_systems' => 'Systèmes de gestion',
+    'service_erp' => 'Solutions de gestion d’entreprise',
+    'service_systems' => 'Systèmes de gestion personnalisés',
     'service_support' => 'Assistance informatique',
 
     'location' => 'Rue Zaatcha, en face du centre des impôts, Biskra, Algérie',

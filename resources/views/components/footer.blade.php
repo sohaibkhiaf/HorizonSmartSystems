@@ -29,10 +29,11 @@
         <div class="footer-section">
             <h3>{{ __('footer.our_services') }}</h3>
             <ul>
-                <li><i class="fa-solid fa-globe"></i>&nbsp;{{ __('footer.service_web') }}</li>
-                <li><i class="fa-solid fa-code"></i>&nbsp;{{ __('footer.service_apps') }}</li>
-                <li><i class="fa-solid fa-gears"></i>&nbsp;{{ __('footer.service_systems') }}</li>
-                <li><i class="fa-solid fa-desktop"></i>&nbsp;{{ __('footer.service_support') }}</li>
+                <li><a href="/services/webdev"><i class="fa-solid fa-globe"></i>&nbsp;{{ __('footer.service_web') }}</a></li>
+                <li><a href="/services/appdev"><i class="fa-solid fa-laptop-code"></i>&nbsp;{{ __('footer.service_apps') }}</a></li>
+                <li><a href="/services/erp"><i class="fa-solid fa-chart-pie"></i>&nbsp;{{ __('footer.service_erp') }}</a></li>
+                <li><a href="/services/systems"><i class="fa-solid fa-gears"></i>&nbsp;{{ __('footer.service_systems') }}</a></li>
+                <li><a href="/services/support"><i class="fa-solid fa-headset"></i>&nbsp;{{ __('footer.service_support') }}</a></li>
             </ul>
         </div>
 

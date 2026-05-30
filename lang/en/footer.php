@@ -15,7 +15,8 @@ return [
 
     'service_web' => 'Website creation',
     'service_apps' => 'Custom applications',
-    'service_systems' => 'Management systems',
+    'service_erp' => 'Business Management Solutions',
+    'service_systems' => 'Custom Management systems',
     'service_support' => 'IT support',
 
     'location' => 'Zaatcha Street, opposite the tax office, Biskra, Algeria',
