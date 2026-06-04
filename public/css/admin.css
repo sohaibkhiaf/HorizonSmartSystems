@@ -83,7 +83,21 @@ a {
     position: fixed;
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh;
+
+    overflow-y: auto; /* ✅ enables scroll */
+}
+.admin-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
 }
 
 .admin-logo {
@@ -136,6 +150,10 @@ a {
     cursor: pointer;
     transition: 0.3s;
     text-align: left;
+}
+
+.logout-form button{
+    margin-top: 20px;
 }
 
 .admin-nav a:hover,
@@ -639,6 +657,346 @@ a {
     line-height: 1.6;
 }
 
+
+/* Users Module ******************************************** */
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.search-bar input {
+    flex: 1;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+}
+
+.search-bar input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #eff6ff;
+}
+
+/* Table */
+.table-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead {
+    background: #f9fafb;
+}
+
+.table th,
+.table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.table th {
+    font-size: 13px;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.table tbody tr {
+    border-top: 1px solid #e5e7eb;
+    transition: 0.2s;
+}
+
+.table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Role badges */
+.role-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.role-admin {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.role-user {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.role-operator {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.role-client {
+    background: #ecfdf5;
+    color: #16a34a;
+}
+
+/* Table actions */
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Small buttons */
+.btn-sm {
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+/* Page header actions */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+/* Empty state */
+.empty-users {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+}
+
+
+/*  */
+
+/* GRID */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+/* CARD */
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 0px 20px;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* INFO BLOCK */
+.info-block {
+    margin-bottom: 15px;
+}
+
+.label {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 3px;
+}
+
+.value {
+    font-weight: 500;
+}
+
+/* NOTE BOX */
+.note-box {
+    background: #f9fafb;
+    border-left: 4px solid #2563eb;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* DIVIDER */
+.divider {
+    height: 1px;
+    background: #eee;
+    margin: 15px 0;
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success {
+    background: #16a34a;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.w-full {
+    width: 100%;
+}
+
+/* BADGES */
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.badge-available {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-not_available {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-processing {
+    background: #fef9c3;
+    color: #854d0e;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+/* TABLE IMPROVEMENT */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.modern-table thead {
+    background: #f9fafb;
+}
+
+.modern-table th {
+    text-align: left;
+    padding: 12px;
+    font-size: 13px;
+    color: #666;
+}
+
+.modern-table td {
+    padding: 14px 12px;
+    border-top: 1px solid #eee;
+}
+
+/* TEXT UTILS */
+.text-right {
+    text-align: right;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+/* SMALL BUTTON */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 13px;
+}
+
+/* HOVER EFFECT */
+.modern-table tbody tr:hover {
+    background: #f9fafb;
+    transition: 0.2s;
+}
+
+.navigator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0;
+}
+
+.navigator-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 10px;
+    border-radius: 8px;
+    background: #f5f7fb;
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: 1px solid #e0e6ed;
+}
+
+/* Hover */
+.navigator-container a:hover {
+    background: #e9edf5;
+    color: #111;
+}
+
+/* Active page */
+.navigator-container a.active {
+    background: #2563eb; /* admin primary color */
+    color: #fff;
+    border-color: #2563eb;
+    font-weight: 600;
+}
+
+/* Arrow buttons */
+.navigator-container a i {
+    font-size: 14px;
+}
+
+/* Disabled (optional improvement) */
+.navigator-container a.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
 /* Responsive */
 
 @media (max-width: 1100px) {
@@ -646,6 +1004,12 @@ a {
     .admin-tabs,
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
     }
 }
 

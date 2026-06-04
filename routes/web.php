@@ -5,6 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RequestController;
+use App\Http\Controllers\UserController;
 use App\Models\Achievement;
 use Illuminate\Support\Facades\Route;
 
@@ -122,9 +126,60 @@ Route::prefix('admin')
 
     Route::delete('/messages/{message}', [MessageController::class, 'destroy'])
         ->name('messages.destroy');
+
+    Route::resource('users', UserController::class);
+
+
+
+
+    Route::get('/products/', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products/', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+    Route::get('requests', [RequestController::class, 'index'])
+        ->name('requests.index');
+    Route::get('requests/{id}', [RequestController::class, 'show'])
+        ->name('requests.show');
+    Route::post('requests/{id}/availability', [RequestController::class, 'setAvailability'])
+        ->name('requests.setAvailability');
+
+    Route::post('requests/{id}/deliver', [RequestController::class, 'deliverCredentials'])
+        ->name('requests.deliver');
+
+    Route::delete('requests/{id}', [RequestController::class, 'destroy'])
+        ->name('requests.destroy');
 });
 
 
+Route::prefix('operator')
+    ->name('operator.')
+    ->middleware(['auth', 'operator'])
+    ->group(function () {
+
+    Route::get('products', [OperatorController::class, 'products'])
+        ->name('products');
+
+    Route::get('requests', [OperatorController::class, 'requests'])
+        ->name('requests');
+    Route::post('requests', [OperatorController::class, 'store'])
+        ->name('requests.store');
+    Route::get('requests/{id}', [OperatorController::class, 'show'])
+        ->name('requests.show');
+
+    Route::post('requests/{id}/pay', [OperatorController::class, 'confirmPayment'])
+        ->name('requests.confirmPayment');
+
+    Route::post('requests/{id}/note', [OperatorController::class, 'addNote'])
+        ->name('requests.addNote');
+    
+    Route::delete('requests/{id}', [OperatorController::class, 'destroy'])
+        ->name('requests.destroy');
+
+});
 
 
 

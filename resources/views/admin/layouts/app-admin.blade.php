@@ -33,6 +33,18 @@
                 Tableau de bord
             </a>
 
+            <div class="nav-group-title">Utilisateurs</div>
+
+            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+                <i class="fas fa-users"></i>
+                Tous les utilisateurs
+            </a>
+
+            <a href="{{ route('admin.users.create') }}" class="{{ request()->routeIs('admin.users.create') ? 'active' : '' }}">
+                <i class="fas fa-user-plus"></i>
+                Ajouter un utilisateur
+            </a>
+
             <div class="nav-group-title">Réalisations</div>
 
             <a href="{{ route('admin.achievements.create') }}" class="{{ request()->routeIs('admin.achievements.create') ? 'active' : '' }}">
@@ -56,7 +68,26 @@
                 <i class="fas fa-check-circle"></i>
                 Messages consultés
             </a>
+
+            <div class="nav-group-title">Ventes</div>
+
+            <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+                <i class="fas fa-box"></i>
+                Produits
+            </a>
+
+            <a href="{{ route('admin.products.create') }}" class="{{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
+                <i class="fas fa-plus-circle"></i>
+                Ajouter un produit
+            </a>
+
+            <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.index') ? 'active' : '' }}">
+                <i class="fas fa-inbox"></i>
+                Toutes les demandes
+            </a>
         </nav>
+
+
 
         <form method="POST" action="{{ route('logout') }}" class="logout-form">
             @csrf

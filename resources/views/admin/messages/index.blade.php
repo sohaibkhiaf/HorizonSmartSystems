@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin.layouts.app-admin')
 
 @section('title', $title)
 @section('page_title', $title)

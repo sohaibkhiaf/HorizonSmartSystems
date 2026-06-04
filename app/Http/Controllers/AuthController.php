@@ -34,7 +34,7 @@ class AuthController extends Controller
 
         $request->session()->regenerate();
 
-        if (!auth()->user()->is_admin) {
+        if (!auth()->user()->isAdmin() && !auth()->user()->isOperator()) {
             Auth::logout();
 
             return back()->withErrors([
@@ -42,7 +42,8 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.dashboard');
+        return auth()->user()->isAdmin() ? redirect()->route('admin.dashboard') 
+            : redirect()->route('operator.products');
     }
 
     public function logout(Request $request)

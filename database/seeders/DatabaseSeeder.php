@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory()->create([
-            'name' => 'Sohaib Khiaf',
+            'name' => 'Sohaib KHIAF',
             'email' => 'sohaibkhiaf@gmail.com',
+            'role' => 'ADMIN',
         ]);
         User::factory()->create([
-            'name' => 'Salem Mohamed Amine',
+            'name' => 'Mohamed Amine SALEM',
             'email' => 'salemamine@gmail.com',
+            'role' => 'OPERATOR',
         ]);
         
     }

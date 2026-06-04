@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\Operator;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,7 +20,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             'admin' => Admin::class,
+            'operator' => Operator::class,
         ]);
+
         $middleware->redirectGuestsTo(fn () => route('login.page'));
     })
     ->withExceptions(function (Exceptions $exceptions) {
