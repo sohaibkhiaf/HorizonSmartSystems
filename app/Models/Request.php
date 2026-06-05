@@ -18,8 +18,8 @@ class Request extends Model
         'client_name',
         'client_contact',
         'status',
-        'admin_response',
-        'operator_response',
+        'admin_notes',
+        'operator_notes',
         'delivery_credentials',
     ];
 

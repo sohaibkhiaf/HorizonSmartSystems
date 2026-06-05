@@ -10,7 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     {{-- Admin CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/operator/layout.css') }}">
+
+    @yield('style')
+
 </head>
 <body>
 
@@ -34,6 +37,12 @@
             class="{{ request()->routeIs('operator.products') ? 'active' : '' }}">
                 <i class="fas fa-box"></i>
                 Produits
+            </a>
+
+            <a href="{{ route('operator.requests.create') }}"
+            class="{{ request()->routeIs('operator.requests.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Nouvelle demande
             </a>
 
             <a href="{{ route('operator.requests') }}"

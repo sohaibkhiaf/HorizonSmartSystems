@@ -167,8 +167,14 @@ Route::prefix('operator')
         ->name('requests');
     Route::post('requests', [OperatorController::class, 'store'])
         ->name('requests.store');
+
+    Route::get('requests/create', [OperatorController::class, 'create'])
+        ->name('requests.create');
+        
     Route::get('requests/{id}', [OperatorController::class, 'show'])
         ->name('requests.show');
+
+
 
     Route::post('requests/{id}/pay', [OperatorController::class, 'confirmPayment'])
         ->name('requests.confirmPayment');

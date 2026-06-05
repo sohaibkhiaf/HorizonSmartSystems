@@ -59,8 +59,8 @@
 
             <div class="info-block">
                 <p class="label">Notes admin</p>
-                @if($request->admin_response)
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_response }}</div>
+                @if($request->admin_notes)
+                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_notes }}</div>
                 @else
                     <p class="muted">Aucune note encore</p>
                 @endif
@@ -68,8 +68,8 @@
 
             <div class="info-block">
                 <p class="label">Notes opérateur</p>
-                @if($request->operator_response)
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_response }}</div>
+                @if($request->operator_notes)
+                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_notes }}</div>
                 @else
                     <p class="muted">Aucune note encore</p>
                 @endif
@@ -95,7 +95,7 @@
 
                 <div class="form-group">
                     <label>Note à envoyer</label>
-                    <textarea name="operator_response" class="form-control" placeholder="Ajouter une note interne..."></textarea>
+                    <textarea name="operator_notes" class="form-control" placeholder="Ajouter une note interne..."></textarea>
                 </div>
 
                 <button type="submit" class="btn-primary w-full">

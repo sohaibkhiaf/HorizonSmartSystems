@@ -22,9 +22,9 @@ class RequestController extends Controller
 
         $request->update([
             'status' => $req->status,
-            'admin_response' => $request->admin_response != NULL ? 
-                trim($request->admin_response) . "\n" . trim($req->response) 
-                : trim($req->response)
+            'admin_notes' => $request->admin_notes != NULL ? 
+                trim($request->admin_notes) . "\n" . trim($req->admin_notes) 
+                : trim($req->admin_notes)
         ]);
 
         return back();

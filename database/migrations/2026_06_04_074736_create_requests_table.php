@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id')->constrained('products');
             $table->foreignId('operator_id')->constrained('users');
             $table->string('client_name');
             $table->string('client_contact')->nullable();
@@ -27,8 +27,8 @@ return new class extends Migration
                 'delivered'
             ])->default('pending');
 
-            $table->text('admin_response')->nullable();
-            $table->text('operator_response')->nullable();
+            $table->text('admin_notes')->nullable();
+            $table->text('operator_notes')->nullable();
             $table->text('delivery_credentials')->nullable();
 
             $table->softDeletes();

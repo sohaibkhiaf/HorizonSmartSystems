@@ -54,20 +54,20 @@
                 @endif
             </div>
 
-            @if($request->admin_response)
+            @if($request->admin_notes)
                 <div class="divider"></div>
 
                 <div class="info-block">
                     <p class="label">Notes admin</p>
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_response }}</div>
+                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_notes }}</div>
                 </div>
             @endif
 
-            @if($request->operator_response)
+            @if($request->operator_notes)
 
                 <div class="info-block">
                     <p class="label">Notes opérateur</p>
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_response }}</div>
+                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_notes }}</div>
                 </div>
             @endif
 
@@ -105,7 +105,7 @@
 
                 <div class="form-group">
                     <label>Note admin</label>
-                    <textarea name="response" class="form-control" placeholder="Note pour l'opérateur"></textarea>
+                    <textarea name="admin_notes" class="form-control" placeholder="Note pour l'opérateur"></textarea>
                 </div>
 
                 <button type="submit" class="btn-primary w-full">

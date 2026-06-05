@@ -3,9 +3,13 @@
 @section('page_title', 'Mes demandes')
 @section('page_subtitle', 'Gestion des ventes opérateur')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/operator/requests/index.css') }}">
+@endsection
+
 @section('content')
 
-<div class="card">
+<div class="container">
 
     <table class="table">
         <thead>
@@ -67,7 +71,8 @@
                                 && $request->status !== 'not_available')
                                 <form method="POST" action="{{ url('operator/requests/'.$request->id.'/pay') }}" style="display:inline;">
                                     @csrf
-                                    <button class="action-btn success-action">
+                                    <button class="action-btn success-action"
+                                        onclick="return confirm('Valider le paiement de cette demande ?')">
                                         <i class="fa-solid fa-coins"></i>
                                     </button>
                                 </form>

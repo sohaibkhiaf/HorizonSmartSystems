@@ -7,14 +7,19 @@ use Illuminate\Http\Request;
 
 class OperatorController extends Controller
 {
-public function products() {
+    public function products() {
         $products = Product::all();
-        return view('admin.operator.products', compact('products'));
+        return view('admin.operator.products.index', compact('products'));
     }
 
     public function requests() {
         $requests = \App\Models\Request::where('operator_id', auth()->id())->latest()->paginate(10);
-        return view('admin.operator.requests', compact('requests'));
+        return view('admin.operator.requests.index', compact('requests'));
+    }
+
+    public function create() {
+        $products = Product::all();
+        return view('admin.operator.requests.create', compact('products'));
     }
 
     public function store(Request $req) {
@@ -25,7 +30,8 @@ public function products() {
             'client_contact' => $req->client_contact
         ]);
 
-        return back();
+        return redirect()->route('operator.requests')
+            ->with('success', 'Demande créée avec succès !');
     }
 
     public function show($id)
@@ -34,7 +40,7 @@ public function products() {
             ->where('operator_id', auth()->id())
             ->findOrFail($id);
 
-        return view('admin.operator.request', compact('request'));
+        return view('admin.operator.requests.show', compact('request'));
     }
 
     public function confirmPayment($id) {
@@ -48,14 +54,14 @@ public function products() {
 
     public function addNote(Request $req, $id) {
         $req->validate([
-            'operator_response' => 'required|string|max:512',
+            'operator_notes' => 'required|string|max:512',
         ]);
 
         $request = \App\Models\Request::find($id);
         $request->update([
-            'operator_response' => $request->operator_response != NULL ? 
-                trim($request->operator_response) . "\n" . trim($req->operator_response) 
-                : trim($req->operator_response)   
+            'operator_notes' => $request->operator_notes != NULL ? 
+                trim($request->operator_notes) . "\n" . trim($req->operator_notes) 
+                : trim($req->operator_notes)   
         ]);
 
         return back();
@@ -65,4 +71,7 @@ public function products() {
         \App\Models\Request::find($id)->delete();
         return back();
     }
+
+
+
 }
