@@ -43,10 +43,17 @@ class OperatorController extends Controller
         return view('admin.operator.requests.show', compact('request'));
     }
 
-    public function confirmPayment($id) {
+    public function confirmPayment(Request $req, $id) {
+        $req->validate([
+            'operator_notes' => 'required|string|max:512',
+        ]);
 
-        \App\Models\Request::find($id)->update([
-            'status' => 'paid'
+        $request = \App\Models\Request::find($id);
+        $request->update([
+            'status' => 'paid',
+            'operator_notes' => $request->operator_notes != NULL ? 
+                trim($request->operator_notes) . "\n" . trim($req->operator_notes) 
+                : trim($req->operator_notes) 
         ]);
 
         return back();
@@ -66,12 +73,5 @@ class OperatorController extends Controller
 
         return back();
     }
-
-    public function destroy($id) {
-        \App\Models\Request::find($id)->delete();
-        return back();
-    }
-
-
 
 }

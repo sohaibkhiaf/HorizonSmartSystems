@@ -1,3 +1,4 @@
+/* CONTAINER */
 .container {
     background: #fff;
     border-radius: 10px;
@@ -6,6 +7,7 @@
     border: 1px solid #e5e7eb;
 }
 
+/* TABLE */
 .table {
     width: 100%;
     border-collapse: collapse;

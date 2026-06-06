@@ -174,17 +174,12 @@ Route::prefix('operator')
     Route::get('requests/{id}', [OperatorController::class, 'show'])
         ->name('requests.show');
 
-
-
     Route::post('requests/{id}/pay', [OperatorController::class, 'confirmPayment'])
         ->name('requests.confirmPayment');
 
     Route::post('requests/{id}/note', [OperatorController::class, 'addNote'])
         ->name('requests.addNote');
     
-    Route::delete('requests/{id}', [OperatorController::class, 'destroy'])
-        ->name('requests.destroy');
-
 });
 
 

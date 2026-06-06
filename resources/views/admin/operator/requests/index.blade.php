@@ -78,17 +78,6 @@
                                 </form>
                             @endif
                             
-                            <form action="{{ route('operator.requests.destroy', $request->id) }}" 
-                                    method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" 
-                                        class="action-btn delete"
-                                        onclick="return confirm('Supprimer cette demande ?')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </form>
                         </div>
                         
                     </td>

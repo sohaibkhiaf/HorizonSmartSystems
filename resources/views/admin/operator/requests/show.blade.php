@@ -5,18 +5,22 @@
 @section('page_title', 'Détails de la demande')
 @section('page_subtitle', 'Gestion de la requête client')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/operator/requests/show.css') }}">
+@endsection
+
 @section('content')
 
-<div class="grid grid-2">
+<div class="grid">
 
     {{-- LEFT INFO --}}
-    <div class="card">
+    <div class="container">
 
-        <div class="card-header">
-            <h3>Informations client</h3>
+        <div class="header">
+            <h4>Informations client</h4>
         </div>
 
-        <div class="card-body">
+        <div class="body">
 
             <div class="info-block">
                 <p class="label">Nom</p>
@@ -28,14 +32,10 @@
                 <p class="value">{{ $request->client_contact }}</p>
             </div>
 
-            <div class="divider"></div>
-
             <div class="info-block">
                 <p class="label">Produit</p>
-                <p class="value">{{ $request->product->name ?? 'N/A' }}</p>
+                <p class="value">{{ $request->product->name ?? 'N/A' }} {{ $request->product->price ?? '' }} DA</p>
             </div>
-
-            <div class="divider"></div>
 
             <div class="info-block">
                 <p class="label">Statut actuel</p>
@@ -55,14 +55,12 @@
                 @endif
             </div>
 
-            <div class="divider"></div>
-
             <div class="info-block">
                 <p class="label">Notes admin</p>
                 @if($request->admin_notes)
                     <div class="note-box" style="white-space: pre-line;">{{ $request->admin_notes }}</div>
                 @else
-                    <p class="muted">Aucune note encore</p>
+                    <p style="color: #111827;">Aucune note encore</p>
                 @endif
             </div>
 
@@ -71,7 +69,7 @@
                 @if($request->operator_notes)
                     <div class="note-box" style="white-space: pre-line;">{{ $request->operator_notes }}</div>
                 @else
-                    <p class="muted">Aucune note encore</p>
+                    <p style="color: #111827;">Aucune note encore</p>
                 @endif
             </div>
 
@@ -81,24 +79,23 @@
 
 
     {{-- RIGHT ACTIONS --}}
-    <div class="card">
+    <div class="container">
 
-        <div class="card-header">
-            <h3>Actions opérateur</h3>
+        <div class="header">
+            <h4>Actions opérateur</h4>
         </div>
 
-        <div class="card-body">
+        <div class="body">
 
-            {{-- OPERATOR RESPONSE --}}
             <form method="POST" action="{{ url('operator/requests/'.$request->id.'/note') }}" class="form">
                 @csrf
 
                 <div class="form-group">
-                    <label>Note à envoyer</label>
-                    <textarea name="operator_notes" class="form-control" placeholder="Ajouter une note interne..."></textarea>
+                    <label>Note opérateur</label>
+                    <textarea name="operator_notes" class="form-control" placeholder="Note pour l'administrateur"></textarea>
                 </div>
 
-                <button type="submit" class="btn-primary w-full">
+                <button type="submit" class="btn-primary">
                     Envoyer la note
                 </button>
             </form>
@@ -106,22 +103,20 @@
             {{-- PAYMENT VALIDATION --}}
             @if($request->status !== 'paid' 
                 && $request->status !== 'delivered')
-                <div class="divider"></div>
-                <div class="form-group">
-                    <label>Paiement</label>
-                    
-                    
-                    <form method="POST" action="{{ url('operator/requests/'.$request->id.'/pay') }}" class="form">
-                        @csrf
-                        <button type="submit" class="btn-success w-full">
-                            Marquer comme payé
-                        </button>
-                    </form>
-                </div>
-            @endif
-            
+                <form method="POST" action="{{ url('operator/requests/'.$request->id.'/pay') }}" class="form">
+                    @csrf
 
-            <div class="divider"></div>
+                    <div class="form-group">
+                        <label>Paiement</label>
+                        <textarea name="operator_notes" class="form-control" placeholder="Note pour l'administrateur"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-success"
+                        onclick="return confirm('Valider le paiement de cette demande ?')">
+                        Marquer comme payé
+                    </button>
+                </form>
+            @endif
 
             {{-- DELIVERY INFO --}}
             <div class="form-group">
@@ -132,7 +127,7 @@
                         <pre style="white-space: pre-wrap;">{{ $request->delivery_credentials }}</pre>
                     </div>
                 @else
-                    <p class="muted">Pas encore livré</p>
+                    <p style="color: #111827;">Pas encore livré</p>
                 @endif
 
             </div>
@@ -144,3 +139,4 @@
 </div>
 
 @endsection
+
