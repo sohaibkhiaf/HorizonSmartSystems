@@ -4,9 +4,13 @@
 @section('page_title', 'Utilisateurs')
 @section('page_subtitle', 'Gérer tous les utilisateurs')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/users/index.css') }}">
+@endsection
+
 @section('content')
 
-<div class="page-header">
+<div class="header">
     <form method="GET" class="search-bar">
         <input type="text" name="search" placeholder="Rechercher nom ou email..." value="{{ request('search') }}">
         <button class="btn-secondary">Rechercher</button>
@@ -18,7 +22,7 @@
     </a>
 </div>
 
-<div class="content-card table-card">
+<div class="container">
 
     @if($users->count())
     <table class="table">
@@ -43,14 +47,15 @@
                 </td>
                 <td>
                     <div class="table-actions">
-                        <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit btn-sm">
+                        <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
                             <i class="fas fa-pen"></i>
                         </a>
 
                         <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
                             @csrf
                             @method('DELETE')
-                            <button class="action-btn delete btn-sm">
+                            <button class="action-btn delete"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
@@ -61,12 +66,8 @@
         </tbody>
     </table>
 
-    <div class="pagination-box">
-        {{ $users->links() }}
-    </div>
-
     @else
-        <div class="empty-users">
+        <div class="empty">
             Aucun utilisateur trouvé
         </div>
     @endif

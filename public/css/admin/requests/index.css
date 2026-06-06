@@ -7,6 +7,60 @@
     border: 1px solid #e5e7eb;
 }
 
+
+/* FILTER  */
+
+.filter-container {
+    margin-bottom: 20px;
+}
+
+.filter-form {
+    display: flex;
+    align-items: end;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.filter-select {
+    min-width: 230px;
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+.filter-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.reset-filter {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f4f6;
+    color: #374151;
+}
+.reset-filter:hover {
+    background: #e5e7eb;
+}
+
+
 /* TABLE */
 .table {
     width: 100%;
@@ -142,105 +196,6 @@
     color: #6b7280;
 }
 
-
-/* FILTER  */
-
-.filter-container {
-    margin-bottom: 20px;
-}
-
-.filter-form {
-    display: flex;
-    align-items: end;
-    gap: 14px;
-    flex-wrap: wrap;
-}
-
-.filter-group {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-.filter-select {
-    min-width: 230px;
-    height: 42px;
-    padding: 0 14px;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    background: #ffffff;
-    color: #111827;
-    font-size: 14px;
-    outline: none;
-    transition: 0.2s ease;
-}
-.filter-select:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-.reset-filter {
-    height: 42px;
-    padding: 0 16px;
-    border-radius: 10px;
-    background: #f3f4f6;
-    color: #374151;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s ease;
-}
-.reset-filter:hover {
-    background: #e5e7eb;
-    color: #111827;
-}
-
-
-/* STATUS BADGES */
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
-}
-.status-pending {
-    background: #fff7ed;
-    color: #c2410c;
-}
-.status-processing {
-    background: #eff6ff;
-    color: #1d4ed8;
-}
-.status-available {
-    background: #ecfdf5;
-    color: #047857;
-}
-.status-paid {
-    background: #f0fdf4;
-    color: #15803d;
-}
-.status-delivered {
-    background: #eef2ff;
-    color: #4338ca;
-}
-.status-not_available {
-    background: #fef2f2;
-    color: #b91c1c;
-}
-
-/* EMPTY MESSAGE */
-.empty-message {
-    text-align: center;
-    padding: 30px !important;
-    color: #6b7280 !important;
-}
 
 
 /* MEDIA QUERIES */
