@@ -3,21 +3,26 @@
 @section('page_title', 'Produits')
 @section('page_subtitle', 'Gestion des produits de vente')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/products/index.css') }}">
+@endsection
+
 @section('content')
 
-<div class="page-header">
+<div class="header">
 
-    <a href="{{ route('admin.products.create') }}" class="btn-main">
+    <a href="{{ route('admin.products.create') }}" class="header-btn">
         <i class="fas fa-plus"></i> Ajouter
     </a>
 </div>
 
-<div class="content-card table-card">
+<div class="container">
 
     <table class="table">
         <thead>
             <tr>
                 <th>Nom</th>
+                <th>Description</th>
                 <th>Prix</th>
                 <th>Actions</th>
             </tr>
@@ -27,6 +32,7 @@
             @forelse($products as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
+                    <td style="color: #777;">{{ $product->description }}</td>
                     <td>{{ $product->price }} DA</td>
 
                     <td>
@@ -55,7 +61,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3" class="empty-users">
+                    <td colspan="4" class="empty">
                         Aucun produit trouvé
                     </td>
                 </tr>

@@ -142,6 +142,11 @@ Route::prefix('admin')
 
     Route::get('requests', [RequestController::class, 'index'])
         ->name('requests.index');
+    Route::get('requests/create', [RequestController::class, 'create'])
+        ->name('requests.create');
+    Route::post('requests', [RequestController::class, 'store'])
+        ->name('requests.store');
+        
     Route::get('requests/{id}', [RequestController::class, 'show'])
         ->name('requests.show');
     Route::post('requests/{id}/availability', [RequestController::class, 'setAvailability'])

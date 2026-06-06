@@ -1,4 +1,4 @@
-<div class="content-card">
+<div class="container">
 
     <form method="POST" action="{{ $action }}">
         @csrf

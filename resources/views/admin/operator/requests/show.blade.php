@@ -55,23 +55,20 @@
                 @endif
             </div>
 
-            <div class="info-block">
-                <p class="label">Notes admin</p>
-                @if($request->admin_notes)
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_notes }}</div>
-                @else
-                    <p style="color: #111827;">Aucune note encore</p>
+            @foreach ($request->notes as $note )
+                @if($note->sender == 'ADMIN')
+                    <div class="info-block">
+                        <p class="label">Note admin</p>
+                        <div class="note-box-admin" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
+                    </div>
+                @elseif($note->sender == 'OPERATOR')
+                    <div class="info-block">
+                        <p class="label">Note opérateur</p>
+                        <div class="note-box-operator" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
+                    </div>
                 @endif
-            </div>
-
-            <div class="info-block">
-                <p class="label">Notes opérateur</p>
-                @if($request->operator_notes)
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_notes }}</div>
-                @else
-                    <p style="color: #111827;">Aucune note encore</p>
-                @endif
-            </div>
+                    
+            @endforeach
 
         </div>
 
@@ -92,7 +89,7 @@
 
                 <div class="form-group">
                     <label>Note opérateur</label>
-                    <textarea name="operator_notes" class="form-control" placeholder="Note pour l'administrateur"></textarea>
+                    <textarea name="operator_note" class="form-control" placeholder="Note pour l'administrateur"></textarea>
                 </div>
 
                 <button type="submit" class="btn-primary">
@@ -108,7 +105,7 @@
 
                     <div class="form-group">
                         <label>Paiement</label>
-                        <textarea name="operator_notes" class="form-control" placeholder="Note pour l'administrateur"></textarea>
+                        <textarea name="operator_note" class="form-control" placeholder="Note pour l'administrateur"></textarea>
                     </div>
                     
                     <button type="submit" class="btn-success"
@@ -123,11 +120,11 @@
                 <label>Livraison</label>
 
                 @if($request->delivery_credentials)
-                    <div class="note-box">
+                    <div class="note-box-admin">
                         <pre style="white-space: pre-wrap;">{{ $request->delivery_credentials }}</pre>
                     </div>
                 @else
-                    <p style="color: #111827;">Pas encore livré</p>
+                    <p class="value">Pas encore livré</p>
                 @endif
 
             </div>

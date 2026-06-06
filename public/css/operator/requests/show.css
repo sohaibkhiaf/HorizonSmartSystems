@@ -59,7 +59,6 @@
     border-radius: 999px;
     font-size: 12px;
     padding: 5px 10px;
-    margin-top: 8px;
 }
 .badge.success {
     background: #ecfdf5;
@@ -75,9 +74,15 @@
 }
 
 /* NOTE BOX */
-.note-box {
+.note-box-operator {
     background: #f9fafb;
     border-left: 4px solid #2563eb;
+    padding: 10px;
+    border-radius: 6px;
+}
+.note-box-admin {
+    background: #f9fafb;
+    border-left: 4px solid #16a34a;
     padding: 10px;
     border-radius: 6px;
 }

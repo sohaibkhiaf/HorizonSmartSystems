@@ -13,8 +13,27 @@ class OperatorController extends Controller
     }
 
     public function requests() {
-        $requests = \App\Models\Request::where('operator_id', auth()->id())->latest()->paginate(10);
-        return view('admin.operator.requests.index', compact('requests'));
+
+        $status = request()->query('status');
+
+        $allowedStatuses = [
+            'pending',
+            'processing',
+            'available',
+            'paid',
+            'delivered',
+            'not_available',
+        ];
+
+        $requests = \App\Models\Request::query()
+            ->when(in_array($status, $allowedStatuses), function ($query) use ($status) {
+                $query->where('status', $status);
+            })
+            ->where('operator_id', auth()->id())
+            ->latest()
+            ->paginate(10);
+
+        return view('admin.operator.requests.index', compact('requests', 'status'));
     }
 
     public function create() {
@@ -45,30 +64,32 @@ class OperatorController extends Controller
 
     public function confirmPayment(Request $req, $id) {
         $req->validate([
-            'operator_notes' => 'required|string|max:512',
+            'operator_note' => 'nullable|string|max:512',
         ]);
 
         $request = \App\Models\Request::find($id);
         $request->update([
             'status' => 'paid',
-            'operator_notes' => $request->operator_notes != NULL ? 
-                trim($request->operator_notes) . "\n" . trim($req->operator_notes) 
-                : trim($req->operator_notes) 
         ]);
+        if ($req->operator_note != null){
+            $request->notes()->create([
+                'content' => $req->operator_note,
+                'sender' => 'OPERATOR'
+            ]);
+        }
 
         return back();
     }
 
     public function addNote(Request $req, $id) {
         $req->validate([
-            'operator_notes' => 'required|string|max:512',
+            'operator_note' => 'required|string|max:512',
         ]);
 
         $request = \App\Models\Request::find($id);
-        $request->update([
-            'operator_notes' => $request->operator_notes != NULL ? 
-                trim($request->operator_notes) . "\n" . trim($req->operator_notes) 
-                : trim($req->operator_notes)   
+        $request->notes()->create([
+            'content' => $req->operator_note,
+            'sender' => 'OPERATOR'
         ]);
 
         return back();

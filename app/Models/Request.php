@@ -18,13 +18,15 @@ class Request extends Model
         'client_name',
         'client_contact',
         'status',
-        'admin_notes',
-        'operator_notes',
         'delivery_credentials',
     ];
 
     public function product() {
         return $this->belongsTo(Product::class);
+    }
+
+    public function notes() {
+        return $this->hasMany(Note::class);
     }
     
 }

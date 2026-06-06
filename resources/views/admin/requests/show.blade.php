@@ -3,18 +3,22 @@
 @section('page_title', 'Détails de la demande')
 @section('page_subtitle', 'Gestion complète de la requête')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/requests/show.css') }}">
+@endsection
+
 @section('content')
 
-<div class="grid grid-2">
+<div class="grid">
 
     {{-- LEFT INFO --}}
-    <div class="card">
+    <div class="container">
 
-        <div class="card-header">
+        <div class="header">
             <h3>Informations client</h3>
         </div>
 
-        <div class="card-body">
+        <div class="body">
 
             <div class="info-block">
                 <p class="label">Nom</p>
@@ -26,8 +30,6 @@
                 <p class="value">{{ $request->client_contact }}</p>
             </div>
 
-            <div class="divider"></div>
-
             <div class="info-block">
                 <p class="label">Produit</p>
                 <p class="value">
@@ -35,10 +37,9 @@
                 </p>
             </div>
 
-            <div class="divider"></div>
-
             <div class="info-block">
                 <p class="label">Statut actuel</p>
+
                 @if($request->status === 'pending')
                     <span class="badge muted">En attente</span>
                 @elseif($request->status === 'processing')
@@ -54,22 +55,21 @@
                 @endif
             </div>
 
-            @if($request->admin_notes)
-                <div class="divider"></div>
 
-                <div class="info-block">
-                    <p class="label">Notes admin</p>
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->admin_notes }}</div>
-                </div>
-            @endif
-
-            @if($request->operator_notes)
-
-                <div class="info-block">
-                    <p class="label">Notes opérateur</p>
-                    <div class="note-box" style="white-space: pre-line;">{{ $request->operator_notes }}</div>
-                </div>
-            @endif
+            @foreach ($request->notes as $note )
+                @if($note->sender == 'ADMIN')
+                    <div class="info-block">
+                        <p class="label">Note admin</p>
+                        <div class="note-box-admin" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
+                    </div>
+                @elseif($note->sender == 'OPERATOR')
+                    <div class="info-block">
+                        <p class="label">Note opérateur</p>
+                        <div class="note-box-operator" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
+                    </div>
+                @endif
+                    
+            @endforeach
 
         </div>
 
@@ -77,13 +77,13 @@
 
 
     {{-- RIGHT ACTIONS --}}
-    <div class="card">
+    <div class="container">
 
-        <div class="card-header">
+        <div class="header">
             <h3>Actions admin</h3>
         </div>
 
-        <div class="card-body">
+        <div class="body">
 
             {{-- STATUS FORM --}}
             <form method="POST" action="{{ url('admin/requests/'.$request->id.'/availability') }}" class="form">
@@ -105,37 +105,49 @@
 
                 <div class="form-group">
                     <label>Note admin</label>
-                    <textarea name="admin_notes" class="form-control" placeholder="Note pour l'opérateur"></textarea>
+                    <textarea name="admin_note" class="form-control" placeholder="Note pour l'opérateur"></textarea>
                 </div>
 
-                <button type="submit" class="btn-primary w-full">
+                <button type="submit" class="btn-primary">
                     Mettre à jour
                 </button>
 
             </form>
 
-            <div class="divider"></div>
-
             {{-- DELIVERY FORM --}}
-
             <form method="POST" action="{{ url('admin/requests/'.$request->id.'/deliver') }}" class="form">
                 @csrf
 
                 <div class="form-group">
                     <label>Livraison</label>
-                    <textarea name="credentials" class="form-control" placeholder="Ex: login/ mot de passe / lien / code">{{ $request->delivery_credentials ?? '' }}</textarea>
+                    <textarea name="credentials" class="form-control" placeholder="Login / mot de passe / lien / code">{{ $request->delivery_credentials ?? '' }}</textarea>
                 </div>
 
                 @if($request->delivery_credentials)
-                    <button type="submit" class="btn-success w-full">
+                    <button type="submit" class="btn-success">
                         Mettre à jour la livraison
                     </button>
                 @else
-                    <button type="submit" class="btn-success w-full">
+                    <button type="submit" class="btn-success">
                         Marquer comme livré
                     </button>
                 @endif
 
+            </form>
+
+            <form action="{{ route('admin.requests.destroy', $request->id) }}" 
+                    method="POST">
+                @csrf
+                @method('DELETE')
+
+                <div class="form-group">
+                    <label>Supprimer</label>
+                </div>
+
+                <button type="submit" class="btn-delete"
+                        onclick="return confirm('Supprimer cette demande ?')">
+                    Supprimer la demande
+                </button>
             </form>
 
         </div>

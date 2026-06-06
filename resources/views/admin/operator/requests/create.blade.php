@@ -9,11 +9,11 @@
 
 @section('content')
 
-<div class="card">
+<div class="container">
     
-    <div class="card-body">
+    <div class="body">
 
-        <form method="POST" action="{{ route('operator.requests') }}" class="form">
+        <form method="POST" action="{{ route('operator.requests.store') }}" class="form">
             @csrf
 
             <input type="hidden" name="product_id" id="product_id">
@@ -49,9 +49,16 @@
                     required>
             </div>
 
-            <button type="submit" class="btn-success w-full">
-                Créer la demande
-            </button>
+            <div class="form-actions">
+                <button type="submit" class="btn-success">
+                    <i class="fas fa-save"></i>
+                    Créer la demande
+                </button>
+
+                <a href="{{ route('operator.products') }}" class="btn-secondary">
+                    Annuler
+                </a>
+            </div>
 
         </form>
 

@@ -27,8 +27,6 @@ return new class extends Migration
                 'delivered'
             ])->default('pending');
 
-            $table->text('admin_notes')->nullable();
-            $table->text('operator_notes')->nullable();
             $table->text('delivery_credentials')->nullable();
 
             $table->softDeletes();

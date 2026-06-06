@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     {{-- Admin CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/layout.css') }}">
+
+    @yield('style')
 </head>
 <body>
 
@@ -77,13 +79,19 @@
             </a>
 
             <a href="{{ route('admin.products.create') }}" class="{{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
-                <i class="fas fa-plus-circle"></i>
+                <i class="fas fa-plus"></i>
                 Ajouter un produit
             </a>
 
             <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.index') ? 'active' : '' }}">
                 <i class="fas fa-inbox"></i>
                 Toutes les demandes
+            </a>
+
+            <a href="{{ route('admin.requests.create') }}"
+            class="{{ request()->routeIs('admin.requests.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Nouvelle demande
             </a>
         </nav>
 

@@ -3,6 +3,10 @@
 @section('page_title', 'Modifier produit')
 @section('page_subtitle', 'Mettre à jour un produit')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/products/form.css') }}">
+@endsection
+
 @section('content')
 
 @include('admin.products.form', [
