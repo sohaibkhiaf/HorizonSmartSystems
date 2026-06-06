@@ -1,31 +1,29 @@
-/* TO UPDATE */
+/* CONTAINER */
+.container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    padding: 20px;
+}
 
-.stat-card,
-.tab-card,
-.content-card,
-.admin-card,
-.message-card {
+
+.admin-card{
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03);
 }
-.content-card {
-    padding: 22px;
-}
 
-
+/* FORM */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 10px;
 }
-
 .form-group{
     margin-bottom: 10px;
 }
-
-
 .form-group.full {
     grid-column: 1 / -1;
 }
@@ -56,14 +54,13 @@
 }
 
 .form-group input::file-selector-button{
- background: #2563eb;
-  color: white;
-  border: none;
-  padding: 5px 12px;
-  border-radius: 5px;
-  cursor: pointer;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-
 
 .form-group input:focus,
 .form-group textarea:focus,
@@ -72,15 +69,11 @@
     box-shadow: 0 0 0 3px #eff6ff;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
 
-
+/* CURRENT IMAGE */
 .current-image {
     margin-top: 12px;
 }
-
 .current-image img {
     width: 180px;
     height: 110px;
@@ -89,30 +82,23 @@
     border: 1px solid #e5e7eb;
 }
 
-
-.checkbox-row{
-    margin-bottom: 10px;
-}
+/* CHECKBOX */
 .checkbox-row {
     display: flex !important;
     align-items: center;
     gap: 8px;
     cursor: pointer;
 }
-
 .checkbox-row input {
     width: auto;
 }
 
 
-
-.form-actions,
-.page-actions {
+/* ACTIONS */
+.form-actions {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
 }
-
 
 .btn-main,
 .btn-secondary {
@@ -130,31 +116,19 @@
     background: #2563eb;
     color: #ffffff;
 }
-
 .btn-main:hover {
     background: #1d4ed8;
 }
-
-.btn-main.full {
-    width: 100%;
-    justify-content: center;
-}
-
 
 .btn-secondary {
     background: #f3f4f6;
     color: #374151;
 }
 
-
+/* RESPONSIVE */
 @media (max-width: 800px) {
 
-
-    .stats-grid,
-    .admin-tabs,
-    .cards-grid,
-    .form-grid,
-    .details-grid {
+    .form-grid {
         grid-template-columns: 1fr;
     }
 }
@@ -162,17 +136,12 @@
 
 @media (max-width: 480px) {
 
-    .card-actions,
-    .form-actions,
-    .page-actions,
-    .sub-tabs {
+    .form-actions {
         flex-direction: column;
     }
 
     .btn-main,
-    .btn-secondary,
-    .action-btn,
-    .sub-tabs a {
+    .btn-secondary {
         width: 100%;
         justify-content: center;
     }

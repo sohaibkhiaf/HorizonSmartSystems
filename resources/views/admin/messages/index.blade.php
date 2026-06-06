@@ -10,7 +10,7 @@
 
 @section('content')
 
-<div class="sub-tabs">
+<div class="tabs">
     <a href="{{ route('admin.messages.waiting') }}" class="{{ !$is_seen ? 'active' : '' }}">
         Messages en attente
     </a>
@@ -20,7 +20,7 @@
     </a>
 </div>
 
-<div class="cards-grid">
+<div class="grid">
 
     @forelse($messages as $message)
         <div class="message-card">
@@ -63,7 +63,7 @@
                         @csrf
                         @method('PATCH')
 
-                        <button type="submit" class="action-btn success-action">
+                        <button type="submit" class="action-btn success">
                             <i class="fas fa-check"></i>
                             Consulté
                         </button>
@@ -73,7 +73,7 @@
                         @csrf
                         @method('PATCH')
 
-                        <button type="submit" class="action-btn warning-action">
+                        <button type="submit" class="action-btn warning">
                             <i class="fas fa-clock"></i>
                             En attente
                         </button>

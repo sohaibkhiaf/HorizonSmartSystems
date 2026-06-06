@@ -1,5 +1,4 @@
-
-<div class="content-card">
+<div class="container">
     <form method="POST" action="{{ isset($achievement) ? route('admin.achievements.update', $achievement) : route('admin.achievements.store') }}" 
         enctype="multipart/form-data">
         
@@ -71,8 +70,7 @@
                 <input 
                     type="file" 
                     name="image" 
-                    accept="image/*"
-                >
+                    accept="image/*">
                 <small>Télécharger une image du projet (JPG, PNG, etc.)</small>
 
                 @if(!empty($achievement?->image))

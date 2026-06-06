@@ -10,19 +10,19 @@
 
 @section('content')
 
-<div class="page-actions">
+<div class="header">
     <a href="{{ route('admin.achievements.create') }}" class="btn-main">
         <i class="fas fa-plus"></i>
         Créer une réalisation
     </a>
 </div>
 
-<div class="cards-grid">
+<div class="container">
 
     @forelse($achievements as $achievement)
-        <div class="admin-card">
+        <div class="achievement-card">
 
-            <div class="admin-card-image">
+            <div class="achievement-card-image">
                 @if($achievement->image)
                     <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
                 @else
@@ -32,7 +32,7 @@
                 @endif
             </div>
 
-            <div class="admin-card-content">
+            <div class="achievement-card-content">
                 <div class="card-row">
                     <h3>{{ $achievement->title }}</h3>
 
