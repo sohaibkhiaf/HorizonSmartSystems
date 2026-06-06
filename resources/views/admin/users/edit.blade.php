@@ -4,21 +4,16 @@
 @section('page_title', 'Modifier un utilisateur')
 @section('page_subtitle', 'Mettre à jour les informations de l\'utilisateur')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/users/form.css') }}">
+@endsection
+
 @section('content')
 
-<div class="content-card">
-    <form method="POST" action="{{ route('admin.users.update', $user) }}" 
-        enctype="multipart/form-data">
-        
-        @csrf
-        @method('PUT')
-
-        @include('admin.users.form', [
-            'user' => $user,
-            'buttonText' => 'Mettre à jour l\'utilisateur'
-        ])
-    </form>
-</div>
+@include('admin.users.form', [
+    'user' => $user,
+    'buttonText' => 'Mettre à jour l\'utilisateur'
+])
 
 @endsection
 

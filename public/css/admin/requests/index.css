@@ -196,7 +196,12 @@
     color: #6b7280;
 }
 
-
+/* EMPTY STATE */
+.empty {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+}
 
 /* MEDIA QUERIES */
 

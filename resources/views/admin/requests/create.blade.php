@@ -50,8 +50,7 @@
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="btn-success">
-                    <i class="fas fa-save"></i>
+                <button type="submit" class="btn-main">
                     Créer la demande
                 </button>
 

@@ -38,3 +38,12 @@
 .table tbody tr:hover {
     background: #f9fafb;
 }
+
+/* EMPTY STATE */
+.empty {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+}
+
+

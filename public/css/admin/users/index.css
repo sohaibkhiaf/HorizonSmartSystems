@@ -45,6 +45,7 @@
 .btn-main {
     background: #2563eb;
     color: #ffffff;
+    margin-bottom: 20px;
 }
 .btn-main:hover {
     background: #1d4ed8;

@@ -9,7 +9,6 @@
 
 @section('content')
 
-
 <div class="filter-container">
     <form method="GET" action="{{ route('operator.requests') }}" class="filter-form">
         <div class="filter-group">
@@ -67,7 +66,7 @@
         </thead>
 
         <tbody>
-            @foreach($requests as $request)
+            @forelse($requests as $request)
                 <tr>
                     <td>#{{ $request->id }}</td>
 
@@ -126,7 +125,13 @@
                     </td>
 
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="empty">
+                        Aucune demande trouvée
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

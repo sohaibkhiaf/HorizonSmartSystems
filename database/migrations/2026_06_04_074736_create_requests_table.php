@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products');
-            $table->foreignId('operator_id')->constrained('users');
+            $table->foreignId('product_id')->nullable()->constrained('products')
+                ->onDelete('set null');
+            $table->foreignId('operator_id')->nullable()->constrained('users')
+                ->onDelete('set null');
             $table->string('client_name');
             $table->string('client_contact')->nullable();
 

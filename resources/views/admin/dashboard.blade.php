@@ -4,6 +4,10 @@
 @section('page_title', 'Tableau de bord')
 @section('page_subtitle', 'Vue d\'ensemble du contenu de votre site')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
+@endsection
+
 @section('content')
 
 <div class="stats-grid">

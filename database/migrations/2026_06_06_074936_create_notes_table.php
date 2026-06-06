@@ -17,7 +17,8 @@ return new class extends Migration
             $table->text('content');
             $table->enum('sender', ['OPERATOR', 'ADMIN']);
 
-            $table->foreignId('request_id')->constrained('requests');
+            $table->foreignId('request_id')->constrained('requests')
+                ->onDelete('cascade');
 
             $table->softDeletes();
             $table->timestamps();

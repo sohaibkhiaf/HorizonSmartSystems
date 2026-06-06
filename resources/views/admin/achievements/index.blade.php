@@ -4,6 +4,10 @@
 @section('page_title', 'Nos réalisations')
 @section('page_subtitle', 'Gérer tous les projets du site')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/achievements/index.css') }}">
+@endsection
+
 @section('content')
 
 <div class="page-actions">
@@ -72,8 +76,26 @@
 
 </div>
 
-<div class="pagination-box">
-    {{ $achievements->links() }}
+<div class="navigator-container">
+    @if ($achievements->currentPage() > 1)
+        <a href="{{$achievements->previousPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+    @else
+        <a href="{{$achievements->url($achievements->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+    @endif
+
+    @for ($i = 1; $i <= $achievements->lastPage(); $i++)
+        @if ($achievements->currentPage() == $i)
+            <a href="{{$achievements->url($i)}}" class="active">{{$i}}</a>
+        @else
+            <a href="{{$achievements->url($i)}}">{{$i}}</a>
+        @endif
+    @endfor
+
+    @if ($achievements->currentPage() < $achievements->lastPage())
+        <a href="{{$achievements->nextPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+    @else
+        <a href="{{$achievements->url($achievements->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+    @endif
 </div>
 
 @endsection

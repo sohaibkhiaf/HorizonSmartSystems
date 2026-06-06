@@ -9,12 +9,12 @@
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body class="login-body">
 
-<div class="login-card">
-    <div class="login-icon">
+<div class="container">
+    <div class="icon">
         <i class="fas fa-lock"></i>
     </div>
 
@@ -32,12 +32,22 @@
 
         <div class="form-group">
             <label>E-mail</label>
-            <input type="email" name="email" value="{{ old('email') }}" required autofocus>
+            <input 
+                type="email" 
+                name="email" 
+                value="{{ old('email') }}" 
+                placeholder="Entrez votre e-mail"
+                required 
+                autofocus>
         </div>
 
         <div class="form-group">
             <label>Mot de passe</label>
-            <input type="password" name="password" required>
+            <input 
+                type="password" 
+                name="password" 
+                placeholder="Entrez votre mot de passe"
+                required>
         </div>
 
         <label class="checkbox-row">
@@ -45,7 +55,7 @@
             <span>Se souvenir de moi</span>
         </label>
 
-        <button type="submit" class="btn-main full">
+        <button type="submit" class="login-btn full">
             Se connecter
         </button>
     </form>

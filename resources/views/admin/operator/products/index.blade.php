@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-            @foreach($products as $product)
+            @forelse($products as $product)
                 <tr>
                     <td style="font-weight: 500;">
                         {{ $product->name }}
@@ -36,7 +36,13 @@
                         {{ $product->price }} DA
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="empty">
+                        Aucun produit trouvé
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
 
     </table>

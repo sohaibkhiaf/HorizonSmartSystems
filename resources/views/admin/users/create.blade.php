@@ -4,18 +4,16 @@
 @section('page_title', 'Créer un utilisateur')
 @section('page_subtitle', 'Ajouter un nouveau utilisateur')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/users/form.css') }}">
+@endsection
+
 @section('content')
 
-<div class="content-card">
-    <form method="POST" action="{{ route('admin.users.store') }}" enctype="multipart/form-data">
-        @csrf
-
-        @include('admin.users.form', [
-            'user' => null,
-            'buttonText' => 'Créer un utilisateur'
-        ])
-    </form>
-</div>
+@include('admin.users.form', [
+    'user' => null,
+    'buttonText' => 'Créer un utilisateur'
+])
 
 @endsection
 

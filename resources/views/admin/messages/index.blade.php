@@ -4,6 +4,10 @@
 @section('page_title', $title)
 @section('page_subtitle', 'Gérer les messages de contact')
 
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/messages/index.css') }}">
+@endsection
+
 @section('content')
 
 <div class="sub-tabs">
@@ -96,8 +100,26 @@
 
 </div>
 
-<div class="pagination-box">
-    {{ $messages->links() }}
+<div class="navigator-container">
+    @if ($messages->currentPage() > 1)
+        <a href="{{$messages->previousPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+    @else
+        <a href="{{$messages->url($messages->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+    @endif
+
+    @for ($i = 1; $i <= $messages->lastPage(); $i++)
+        @if ($messages->currentPage() == $i)
+            <a href="{{$messages->url($i)}}" class="active">{{$i}}</a>
+        @else
+            <a href="{{$messages->url($i)}}">{{$i}}</a>
+        @endif
+    @endfor
+
+    @if ($messages->currentPage() < $messages->lastPage())
+        <a href="{{$messages->nextPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+    @else
+        <a href="{{$messages->url($messages->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+    @endif
 </div>
 
 @endsection

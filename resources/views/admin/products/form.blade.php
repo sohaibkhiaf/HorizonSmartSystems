@@ -39,7 +39,6 @@
 
         <div class="form-actions">
             <button type="submit" class="btn-main">
-                <i class="fas fa-save"></i>
                 {{ $button }}
             </button>
 

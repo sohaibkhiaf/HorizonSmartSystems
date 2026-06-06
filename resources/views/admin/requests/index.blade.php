@@ -9,7 +9,6 @@
 
 @section('content')
 
-
 <div class="filter-container">
     <form method="GET" action="{{ route('admin.requests.index') }}" class="filter-form">
         <div class="filter-group">
@@ -123,7 +122,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="empty-users">
+                    <td colspan="6" class="empty">
                         Aucune demande trouvée
                     </td>
                 </tr>
