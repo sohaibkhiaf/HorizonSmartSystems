@@ -1,25 +1,20 @@
-/* TO UPDATE */
-.stat-card,
-.tab-card,
-.content-card,
-.admin-card,
-.message-card {
+/* CONTAINER */
+.container {
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    padding: 20px;
 }
 
-.content-card {
-    padding: 22px;
-}
-
+/* DETAILS */
 
 .message-details h3 {
+    color: #2563eb ;
     margin-top: 0;
-    color: #2563eb;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
-
 
 .details-grid {
     display: grid;
@@ -27,41 +22,36 @@
     gap: 12px;
     margin-bottom: 18px;
 }
-
 .details-grid div {
-    background: #f9fafb;
     padding: 12px;
     border-radius: 10px;
     font-size: 14px;
+    border: 1px solid #e5e7eb;
 }
-
 .details-grid strong {
     display: block;
     margin-bottom: 5px;
 }
 .message-full {
-    background: #eff6ff;
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 22px;
     color: #374151;
     line-height: 1.6;
+    border: 1px solid #e5e7eb;
 }
 
+
+/* FORM */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.form-group{
-    margin-bottom: 10px;
+    gap: 15px;
 }
 
 .form-group.full {
     grid-column: 1 / -1;
 }
-
 .form-group label {
     display: block;
     font-size: 13px;
@@ -94,33 +84,23 @@
     box-shadow: 0 0 0 3px #eff6ff;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
+/* CHECKBOX */
 .checkbox-row{
-    margin-bottom: 10px;
-}
-
-.checkbox-row {
     display: flex !important;
     align-items: center;
     gap: 8px;
     cursor: pointer;
 }
-
 .checkbox-row input {
     width: auto;
 }
 
-.form-actions,
-.page-actions {
+/* ACTIONS */
+.form-actions {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
-
-
 
 .btn-main,
 .btn-secondary {
@@ -138,33 +118,22 @@
     background: #2563eb;
     color: #ffffff;
 }
-
 .btn-main:hover {
     background: #1d4ed8;
 }
 
-.btn-main.full {
-    width: 100%;
-    justify-content: center;
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
 }
-
 .btn-secondary {
     background: #f3f4f6;
     color: #374151;
 }
 
-.btn-secondary {
-    background: #f3f4f6;
-    color: #374151;
-}
-
-
+/* RESPONSIVE */
 @media (max-width: 800px) {
 
-
-    .stats-grid,
-    .admin-tabs,
-    .cards-grid,
     .form-grid,
     .details-grid {
         grid-template-columns: 1fr;
@@ -173,18 +142,12 @@
 
 @media (max-width: 480px) {
 
-
-    .card-actions,
-    .form-actions,
-    .page-actions,
-    .sub-tabs {
+    .form-actions {
         flex-direction: column;
     }
 
     .btn-main,
-    .btn-secondary,
-    .action-btn,
-    .sub-tabs a {
+    .btn-secondary {
         width: 100%;
         justify-content: center;
     }

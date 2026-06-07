@@ -10,9 +10,10 @@
 
 @section('content')
 
-<div class="content-card">
+<div class="container">
 
     <div class="message-details">
+
         <h3>{{ $message->subject ?: 'Sans objet' }}</h3>
 
         <div class="details-grid">
@@ -60,7 +61,8 @@
 
             <div class="form-group full">
                 <label>Note de l'administrateur</label>
-                <textarea name="admin_note" rows="5">{{ old('admin_note', $message->admin_note) }}</textarea>
+                <textarea name="admin_note" rows="5"
+                    placeholder="Ajouter une note interne (visible uniquement par l'administrateur) concernant ce message : actions prises, suivi nécessaire, ou remarques importantes...">{{ old('admin_note', $message->admin_note) }}</textarea>
             </div>
         </div>
 
