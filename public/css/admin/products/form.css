@@ -47,6 +47,28 @@
     box-shadow: 0 0 0 3px #eff6ff;
 }
 
+.form-group input::file-selector-button{
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* CURRENT IMAGE */
+.current-image {
+    margin-top: 12px;
+}
+.current-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+
+
 /* ACTIONS */
 .form-actions {
     display: flex;

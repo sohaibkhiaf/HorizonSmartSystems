@@ -22,7 +22,7 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Description</th>
+                <th>Type</th>
                 <th>Prix</th>
                 <th>Actions</th>
             </tr>
@@ -32,7 +32,15 @@
             @forelse($products as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
-                    <td style="color: #777;">{{ $product->description }}</td>
+                    <td style="color: #777;">
+                        @if ($product->type == 'key')
+                            Clé
+                        @elseif ($product->type == 'account')
+                            Compte
+                        @elseif ($product->type == 'invitation')
+                            Invitation
+                        @endif
+                    </td>
                     <td>{{ $product->price }} DA</td>
 
                     <td>

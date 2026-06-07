@@ -65,4 +65,48 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## TODO
 
+2_ abonnements/subs service page with products/subs and command form (includes the list of products (product image/ price...) and the command form ) 
+
+script {
+    1: {
+        "store flow": "client enters horizon informatique",
+        "website flow": "client finds hss website",
+        },
+    2: {
+        "store flow": "client asks for a subscrption of a product we offer",
+        "website flow": "client finds out hss offers",
+        },
+    3: {
+        "store flow": "client asks for creating a demand",
+        "website flow": "client creates a demand",
+        },
+    4: {
+        "store flow": "operator checks availabitity and contacts the client",
+        "website flow": "operator checks availabitity and contacts the client",
+        },
+    5: {
+        "available": {
+            "store flow": "operator asks the client to pay in horizon",
+            "website flow": "operator asks the client to pay in horizon/ ccp",
+            },
+        "unavailable": {
+            "store flow": "operator tells the client that it is not available, and asks if they want to wait or cancel",
+            "website flow": "operator tells the client that it is not available, and asks if they want to wait or cancel",
+            },
+        },
+    6: {
+        "available": {
+            "store flow": "after paiement confirmed, the operator sends the credentials to the client",
+            "website flow": "after paiement confirmed, the operator sends the credentials to the client",
+            },
+        "unavailable": {
+            "store flow": "if product becomes available, continue the normal process, or if not, end the command with fail annule",
+            "website flow": "if product becomes available, continue the normal process, or if not, end the command with fail annule",
+            },
+        },
+
+
+
+}

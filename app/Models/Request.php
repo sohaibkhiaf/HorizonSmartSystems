@@ -17,16 +17,14 @@ class Request extends Model
         'operator_id',
         'client_name',
         'client_contact',
+        'client_email',
+        'client_address',
+        'quantity', 
         'status',
-        'delivery_credentials',
     ];
 
     public function product() {
         return $this->belongsTo(Product::class);
-    }
-
-    public function notes() {
-        return $this->hasMany(Note::class);
     }
     
 }

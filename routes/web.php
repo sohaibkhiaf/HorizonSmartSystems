@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
@@ -149,8 +148,8 @@ Route::prefix('admin')
         
     Route::get('requests/{id}', [RequestController::class, 'show'])
         ->name('requests.show');
-    Route::post('requests/{id}/availability', [RequestController::class, 'setAvailability'])
-        ->name('requests.setAvailability');
+    Route::post('requests/{id}/availability', [RequestController::class, 'update'])
+        ->name('requests.update');
 
     Route::post('requests/{id}/deliver', [RequestController::class, 'deliverCredentials'])
         ->name('requests.deliver');
@@ -158,34 +157,5 @@ Route::prefix('admin')
     Route::delete('requests/{id}', [RequestController::class, 'destroy'])
         ->name('requests.destroy');
 });
-
-
-Route::prefix('operator')
-    ->name('operator.')
-    ->middleware(['auth', 'operator'])
-    ->group(function () {
-
-    Route::get('products', [OperatorController::class, 'products'])
-        ->name('products');
-
-    Route::get('requests', [OperatorController::class, 'requests'])
-        ->name('requests');
-    Route::post('requests', [OperatorController::class, 'store'])
-        ->name('requests.store');
-
-    Route::get('requests/create', [OperatorController::class, 'create'])
-        ->name('requests.create');
-        
-    Route::get('requests/{id}', [OperatorController::class, 'show'])
-        ->name('requests.show');
-
-    Route::post('requests/{id}/pay', [OperatorController::class, 'confirmPayment'])
-        ->name('requests.confirmPayment');
-
-    Route::post('requests/{id}/note', [OperatorController::class, 'addNote'])
-        ->name('requests.addNote');
-    
-});
-
 
 

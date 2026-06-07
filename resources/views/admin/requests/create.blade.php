@@ -30,6 +30,17 @@
             </div>
 
             <div class="form-group">
+                <label>Quantité</label>
+                <select name="quantity" id="quantity" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label>Nom client</label>
                 <input 
                     type="text" 
@@ -45,8 +56,26 @@
                     type="text" 
                     name="client_contact" 
                     class="form-control" 
-                    placeholder="Numéro de téléphone ou email" 
+                    placeholder="Numéro de téléphone" 
                     required>
+            </div>
+
+            <div class="form-group">
+                <label>E-mail client</label>
+                <input 
+                    type="text" 
+                    name="client_email" 
+                    class="form-control" 
+                    placeholder="E-mail" >
+            </div>
+
+            <div class="form-group">
+                <label>Adresse client</label>
+                <input 
+                    type="text" 
+                    name="client_address" 
+                    class="form-control" 
+                    placeholder="Adresse" >
             </div>
 
             <div class="form-actions">

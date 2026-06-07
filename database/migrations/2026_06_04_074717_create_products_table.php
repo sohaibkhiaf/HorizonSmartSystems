@@ -16,8 +16,15 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('price');
+            $table->string('image')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')
                 ->onDelete('set null');
+
+            $table->enum('type', [
+                'key', // Clé
+                'account', // Compte
+                'invitation', // Invitation
+            ])->default('key'); 
 
             $table->softDeletes();
             $table->timestamps();

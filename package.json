@@ -11,5 +11,8 @@
         "laravel-vite-plugin": "^1.0",
         "playwright": "^1.60.0",
         "vite": "^5.0"
+    },
+    "dependencies": {
+        "firebase": "^12.14.0"
     }
 }

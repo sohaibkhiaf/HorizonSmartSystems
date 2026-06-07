@@ -17,7 +17,8 @@ class RequestController extends Controller
             'available',
             'paid',
             'delivered',
-            'not_available',
+            'postponed',
+            'cancelled',
         ];
 
         $requests = \App\Models\Request::query()
@@ -46,14 +47,17 @@ class RequestController extends Controller
             'product_id' => $req->product_id,
             'operator_id' => auth()->id(),
             'client_name' => $req->client_name,
-            'client_contact' => $req->client_contact
+            'client_contact' => $req->client_contact,
+            'client_email' => $req->client_email, 
+            'client_address' => $req->client_address, 
+            'quantity' => $req->quantity, 
         ]);
 
         return redirect()->route('admin.requests.index')
             ->with('success', 'Demande créée avec succès !');
     }
     
-    public function setAvailability(Request $req, $id) {
+    public function update(Request $req, $id) {
 
         $req->validate([
             'admin_note' => 'nullable|string|max:512',
@@ -63,31 +67,13 @@ class RequestController extends Controller
 
         $request->update([
             'status' => $req->status,
-        ]);
-
-        if ($req->admin_note != null){
-            $request->notes()->create([
-                'content' => $req->admin_note,
-                'sender' => 'ADMIN'
-            ]);
-        }
-
-        return back();
-    }
-
-    public function deliverCredentials(Request $req, $id)
-    {
-        $req->validate([
-            'credentials' => 'required|string|max:512',
-        ]);
-
-        \App\Models\Request::find($id)->update([
-            'status' => 'delivered', 
-            'delivery_credentials' => $req->credentials
+            'admin_note' => $req->admin_note,
         ]);
 
         return back();
     }
+
+
 
     public function destroy($id) {
         \App\Models\Request::find($id)->delete();

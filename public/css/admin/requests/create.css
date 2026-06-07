@@ -88,6 +88,27 @@
     cursor: pointer;
 }
 
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 480px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+
 /* RESPONSIVE */
 @media (max-width: 480px) {
 

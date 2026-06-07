@@ -15,13 +15,13 @@
     <div class="container">
 
         <div class="header">
-            <h3>Informations client</h3>
+            <h4>Informations client</h4>
         </div>
 
         <div class="body">
 
             <div class="info-block">
-                <p class="label">Nom</p>
+                <p class="label">Nom complet</p>
                 <p class="value">{{ $request->client_name }}</p>
             </div>
 
@@ -31,9 +31,48 @@
             </div>
 
             <div class="info-block">
+                <p class="label">E-mail</p>
+                <p class="value">{{ $request->client_email ?? 'N/A' }}</p>
+            </div>
+
+            <div class="info-block">
+                <p class="label">Adresse</p>
+                <p class="value">{{ $request->client_address ?? 'N/A'  }}</p>
+            </div>
+            
+
+            <div class="info-block">
                 <p class="label">Produit</p>
                 <p class="value">
-                    {{ $request->product->name ?? 'N/A' }}
+                    {{ $request->product->name ?? 'N/A' }} 
+                </p>
+            </div>
+
+            <div class="info-block">
+                <p class="label">Type de produit</p>
+                <p class="value">
+                    {{ strtoupper($request->product->type) }} 
+                </p>
+            </div>
+
+            <div class="info-block">
+                <p class="label">Prix</p>
+                <p class="value">
+                    {{ $request->product->price }} DA
+                </p>
+            </div>
+
+            <div class="info-block">
+                <p class="label">Quantité</p>
+                <p class="value">
+                    {{ $request->quantity }}
+                </p>
+            </div>
+
+            <div class="info-block">
+                <p class="label">Total</p>
+                <p class="value">
+                    {{ $request->product->price * $request->quantity }} DA
                 </p>
             </div>
 
@@ -50,26 +89,12 @@
                     <span class="badge success">Payé</span>
                 @elseif($request->status === 'delivered')
                     <span class="badge success">Livré</span>
-                @elseif($request->status === 'not_available')
-                    <span class="badge warning">Non disponible</span>
+                @elseif($request->status === 'postponed')
+                    <span class="badge muted">Reportée</span>
+                @elseif($request->status === 'canceled')
+                    <span class="badge warning">Annulée</span>
                 @endif
             </div>
-
-
-            @foreach ($request->notes as $note )
-                @if($note->sender == 'ADMIN')
-                    <div class="info-block">
-                        <p class="label">Note admin</p>
-                        <div class="note-box-admin" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
-                    </div>
-                @elseif($note->sender == 'OPERATOR')
-                    <div class="info-block">
-                        <p class="label">Note opérateur</p>
-                        <div class="note-box-operator" style="white-space: pre-line;">{{ $note->content }} ({{ $note->created_at->format('Y-m-d H:i') }})</div>
-                    </div>
-                @endif
-                    
-            @endforeach
 
         </div>
 
@@ -80,7 +105,7 @@
     <div class="container">
 
         <div class="header">
-            <h3>Actions admin</h3>
+            <h4>Actions admin</h4>
         </div>
 
         <div class="body">
@@ -93,13 +118,13 @@
                     <label>Statut</label>
                     <select name="status" class="form-control" required>
                         <option value="">-- Sélectionner --</option>
-                        <option value="available">Disponible</option>
-                        <option value="not_available">Non disponible</option>
-                        <option value="processing">En cours</option>
-
-                        <option value="pending">En attente [SYSTEME]</option>
-                        <option value="paid">Payé [OPERATEUR]</option>
-                        <option value="delivered">Livré [SYSTEME]</option>
+                        <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>En attente</option>
+                        <option value="processing" {{ $request->status == 'processing' ? 'selected' : '' }}>En cours</option>
+                        <option value="available" {{ $request->status == 'pending' ? 'available' : '' }}>Disponible</option>
+                        <option value="postponed" {{ $request->status == 'pending' ? 'postponed' : '' }}>Reportée</option>
+                        <option value="canceled" {{ $request->status == 'pending' ? 'canceled' : '' }}>Annulée</option>
+                        <option value="paid" {{ $request->status == 'pending' ? 'paid' : '' }}>Payée</option>
+                        <option value="delivered" {{ $request->status == 'pending' ? 'delivered' : '' }}>Livrée</option>
                     </select>
                 </div>
 
@@ -112,42 +137,6 @@
                     Mettre à jour
                 </button>
 
-            </form>
-
-            {{-- DELIVERY FORM --}}
-            <form method="POST" action="{{ url('admin/requests/'.$request->id.'/deliver') }}" class="form">
-                @csrf
-
-                <div class="form-group">
-                    <label>Livraison</label>
-                    <textarea name="credentials" class="form-control" placeholder="Login / mot de passe / lien / code">{{ $request->delivery_credentials ?? '' }}</textarea>
-                </div>
-
-                @if($request->delivery_credentials)
-                    <button type="submit" class="btn-success">
-                        Mettre à jour la livraison
-                    </button>
-                @else
-                    <button type="submit" class="btn-success">
-                        Marquer comme livré
-                    </button>
-                @endif
-
-            </form>
-
-            <form action="{{ route('admin.requests.destroy', $request->id) }}" 
-                    method="POST">
-                @csrf
-                @method('DELETE')
-
-                <div class="form-group">
-                    <label>Supprimer</label>
-                </div>
-
-                <button type="submit" class="btn-delete"
-                        onclick="return confirm('Supprimer cette demande ?')">
-                    Supprimer la demande
-                </button>
             </form>
 
         </div>

@@ -1,6 +1,6 @@
 <div class="container">
 
-    <form method="POST" action="{{ $action }}">
+    <form method="POST" action="{{ $action }}" enctype="multipart/form-data">
         @csrf
 
         @if($method === 'PUT')
@@ -29,10 +29,35 @@
                        required>
             </div>
 
+            <div class="form-group">
+                <label>Type</label>
+                <select name="type" id="" required>
+                    <option value="">-- Sélectionner --</option>
+                    <option value="key" {{ $product && $product->type == 'key' ? 'selected' :''  }}>Clé</option>
+                    <option value="account" {{ $product && $product->type == 'account' ? 'selected' :''  }}>Compte</option>
+                    <option value="invitation" {{ $product && $product->type == 'invitation' ? 'selected' :''  }}>Invitation</option>
+                </select>
+            </div>
+
             <div class="form-group full">
                 <label>Description</label>
                 <textarea name="description"
                           placeholder="Entrez la description du produit">{{ old('description', $product->description ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>Image</label>
+                <input 
+                    type="file" 
+                    name="image" 
+                    accept="image/*">
+                <small>Télécharger une image du projet (JPG, PNG, etc.)</small>
+
+                @if(!empty($product?->image))
+                    <div class="current-image">
+                        <img src="{{ asset('uploads/' . $product->image) }}" alt="">
+                    </div>
+                @endif
             </div>
 
         </div>
