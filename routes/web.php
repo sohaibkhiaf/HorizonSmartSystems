@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use App\Models\Achievement;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 // Language Switcher /////////////////
@@ -79,6 +80,16 @@ Route::get('/services/systems', function () {
 
 Route::get('/services/support', function () {
     return view('/services/support', ['page' => 'services']);
+});
+
+Route::get('/services/subs', function () {
+
+    $products  = Product::all();
+
+    return view('/services/subs', [
+        'products'=> $products, 
+        'page' => 'services'
+    ]);
 });
 
 // Store Contact /////////////////////

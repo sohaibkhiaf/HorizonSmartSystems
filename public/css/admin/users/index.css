@@ -142,7 +142,15 @@
     background: #fff7ed;
     color: #ea580c;
 }
+.role-user {
+    background: #ecfdf5;
+    color: #059669;
+}
 
+.role-client {
+    background: #fefce8;
+    color: #ca8a04;
+}
 /* EMPTY STATE */
 .empty {
     padding: 30px;

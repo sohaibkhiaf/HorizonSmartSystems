@@ -21,6 +21,7 @@ class Request extends Model
         'client_address',
         'quantity', 
         'status',
+        'admin_note',
     ];
 
     public function product() {

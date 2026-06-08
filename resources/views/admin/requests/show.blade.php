@@ -20,86 +20,91 @@
 
         <div class="body">
 
-            <div class="info-block">
-                <p class="label">Nom complet</p>
-                <p class="value">{{ $request->client_name }}</p>
+            {{-- CLIENT --}}
+            <p class="section-label">Client</p>
+
+            <div class="info-grid">
+                <div class="info-block full">
+                    <p class="label">Nom complet</p>
+                    <p class="value">{{ $request->client_name }}</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">Contact</p>
+                    <p class="value">{{ $request->client_contact }}</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">E-mail</p>
+                    <p class="value">{{ $request->client_email ?? 'N/A' }}</p>
+                </div>
+                <div class="info-block full">
+                    <p class="label">Adresse</p>
+                    <p class="value">{{ $request->client_address ?? 'N/A' }}</p>
+                </div>
             </div>
 
-            <div class="info-block">
-                <p class="label">Contact</p>
-                <p class="value">{{ $request->client_contact }}</p>
+
+            {{-- PRODUIT --}}
+            <p class="section-label">Produit</p>
+
+            <div class="info-grid">
+                <div class="info-block">
+                    <p class="label">Produit</p>
+                    <p class="value">{{ $request->product->name ?? 'N/A' }}</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">Type</p>
+                    <p class="value">
+                        @if ($request->product->type == 'key')
+                            Clé
+                        @elseif ($request->product->type == 'account')
+                            Compte
+                        @elseif ($request->product->type == 'invitation')
+                            Invitation
+                        @endif
+                    </p>
+                </div>
+                <div class="info-block">
+                    <p class="label">Prix unitaire</p>
+                    <p class="value">{{ $request->product->price }} DA</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">Quantité</p>
+                    <p class="value">{{ $request->quantity }}</p>
+                </div>
             </div>
 
-            <div class="info-block">
-                <p class="label">E-mail</p>
-                <p class="value">{{ $request->client_email ?? 'N/A' }}</p>
-            </div>
 
-            <div class="info-block">
-                <p class="label">Adresse</p>
-                <p class="value">{{ $request->client_address ?? 'N/A'  }}</p>
-            </div>
-            
+            {{-- COMMANDE --}}
+            <p class="section-label">Commande</p>
 
-            <div class="info-block">
-                <p class="label">Produit</p>
-                <p class="value">
-                    {{ $request->product->name ?? 'N/A' }} 
-                </p>
-            </div>
-
-            <div class="info-block">
-                <p class="label">Type de produit</p>
-                <p class="value">
-                    {{ strtoupper($request->product->type) }} 
-                </p>
-            </div>
-
-            <div class="info-block">
-                <p class="label">Prix</p>
-                <p class="value">
-                    {{ $request->product->price }} DA
-                </p>
-            </div>
-
-            <div class="info-block">
-                <p class="label">Quantité</p>
-                <p class="value">
-                    {{ $request->quantity }}
-                </p>
-            </div>
-
-            <div class="info-block">
-                <p class="label">Total</p>
-                <p class="value">
-                    {{ $request->product->price * $request->quantity }} DA
-                </p>
-            </div>
-
-            <div class="info-block">
-                <p class="label">Statut actuel</p>
-
-                @if($request->status === 'pending')
-                    <span class="badge muted">En attente</span>
-                @elseif($request->status === 'processing')
-                    <span class="badge muted">En cours</span>
-                @elseif($request->status === 'available')
-                    <span class="badge success">Disponible</span>
-                @elseif($request->status === 'paid')
-                    <span class="badge success">Payé</span>
-                @elseif($request->status === 'delivered')
-                    <span class="badge success">Livré</span>
-                @elseif($request->status === 'postponed')
-                    <span class="badge muted">Reportée</span>
-                @elseif($request->status === 'canceled')
-                    <span class="badge warning">Annulée</span>
-                @endif
+            <div class="info-grid">
+                <div class="info-block">
+                    <p class="label">Total</p>
+                    <p class="value total">{{ $request->product->price * $request->quantity }} DA</p>
+                </div>
+                <div class="info-block">
+                    <p class="label">Statut actuel</p>
+                    @if($request->status === 'pending')
+                        <span class="badge muted">En attente</span>
+                    @elseif($request->status === 'processing')
+                        <span class="badge muted">En cours</span>
+                    @elseif($request->status === 'available')
+                        <span class="badge success">Disponible</span>
+                    @elseif($request->status === 'paid')
+                        <span class="badge success">Payé</span>
+                    @elseif($request->status === 'delivered')
+                        <span class="badge success">Livré</span>
+                    @elseif($request->status === 'postponed')
+                        <span class="badge muted">Reportée</span>
+                    @elseif($request->status === 'canceled')
+                        <span class="badge warning">Annulée</span>
+                    @endif
+                </div>
             </div>
 
         </div>
 
     </div>
-
 
     {{-- RIGHT ACTIONS --}}
     <div class="container">
@@ -120,17 +125,17 @@
                         <option value="">-- Sélectionner --</option>
                         <option value="pending" {{ $request->status == 'pending' ? 'selected' : '' }}>En attente</option>
                         <option value="processing" {{ $request->status == 'processing' ? 'selected' : '' }}>En cours</option>
-                        <option value="available" {{ $request->status == 'pending' ? 'available' : '' }}>Disponible</option>
-                        <option value="postponed" {{ $request->status == 'pending' ? 'postponed' : '' }}>Reportée</option>
-                        <option value="canceled" {{ $request->status == 'pending' ? 'canceled' : '' }}>Annulée</option>
-                        <option value="paid" {{ $request->status == 'pending' ? 'paid' : '' }}>Payée</option>
-                        <option value="delivered" {{ $request->status == 'pending' ? 'delivered' : '' }}>Livrée</option>
+                        <option value="available" {{ $request->status == 'available' ? 'selected' : '' }}>Disponible</option>
+                        <option value="postponed" {{ $request->status == 'postponed' ? 'selected' : '' }}>Reportée</option>
+                        <option value="canceled" {{ $request->status == 'canceled' ? 'selected' : '' }}>Annulée</option>
+                        <option value="paid" {{ $request->status == 'paid' ? 'selected' : '' }}>Payée</option>
+                        <option value="delivered" {{ $request->status == 'delivered' ? 'selected' : '' }}>Livrée</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Note admin</label>
-                    <textarea name="admin_note" class="form-control" placeholder="Note pour l'opérateur"></textarea>
+                    <textarea name="admin_note" class="form-control" placeholder="Note pour l'opérateur">{{ $request->admin_note }}</textarea>
                 </div>
 
                 <button type="submit" class="btn-primary">

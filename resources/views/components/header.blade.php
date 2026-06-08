@@ -35,7 +35,7 @@
                 <div class="mega-column">
                     <h4>{{__('header.other_services_title')}}</h4>
                     <a class="service-link" href="/services"><i class="fa-solid fa-earth-europe"></i> &nbsp; {{ __('header.other_intl_title') }}</a>
-                    <a class="service-link" href="/services"><i class="fa-solid fa-credit-card"></i> &nbsp; {{ __('header.other_subscriptions_title') }}</a>
+                    <a class="service-link" href="/services/subs"><i class="fa-solid fa-credit-card"></i> &nbsp; {{ __('header.other_subscriptions_title') }}</a>
                     <a class="service-link" href="/services"><i class="fa-solid fa-cloud-arrow-up"></i> &nbsp; {{ __('header.other_hosting_title') }}</a>
                     <a class="service-link" href="/services"><i class="fa-solid fa-circle-info"></i> &nbsp; {{ __('header.other_consulting_title') }}</a>
                 </div>

@@ -23,7 +23,7 @@ class UserController extends Controller
                   ->orWhere('email', 'like', '%' . $request->search . '%');
         }
 
-        $users = $query->latest()->paginate(10);
+        $users = $query->paginate(10);
 
         return view('admin.users.index', compact('users'));
     }

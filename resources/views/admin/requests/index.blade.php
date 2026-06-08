@@ -35,9 +35,14 @@
                     Livré
                 </option>
 
-                <option value="not_available" {{ request('status') == 'not_available' ? 'selected' : '' }}>
-                    Non disponible
+                <option value="postponed" {{ request('status') == 'postponed' ? 'selected' : '' }}>
+                    Reportée
                 </option>
+
+                <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>
+                    Annulée
+                </option>
+
             </select>
         </div>
 
@@ -90,8 +95,10 @@
                             <span class="badge success">Payé</span>
                         @elseif($request->status === 'delivered')
                             <span class="badge success">Livré</span>
-                        @elseif($request->status === 'not_available')
-                            <span class="badge warning">Non disponible</span>
+                        @elseif($request->status === 'postponed')
+                            <span class="badge muted">Reportée</span>
+                        @elseif($request->status === 'canceled')
+                            <span class="badge warning">Annulée</span>
                         @endif
                     </td>
 

@@ -39,6 +39,19 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label>Catégorie</label>
+                <select name="category" id="" required>
+                    <option value="">-- Sélectionner --</option>
+                    <option value="games" {{ $product && $product->category == 'games' ? 'selected' :''  }}>Jeux</option>
+                    <option value="gift_cards" {{ $product && $product->category == 'gift_cards' ? 'selected' :''  }}>Cartes cadeaux</option>
+                    <option value="software" {{ $product && $product->category == 'software' ? 'selected' :''  }}>Logiciel</option>
+                    <option value="subscriptions" {{ $product && $product->category == 'subscriptions' ? 'selected' :''  }}>Abonnements</option>
+                    <option value="in_game_currency" {{ $product && $product->category == 'in_game_currency' ? 'selected' :''  }}>Monnaie virtuelle</option>
+                    <option value="other" {{ $product && $product->category == 'other' ? 'selected' :''  }}>Autre</option>
+                </select>
+            </div>
+
             <div class="form-group full">
                 <label>Description</label>
                 <textarea name="description"

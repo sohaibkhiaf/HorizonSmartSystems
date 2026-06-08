@@ -26,6 +26,15 @@ return new class extends Migration
                 'invitation', // Invitation
             ])->default('key'); 
 
+            $table->enum('category', [
+                'games', // Jeux
+                'gift_cards', // Cartes cadeaux
+                'software', // Logiciel
+                'subscriptions', // Abonnements
+                'in_game_currency', // Monnaie virtuelle
+                'other', // Autre
+            ])->default('other'); 
+
             $table->softDeletes();
             $table->timestamps();
         });

@@ -30,6 +30,7 @@ class ProductController extends Controller
             'price' => $req->price, 
             'image' => $image_url,
             'type' => $req->type,
+            'category' => $req->category,
             'created_by' => auth()->user()->id,
         ]);
 
@@ -61,6 +62,7 @@ class ProductController extends Controller
             'price' => $req->price,
             'image' => $image_url,
             'type' => $req->type, 
+            'category' => $req->category,
             'created_by' => auth()->user()->id,
         ]);
 

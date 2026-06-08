@@ -22,6 +22,7 @@
         <thead>
             <tr>
                 <th>Nom</th>
+                <th>Catégorie</th>
                 <th>Type</th>
                 <th>Prix</th>
                 <th>Actions</th>
@@ -32,7 +33,24 @@
             @forelse($products as $product)
                 <tr>
                     <td>{{ $product->name }}</td>
-                    <td style="color: #777;">
+                    <td>
+                        @if ($product->category == 'games')
+                            Jeux
+                        @elseif ($product->category == 'gift_cards')
+                            Cartes cadeaux
+                        @elseif ($product->category == 'software')
+                            Logiciels
+                        @elseif ($product->category == 'subscriptions')
+                            Abonnements
+                        @elseif ($product->category == 'in_game_currency')
+                            Monnaie virtuelle
+                        @elseif ($product->category == 'other')
+                            Autre
+                        @else
+                            N/A
+                        @endif
+                    </td>
+                    <td>
                         @if ($product->type == 'key')
                             Clé
                         @elseif ($product->type == 'account')
