@@ -7,9 +7,11 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use App\Models\Achievement;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Language Switcher /////////////////
@@ -37,28 +39,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('/about', ['page' => 'about']);
-});
-
-Route::get('/services', function () {
-    return view('/services', ['page' => 'services']);
-});
-
-Route::get('/achievements', function () {
-    $achievements = Achievement::where('is_published', true)
-        ->latest()
-        ->get();
-
-    return view('/achievements', [
-        'page' => 'achievements',
-        'achievements' => $achievements,
-    ]);
-});
-
-Route::get('/contact', function () {
-    return view('/contact', ['page' => 'contact']);
-});
 
 // Services /////////////////
 
@@ -82,17 +62,13 @@ Route::get('/services/support', function () {
     return view('/services/support', ['page' => 'services']);
 });
 
-Route::get('/services/subs', function () {
+// Store /////////////////////////
+Route::get('/store', [StoreController::class, 'index'])->name('store.index');
+Route::get('/store/{product}/order', [StoreController::class, 'order'])->name('store.order');
+Route::post('/store/{product}/confirm', [StoreController::class, 'confirm'])->name('store.confirm');
+Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])->name('store.confirmed');
 
-    $products  = Product::all();
-
-    return view('/services/subs', [
-        'products'=> $products, 
-        'page' => 'services'
-    ]);
-});
-
-// Store Contact /////////////////////
+// Contact /////////////////////
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

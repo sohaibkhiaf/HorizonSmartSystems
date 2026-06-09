@@ -4,7 +4,9 @@ return [
     'home' => 'Home',
     'about' => 'About',
     'services' => 'Services',
+    'software' => 'Software',
     'achievements' => 'Achievements',
+    'store' => 'Our store',
     'contact' => 'Contact',
 
     // Services 
@@ -30,6 +32,10 @@ return [
     'other_hosting_desc'         => 'Secure, high-performance and scalable hosting for your sites and applications.',
     'other_consulting_title'     => 'Consulting & Support',
     'other_consulting_desc'      => 'Strategic advice and support at every stage of your project\'s success.',
+
+    // Software
+    'software_title'       => 'Software & Applications',
+    'software_wili'      => 'WILI',
 
 ];
 

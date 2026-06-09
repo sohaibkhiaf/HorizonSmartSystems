@@ -9,36 +9,42 @@
 @section('content')
 
 <!-- Hero  -->
-<section class="hero">
+<section class="hero" id="homeSection" data-section="home" >
     <div class="hero-container">
 
         <!-- Left Side -->
         <div class="hero-text">
-            <p class="hero-small">{{ __('home.hero_agency_label') }}</p>
+            <!-- <p class="hero-small">{{ __('home.hero_agency_label') }}</p> -->
 
             <h1 class="hero-title">
                 {{ __('home.hero_title') }}
             </h1>
-
+<!-- 
             <p class="hero-description">
                 {{ __('home.hero_description') }}
-            </p>
+            </p> -->
 
             <div class="hero-buttons">
-                <a href="/services" class="btn btn-primary">{{ __('home.hero_btn_services') }} &nbsp;<i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i></a>
-                <a href="/contact" class="btn btn-outline">{{ __('home.hero_btn_contact') }} &nbsp;<i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i></a>
+                <!-- <a href="/store"
+                    class="btn btn-primary">{{ __('home.hero_btn_store') }} &nbsp;<i class="fa-solid fa-cart-shopping"></i></a>
+                <a  onclick="scrollToSection('softwareSection')"
+                    class="btn btn-outline">{{ __('home.hero_btn_contact') }} &nbsp;<i class="fa-solid fa-paper-plane"></i></a> -->
+                <a  onclick="scrollToSection('contactSection')"
+                    class="btn btn-primary">{{ __('home.hero_btn_contact') }} &nbsp;<i class="fa-solid fa-paper-plane"></i></a>
             </div>
         </div>
 
         <!-- Right Side -->
         <div class="hero-image">
-            <img src="{{ asset('images/hero_image.png') }}" alt="{{ __('home.hero_title') }}">
+            <img src="{{ asset('images/over.png') }}" alt="{{ __('home.hero_title') }}">
         </div>
     </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- About  -->
-<section class="about">
+<section class="about" id="aboutSection" data-section="about">
     <div class="about-container">
 
         <!-- Left Content -->
@@ -98,8 +104,9 @@
     </div>
 </section>
 
+
 <!-- Proposed Services  -->
-<section class="services">
+<section class="services"  id="servicesSection" data-section="services">
     <div class="services-container">
 
         <h2 class="services-title">{{ __('home.services_title') }}</h2>
@@ -197,6 +204,115 @@
     </div>
 </section>
 
+<!-- Method  -->
+<section class="method">
+    <div class="method-container">
+
+        <div class="method-left">
+            <h2 class="method-title">{{ __('services.method_title') }}</h2>
+
+            <p class="method-description">
+                {{ __('services.method_description') }}
+            </p>
+        </div>
+
+        <div class="method-right">
+
+            <div class="method-card">
+                <div class="card-inner">
+                    <div class="icon">
+                        <i class="fa-solid fa-1"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>{{ __('services.method_step1_title') }} <i class="fa-solid fa-magnifying-glass"></i></h3>
+                        <p>{{ __('services.method_step1_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <div class="card-inner">
+                    <div class="icon">
+                        <i class="fa-solid fa-2"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>{{ __('services.method_step2_title') }} <i class="fa-regular fa-pen-to-square"></i></h3>
+                        <p>{{ __('services.method_step2_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <div class="card-inner">
+                    <div class="icon">
+                        <i class="fa-solid fa-3"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>{{ __('services.method_step3_title') }} <i class="fa-solid fa-code"></i></h3>
+                        <p>{{ __('services.method_step3_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method-card">
+                <div class="card-inner">
+                    <div class="icon">
+                        <i class="fa-solid fa-4"></i>
+                    </div>
+                    <div class="card-text">
+                        <h3>{{ __('services.method_step4_title') }} <i class="fa-solid fa-rocket"></i></h3>
+                        <p>{{ __('services.method_step4_desc') }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Achievements  -->
+<section class="acheivements" id="achievementsSection" data-section="achievements">
+    <div class="acheivements-header">
+        <h2 class="acheivements-title">{{ __('home.achievements_title') }}</h2>
+
+    </div>
+
+    <div class="swiper acheivements-swiper">
+        <div class="swiper-wrapper">
+
+            @foreach($achievements as $achievement)
+                <div class="swiper-slide acheivement-card">
+                    <div class="acheivement-image">
+                        @if($achievement->image)
+                            <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
+                        @else
+                            <div class="image-placeholder">
+                                <i class="fas fa-image"></i>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="acheivement-content">
+                        <div class="acheivement-header">
+                            <h3>{{ $achievement->title }}</h3>
+                            <span class="type">{{ $achievement->type }}</span>
+                        </div>
+                        <p>{{ $achievement->short_description }}</p>
+                        @if($achievement->project_url)
+                            <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
+                                {{ __('home.view_project') }}
+                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+</section>
+
 <!-- Features  -->
 <section class="features">
     <div class="features-container">
@@ -261,78 +377,182 @@
     </div>
 </section>
 
-<!-- Achievements  -->
-<section class="acheivements">
-    <div class="acheivements-header">
-        <h2 class="acheivements-title">{{ __('home.achievements_title') }}</h2>
+<!-- Contact  -->
+<section class="contact-section" id="contactSection" data-section="contact">
+    <div class="contact-container">
 
-        <a href="/achievements" class="acheivements-link">
-            {{ __('home.achievements_link') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-        </a>
-    </div>
+        <!-- LEFT: CONTACT INFOS -->
+        <div class="contact-info">
 
-    <div class="swiper acheivements-swiper">
-        <div class="swiper-wrapper">
+            <h2 class="contact-title">{{ __('contact.contact_title') }}</h2>
 
-            @foreach($achievements as $achievement)
-                <div class="swiper-slide acheivement-card">
-                    <div class="acheivement-image">
-                        @if($achievement->image)
-                            <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
-                        @else
-                            <div class="image-placeholder">
-                                <i class="fas fa-image"></i>
-                            </div>
-                        @endif
-                    </div>
-                    <div class="acheivement-content">
-                        <div class="acheivement-header">
-                            <h3>{{ $achievement->title }}</h3>
-                            <span class="type">{{ $achievement->type }}</span>
-                        </div>
-                        <p>{{ $achievement->short_description }}</p>
-                        @if($achievement->project_url)
-                            <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
-                                {{ __('home.view_project') }}
-                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                            </a>
-                        @endif
-                    </div>
+            <!-- Phone -->
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>{{ __('contact.phone_label') }}</h4>
+                    <p>0561 65 51 00
+                        <br> 0782 94 07 60
+                        <br> 0540 29 62 00
+                    </p>
                 </div>
-            @endforeach
+            </div>
+
+            <!-- Email -->
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>{{ __('contact.email_label') }}</h4>
+                    <p>contact@hss-agency.com</p>
+                </div>
+            </div>
+
+            <!-- Facebook -->
+            <div class="contact-item">
+                <i class="fab fa-facebook-f"></i>
+                <div>
+                    <h4>{{ __('contact.facebook_label') }}</h4>
+                    <p>facebook.com/HorizonSmartSystems</p>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="contact-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <h4>{{ __('contact.address_label') }}</h4>
+                    <p>{{ __('contact.address_value') }}</p>
+                </div>
+            </div>
 
         </div>
+
+        <!-- RIGHT: CONTACT FORM -->
+        <div class="contact-form">
+
+            <h2>{{ __('contact.form_title') }}</h2>
+
+            @if(session('success'))
+                <div class="form-alert success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="form-alert danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('contact.store') }}">
+                @csrf
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>{{ __('contact.form_fullname') }}</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('contact.form_fullname_ph') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('contact.form_email') }}</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('contact.form_email_ph') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('contact.form_phone') }}</label>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('contact.form_phone_ph') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('contact.form_subject') }}</label>
+                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('contact.form_subject_ph') }}" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group message-group">
+                    <label>{{ __('contact.form_message') }}</label>
+                    <textarea name="message" placeholder="{{ __('contact.form_message_ph') }}" required>{{ old('message') }}</textarea>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="consent">
+                    <label for="consent">
+                        {{ __('contact.form_consent') }}
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    {{ __('contact.form_submit') }} <i class="fa-regular fa-paper-plane"></i>
+                </button>
+            </form>
+
+        </div>
+
     </div>
 </section>
 
-<!-- Call To Action -->
-<section class="cta">
-    <div class="cta-overlay">
+<!-- Map & Hours  -->
+<section class="map-hours-section">
 
-        <div class="cta-container">
+    <div class="map-hours-box">
 
-            <!-- LEFT -->
-            <div class="cta-left">
-                <h2>{{ __('home.cta_title') }}</h2>
-                <h3>{{ __('home.cta_subtitle') }}</h3>
+        <!-- HOURS -->
+        <div class="hours-part">
+            <div class="hours-header">
+                <i class="fas fa-clock"></i>
+                <h3>{{ __('contact.hours_title') }}</h3>
             </div>
 
-            <!-- CENTER -->
-            <div class="cta-center">
-                <p>{{ __('home.cta_description') }}</p>
-            </div>
+            <div class="hours-content">
+                <div class="hour-row">
+                    <span>{{ __('contact.saturday') }} - {{ __('contact.wednesday') }}</span>
+                    <span>08:30 - 16:30</span>
+                </div>
 
-            <!-- RIGHT -->
-            <div class="cta-right">
-                <a href="/contact" class="cta-btn">
-                    {{ __('home.cta_btn') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
-            </div>
+                <div class="hour-row closed">
+                    <span>{{ __('contact.thursday') }}</span>
+                    <span>{{ __('contact.closed') }}</span>
+                </div>
 
+                <div class="hour-row closed">
+                    <span>{{ __('contact.friday') }}</span>
+                    <span>{{ __('contact.closed') }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="map-part">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.1601452089976!2d5.7204922742544975!3d34.85220317286611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f509002f0dc033%3A0x427675b9fa5b3b87!2sHORIZON%20PC%20INFORMATIQUE!5e0!3m2!1sen!2sdz!4v1779480198528!5m2!1sen!2sdz"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
         </div>
 
     </div>
+
 </section>
+
+
+<script>
+function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    const offset = 80; // space for fixed navbar
+
+    const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+    });
+}
+</script>
 
 @endsection
 

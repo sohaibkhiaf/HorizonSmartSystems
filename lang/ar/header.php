@@ -2,9 +2,11 @@
 
 return [
     'home' => 'الرئيسية',
-    'about' => 'حول',
+    'about' => 'حولنا',
     'services' => 'الخدمات',
+    'software' => 'البرامج',
     'achievements' => 'انجازاتنا',
+    'store' => 'متجرنا',
     'contact' => 'اتصل بنا',
 
     // Services 
@@ -30,6 +32,9 @@ return [
     'other_hosting_desc'         => 'استضافة آمنة وعالية الأداء وقابلة للتوسع لمواقعك وتطبيقاتك.',
     'other_consulting_title'     => 'الاستشارة والمرافقة',
     'other_consulting_desc'      => 'استشارة استراتيجية ومرافقة في كل مرحلة من مراحل نجاح مشاريعك.',
-
+    
+    // Software
+    'software_title'       => 'البرامج والتطبيقات',
+    'software_wili'      => 'برنامج ويلي',
 ];
 

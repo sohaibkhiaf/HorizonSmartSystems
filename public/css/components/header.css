@@ -2,10 +2,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 40px;
+    padding: 18px 80px;
     background: var(--body-color);
     transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease;
     z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 /* scrolled style */
@@ -14,7 +15,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 /* hide on scroll down */
@@ -24,13 +24,13 @@
 
 /* Logo image */
 .logo img {
-    height: 35px;   
+    height: 45px;   
     width: auto;
     display: block;
 }
 
 .header.scrolled .logo img {
-    height: 35px;
+    height: 45px;
     transition: 0.3s ease;
 }
 
@@ -40,13 +40,14 @@
     gap: 25px;
 }
 
-
 /* Nav links */
 .nav a {
     text-decoration: none;
     color: #111827;
     position: relative;
     padding-bottom: 5px;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 .nav a:hover {
@@ -182,7 +183,84 @@
     color: #2563eb;
 }
 
+/* ===== Services Dropdown Single  ======================================= */
 
+.mega-menu-single {
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    width: 360px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+
+    padding: 22px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+    z-index: 999;
+}
+
+/* ===== SHOW ON HOVER ===== */
+.nav-item.has-dropdown:hover .mega-menu-single {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== LINKS ===== */
+.mega-menu-single .service-link {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+/* hover effect */
+.mega-menu-single .service-link:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+
+/* Button ******************************************* */
+
+.store-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Primary button */
+.store-btn-primary {
+    background: #FF3D2E;
+    color: white;
+}
+
+.store-btn-primary:hover {
+    background: #E63628;
+}
 
 
 /* ===== Responsive  ======================================= */
@@ -230,7 +308,10 @@
     .logo img {
         height: 30px;
     }
-
+.header.scrolled .logo img {
+    height: 30px;
+    transition: 0.3s ease;
+}
     .actions {
         display: flex;
         gap: 10px;

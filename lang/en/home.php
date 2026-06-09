@@ -7,10 +7,11 @@ return [
 
     // Hero 
     'hero_agency_label'   => 'Software & Web Development Agency',
-    'hero_title'          => 'Modern digital solutions to grow your business',
+    'hero_title'          => 'Website development, Software, ERP & IT Solutions Built for Algerian Businesses',
     'hero_description'    => 'Horizon Smart Systems supports businesses and organizations in their digital transformation through reliable, secure, and perfectly tailored software and web solutions.',
-    'hero_btn_services'   => 'View our services',
-    'hero_btn_contact'    => 'Contact us',
+    'hero_btn_store'   => 'Discover our store',
+    'hero_btn_contact'    => 'Send a message',
+    'hero_btn_software'    => 'Our software',
 
     // About 
     'about_title'         => 'Who are we?',
@@ -62,11 +63,6 @@ return [
     'achievements_link'          => 'View all our achievements',
     'view_project' => 'View project',
 
-    // CTA 
-    'cta_title'       => 'Have a project in mind?',
-    'cta_subtitle'    => 'Let\'s talk about it today.',
-    'cta_description' => 'Receive a quick response and a proposal tailored to your needs.',
-    'cta_btn'         => 'Contact us',
 
 ];
 

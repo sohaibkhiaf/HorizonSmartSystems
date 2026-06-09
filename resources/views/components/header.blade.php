@@ -7,17 +7,23 @@
     </div>
 
     <nav class="nav" id="navMenu">
-        <a href="/" class="{{ $page === 'home' ? 'active' : '' }}">
+        <a class="nav-tab {{ $page === 'home' ? 'active' : '' }}"
+        onclick="scrollToSection('homeSection')"
+            data-target="home">
             {{ __('header.home') }}
         </a>
 
-        <a href="/about" class="{{ $page === 'about' ? 'active' : '' }}">
+        <!-- <a class="nav-tab {{ $page === 'about' ? 'active' : '' }}"
+            onclick="scrollToSection('aboutSection')"
+            data-target="about">
             {{ __('header.about') }}
-        </a>
+        </a> -->
 
         <div class="nav-item has-dropdown">
 
-            <a href="/services" class="{{ $page === 'services' ? 'active' : '' }}">
+            <a class="nav-tab {{ $page === 'services' ? 'active' : '' }}"
+                onclick="scrollToSection('servicesSection')"
+                data-target="services">
                 {{ __('header.services') }} <span class="caret-down"><i class="fa-solid fa-caret-down"></i></span>
             </a>
 
@@ -43,14 +49,40 @@
             </div>
         </div>
 
-        <a href="/achievements" class="{{ $page === 'achievements' ? 'active' : '' }}">
+        <div class="nav-item has-dropdown">
+
+            <a class="nav-tab {{ $page === 'services' ? 'active' : '' }}"
+                onclick="scrollToSection('logicielsSection')"
+                data-target="software">
+                {{ __('header.software') }} <span class="caret-down"><i class="fa-solid fa-caret-down"></i></span>
+            </a>
+
+            <!-- Mega Menu -->
+            <div class="mega-menu-single">
+                <div class="mega-column">
+                    <h4>{{__('header.software_title')}}</h4>
+                    <a class="service-link" href="/services/webdev"><i class="fa-solid fa-w"></i> &nbsp; {{ __('header.software_wili') }}</a>
+                </div>
+
+            </div>
+        </div>
+
+        <a class="nav-tab {{ $page === 'achievements' ? 'active' : '' }}"
+            onclick="scrollToSection('achievementsSection')"
+            data-target="achievements">
             {{ __('header.achievements') }}
         </a>
 
-        <a href="/contact" class="{{ $page === 'contact' ? 'active' : '' }}">
+        <a class="nav-tab {{ $page === 'contact' ? 'active' : '' }}"
+            data-target="contact"
+            onclick="scrollToSection('contactSection')">
             {{ __('header.contact') }}
         </a>
     </nav>
+
+    <a href="/store" class="store-btn store-btn-primary">
+        <i class="fa-solid fa-cart-shopping"></i> {{ __('header.store') }} 
+    </a>
 
     <div class="actions">
 
@@ -67,3 +99,17 @@
 
 </header>
 
+
+<script>
+function scrollToSection(sectionId) {
+    const element = document.getElementById(sectionId);
+    const offset = 80; // space for fixed navbar
+
+    const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+    });
+}
+</script>

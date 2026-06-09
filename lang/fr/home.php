@@ -7,10 +7,10 @@ return [
 
     // Hero 
     'hero_agency_label'   => 'Agence de développement web & logiciel',
-    'hero_title'          => 'Des solutions digitales modernes pour développer votre activité',
+    'hero_title'          => 'Developpement Sites web, logiciels, ERP et solutions informatiques conçus pour les entreprises algériennes',
     'hero_description'    => 'Horizon Smart Systems accompagne les entreprises et organisations dans leur transformation digitale grâce à des solutions logiciel et web fiables, sécurisées et parfaitement adaptées à leurs besoins.',
-    'hero_btn_services'   => 'Voir nos services',
-    'hero_btn_contact'    => 'Contactez-nous',
+    'hero_btn_store'   => 'Découvrez notre boutique',
+    'hero_btn_contact'    => 'Envoyer un message',
 
     // About 
     'about_title'         => 'Qui sommes-nous ?',

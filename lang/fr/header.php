@@ -3,8 +3,10 @@
 return [
     'home' => 'Accueil',
     'about' => 'À propos',
-    'services' => 'Services',
+    'services' => 'Services',    
+    'software' => 'Logiciels',
     'achievements' => 'Réalisations',
+    'store' => 'Notre boutique',
     'contact' => 'Contact',
 
     // Services 
@@ -30,6 +32,9 @@ return [
     'other_hosting_desc'         => 'Hébergement sécurisé, performant et évolutif pour vos sites et applications.',
     'other_consulting_title'     => 'Conseil et accompagnement',
     'other_consulting_desc'      => 'Conseil stratégique et accompagnement à chaque étape de la réussite de vos projets.',
-
+    
+    // Software
+    'software_title'       => 'Logiciels & Applications',
+    'software_wili'      => 'WILI',
 ];
 

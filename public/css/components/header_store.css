@@ -1,0 +1,329 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 80px;
+    background: var(--body-color);
+    transition: transform 0.3s ease, background 0.3s ease, padding 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+/* scrolled style */
+.header.scrolled {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* hide on scroll down */
+.header.hidden {
+    transform: translateY(-100%);
+}
+
+/* Logo image */
+.logo img {
+    height: 45px;   
+    width: auto;
+    display: block;
+}
+
+.header.scrolled .logo img {
+    height: 45px;
+    transition: 0.3s ease;
+}
+
+/* Center nav */
+.nav {
+    display: flex;
+    gap: 25px;
+}
+
+/* Nav links */
+.nav a {
+    text-decoration: none;
+    color: #111827;
+    position: relative;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.nav a:hover {
+    color: #2563eb;
+}
+
+.nav a.active {
+    font-weight: 600;
+    color: #2563eb;
+}
+
+/* Hamburger hidden on desktop */
+.menu-toggle {
+    display: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--dark-blue);
+}
+
+
+/* ===== Language Switcher ================================== */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+/* links */
+.language-switcher a {
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 15px;
+    color: #374151;
+    transition: 0.2s ease;
+}
+
+/* hover */
+.language-switcher a:hover {
+    background: #e2e8f0;
+}
+
+/* active language */
+.language-switcher a.active {
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+}
+
+/* ===== Services Dropdown  ======================================= */
+
+/* ===== NAV ITEM WRAPPER ===== */
+.nav-item {
+    position: relative;
+}
+
+/* ===== MEGA MENU BASE ===== */
+.mega-menu {
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    width: 720px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+
+    padding: 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+    z-index: 999;
+}
+
+/* ===== SHOW ON HOVER ===== */
+.nav-item.has-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== SECTION COLUMN ===== */
+.mega-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* ===== HEADERS ===== */
+.mega-column h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+/* ===== LINKS ===== */
+.mega-menu .service-link {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+/* hover effect */
+.mega-menu .service-link:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+/* ===== Services Dropdown Single  ======================================= */
+
+.mega-menu-single {
+    position: absolute;
+    top: calc(100%);
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+
+    width: 360px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 16px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+
+    padding: 22px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+    z-index: 999;
+}
+
+/* ===== SHOW ON HOVER ===== */
+.nav-item.has-dropdown:hover .mega-menu-single {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===== LINKS ===== */
+.mega-menu-single .service-link {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 12px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    color: #111827;
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+/* hover effect */
+.mega-menu-single .service-link:hover {
+    background: #f3f4f6;
+    color: #2563eb;
+}
+
+
+/* Button ******************************************* */
+
+.store-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.3s ease;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* Primary button */
+.store-btn-primary {
+    background: #FF3D2E;
+    color: white;
+}
+
+.store-btn-primary:hover {
+    background: #E63628;
+}
+
+
+/* ===== Responsive  ======================================= */
+@media (max-width: 900px) {
+
+    .header {
+        padding: 15px 20px;
+    }
+
+    /* hide nav by default */
+    .nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--body-color);
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        display: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    /* show nav when active */
+    .nav.active {
+        display: flex;
+    }
+
+    /* hide CTA button or move it */
+    .actions {
+        display: none;
+    }
+
+    /* disable services dropdown menu */
+    .caret-down, 
+    .mega-menu{
+        display: none;
+    }
+
+    /* show hamburger */
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .language-switcher {
+        background: transparent;
+        padding: 0;
+    }
+
+    .language-switcher a {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+}
+
+
+
