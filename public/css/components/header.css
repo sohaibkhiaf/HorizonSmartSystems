@@ -20,20 +20,12 @@
                 box-shadow 0.3s ease,
                 padding 0.3s ease,
                 transform 0.3s ease;
-}
-
-.header.scrolled {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-
-    background: var(--body-color);
 }
 
-.header.hidden {
-    transform: translateY(-100%);
-}
 
 
 /* =====================================================

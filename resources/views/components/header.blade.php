@@ -209,16 +209,6 @@ document.addEventListener("DOMContentLoaded", () => {
         navMenu.classList.remove("active");
     };
 
-    function handleHeaderScroll() {
-        if (!header) return;
-
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-    }
-
     function updateActiveTab() {
         let current = "";
 
@@ -241,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.addEventListener("scroll", () => {
-        handleHeaderScroll();
 
         if (@json($page != 'STORE')) {
             updateActiveTab();

@@ -86,12 +86,15 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
     ->group(function () {
-        
+    
+    // Dashboard
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Achievements
     Route::resource('achievements', AchievementController::class)
         ->except(['show']);
 
+    // Messages
     Route::patch('/messages/{message}/mark-seen', [MessageController::class, 'markSeen'])
         ->name('messages.markSeen');
 
@@ -115,9 +118,7 @@ Route::prefix('admin')
 
     Route::resource('users', UserController::class);
 
-
-
-
+    // Products
     Route::get('/products/', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products/', [ProductController::class, 'store'])->name('products.store');
@@ -125,7 +126,7 @@ Route::prefix('admin')
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-
+    // Requests
     Route::get('requests', [RequestController::class, 'index'])
         ->name('requests.index');
     Route::get('requests/create', [RequestController::class, 'create'])
