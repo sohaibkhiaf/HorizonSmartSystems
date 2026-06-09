@@ -68,5 +68,22 @@ return [
     'cta_description' => 'Recevez une réponse rapide et une proposition adaptée à vos besoins.',
     'cta_btn'         => 'Contactez-nous',
 
+
+
+
+
+
+
+
+'software_label' => 'Nos logiciels',
+'software_title' => 'Des logiciels prêts pour votre activité',
+'software_description' => 'Découvrez nos solutions logicielles professionnelles conçues pour simplifier la gestion quotidienne, améliorer le contrôle et gagner du temps.',
+'wili_title' => 'Wili',
+'wili_category' => 'Système de gestion de stock',
+'wili_description' => 'Wili est un système de gestion de stock conçu pour aider les entreprises à gérer les produits, l’inventaire, les ventes et les mouvements de stock de manière simple et organisée.',
+'wili_feature_1' => 'Gestion des produits',
+'wili_feature_2' => 'Suivi du stock',
+'wili_feature_3' => 'Gestion des ventes',
+'software_cta' => 'Demander une démo',
 ];
 

@@ -64,5 +64,25 @@ return [
     'view_project' => 'View project',
 
 
+
+
+
+
+
+
+
+
+
+
+'software_label' => 'Our Software',
+'software_title' => 'Software solutions ready for your business',
+'software_description' => 'Discover our professional software solutions designed to simplify daily business operations, improve control and save time.',
+'wili_title' => 'Wili',
+'wili_category' => 'Stock Management System',
+'wili_description' => 'Wili is a stock management system built to help businesses manage products, inventory, sales and daily stock movements in a simple and organized way.',
+'wili_feature_1' => 'Product management',
+'wili_feature_2' => 'Stock tracking',
+'wili_feature_3' => 'Sales management',
+'software_cta' => 'Request a demo',
 ];
 

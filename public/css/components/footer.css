@@ -1,113 +1,199 @@
+/* =====================================================
+   Footer
+===================================================== */
+
 .site-footer {
+    padding: 60px 20px 20px;
     background: hsl(0, 0%, 98%);
     color: #4b5563;
-    padding: 60px 20px 20px;
     border-top: 1px solid #e5e7eb;
 }
 
 .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
-    max-width: 1200px;
-    margin: auto;
 }
 
-/* Column separation */
+
+/* =====================================================
+   Footer Sections
+===================================================== */
+
+.footer-section {
+    min-width: 0;
+}
+
 .footer-section:not(:first-child) {
     padding-left: 20px;
 }
 
-/* Titles */
 .footer-section h3 {
     margin-bottom: 15px;
+
     font-size: 18px;
-    color: #111827;
     font-weight: 600;
+    color: #111827;
 }
 
-/* Logo */
+
+/* =====================================================
+   Brand
+===================================================== */
+
 .footer-logo {
     width: 140px;
+    height: auto;
     margin-bottom: 15px;
 }
 
-/* Description */
 .footer-description {
+    max-width: 280px;
+
     font-size: 14px;
     line-height: 1.6;
     color: #6b7280;
 }
 
-/* Social icons */
+
+/* =====================================================
+   Social Icons - Representation Only
+===================================================== */
+
 .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
     margin-top: 15px;
 }
 
-.footer-socials a {
-    margin-right: 12px;
-    color: #3b82f6;
+.footer-social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     font-size: 20px;
-    transition: 0.3s;
+    color: #3b82f6;
+
+    cursor: default;
+    user-select: none;
+
+    transition: color 0.3s ease,
+                transform 0.3s ease;
 }
 
-.footer-socials a:hover {
+.footer-social-icon:hover {
     color: #2563eb;
     transform: translateY(-2px);
 }
 
-/* Lists */
-.footer-section ul {
+
+/* =====================================================
+   Lists
+===================================================== */
+
+.footer-list {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
-.footer-section ul li {
+.footer-list li {
     margin-bottom: 10px;
+
     font-size: 14px;
     color: #6b7280;
-    transition: 0.3s;
+
+    transition: color 0.3s ease;
 }
 
-/* Links */
-.footer-section ul li a {
-    color: inherit; /* IMPORTANT */
-    text-decoration: none;
+
+
+/* =====================================================
+   Footer Links
+===================================================== */
+
+.footer-link {
     display: inline-flex;
     align-items: center;
-    transition: 0.3s;
+    gap: 8px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease,
+                transform 0.2s ease;
 }
 
-/* ICON FIX */
-.footer-section ul li i {
-    margin-right: 8px;
-    color: inherit; /* 🔥 now follows text color */
-    transition: 0.3s;
+.footer-link i {
+    width: 18px;
+    text-align: center;
+    color: inherit;
 }
 
-/* Hover effect (text + icon together) */
-.footer-section ul li:hover {
+.footer-link:hover {
+    color: #3b82f6;
+    transform: translateX(2px);
+}
+
+.footer-list li:hover {
     color: #3b82f6;
 }
 
-/* Contact alignment */
-.footer-contact ul li {
+/* =====================================================
+   Contact
+===================================================== */
+
+.footer-contact .footer-list li {
     display: flex;
     align-items: flex-start;
     gap: 8px;
 }
 
-/* Bottom */
-.footer-bottom {
+.footer-contact .footer-list li i {
+    width: 18px;
+    margin-top: 2px;
+    color: inherit;
     text-align: center;
+}
+
+.footer-contact span {
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   Bottom
+===================================================== */
+
+.footer-bottom {
     margin-top: 40px;
     padding-top: 20px;
+
     border-top: 1px solid #e5e7eb;
+
+    text-align: center;
     font-size: 14px;
     color: #9ca3af;
 }
 
-/* Responsive */
+
+/* =====================================================
+   Responsive
+===================================================== */
+
 @media (max-width: 900px) {
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
@@ -121,6 +207,14 @@
 @media (max-width: 500px) {
     .footer-container {
         grid-template-columns: 1fr;
+    }
+
+    .site-footer {
+        padding-top: 45px;
+    }
+
+    .footer-description {
+        max-width: 100%;
     }
 }
 

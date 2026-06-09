@@ -8,36 +8,37 @@
 
 @section('content')
 
-<!-- Hero  -->
-<section class="hero" id="homeSection" data-section="home" >
+<!-- Hero -->
+<section class="hero" id="homeSection" data-section="home">
     <div class="hero-container">
 
-        <!-- Left Side -->
         <div class="hero-text">
-            <!-- <p class="hero-small">{{ __('home.hero_agency_label') }}</p> -->
-
             <h1 class="hero-title">
                 {{ __('home.hero_title') }}
             </h1>
-<!-- 
-            <p class="hero-description">
-                {{ __('home.hero_description') }}
-            </p> -->
 
             <div class="hero-buttons">
-                <!-- <a href="/store"
-                    class="btn btn-primary">{{ __('home.hero_btn_store') }} &nbsp;<i class="fa-solid fa-cart-shopping"></i></a>
-                <a  onclick="scrollToSection('softwareSection')"
-                    class="btn btn-outline">{{ __('home.hero_btn_contact') }} &nbsp;<i class="fa-solid fa-paper-plane"></i></a> -->
-                <a  onclick="scrollToSection('contactSection')"
-                    class="btn btn-primary">{{ __('home.hero_btn_contact') }} &nbsp;<i class="fa-solid fa-paper-plane"></i></a>
+                <a onclick="scrollToSection('contactSection')" class="btn btn-primary">
+                    {{ __('home.hero_btn_contact') }}
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
+
+                <a onclick="scrollToSection('softwareSection')" class="btn btn-outline">
+                    {{ __('header.software') }}
+                    <i class="fa-solid fa-laptop-code"></i>
+                </a>
+
+                <a href="/store" class="btn btn-store-mobile">
+                    {{ __('header.store') }}
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
             </div>
         </div>
 
-        <!-- Right Side -->
         <div class="hero-image">
             <img src="{{ asset('images/over.png') }}" alt="{{ __('home.hero_title') }}">
         </div>
+
     </div>
 </section>
 
@@ -270,7 +271,63 @@
     </div>
 </section>
 
+<!-- Software  -->
+<section class="software-section" id="softwareSection" data-section="software">
+    <div class="software-container">
 
+        <div class="software-content">
+
+            <span class="software-label">
+                <i class="fa-solid fa-layer-group"></i>
+                {{ __('home.software_label') }}
+            </span>
+
+            <h2 class="software-title">
+                {{ __('home.software_title') }}
+            </h2>
+
+            <p class="software-description">
+                {{ __('home.software_description') }}
+            </p>
+
+            <div class="software-card">
+
+                <div class="software-card-header">
+                    <div class="software-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+
+                    <div>
+                        <h3>{{ __('home.wili_title') }}</h3>
+                        <span>{{ __('home.wili_category') }}</span>
+                    </div>
+                </div>
+
+                <p>
+                    {{ __('home.wili_description') }}
+                </p>
+
+                <div class="software-features">
+                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_1') }}</span>
+                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_2') }}</span>
+                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_3') }}</span>
+                </div>
+
+                <a onclick="scrollToSection('contactSection')" class="software-link">
+                    {{ __('home.software_cta') }}
+                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="software-image">
+            <img src="{{ asset('images/wili_pc.png') }}" alt="Wili Stock Management System">
+        </div>
+
+    </div>
+</section>
 
 <!-- Achievements  -->
 <section class="acheivements" id="achievementsSection" data-section="achievements">
