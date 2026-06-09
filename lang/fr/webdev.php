@@ -5,11 +5,6 @@ return [
     // Meta
     'page_title' => 'Création de sites web — Horizon Smart Systems',
 
-    // Hero 
-    'hero_title'       => 'Création de sites web professionnels',
-    'hero_description' => 'Nous concevons des sites web modernes, rapides et responsive, adaptés à votre activité, pour renforcer votre présence en ligne et attirer plus de clients.',
-    'hero_btn_contact' => 'Contactez-nous',
-
     // Description 
     'desc_title' => 'Développement web adapté à vos besoins',
     'desc_text'  => 'Un site web est bien plus qu\'une simple vitrine. C\'est un outil professionnel qui présente votre entreprise, rassure vos clients et facilite le contact avec votre audience. Chez Horizon Smart Systems, nous créons des sites web clairs, performants et faciles à utiliser, selon les objectifs de votre projet.',
@@ -43,10 +38,6 @@ return [
     'ecom_price'       => 'À partir de 75 000 DA',
     'ecom_price_note'  => 'Le prix dépend du nombre de produits, des options de paiement et des fonctionnalités avancées.',
 
-    // CTA 
-    'cta_title'    => 'Vous avez un projet de site web ?',
-    'cta_subtitle' => 'Contactez-nous pour discuter de vos besoins et obtenir une proposition adaptée.',
-    'cta_btn'      => 'Contactez-nous',
 
 ];
 

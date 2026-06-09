@@ -28,7 +28,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header :page="$page" />
+    <x-header page="APP" />
 
     {{-- Main Content --}}
     <main>
@@ -38,10 +38,6 @@
     {{-- Footer --}}
     <x-footer />
 
-    <script type="module" src="{{ asset('js/app.js') }}" ></script>
-    <script type="module" src="{{ asset('js/components/header.js') }}" ></script>
-
-    @yield('script')
 </body>
 </html>
 

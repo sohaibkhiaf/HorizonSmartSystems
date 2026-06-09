@@ -10,8 +10,12 @@
     {{-- Navigation --}}
     <nav class="nav" id="navMenu">
 
-        <a class="nav-tab {{ $page === 'home' ? 'active' : '' }}"
-           onclick="scrollToSection('homeSection')"
+        <a class="nav-tab"
+            @if ($page == 'APP')
+                onclick="scrollToSection('homeSection')"
+            @else
+                href="/"
+            @endif
            data-target="home">
             {{ __('header.home') }}
         </a>
@@ -19,8 +23,12 @@
         {{-- Services --}}
         <div class="nav-item has-dropdown">
 
-            <a class="nav-tab {{ $page === 'services' ? 'active' : '' }}"
-               onclick="scrollToSection('servicesSection')"
+            <a class="nav-tab"
+                @if ($page == 'APP')
+                    onclick="scrollToSection('servicesSection')"
+                @else
+                    href="/?section=services"
+                @endif
                data-target="services">
                 {{ __('header.services') }}
                 <span class="caret-down">
@@ -32,27 +40,27 @@
                 <div class="mega-column">
                     <h4>{{ __('header.services_title') }}</h4>
 
-                    <a class="service-link" href="/services/webdev">
+                    <a class="service-link" href="/webdev">
                         <i class="fa-solid fa-globe"></i>
                         <span>{{ __('header.service_web_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services/appdev">
+                    <a class="service-link" href="/appdev">
                         <i class="fa-solid fa-laptop-code"></i>
                         <span>{{ __('header.service_app_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services/erp">
+                    <a class="service-link" href="/erp">
                         <i class="fa-solid fa-chart-pie"></i>
                         <span>{{ __('header.service_erp_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services/systems">
+                    <a class="service-link" href="/systems">
                         <i class="fa-solid fa-gears"></i>
                         <span>{{ __('header.service_sys_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services/support">
+                    <a class="service-link" href="/support">
                         <i class="fa-solid fa-headset"></i>
                         <span>{{ __('header.service_support_title') }}</span>
                     </a>
@@ -61,22 +69,22 @@
                 <div class="mega-column">
                     <h4>{{ __('header.other_services_title') }}</h4>
 
-                    <a class="service-link" href="/services">
+                    <a class="service-link" onclick="scrollToSection('servicesSection')">
                         <i class="fa-solid fa-earth-europe"></i>
                         <span>{{ __('header.other_intl_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services/subs">
+                    <a class="service-link" onclick="scrollToSection('servicesSection')">
                         <i class="fa-solid fa-credit-card"></i>
                         <span>{{ __('header.other_subscriptions_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services">
+                    <a class="service-link" onclick="scrollToSection('servicesSection')">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <span>{{ __('header.other_hosting_title') }}</span>
                     </a>
 
-                    <a class="service-link" href="/services">
+                    <a class="service-link" onclick="scrollToSection('servicesSection')">
                         <i class="fa-solid fa-circle-info"></i>
                         <span>{{ __('header.other_consulting_title') }}</span>
                     </a>
@@ -87,8 +95,12 @@
         {{-- Software --}}
         <div class="nav-item has-dropdown">
 
-            <a class="nav-tab {{ $page === 'software' ? 'active' : '' }}"
-               onclick="scrollToSection('softwareSection')"
+            <a class="nav-tab"
+                @if ($page == 'APP')
+                    onclick="scrollToSection('softwareSection')"
+                @else
+                    href="/?section=software"
+                @endif
                data-target="software">
                 {{ __('header.software') }}
                 <span class="caret-down">
@@ -108,25 +120,42 @@
             </div>
         </div>
 
-        <a class="nav-tab {{ $page === 'achievements' ? 'active' : '' }}"
-           onclick="scrollToSection('achievementsSection')"
-           data-target="achievements">
+        <a class="nav-tab"
+            @if ($page == 'APP')
+                onclick="scrollToSection('achievementsSection')"
+            @else
+                href="/?section=achievements"
+            @endif
+            data-target="achievements">
             {{ __('header.achievements') }}
         </a>
 
-        <a class="nav-tab {{ $page === 'contact' ? 'active' : '' }}"
-           onclick="scrollToSection('contactSection')"
-           data-target="contact">
+        <a class="nav-tab"
+            @if ($page == 'APP' || $page == 'SERVICE')
+                onclick="scrollToSection('contactSection')"
+            @else
+                href="/?section=contact"
+            @endif
+            data-target="contact">
             {{ __('header.contact') }}
         </a>
+
+        @if ($page == "STORE")
+        <a class="nav-tab active">
+            <i class="fa-solid fa-cart-shopping"></i>
+            {{ __('header.store') }}
+        </a>
+        @endif
 
     </nav>
 
     {{-- Store Button --}}
+    @if ($page != "STORE")
     <a href="/store" class="store-btn store-btn-primary">
         <i class="fa-solid fa-cart-shopping"></i>
         {{ __('header.store') }}
     </a>
+    @endif
 
     {{-- Language Switcher --}}
     <div class="actions">
@@ -213,7 +242,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
         handleHeaderScroll();
-        updateActiveTab();
+
+        if (@json($page != 'STORE')) {
+            updateActiveTab();
+        }
     });
 
     if (menuToggle && navMenu) {

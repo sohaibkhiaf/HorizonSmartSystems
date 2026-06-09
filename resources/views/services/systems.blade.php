@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.service')
 
 @section('title', __('systems.page_title'))
 
@@ -8,31 +8,6 @@
 
 @section('content')
 
-<!-- Hero  -->
-<section class="hero">
-    <div class="hero-container">
-
-        <div class="hero-text">
-            <h1 class="hero-title">{{ __('systems.hero_title') }}</h1>
-            <p class="hero-description">
-                {{ __('systems.hero_description') }}
-            </p>
-
-            <div class="hero-buttons">
-                <a href="/contact" class="btn btn-primary">
-                    {{ __('systems.hero_btn_contact') }}
-                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="hero-image">
-            <img src="{{ asset('images/erp.png') }}" alt="{{ __('systems.hero_title') }}">
-        </div>
-
-    </div>
-</section>
-
 <!-- Description -->
 <section class="description">
     <div class="description-container">
@@ -40,7 +15,6 @@
         <p>{{ __('systems.desc_text') }}</p>
     </div>
 </section>
-
 
 <!-- Service Types  -->
 <section class="service-types">
@@ -78,28 +52,125 @@
 
 </section>
 
-<!-- CTA  -->
-<section class="cta">
-    <div class="cta-overlay">
+<!-- Contact ------------------------------------------------------------------- -->
+<section class="contact-section" id="contactSection" data-section="contact">
+    <div class="contact-container">
 
-        <div class="cta-container">
+        <!-- LEFT: CONTACT INFOS -->
+        <div class="contact-info">
 
-            <div class="cta-left">
-                <h2>{{ __('systems.cta_title') }}</h2>
-                <h3>{{ __('systems.cta_subtitle') }}</h3>
+            <h2 class="contact-title">{{ __('home.contact_title') }}</h2>
+
+            <!-- Phone -->
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>{{ __('home.phone_label') }}</h4>
+                    <p>0561 65 51 00
+                        <br> 0782 94 07 60
+                        <br> 0540 29 62 00
+                    </p>
+                </div>
             </div>
 
-            <div class="cta-right">
-                <a href="/contact" class="cta-btn">
-                    {{ __('systems.cta_btn') }}
-                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
+            <!-- Email -->
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h4>{{ __('home.email_label') }}</h4>
+                    <p>contact@hss-agency.com</p>
+                </div>
             </div>
+
+            <!-- Facebook -->
+            <div class="contact-item">
+                <i class="fab fa-facebook-f"></i>
+                <div>
+                    <h4>{{ __('home.facebook_label') }}</h4>
+                    <p>facebook.com/HorizonSmartSystems</p>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="contact-item">
+                <i class="fas fa-location-dot"></i>
+                <div>
+                    <h4>{{ __('home.address_label') }}</h4>
+                    <p>{{ __('home.address_value') }}</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: CONTACT FORM -->
+        <div class="contact-form">
+
+            <h2>{{ __('home.form_title') }}</h2>
+
+            @if(session('success'))
+                <div class="form-alert success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="form-alert danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('contact.store') }}">
+                @csrf
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_fullname') }}</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('home.form_fullname_ph') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_email') }}</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('home.form_email_ph') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_phone') }}</label>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('home.form_phone_ph') }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_subject') }}</label>
+                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('home.form_subject_ph') }}" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group message-group">
+                    <label>{{ __('home.form_message') }}</label>
+                    <textarea name="message" placeholder="{{ __('home.form_message_ph') }}" required>{{ old('message') }}</textarea>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="consent">
+                    <label for="consent">
+                        {{ __('home.form_consent') }}
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    {{ __('home.form_submit') }} <i class="fa-regular fa-paper-plane"></i>
+                </button>
+            </form>
 
         </div>
 
     </div>
 </section>
+
 
 @endsection
 

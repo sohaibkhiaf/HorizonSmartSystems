@@ -8,13 +8,13 @@
 
 @section('content')
 
-<!-- Hero -->
+<!-- Hero ---------------------------------------------------------------------- -->
 <section class="hero" id="homeSection" data-section="home">
     <div class="hero-container">
 
         <div class="hero-text">
             <h1 class="hero-title">
-                {{ __('home.hero_title') }}
+            <span class="hero-dev">{{ __('home.hero_development') }}</span> {{ __('home.hero_title') }}
             </h1>
 
             <div class="hero-buttons">
@@ -24,12 +24,12 @@
                 </a>
 
                 <a onclick="scrollToSection('softwareSection')" class="btn btn-outline">
-                    {{ __('header.software') }}
+                    {{ __('home.hero_btn_software') }}
                     <i class="fa-solid fa-laptop-code"></i>
                 </a>
 
                 <a href="/store" class="btn btn-store-mobile">
-                    {{ __('header.store') }}
+                    {{ __('home.hero_btn_store') }}
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
             </div>
@@ -42,9 +42,7 @@
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- About  -->
+<!-- About ------------------------------------------------------------------------  -->
 <section class="about" id="aboutSection" data-section="about">
     <div class="about-container">
 
@@ -105,8 +103,7 @@
     </div>
 </section>
 
-
-<!-- Proposed Services  -->
+<!-- Our Services ---------------------------------------------------------- -->
 <section class="services"  id="servicesSection" data-section="services">
     <div class="services-container">
 
@@ -119,8 +116,8 @@
                     <div class="icon"><i class="fas fa-globe"></i></div>
                     <h3>{{ __('home.service_web_title') }}</h3>
                     <p>{{ __('home.service_web_desc') }}</p>
-                    <a href="/services/webdev" class="plus-link">
-                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    <a href="/webdev" class="plus-link">
+                        {{ __('home.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -128,8 +125,8 @@
                     <div class="icon"><i class="fas fa-laptop-code"></i></div>
                     <h3>{{ __('home.service_app_title') }}</h3>
                     <p>{{ __('home.service_app_desc') }}</p>
-                    <a href="/services/appdev" class="plus-link">
-                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    <a href="/appdev" class="plus-link">
+                        {{ __('home.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -137,8 +134,8 @@
                     <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
                     <h3>{{ __('home.service_erp_title') }}</h3>
                     <p>{{ __('home.service_erp_desc') }}</p>
-                    <a href="/services/erp" class="plus-link">
-                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    <a href="/erp" class="plus-link">
+                        {{ __('home.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -146,8 +143,8 @@
                     <div class="icon"><i class="fas fa-cogs"></i></div>
                     <h3>{{ __('home.service_sys_title') }}</h3>
                     <p>{{ __('home.service_sys_desc') }}</p>
-                    <a href="/services/systems" class="plus-link">
-                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    <a href="/systems" class="plus-link">
+                        {{ __('home.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -155,8 +152,8 @@
                     <div class="icon"><i class="fas fa-headset"></i></div>
                     <h3>{{ __('home.service_support_title') }}</h3>
                     <p>{{ __('home.service_support_desc') }}</p>
-                    <a href="/services/support" class="plus-link">
-                        {{ __('services.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    <a href="/support" class="plus-link">
+                        {{ __('home.learn_more') }} <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
 
@@ -166,7 +163,7 @@
     </div>
 </section>
 
-<!-- Other Services  -->
+<!-- Other Services ---------------------------------------------------------------- -->
 <section class="services">
     <div class="services-container">
 
@@ -205,15 +202,15 @@
     </div>
 </section>
 
-<!-- Method  -->
+<!-- Method ---------------------------------------------------------------- -->
 <section class="method">
     <div class="method-container">
 
         <div class="method-left">
-            <h2 class="method-title">{{ __('services.method_title') }}</h2>
+            <h2 class="method-title">{{ __('home.method_title') }}</h2>
 
             <p class="method-description">
-                {{ __('services.method_description') }}
+                {{ __('home.method_description') }}
             </p>
         </div>
 
@@ -225,8 +222,8 @@
                         <i class="fa-solid fa-1"></i>
                     </div>
                     <div class="card-text">
-                        <h3>{{ __('services.method_step1_title') }} <i class="fa-solid fa-magnifying-glass"></i></h3>
-                        <p>{{ __('services.method_step1_desc') }}</p>
+                        <h3>{{ __('home.method_step1_title') }} <i class="fa-solid fa-magnifying-glass"></i></h3>
+                        <p>{{ __('home.method_step1_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -237,8 +234,8 @@
                         <i class="fa-solid fa-2"></i>
                     </div>
                     <div class="card-text">
-                        <h3>{{ __('services.method_step2_title') }} <i class="fa-regular fa-pen-to-square"></i></h3>
-                        <p>{{ __('services.method_step2_desc') }}</p>
+                        <h3>{{ __('home.method_step2_title') }} <i class="fa-regular fa-pen-to-square"></i></h3>
+                        <p>{{ __('home.method_step2_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -249,8 +246,8 @@
                         <i class="fa-solid fa-3"></i>
                     </div>
                     <div class="card-text">
-                        <h3>{{ __('services.method_step3_title') }} <i class="fa-solid fa-code"></i></h3>
-                        <p>{{ __('services.method_step3_desc') }}</p>
+                        <h3>{{ __('home.method_step3_title') }} <i class="fa-solid fa-code"></i></h3>
+                        <p>{{ __('home.method_step3_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -261,8 +258,8 @@
                         <i class="fa-solid fa-4"></i>
                     </div>
                     <div class="card-text">
-                        <h3>{{ __('services.method_step4_title') }} <i class="fa-solid fa-rocket"></i></h3>
-                        <p>{{ __('services.method_step4_desc') }}</p>
+                        <h3>{{ __('home.method_step4_title') }} <i class="fa-solid fa-rocket"></i></h3>
+                        <p>{{ __('home.method_step4_desc') }}</p>
                     </div>
                 </div>
             </div>
@@ -271,68 +268,65 @@
     </div>
 </section>
 
-<!-- Software  -->
+<!-- Software ---------------------------------------------------------------- -->
 <section class="software-section" id="softwareSection" data-section="software">
     <div class="software-container">
 
         <div class="software-content">
+            <div class="software-header">
+                <h2 class="software-title">
+                    {{ __('home.software_title') }}
+                </h2>
 
-            <span class="software-label">
-                <i class="fa-solid fa-layer-group"></i>
-                {{ __('home.software_label') }}
-            </span>
-
-            <h2 class="software-title">
-                {{ __('home.software_title') }}
-            </h2>
-
-            <p class="software-description">
-                {{ __('home.software_description') }}
-            </p>
+                <p class="software-description">
+                    {{ __('home.software_description') }}
+                </p>
+            </div>
 
             <div class="software-card">
+                <div class="software-information">
+                    <div class="software-card-header">
+                        <div class="software-icon">
+                            <i class="fa-solid fa-w"></i>
+                        </div>
 
-                <div class="software-card-header">
-                    <div class="software-icon">
-                        <i class="fa-solid fa-boxes-stacked"></i>
+                        <div>
+                            <h3>{{ __('home.wili_title') }}</h3>
+                            <span>{{ __('home.wili_category') }}</span>
+                        </div>
                     </div>
 
-                    <div>
-                        <h3>{{ __('home.wili_title') }}</h3>
-                        <span>{{ __('home.wili_category') }}</span>
+                    <p>
+                        {{ __('home.wili_description') }}
+                    </p>
+
+                    <div class="software-features">
+                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_1') }}</span>
+                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_2') }}</span>
+                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_3') }}</span>
                     </div>
+
+                    <a onclick="scrollToSection('contactSection')" class="software-link">
+                        {{ __('home.software_cta') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
                 </div>
 
-                <p>
-                    {{ __('home.wili_description') }}
-                </p>
-
-                <div class="software-features">
-                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_1') }}</span>
-                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_2') }}</span>
-                    <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_3') }}</span>
+                <div class="software-image">
+                    <img src="{{ asset('images/wili_pc.png') }}" alt="Wili Stock Management System">
                 </div>
-
-                <a onclick="scrollToSection('contactSection')" class="software-link">
-                    {{ __('home.software_cta') }}
-                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
 
             </div>
 
         </div>
 
-        <div class="software-image">
-            <img src="{{ asset('images/wili_pc.png') }}" alt="Wili Stock Management System">
-        </div>
-
     </div>
 </section>
 
-<!-- Achievements  -->
+<!-- Achievements ----------------------------------------------------------- -->
 <section class="acheivements" id="achievementsSection" data-section="achievements">
     <div class="acheivements-header">
-        <h2 class="acheivements-title">{{ __('home.achievements_title') }}</h2>
+        <h2 class="achievements-title">{{ __('home.achievements_title') }}</h2>
 
     </div>
 
@@ -370,7 +364,7 @@
     </div>
 </section>
 
-<!-- Features  -->
+<!-- Features ------------------------------------------------------------------- -->
 <section class="features">
     <div class="features-container">
 
@@ -434,20 +428,20 @@
     </div>
 </section>
 
-<!-- Contact  -->
+<!-- Contact ------------------------------------------------------------------- -->
 <section class="contact-section" id="contactSection" data-section="contact">
     <div class="contact-container">
 
         <!-- LEFT: CONTACT INFOS -->
         <div class="contact-info">
 
-            <h2 class="contact-title">{{ __('contact.contact_title') }}</h2>
+            <h2 class="contact-title">{{ __('home.contact_title') }}</h2>
 
             <!-- Phone -->
             <div class="contact-item">
                 <i class="fas fa-phone"></i>
                 <div>
-                    <h4>{{ __('contact.phone_label') }}</h4>
+                    <h4>{{ __('home.phone_label') }}</h4>
                     <p>0561 65 51 00
                         <br> 0782 94 07 60
                         <br> 0540 29 62 00
@@ -459,7 +453,7 @@
             <div class="contact-item">
                 <i class="fas fa-envelope"></i>
                 <div>
-                    <h4>{{ __('contact.email_label') }}</h4>
+                    <h4>{{ __('home.email_label') }}</h4>
                     <p>contact@hss-agency.com</p>
                 </div>
             </div>
@@ -468,7 +462,7 @@
             <div class="contact-item">
                 <i class="fab fa-facebook-f"></i>
                 <div>
-                    <h4>{{ __('contact.facebook_label') }}</h4>
+                    <h4>{{ __('home.facebook_label') }}</h4>
                     <p>facebook.com/HorizonSmartSystems</p>
                 </div>
             </div>
@@ -477,8 +471,8 @@
             <div class="contact-item">
                 <i class="fas fa-location-dot"></i>
                 <div>
-                    <h4>{{ __('contact.address_label') }}</h4>
-                    <p>{{ __('contact.address_value') }}</p>
+                    <h4>{{ __('home.address_label') }}</h4>
+                    <p>{{ __('home.address_value') }}</p>
                 </div>
             </div>
 
@@ -487,7 +481,7 @@
         <!-- RIGHT: CONTACT FORM -->
         <div class="contact-form">
 
-            <h2>{{ __('contact.form_title') }}</h2>
+            <h2>{{ __('home.form_title') }}</h2>
 
             @if(session('success'))
                 <div class="form-alert success">
@@ -510,41 +504,41 @@
                 <div class="form-grid">
 
                     <div class="form-group">
-                        <label>{{ __('contact.form_fullname') }}</label>
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('contact.form_fullname_ph') }}" required>
+                        <label>{{ __('home.form_fullname') }}</label>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('home.form_fullname_ph') }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('contact.form_email') }}</label>
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('contact.form_email_ph') }}">
+                        <label>{{ __('home.form_email') }}</label>
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('home.form_email_ph') }}">
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('contact.form_phone') }}</label>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('contact.form_phone_ph') }}" required>
+                        <label>{{ __('home.form_phone') }}</label>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('home.form_phone_ph') }}" required>
                     </div>
 
                     <div class="form-group">
-                        <label>{{ __('contact.form_subject') }}</label>
-                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('contact.form_subject_ph') }}" required>
+                        <label>{{ __('home.form_subject') }}</label>
+                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('home.form_subject_ph') }}" required>
                     </div>
 
                 </div>
 
                 <div class="form-group message-group">
-                    <label>{{ __('contact.form_message') }}</label>
-                    <textarea name="message" placeholder="{{ __('contact.form_message_ph') }}" required>{{ old('message') }}</textarea>
+                    <label>{{ __('home.form_message') }}</label>
+                    <textarea name="message" placeholder="{{ __('home.form_message_ph') }}" required>{{ old('message') }}</textarea>
                 </div>
 
                 <div class="form-check">
                     <input type="checkbox" id="consent">
                     <label for="consent">
-                        {{ __('contact.form_consent') }}
+                        {{ __('home.form_consent') }}
                     </label>
                 </div>
 
                 <button type="submit" class="btn-submit">
-                    {{ __('contact.form_submit') }} <i class="fa-regular fa-paper-plane"></i>
+                    {{ __('home.form_submit') }} <i class="fa-regular fa-paper-plane"></i>
                 </button>
             </form>
 
@@ -553,7 +547,7 @@
     </div>
 </section>
 
-<!-- Map & Hours  -->
+<!-- Map & Hours ------------------------------------------------------------------- -->
 <section class="map-hours-section">
 
     <div class="map-hours-box">
@@ -562,23 +556,23 @@
         <div class="hours-part">
             <div class="hours-header">
                 <i class="fas fa-clock"></i>
-                <h3>{{ __('contact.hours_title') }}</h3>
+                <h3>{{ __('home.hours_title') }}</h3>
             </div>
 
             <div class="hours-content">
                 <div class="hour-row">
-                    <span>{{ __('contact.saturday') }} - {{ __('contact.wednesday') }}</span>
+                    <span>{{ __('home.saturday') }} - {{ __('home.wednesday') }}</span>
                     <span>08:30 - 16:30</span>
                 </div>
 
                 <div class="hour-row closed">
-                    <span>{{ __('contact.thursday') }}</span>
-                    <span>{{ __('contact.closed') }}</span>
+                    <span>{{ __('home.thursday') }}</span>
+                    <span>{{ __('home.closed') }}</span>
                 </div>
 
                 <div class="hour-row closed">
-                    <span>{{ __('contact.friday') }}</span>
-                    <span>{{ __('contact.closed') }}</span>
+                    <span>{{ __('home.friday') }}</span>
+                    <span>{{ __('home.closed') }}</span>
                 </div>
             </div>
         </div>
@@ -609,12 +603,31 @@ function scrollToSection(sectionId) {
         behavior: 'smooth'
     });
 }
+
+const swiper = new Swiper(".services-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    grabCursor: true,
+});
+
+new Swiper(".acheivements-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    grabCursor: true
+});
+
+
+const params = new URLSearchParams(window.location.search);
+    const section = params.get("section");
+
+    if (section) {
+        const target = document.querySelector(`[data-section="${section}"]`);
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    }
+
 </script>
 
-@endsection
-
-
-@section('script')
-    <script type="module" src="{{ asset('js/home.js') }}"></script>
 @endsection
 

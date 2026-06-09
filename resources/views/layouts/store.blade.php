@@ -9,7 +9,7 @@
     <title>@yield('title', 'Horizon Smart Systems')</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/components/header_store.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/components/footer.css') }}">
 
     <!-- Font Awesome -->
@@ -28,7 +28,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header-store />
+    <x-header page="STORE" />
 
     {{-- Main Content --}}
     <main>
@@ -38,10 +38,6 @@
     {{-- Footer --}}
     <x-footer />
 
-    <script type="module" src="{{ asset('js/store.js') }}" ></script>
-    <script type="module" src="{{ asset('js/components/header_store.js') }}" ></script>
-
-    @yield('script')
 </body>
 </html>
 

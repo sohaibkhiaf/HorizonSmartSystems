@@ -25,7 +25,7 @@ Route::get('/language/{locale}', function ($locale) {
 
 
 // Public Routes //////////////
-
+// Home
 Route::get('/', function () {
 
     $achievements = Achievement::where('is_published', true)
@@ -42,23 +42,23 @@ Route::get('/', function () {
 
 // Services /////////////////
 
-Route::get('/services/webdev', function () {
+Route::get('/webdev', function () {
     return view('/services/webdev', ['page' => 'services']);
 });
 
-Route::get('/services/appdev', function () {
+Route::get('/appdev', function () {
     return view('/services/appdev', ['page' => 'services']);
 });
 
-Route::get('/services/erp', function () {
+Route::get('/erp', function () {
     return view('/services/erp', ['page' => 'services']);
 });
 
-Route::get('/services/systems', function () {
+Route::get('/systems', function () {
     return view('/services/systems', ['page' => 'services']);
 });
 
-Route::get('/services/support', function () {
+Route::get('/support', function () {
     return view('/services/support', ['page' => 'services']);
 });
 
