@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Store')
+@section('title', __('store.title'))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/store/index.css') }}">
@@ -10,26 +10,27 @@
 
 <!-- Search Form -->
 <form method="GET" action="{{ route('store.index') }}" class="search-form">
-
     <input type="hidden" name="category" value="{{ $category }}">
 
     <input 
         type="text" 
         name="search" 
-        placeholder="Search products..." 
+        placeholder="{{ __('store.search_placeholder') }}" 
+        style="{{ app()->getLocale() == 'ar' ? 'border-left: none; border-radius: 0 12px 12px 0;' : 'border-right: none; border-radius: 12px 0 0 12px;' }}"
         value="{{ request('search') }}">
 
     @if (!empty($search))
-        <a href="{{ route('store.index', ['category' => $category]) }}" type="submit">
-            Réinit <i class="fa-solid fa-arrow-rotate-right"></i>
+        <a href="{{ route('store.index', ['category' => $category]) }}" type="submit"
+            style="{{ app()->getLocale() == 'ar' ? 'border-right: 1px solid #ddd;' : 'border-left: 1px solid #ddd;' }}">
+            {{ __('store.reset') }} <i class="fa-solid fa-arrow-rotate-right"></i>
         </a>
     @endif
 
-    <button type="submit">
-        Search <i class="fa fa-search"></i>
+    <button type="submit"
+        style="{{ app()->getLocale() == 'ar' ? 'border-radius: 12px 0 0 12px;' : 'border-radius: 0 12px 12px 0;' }}">
+        {{ __('store.search') }} <i class="fa fa-search"></i>
     </button>
 
-    
 </form>
 
 <!-- Products Section -->
@@ -42,43 +43,43 @@
             <a href="{{ route('store.index', ['category' => 'all', 'search'=> $search]) }}"
             class="tab {{ request('category', 'all') == 'all' ? 'active' : '' }}">
                 <i class="fa-solid fa-layer-group"></i>
-                All
+                {{ __('store.categories.all') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'games', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'games' ? 'active' : '' }}">
                 <i class="fa-solid fa-gamepad"></i>
-                Jeux
+                {{ __('store.categories.games') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'gift_cards', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'gift_cards' ? 'active' : '' }}">
                 <i class="fa-solid fa-gift"></i>
-                Cartes cadeaux
+                {{ __('store.categories.gift_cards') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'software', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'software' ? 'active' : '' }}">
                 <i class="fa-solid fa-laptop-code"></i>
-                Logiciel
+                {{ __('store.categories.software') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'subscriptions', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'subscriptions' ? 'active' : '' }}">
                 <i class="fa-solid fa-repeat"></i>
-                Abonnements
+                {{ __('store.categories.subscriptions') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'in_game_currency', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'in_game_currency' ? 'active' : '' }}">
                 <i class="fa-solid fa-coins"></i>
-                Monnaie virtuelle
+                {{ __('store.categories.in_game_currency') }}
             </a>
 
             <a href="{{ route('store.index', ['category' => 'other', 'search'=> $search]) }}"
             class="tab {{ request('category') == 'other' ? 'active' : '' }}">
                 <i class="fa-solid fa-ellipsis"></i>
-                Autre
+                {{ __('store.categories.other') }}
             </a>
         </div>
     </div>
@@ -110,36 +111,36 @@
                             <h3>{{ $product->name }}</h3>
 
                             <span class="product-price">
-                                {{ number_format($product->price, 0, ',', ' ') }} DA
+                                {{ $product->price }} {{ __('store.da') }}
                             </span>
                         </div>
 
                         <div class="product-meta">
                             <span class="badge">
                                 @if ($product->category == 'games')
-                                    Jeux
+                                    {{ __('store.categories.games') }}
                                 @elseif ($product->category == 'gift_cards')
-                                    Cartes cadeaux
+                                    {{ __('store.categories.gift_cards') }}
                                 @elseif ($product->category == 'software')
-                                    Logiciels
+                                    {{ __('store.categories.software_plural') }}
                                 @elseif ($product->category == 'subscriptions')
-                                    Abonnements
+                                    {{ __('store.categories.subscriptions') }}
                                 @elseif ($product->category == 'in_game_currency')
-                                    Monnaie virtuelle
+                                    {{ __('store.categories.in_game_currency') }}
                                 @elseif ($product->category == 'other')
-                                    Autre
+                                    {{ __('store.categories.other') }}
                                 @else
-                                    N/A
+                                    {{ __('store.na') }}
                                 @endif
                             </span>
 
                             <span class="badge">
                                 @if ($product->type == 'key')
-                                    Clé
+                                    {{ __('store.types.key') }}
                                 @elseif ($product->type == 'account')
-                                    Compte
+                                    {{ __('store.types.account') }}
                                 @elseif ($product->type == 'invitation')
-                                    Invitation
+                                    {{ __('store.types.invitation') }}
                                 @endif
                             </span>
                         </div>
@@ -152,13 +153,13 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
 
-                    <h3>No results found</h3>
-                    <p>Try adjusting your search or filters to find what you're looking for.</p>
+                    <h3>{{ __('store.no_results_title') }}</h3>
+                    <p>{{ __('store.no_results_text') }}</p>
                 </div>
             @endforelse
         </div>
         
-        <!-- Navigator -->
+        <!-- Navigator (UNCHANGED) -->
         <div class="navigator-container">
             @if ($products->currentPage() > 1)
                 <a href="{{$products->previousPageUrl().'&category='.$category.'&search='.$search}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
@@ -185,4 +186,3 @@
 </section>
 
 @endsection
-
