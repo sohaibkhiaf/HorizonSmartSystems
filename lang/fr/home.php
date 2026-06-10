@@ -26,6 +26,7 @@ return [
 
     // Services /////////////////////////////////////////////////////////////
     'services_title'      => 'Services proposés',
+    'services_description' => 'Découvrez nos services numériques conçus pour aider votre entreprise à se développer grâce à des sites web modernes, des logiciels personnalisés, des systèmes de gestion et un support informatique fiable.',
     'service_web_title'   => 'Création de sites web',
     'service_web_desc'    => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
     'service_app_title'   => 'Création d\'application sur mesure',
@@ -77,18 +78,8 @@ return [
 
     // Achievements ///////////////////////////////////////////////////////////
     'achievements_title'         => 'Nos réalisations',
+    'achievements_description' => 'Découvrez une sélection de projets réalisés pour des entreprises, allant des sites web et plateformes digitales aux solutions logicielles conçues pour répondre à de vrais besoins opérationnels.',
     'view_project' => 'Voir le projet',
-
-    // Features ///////////////////////////////////////////////////////////
-    'features_title'             => 'Pourquoi choisir HSS ?',
-    'feature_custom_title'       => 'Solutions sur mesure',
-    'feature_custom_desc'        => 'Adaptées à vos besoins et budgets.',
-    'feature_quality_title'      => 'Qualité et fiabilité',
-    'feature_quality_desc'       => 'Des services fiables et de haute qualité.',
-    'feature_speed_title'        => 'Rapidité et efficacité',
-    'feature_speed_desc'         => 'Des solutions rapides pour un meilleur rendement.',
-    'feature_support_title'      => 'Support professionnel',
-    'feature_support_desc'       => 'Une équipe à votre écoute pour vous accompagner.',
 
 
     // Contact ///////////////////////////////////////////////////////////

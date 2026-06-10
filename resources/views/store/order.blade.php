@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Place order')
+@section('title', __('order.title'))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/store/order.css') }}">
@@ -8,166 +8,229 @@
 
 @section('content')
 
-<section class="command-page">
+@php
+    $categories = [
+        'games' => __('store.categories.games'),
+        'gift_cards' => __('store.categories.gift_cards'),
+        'software' => __('store.categories.software_plural'),
+        'subscriptions' => __('store.categories.subscriptions'),
+        'in_game_currency' => __('store.categories.in_game_currency'),
+        'other' => __('store.categories.other'),
+    ];
 
-    <a href="{{ route('store.index') }}"><i class="fa-solid fa-arrow-left"></i>Back to catalog</a>
-    
-    <div class="command-container">
+    $types = [
+        'key' => __('store.types.key'),
+        'account' => __('store.types.account'),
+        'invitation' => __('store.types.invitation'),
+    ];
+@endphp
 
-        {{-- Command Form --}}
-        <div class="command-card">
+<main class="order-page {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
+
+    <a href="{{ route('store.index') }}" class="back-link">
+        <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left' }}"></i>
+        {{ __('order.back_to_catalog') }}
+    </a>
+
+    <form
+        id="orderForm"
+        action="{{ route('store.confirm', ['product' => $product]) }}"
+        method="POST"
+        class="order-container">
+        @csrf
+
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="quantity" id="hidden_quantity" value="1">
+
+        {{-- Order Form --}}
+        <section class="order-card">
             <div class="section-head">
                 <div class="section-icon">
-                    <i class="fas fa-lock"></i>
+                    <i class="fa-solid fa-receipt"></i>
                 </div>
 
                 <div>
-                    <h2>Command</h2>
-                    <p>Fill in your details to complete your order.</p>
+                    <h1>{{ __('order.form_title') }}</h1>
+                    <p>{{ __('order.form_description') }}</p>
                 </div>
             </div>
 
-            <form 
-                action="{{ route('store.confirm', ['product' => $product]) }}" 
-                method="POST" class="command-form">
-                @csrf
-
+            <div class="form-grid">
                 <div class="form-group">
-                    <label>Client full name <span>*</span></label>
-                    <input type="text" name="full_name" value="{{ old('full_name') }}" required>
-                    @error('full_name') <small>{{ $message }}</small> @enderror
+                    <label for="full_name">
+                        {{ __('order.full_name') }}
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        id="full_name"
+                        type="text"
+                        name="full_name"
+                        value="{{ old('full_name') }}"
+                        placeholder="{{ __('order.full_name_placeholder') }}"
+                        required>
+
+                    @error('full_name')
+                        <small>{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label>Phone number <span>*</span></label>
-                    <input type="tel" name="phone" value="{{ old('phone') }}" required>
-                    @error('phone') <small>{{ $message }}</small> @enderror
+                    <label for="phone">
+                        {{ __('order.phone') }}
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        name="phone"
+                        value="{{ old('phone') }}"
+                        placeholder="{{ __('order.phone_placeholder') }}"
+                        required>
+
+                    @error('phone')
+                        <small>{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="email" value="{{ old('email') }}">
-                    @error('email') <small>{{ $message }}</small> @enderror
+                    <label for="email">
+                        {{ __('order.email') }}
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value="{{ old('email') }}"
+                        placeholder="{{ __('order.email_placeholder') }}">
+
+                    @error('email')
+                        <small>{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" name="address" value="{{ old('address') }}">
-                    @error('address') <small>{{ $message }}</small> @enderror
-                </div>
+                    <label for="address">
+                        {{ __('order.address') }}
+                    </label>
 
-                <div class="form-group">
-                    <label>Order notes</label>
-                    <textarea name="notes" rows="4">{{ old('notes') }}</textarea>
-                    @error('notes') <small>{{ $message }}</small> @enderror
-                </div>
+                    <input
+                        id="address"
+                        type="text"
+                        name="address"
+                        value="{{ old('address') }}"
+                        placeholder="{{ __('order.address_placeholder') }}">
 
-                <p class="secure-message">
-                    <i class="fas fa-shield-alt"></i>
-                    Your details are encrypted and never shared.
-                </p>
-            </form>
-        </div>
+                    @error('address')
+                        <small>{{ $message }}</small>
+                    @enderror
+                </div>
+            </div>
+
+            <p class="secure-message">
+                <i class="fa-solid fa-shield-halved"></i>
+                {{ __('order.secure_message') }}
+            </p>
+        </section>
 
         {{-- Order Summary --}}
-        <div class="summary-card">
-            <h2>Order Summary</h2>
+        <aside class="summary-card">
+            <h2>{{ __('order.summary_title') }}</h2>
 
             <div class="product-summary">
-                <img src="{{ asset('uploads/' . $product->image) }}" alt="{{ $product->name }}">
+                <div class="summary-image">
+                    @if($product->image)
+                        <img
+                            src="{{ asset('uploads/' . $product->image) }}"
+                            alt="{{ $product->name }}"
+                            loading="lazy">
+                    @else
+                        <img
+                            src="{{ asset('images/product-placeholder.png') }}"
+                            alt="{{ __('store.no_image') }}"
+                            loading="lazy"
+                            class="placeholder-img">
+                    @endif
+                </div>
 
                 <div class="product-info">
                     <h3>{{ $product->name }}</h3>
-                    <p>{{ $product->description }}</p>
-                    <span class="category">
-                        @if ($product->category == 'games')
-                            Jeux
-                        @elseif ($product->category == 'gift_cards')
-                            Cartes cadeaux
-                        @elseif ($product->category == 'software')
-                            Logiciels
-                        @elseif ($product->category == 'subscriptions')
-                            Abonnements
-                        @elseif ($product->category == 'in_game_currency')
-                            Monnaie virtuelle
-                        @elseif ($product->category == 'other')
-                            Autre
-                        @else
-                            N/A
-                        @endif
-                    </span>
 
-                    <span class="category">
-                        @if ($product->type == 'key')
-                            Clé
-                        @elseif ($product->type == 'account')
-                            Compte
-                        @elseif ($product->type == 'invitation')
-                            Invitation
+                    @if(!empty($product->description))
+                        <p>{{ $product->description }}</p>
+                    @endif
+
+                    <div class="product-badges">
+                        <span class="badge">
+                            {{ $categories[$product->category] ?? __('store.na') }}
+                        </span>
+
+                        @if(!empty($product->type) && isset($types[$product->type]))
+                            <span class="badge badge-soft">
+                                {{ $types[$product->type] }}
+                            </span>
                         @endif
-                    </span>
-                    <!-- <span class="category">{{ $product->category ?? 'No category' }}</span> -->
+                    </div>
                 </div>
             </div>
 
-            <div class="quantity-box">
-                <span>Quantity</span>
+            <div class="summary-row">
+                <span>{{ __('order.unit_price') }}</span>
+                <strong>{{ $product->price }} {{ __('store.da') }}</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>{{ __('order.quantity') }}</span>
 
                 <div class="quantity-control">
-                    <button type="button" onclick="changeQty(-1)">-</button>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1" readonly form="orderForm">
-                    <button type="button" onclick="changeQty(1)">+</button>
+                    <button type="button" onclick="changeQty(-1)" aria-label="Decrease quantity">
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+
+                    <input type="number" id="quantity" value="1" min="1" readonly>
+
+                    <button type="button" onclick="changeQty(1)" aria-label="Increase quantity">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
                 </div>
             </div>
 
             <div class="total-box">
-                <span>Total</span>
-                <strong id="total">{{ number_format($product->price, 0, ',', ' ') }} DA</strong>
+                <span>{{ __('order.total') }}</span>
+                <strong id="total">{{ $product->price }} {{ __('store.da') }}</strong>
             </div>
 
-            <button type="submit" form="orderForm" class="place-order-btn">
-                Place Order
-                <i class="fas fa-arrow-right"></i>
+            <button type="submit" class="place-order-btn">
+                {{ __('order.place_order') }}
+                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
             </button>
-        </div>
+        </aside>
 
-    </div>
-</section>
+    </form>
 
-<form id="orderForm" action="{{ route('store.confirm', ['product' => $product]) }}" method="POST" hidden>
-    @csrf
-    <input type="hidden" name="product_id" value="{{ $product->id }}">
-    <input type="hidden" name="full_name" id="hidden_full_name">
-    <input type="hidden" name="phone" id="hidden_phone">
-    <input type="hidden" name="email" id="hidden_email">
-    <input type="hidden" name="address" id="hidden_address">
-    <input type="hidden" name="notes" id="hidden_notes">
-    <input type="hidden" name="quantity" id="hidden_quantity">
-</form>
+</main>
 
 <script>
-const productPrice = {{ $product->price }};
+    const productPrice = {{ (int) $product->price }};
 
-function changeQty(value) {
-    const quantityInput = document.getElementById('quantity');
-    const total = document.getElementById('total');
+    function changeQty(value) {
+        const quantityInput = document.getElementById('quantity');
+        const hiddenQuantityInput = document.getElementById('hidden_quantity');
+        const total = document.getElementById('total');
 
-    let quantity = parseInt(quantityInput.value) + value;
-    if (quantity < 1) quantity = 1;
+        let quantity = parseInt(quantityInput.value) + value;
 
-    quantityInput.value = quantity;
-    total.textContent = new Intl.NumberFormat('fr-DZ').format(productPrice * quantity) + ' DA';
-}
+        if (quantity < 1) {
+            quantity = 1;
+        }
 
-document.querySelector('.place-order-btn').addEventListener('click', function () {
-    document.getElementById('hidden_full_name').value = document.querySelector('[name="full_name"]').value;
-    document.getElementById('hidden_phone').value = document.querySelector('[name="phone"]').value;
-    document.getElementById('hidden_email').value = document.querySelector('[name="email"]').value;
-    document.getElementById('hidden_address').value = document.querySelector('[name="address"]').value;
-    document.getElementById('hidden_notes').value = document.querySelector('[name="notes"]').value;
-    document.getElementById('hidden_quantity').value = document.querySelector('[name="quantity"]').value;
-
-});
+        quantityInput.value = quantity;
+        hiddenQuantityInput.value = quantity;
+        total.textContent = (productPrice * quantity) + ' {{ __('store.da') }}';
+    }
 </script>
+
 @endsection
 

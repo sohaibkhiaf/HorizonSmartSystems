@@ -1,7 +1,217 @@
 
+/* =========================================================
+   HOME PAGE - CLEAN PROFESSIONAL STYLES
+   Horizon Smart Systems
+   Structure: Design tokens -> Shared styles -> Sections
+   Each section keeps its own responsive rules below it.
+   ========================================================= */
+
+/* =========================================================
+   01. Design Tokens & Base
+   ========================================================= */
+:root {
+    --body-color: hsl(0, 0%, 98%);
+    --color-surface: #ffffff;
+    --color-surface-soft: #f8fafc;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-soft: #eff6ff;
+    --color-accent: #ff3d2e;
+    --color-accent-dark: #e63628;
+    --color-dark: #111827;
+    --color-muted: #64748b;
+    --color-muted-2: #6b7280;
+    --color-border: #e5e7eb;
+    --color-border-soft: #dbeafe;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 8px 22px rgba(15, 23, 42, 0.07);
+    --shadow-blue: 0 12px 26px rgba(37, 99, 235, 0.13);
+    --shadow-red: 0 12px 26px rgba(255, 61, 46, 0.20);
+    --container-x: 8%;
+    --section-gap: 50px;
+    --transition: 0.25s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--body-color);
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   02. Shared Components
+   ========================================================= */
+.btn,
+.software-link,
+.btn-submit,
+.plus-link,
+.view-link,
+.achievements-link {
+    cursor: pointer;
+}
+
+.btn {
+    min-height: 46px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid transparent;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn i {
+    font-size: 14px;
+}
+
+.btn:hover,
+.software-link:hover,
+.btn-submit:hover,
+.service-card:hover,
+.about-card:hover,
+.method-card:hover,
+.feature-card:hover,
+.acheivement-card:hover,
+.contact-item:hover,
+.hour-row:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: var(--color-accent);
+    color: #ffffff;
+    box-shadow: var(--shadow-red);
+}
+
+.btn-primary:hover {
+    background: var(--color-accent-dark);
+    box-shadow: 0 16px 30px rgba(255, 61, 46, 0.25);
+}
+
+.btn-outline,
+.btn-store-mobile {
+    background: var(--color-dark);
+    color: #ffffff;
+    border-color: var(--color-dark);
+    box-shadow: 0 12px 26px rgba(17, 24, 39, 0.16);
+}
+
+.btn-outline:hover,
+.btn-store-mobile:hover {
+    background: #1f2937;
+    border-color: #1f2937;
+    box-shadow: 0 16px 30px rgba(17, 24, 39, 0.22);
+}
+
+.btn-store-mobile {
+    display: none;
+}
+
+.icon,
+.icon-circle,
+.software-icon,
+.contact-item i,
+.hours-header i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+}
+
+.icon,
+.icon-circle {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 50%;
+    font-size: 17px;
+}
+
+.card-inner,
+.card-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.card-text h3 {
+    margin: 0 0 6px;
+    color: var(--color-primary);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.card-text p {
+    margin: 0;
+    color: var(--color-muted-2);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.swiper-wrapper {
+    align-items: stretch;
+}
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.form-alert {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-alert.success {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+.form-alert.danger {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.form-alert ul {
+    margin: 0;
+    padding-inline-start: 18px;
+}
+
+
 /* Description  ******************************** */
 .description {
-    margin: 20px 8%;
+    margin: 120px 8% 20px;
     padding: 28px 40px;
     background: #ffffff;
     border: 1px solid #e5e7eb;
@@ -150,53 +360,59 @@
     line-height: 1.5;
 }
 
-/* Contact  **************************************************************** */
-
+/* =========================================================
+   Contact Section 
+   ========================================================= */
 .contact-section {
-    margin: 0 8% 50px 8%;
-    background: var(--body-color);
+    margin: 0 var(--container-x) var(--section-gap);
+    background: var(--color-surface);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 22px 3%;
 }
 
 .contact-container {
-    margin: auto;
+    max-width: 1180px;
+    margin: 0 auto;
     display: grid;
     grid-template-columns: 0.85fr 1.4fr;
-    /* gap: 20px; */
     align-items: stretch;
-    border-radius: 14px;
-    border: 1px solid #e5e7eb;
-    background: #ffffff;
+    overflow: hidden;
 }
 
-/* LEFT SIDE */
+/* Contact info */
 .contact-info {
-    padding: 20px;
+    padding: 24px 0 0 12px;
+    background: #ffffff;
 }
 
 .contact-title {
+    margin: 0 0 24px;
+    color: var(--color-dark);
     font-size: 24px;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 25px;
-    position: relative;
+    font-weight: 500;
 }
 
 .contact-item {
+    padding: 16px;
+    margin-bottom: 14px;
     display: flex;
-    gap: 15px;
-    padding: 18px;
+    gap: 14px;
+    background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
-    margin-bottom: 16px;
-    background: #ffffff;
-    transition: 0.3s ease;
+    transition: var(--transition);
 }
 
+.contact-item:last-child {
+    margin-bottom: 0;
+}
 
 .contact-item:hover {
-    transform: translateY(-3px);
-    border-color: #2563eb;
-    box-shadow: 0 8px 10px rgba(37, 99, 235, 0.10);
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
 }
 
 .contact-item i {
@@ -206,46 +422,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eff6ff;
-    color: #2563eb;
-    font-size: 16px;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
     border-radius: 14px;
+    font-size: 16px;
 }
 
 .contact-item h4 {
+    margin: 0 0 5px;
+    color: var(--color-dark);
     font-size: 15px;
     font-weight: 500;
-    color: #111827;
-    margin: 0 0 5px;
 }
 
 .contact-item p {
-    font-size: 14px;
-    color: #64748b;
     margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
     line-height: 1.5;
 }
 
-/* RIGHT SIDE */
+/* Contact form */
 .contact-form {
-    padding: 20px;
-    border-radius: 16px;
-    position: relative;
-    overflow: hidden;
+    padding: 24px 12px 0 0;
+    background: #ffffff;
 }
-
 
 .contact-form h2 {
-    position: relative;
-    margin-bottom: 28px;
+    margin: 0 0 24px;
+    color: var(--color-dark);
     font-size: 24px;
-    font-weight: 600;
-    color: #111827;
-}
-
-/* FORM */
-.contact-form form {
-    position: relative;
+    font-weight: 500;
 }
 
 .form-grid {
@@ -260,22 +467,22 @@
 }
 
 .form-group label {
-    font-size: 15px;
-    font-weight: 500;
     margin-bottom: 8px;
     color: #334155;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 14px 16px;
-    border-radius: 12px;
-    border: 1px solid #dbe3ef;
     background: var(--body-color);
-    font-size: 16px;
-    color: #111827;
-    transition: 0.25s ease;
+    border: 1px solid #dbe3ef;
+    border-radius: 12px;
+    color: var(--color-dark);
+    font-size: 15px;
+    transition: var(--transition);
 }
 
 .form-group input::placeholder,
@@ -285,58 +492,119 @@
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-color: #2563eb;
     background: #ffffff;
+    border-color: var(--color-primary);
     outline: none;
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
 }
 
-/* TEXTAREA */
 .message-group {
-    margin-top: 20px;
+    margin-top: 18px;
 }
 
 .form-group textarea {
-    height: 170px;
-    resize: none;
+    min-height: 160px;
+    resize: vertical;
     line-height: 1.6;
 }
 
-/* CHECKBOX */
 .form-check {
+    margin: 18px 0 22px;
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin: 18px 0 24px;
+    color: var(--color-muted);
     font-size: 13px;
-    color: #64748b;
 }
 
 .form-check input {
-    margin-top: 3px;
-    accent-color: #2563eb;
+    margin-top: 4px;
+    accent-color: var(--color-primary);
 }
 
 .form-check label {
     line-height: 1.5;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
-/* BUTTON */
 .btn-submit {
-    background: #2563eb;
-    color: white;
+    min-height: 48px;
+    padding: 14px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    background: var(--color-accent);
+    color: #ffffff;
     border: none;
-    padding: 15px 20px;
     border-radius: 12px;
-    cursor: pointer;
     font-size: 15px;
     font-weight: 500;
-    transition: 0.3s ease;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-red);
 }
 
 .btn-submit:hover {
-    background: #1d4ed8;
+    transform: translateY(-2px);
+    background: var(--color-accent-dark);
+}
+
+
+/* Contact responsive */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-map-hours {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .contact-section {
+        margin: 40px 5%;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 20px;
+    }
+
+    .contact-title,
+    .contact-form h2 {
+        font-size: 22px;
+    }
+
+
+    .contact-item {
+        padding: 15px;
+    }
+
+    .btn-submit {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .contact-info,
+    .contact-form {
+        padding: 18px;
+    }
+
 }
 
 
@@ -346,14 +614,7 @@
     .type-content {
         grid-template-columns: 1fr;
     }
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
 
-    .contact-info,
-    .contact-form {
-        padding: 30px;
-    }
 
     .form-grid {
         grid-template-columns: 1fr;
@@ -382,24 +643,31 @@
         font-size: 20px;
     }
 
-    .contact-section {
-        margin: 40px 5%;
-    }
 
-    .contact-info,
-    .contact-form {
-        padding: 24px;
-        border-radius: 12px;
-    }
+}
 
-    .contact-title,
-    .contact-form h2 {
-        font-size: 23px;
-    }
 
-    .contact-item {
-        padding: 15px;
-    }
+/* =========================================================
+   12. RTL Improvements
+   ========================================================= */
+[dir="rtl"] .hero-title,
+[dir="rtl"] .about-description,
+[dir="rtl"] .method-description,
+[dir="rtl"] .software-description,
+[dir="rtl"] .service-card,
+[dir="rtl"] .contact-item,
+[dir="rtl"] .form-group,
+[dir="rtl"] .hours-part {
+    direction: rtl;
+}
+
+[dir="rtl"] .card-inner,
+[dir="rtl"] .card-content,
+[dir="rtl"] .software-card-header,
+[dir="rtl"] .contact-item,
+[dir="rtl"] .hours-header,
+[dir="rtl"] .form-check {
+    text-align: right;
 }
 
 

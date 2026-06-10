@@ -112,7 +112,12 @@
                 <div class="mega-column">
                     <h4>{{ __('header.software_title') }}</h4>
 
-                    <a class="service-link" onclick="scrollToSection('softwareSection')">
+                    <a class="service-link" 
+                        @if ($page == 'APP')
+                        onclick="scrollToSection('softwareSection')">
+                        @else
+                        href="/?section=software">
+                        @endif
                         <i class="fa-solid fa-w"></i>
                         <span>{{ __('header.software_wili') }}</span>
                     </a>

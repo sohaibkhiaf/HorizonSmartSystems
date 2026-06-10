@@ -19,6 +19,7 @@ class ContactController extends Controller
 
         Message::create($data);
 
-        return back()->with('success', __('messages.message_sent'));
+        return redirect(url()->previous() . '#contactSection')
+            ->with('success', __('messages.message_sent'));
     }
 }

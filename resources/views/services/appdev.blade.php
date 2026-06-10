@@ -53,7 +53,6 @@
     </div>
 
 </section>
-
 <!-- Contact ------------------------------------------------------------------- -->
 <section class="contact-section" id="contactSection" data-section="contact">
     <div class="contact-container">
@@ -63,19 +62,18 @@
 
             <h2 class="contact-title">{{ __('home.contact_title') }}</h2>
 
-            <!-- Phone -->
             <div class="contact-item">
                 <i class="fas fa-phone"></i>
                 <div>
                     <h4>{{ __('home.phone_label') }}</h4>
-                    <p>0561 65 51 00
-                        <br> 0782 94 07 60
-                        <br> 0540 29 62 00
+                    <p>
+                        0561 65 51 00
+                        <br>0782 94 07 60
+                        <br>0540 29 62 00
                     </p>
                 </div>
             </div>
 
-            <!-- Email -->
             <div class="contact-item">
                 <i class="fas fa-envelope"></i>
                 <div>
@@ -84,7 +82,6 @@
                 </div>
             </div>
 
-            <!-- Facebook -->
             <div class="contact-item">
                 <i class="fab fa-facebook-f"></i>
                 <div>
@@ -93,7 +90,6 @@
                 </div>
             </div>
 
-            <!-- Address -->
             <div class="contact-item">
                 <i class="fas fa-location-dot"></i>
                 <div>
@@ -127,8 +123,8 @@
 
             <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
-                <div class="form-grid">
 
+                <div class="form-grid">
                     <div class="form-group">
                         <label>{{ __('home.form_fullname') }}</label>
                         <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('home.form_fullname_ph') }}" required>
@@ -148,7 +144,6 @@
                         <label>{{ __('home.form_subject') }}</label>
                         <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('home.form_subject_ph') }}" required>
                     </div>
-
                 </div>
 
                 <div class="form-group message-group">
@@ -164,7 +159,8 @@
                 </div>
 
                 <button type="submit" class="btn-submit">
-                    {{ __('home.form_submit') }} <i class="fa-regular fa-paper-plane"></i>
+                    {{ __('home.form_submit') }}
+                    <i class="fa-regular fa-paper-plane"></i>
                 </button>
             </form>
 
@@ -172,6 +168,7 @@
 
     </div>
 </section>
+
 
 @endsection
 

@@ -27,6 +27,7 @@ return [
 
     // Services /////////////////////////////////////////////////////////////
     'services_title'      => 'Our Services',
+    'services_description' => 'Explore our digital services designed to help your business grow with modern websites, custom software, management systems, and reliable IT support.',
     'service_web_title'   => 'Website Creation',
     'service_web_desc'    => 'Modern, fast and responsive websites designed to showcase your business.',
     'service_app_title'   => 'Custom Application Development',
@@ -79,18 +80,8 @@ return [
 
     // Achievements ////////////////////////////////////////////////////////////
     'achievements_title'         => 'Our Achievements',
+    'achievements_description' => 'Explore a selection of projects we have built for businesses, from websites and digital platforms to software solutions designed to solve real operational needs.',
     'view_project' => 'View project',
-
-    // Features ////////////////////////////////////////////////////////////
-    'features_title'             => 'Why choose HSS?',
-    'feature_custom_title'       => 'Custom Solutions',
-    'feature_custom_desc'        => 'Tailored to your needs and budgets.',
-    'feature_quality_title'      => 'Quality & Reliability',
-    'feature_quality_desc'       => 'Reliable and high-quality services.',
-    'feature_speed_title'        => 'Speed & Efficiency',
-    'feature_speed_desc'         => 'Fast solutions for better performance.',
-    'feature_support_title'      => 'Professional Support',
-    'feature_support_desc'       => 'A team ready to listen and assist you.',
 
     // Contact ////////////////////////////////////////////////////////////
     'contact_title'   => 'Contact us',

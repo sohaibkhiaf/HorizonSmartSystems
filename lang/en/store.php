@@ -29,4 +29,6 @@ return [
 
     'na' => 'N/A',
     'da' => 'DA', 
+
+'order_now' => 'Order now',
 ];

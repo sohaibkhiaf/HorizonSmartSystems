@@ -1,6 +1,6 @@
 @extends('layouts.store')
 
-@section('title', 'Order created')
+@section('title', __('confirmed.title'))
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/store/confirmed.css') }}">
@@ -8,55 +8,56 @@
 
 @section('content')
 
-<div class="confirm-container">
+<main class="confirmed-page {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
 
-    <!-- Icon -->
-    <div class="confirm-icon">
-        <i class="fa-solid fa-circle-check"></i>
-    </div>
+    <section class="confirm-container">
 
-    <!-- Title -->
-    <h1 class="confirm-title">Order confirmed!</h1>
-
-    <!-- Description -->
-    <p class="confirm-desc">
-        We've received your order and sent a confirmation. Our team will contact you shortly to arrange delivery.
-    </p>
-
-    <!-- Order Reference Box -->
-    <div class="reference-box">
-        <h3>Order reference</h3>
-        <p class="reference-id">HSS{{ $request->id }}</p>
-    </div>
-
-    <!-- Next Steps -->
-    <div class="next-steps">
-        <h2>What happens next</h2>
-
-        <div class="step">
-            <span class="step-icon"><i class="fa-solid fa-1"></i></span>
-            <p>We email & message your confirmation</p>
+        <div class="confirm-icon">
+            <i class="fa-solid fa-circle-check"></i>
         </div>
 
-        <div class="step">
-            <span class="step-icon"><i class="fa-solid fa-2"></i></span>
-            <p>An agent verifies and prepares your key</p>
+        <h1 class="confirm-title">
+            {{ __('confirmed.heading') }}
+        </h1>
+
+        <p class="confirm-desc">
+            {{ __('confirmed.description') }}
+        </p>
+
+        <div class="reference-box">
+            <span>{{ __('confirmed.order_reference') }}</span>
+            <strong>HSS{{ $request->id }}</strong>
         </div>
 
-        <div class="step">
-            <span class="step-icon"><i class="fa-solid fa-3"></i></span>
-            <p>You pay on delivery and receive your code</p>
+        <div class="next-steps">
+            <h2>{{ __('confirmed.next_steps_title') }}</h2>
+
+            <div class="step">
+                <span class="step-icon">1</span>
+                <p>{{ __('confirmed.step_1') }}</p>
+            </div>
+
+            <div class="step">
+                <span class="step-icon">2</span>
+                <p>{{ __('confirmed.step_2') }}</p>
+            </div>
+
+            <div class="step">
+                <span class="step-icon">3</span>
+                <p>{{ __('confirmed.step_3') }}</p>
+            </div>
         </div>
-    </div>
 
-    <!-- Button -->
-    <div class="action">
-        <a href="{{ route('store.index') }}" class="continue-btn">
-            Continue shopping <i class="fa-solid fa-arrow-right"></i>
-        </a>
-    </div>
+        <div class="action">
+            <a href="{{ route('store.index') }}" class="continue-btn">
+                {{ __('confirmed.continue_shopping') }}
+                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+            </a>
+        </div>
 
-</div>
+    </section>
+
+</main>
 
 @endsection
 
