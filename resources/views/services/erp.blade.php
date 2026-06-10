@@ -53,14 +53,18 @@
 
 </section>
 
+
 <!-- Contact ------------------------------------------------------------------- -->
 <section class="contact-section" id="contactSection" data-section="contact">
+
+    <div class="contact-heading">
+        <h2>{{ __('home.contact_title') }}</h2>
+    </div>
+
     <div class="contact-container">
 
         <!-- LEFT: CONTACT INFOS -->
         <div class="contact-info">
-
-            <h2 class="contact-title">{{ __('home.contact_title') }}</h2>
 
             <div class="contact-item">
                 <i class="fas fa-phone"></i>
@@ -98,12 +102,34 @@
                 </div>
             </div>
 
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>{{ __('home.hours_title') }}</h4>
+
+                    <div class="contact-hours">
+                        <div class="hour-row">
+                            <span>{{ __('home.saturday') }} - {{ __('home.wednesday') }}</span>
+                            <span>08:30 - 16:30</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.thursday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.friday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- RIGHT: CONTACT FORM -->
         <div class="contact-form">
-
-            <h2>{{ __('home.form_title') }}</h2>
 
             @if(session('success'))
                 <div class="form-alert success">
@@ -127,28 +153,50 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label>{{ __('home.form_fullname') }}</label>
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('home.form_fullname_ph') }}" required>
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            placeholder="{{ __('home.form_fullname_ph') }}"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_email') }}</label>
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('home.form_email_ph') }}">
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="{{ __('home.form_email_ph') }}">
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_phone') }}</label>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('home.form_phone_ph') }}" required>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            placeholder="{{ __('home.form_phone_ph') }}"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_subject') }}</label>
-                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('home.form_subject_ph') }}" required>
+                        <input
+                            type="text"
+                            name="subject"
+                            value="{{ old('subject') }}"
+                            placeholder="{{ __('home.form_subject_ph') }}"
+                            required>
                     </div>
                 </div>
 
                 <div class="form-group message-group">
                     <label>{{ __('home.form_message') }}</label>
-                    <textarea name="message" placeholder="{{ __('home.form_message_ph') }}" required>{{ old('message') }}</textarea>
+                    <textarea
+                        name="message"
+                        placeholder="{{ __('home.form_message_ph') }}"
+                        required>{{ old('message') }}</textarea>
                 </div>
 
                 <div class="form-check">

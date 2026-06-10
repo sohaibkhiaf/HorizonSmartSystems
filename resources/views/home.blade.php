@@ -328,12 +328,15 @@
 
 <!-- Contact ------------------------------------------------------------------- -->
 <section class="contact-section" id="contactSection" data-section="contact">
+
+    <div class="contact-heading">
+        <h2>{{ __('home.contact_title') }}</h2>
+    </div>
+
     <div class="contact-container">
 
         <!-- LEFT: CONTACT INFOS -->
         <div class="contact-info">
-
-            <h2 class="contact-title">{{ __('home.contact_title') }}</h2>
 
             <div class="contact-item">
                 <i class="fas fa-phone"></i>
@@ -371,12 +374,34 @@
                 </div>
             </div>
 
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>{{ __('home.hours_title') }}</h4>
+
+                    <div class="contact-hours">
+                        <div class="hour-row">
+                            <span>{{ __('home.saturday') }} - {{ __('home.wednesday') }}</span>
+                            <span>08:30 - 16:30</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.thursday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.friday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- RIGHT: CONTACT FORM -->
         <div class="contact-form">
-
-            <h2>{{ __('home.form_title') }}</h2>
 
             @if(session('success'))
                 <div class="form-alert success">
@@ -400,28 +425,50 @@
                 <div class="form-grid">
                     <div class="form-group">
                         <label>{{ __('home.form_fullname') }}</label>
-                        <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ __('home.form_fullname_ph') }}" required>
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ old('name') }}"
+                            placeholder="{{ __('home.form_fullname_ph') }}"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_email') }}</label>
-                        <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ __('home.form_email_ph') }}">
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="{{ __('home.form_email_ph') }}">
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_phone') }}</label>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="{{ __('home.form_phone_ph') }}" required>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            placeholder="{{ __('home.form_phone_ph') }}"
+                            required>
                     </div>
 
                     <div class="form-group">
                         <label>{{ __('home.form_subject') }}</label>
-                        <input type="text" name="subject" value="{{ old('subject') }}" placeholder="{{ __('home.form_subject_ph') }}" required>
+                        <input
+                            type="text"
+                            name="subject"
+                            value="{{ old('subject') }}"
+                            placeholder="{{ __('home.form_subject_ph') }}"
+                            required>
                     </div>
                 </div>
 
                 <div class="form-group message-group">
                     <label>{{ __('home.form_message') }}</label>
-                    <textarea name="message" placeholder="{{ __('home.form_message_ph') }}" required>{{ old('message') }}</textarea>
+                    <textarea
+                        name="message"
+                        placeholder="{{ __('home.form_message_ph') }}"
+                        required>{{ old('message') }}</textarea>
                 </div>
 
                 <div class="form-check">
@@ -439,45 +486,17 @@
 
         </div>
 
-        <!-- BOTTOM: MAP & HOURS -->
-        <div class="contact-map-hours">
-
-            <div class="hours-part">
-                <div class="hours-header">
-                    <h3>{{ __('home.hours_title') }}</h3>
-                </div>
-
-                <div class="hours-content">
-                    <div class="hour-row">
-                        <span>{{ __('home.saturday') }} - {{ __('home.wednesday') }}</span>
-                        <span>08:30 - 16:30</span>
-                    </div>
-
-                    <div class="hour-row closed">
-                        <span>{{ __('home.thursday') }}</span>
-                        <span>{{ __('home.closed') }}</span>
-                    </div>
-
-                    <div class="hour-row closed">
-                        <span>{{ __('home.friday') }}</span>
-                        <span>{{ __('home.closed') }}</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="map-part">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.1601452089976!2d5.7204922742544975!3d34.85220317286611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f509002f0dc033%3A0x427675b9fa5b3b87!2sHORIZON%20PC%20INFORMATIQUE!5e0!3m2!1sen!2sdz!4v1779480198528!5m2!1sen!2sdz"
-                    allowfullscreen=""
-                    loading="lazy">
-                </iframe>
-            </div>
-
+        <!-- BOTTOM: MAP ONLY -->
+        <div class="contact-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3274.1601452089976!2d5.7204922742544975!3d34.85220317286611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12f509002f0dc033%3A0x427675b9fa5b3b87!2sHORIZON%20PC%20INFORMATIQUE!5e0!3m2!1sen!2sdz!4v1779480198528!5m2!1sen!2sdz"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
         </div>
 
     </div>
 </section>
-
 
 <script>
 function scrollToSection(sectionId) {
@@ -501,7 +520,8 @@ const swiper = new Swiper(".services-swiper", {
 new Swiper(".achievements-swiper", {
     slidesPerView: "auto",
     spaceBetween: 20,
-    grabCursor: true
+    grabCursor: true,
+    centeredSlides: true,
 });
 
 
