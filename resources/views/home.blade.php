@@ -444,7 +444,6 @@
 
             <div class="hours-part">
                 <div class="hours-header">
-                    <i class="fas fa-clock"></i>
                     <h3>{{ __('home.hours_title') }}</h3>
                 </div>
 

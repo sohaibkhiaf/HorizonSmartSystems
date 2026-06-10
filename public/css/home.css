@@ -704,7 +704,9 @@ a {
     .method-container {
         text-align: center;
     }
-
+    .method-title {
+        font-size: 21px;
+    }
     .method-right {
         grid-template-columns: 1fr;
     }
@@ -1055,10 +1057,11 @@ a {
     }
 
     .achievements-header {
-        align-items: flex-start;
         flex-direction: column;
     }
-
+    .achievements-title {
+        font-size: 21px;
+    }
     .acheivement-card,
     .achievements .swiper-slide {
         width: 100% !important;
@@ -1071,11 +1074,7 @@ a {
    ========================================================= */
 .contact-section {
     margin: 0 var(--container-x) var(--section-gap);
-    background: var(--color-surface);
-    border: 1px solid #e5e7eb;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    padding: 22px 3%;
+    padding: 22px 0;
 }
 
 .contact-container {
@@ -1084,20 +1083,27 @@ a {
     display: grid;
     grid-template-columns: 0.85fr 1.4fr;
     align-items: stretch;
-    overflow: hidden;
     gap: 32px;
+    overflow: visible;
+}
+
+.contact-info,
+.contact-form,
+.contact-map-hours,
+.hours-part,
+.map-part {
+    min-width: 0;
 }
 
 /* Contact info */
 .contact-info {
     padding: 24px 0;
-    background: #ffffff;
 }
 
 .contact-title {
     margin: 0 0 24px;
     color: var(--color-dark);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
 }
 
@@ -1147,19 +1153,54 @@ a {
     color: var(--color-muted);
     font-size: 14px;
     line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 /* Contact form */
 .contact-form {
-    padding: 24px 0;
-    background: #ffffff;
+    padding: 22px;
+    background: var(--color-surface);
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .contact-form h2 {
     margin: 0 0 24px;
     color: var(--color-dark);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
+}
+
+.form-alert {
+    padding: 13px 15px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-alert.success {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #bbf7d0;
+}
+
+.form-alert.danger {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fecaca;
+}
+
+.form-alert ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+[dir="rtl"] .form-alert ul {
+    padding-left: 0;
+    padding-right: 18px;
 }
 
 .form-grid {
@@ -1171,6 +1212,7 @@ a {
 .form-group {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .form-group label {
@@ -1183,6 +1225,7 @@ a {
 .form-group input,
 .form-group textarea {
     width: 100%;
+    min-width: 0;
     padding: 14px 16px;
     background: var(--body-color);
     border: 1px solid #dbe3ef;
@@ -1233,6 +1276,8 @@ a {
     line-height: 1.5;
     font-size: 14px;
     font-weight: 400;
+    overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .btn-submit {
@@ -1263,19 +1308,15 @@ a {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: 0.85fr 1.4fr;
-    background: #ffffff;
-    margin-bottom:20px;
-    border: 1px solid #e5e7eb;
-    border-radius: 14px;
-    overflow: hidden;
+    gap: 32px;
+    margin-bottom: 20px;
+    overflow: visible;
 }
 
 .hours-part {
-    padding: 24px;
+    padding: 24px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background: #ffffff;
 }
 
 .hours-header {
@@ -1283,19 +1324,6 @@ a {
     display: flex;
     align-items: center;
     gap: 12px;
-}
-
-.hours-header i {
-    width: 42px;
-    height: 42px;
-    min-width: 42px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
-    border-radius: 14px;
-    font-size: 17px;
 }
 
 .hours-header h3 {
@@ -1331,6 +1359,11 @@ a {
     box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
 }
 
+.hour-row span {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
 .hour-row span:first-child {
     color: var(--color-dark);
     font-weight: 500;
@@ -1339,6 +1372,7 @@ a {
 .hour-row span:last-child {
     color: var(--color-primary);
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .hour-row.closed {
@@ -1354,6 +1388,9 @@ a {
     min-height: 340px;
     background: var(--color-primary-soft);
     overflow: hidden;
+    border: 1px solid #e5e7eb;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
 .map-part iframe {
@@ -1364,75 +1401,165 @@ a {
     border: none;
 }
 
-/* Contact responsive */
+/* =========================================================
+   Contact Responsive
+   ========================================================= */
+@media (max-width: 1100px) {
+    .contact-container,
+    .contact-map-hours {
+        gap: 24px;
+    }
+}
+
 @media (max-width: 900px) {
+    .contact-section {
+        margin: 0 var(--container-x) var(--section-gap);
+        padding: 20px 0;
+    }
+
     .contact-container {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .contact-info {
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
+        padding: 0;
+    }
+
+    .contact-form {
+        width: 100%;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .contact-map-hours {
         grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 0;
     }
 
     .hours-part {
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
+        padding: 0;
     }
 
     .map-part,
     .map-part iframe {
-        min-height: 280px;
+        min-height: 300px;
     }
+
+    .hours-header {
+        display: flex;
+        flex-direction: column;
+    }
+    .hours-header h3{
+        text-align: center;
+    }
+
+.contact-title {
+    text-align: center;
+}
+.contact-form h2 {
+    text-align: center;
+}
+
+
 }
 
 @media (max-width: 600px) {
     .contact-section {
-        margin: 40px 5%;
+        padding: 18px 0;
     }
 
-    .contact-info,
-    .contact-form,
-    .hours-part {
-        padding: 20px;
+    .contact-container {
+        gap: 20px;
     }
 
     .contact-title,
-    .contact-form h2 {
-        font-size: 22px;
-    }
-
+    .contact-form h2,
     .hours-header h3 {
         font-size: 19px;
     }
 
+    .contact-title,
+    .contact-form h2 {
+        margin-bottom: 18px;
+    }
+
+    .contact-form {
+        padding: 18px;
+        border-radius: 18px;
+    }
+
     .contact-item {
-        padding: 15px;
+        padding: 14px;
+        gap: 12px;
+        border-radius: 14px;
+    }
+
+    .contact-item i {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 12px;
+        font-size: 15px;
+    }
+
+    .contact-item h4 {
+        font-size: 14px;
+    }
+
+    .contact-item p {
+        font-size: 13px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 13px 14px;
+        font-size: 14px;
+    }
+
+    .form-group textarea {
+        min-height: 140px;
+    }
+
+    .form-check {
+        margin: 16px 0 20px;
+    }
+
+    .form-check label {
+        font-size: 13px;
     }
 
     .btn-submit {
         width: 100%;
     }
 
+    .hour-row {
+        padding: 13px 14px;
+        font-size: 13px;
+    }
+
     .map-part,
     .map-part iframe {
-        min-height: 240px;
+        min-height: 270px;
     }
 }
 
 @media (max-width: 480px) {
-    .contact-info,
-    .contact-form,
-    .hours-part {
-        padding: 18px;
+
+    .contact-form {
+        padding: 16px;
+    }
+
+    .contact-item {
+        align-items: flex-start;
     }
 
     .hour-row {
@@ -1441,13 +1568,37 @@ a {
         gap: 6px;
     }
 
+    .hour-row span:last-child {
+        white-space: normal;
+    }
+
     .map-part,
     .map-part iframe {
-        min-height: 220px;
+        min-height: 250px;
     }
 }
 
+@media (max-width: 360px) {
+    .contact-form {
+        padding: 14px;
+    }
 
+    .contact-item {
+        padding: 12px;
+    }
+
+    .contact-item i {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+        border-radius: 11px;
+    }
+
+    .map-part,
+    .map-part iframe {
+        min-height: 230px;
+    }
+}
 /* =========================================================
    12. RTL Improvements
    ========================================================= */
