@@ -3,9 +3,10 @@
    ========================================================= */
 
 :root {
-    --store-primary: #2563eb;
-    --store-primary-dark: #1d4ed8;
-    --store-primary-soft: #eff6ff;
+    --store-primary: #0f7cff;
+    --store-primary-dark: #005fd1;
+    --store-primary-hover: #005fd1;
+    --store-primary-soft: #eef6ff;
     --store-text: #111827;
     --store-muted: #6b7280;
     --store-border: #e5e7eb;
@@ -14,7 +15,7 @@
     --store-white: #ffffff;
     --store-radius: 16px;
     --store-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
-    --store-shadow-soft: 0 10px 24px rgba(37, 99, 235, 0.12);
+    --store-shadow-soft: 0 10px 24px rgba(15, 124, 255, 0.12);
 }
 
 .store-page {
@@ -85,7 +86,7 @@
 
 .search-input-box:focus-within {
     border-color: var(--store-primary);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(15, 124, 255, 0.1);
 }
 
 .search-actions {
@@ -166,7 +167,7 @@
     min-height: 39px;
     padding: 8px 13px;
     border-radius: 999px;
-    border: 1px solid #dbeafe;
+    border: 1px solid #cfe6ff;
     background: #ffffff;
     color: var(--store-primary);
     font-size: 13px;
@@ -213,7 +214,7 @@
 
 .product-card:hover {
     transform: translateY(-4px);
-    border-color: #bfdbfe;
+    border-color: #99caff;
     box-shadow: var(--store-shadow-soft);
 }
 
@@ -287,7 +288,7 @@
     min-height: 24px;
     padding: 3px 9px;
     border-radius: 999px;
-    border: 1px solid #dbeafe;
+    border: 1px solid #cfe6ff;
     background: var(--store-primary-soft);
     color: var(--store-primary);
     font-size: 11px;
@@ -317,8 +318,8 @@
 }
 
 .product-card:hover .order-btn {
-    background: var(--store-primary-hover, #1d4ed8);
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+    background: var(--store-primary-hover, #005fd1);
+    box-shadow: 0 10px 22px rgba(15, 124, 255, 0.22);
 }
 
 .order-btn i {
@@ -342,7 +343,7 @@ html[dir="rtl"] .product-card:hover .order-btn i {
     grid-column: 1 / -1;
     text-align: center;
     padding: 60px 20px;
-    border: 1px dashed #dbeafe;
+    border: 1px dashed #cfe6ff;
     border-radius: 16px;
     background: #ffffff;
 }
@@ -419,9 +420,9 @@ html[dir="rtl"] .product-card:hover .order-btn i {
 }
 
 .navigator-container a:hover {
-    background: #eef2ff;
+    background: #eef6ff;
     color: var(--store-primary);
-    border-color: #bfdbfe;
+    border-color: #99caff;
 }
 
 .navigator-container a.active {
