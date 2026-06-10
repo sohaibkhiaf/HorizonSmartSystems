@@ -227,7 +227,6 @@ a {
     grid-template-columns: 0.9fr 1.1fr;
     align-items: center;
     gap: clamp(32px, 5vw, 72px);
-    /* border-bottom: 1px solid var(--color-border); */
     padding-bottom: 50px;
 }
 
@@ -443,10 +442,7 @@ a {
 .services {
     margin: 0 var(--container-x) var(--section-gap);
     padding: 22px;
-    background: var(--color-surface);
-    border: 1px solid #e5e7eb;
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
 }
 
 .services-container {
@@ -456,17 +452,23 @@ a {
 
 .section-header {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .services-title {
     margin: 0 0 8px;
     color: var(--color-dark);
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 500;
+    text-align: center;
 }
 
 .section-description {
     max-width: 620px;
+    text-align: center;
     margin: 0;
     color: var(--color-muted);
     font-size: 14px;
@@ -475,7 +477,6 @@ a {
 
 .services-group {
     padding-bottom: 22px;
-    border-bottom: 1px solid #e5e7eb;
 }
 
 .service-card {
@@ -639,8 +640,6 @@ a {
 .method {
     margin: 0 var(--container-x) var(--section-gap);
     padding: 22px 3%;
-    background: var(--color-primary-soft);
-    border: 1px solid var(--color-border-soft);
     border-radius: var(--radius-lg);
 }
 
@@ -649,14 +648,16 @@ a {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
 .method-title {
     margin: 0 0 6px;
     color: var(--color-dark);
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 500;
+    text-align: center;
 }
 
 .method-description {
@@ -664,7 +665,8 @@ a {
     margin: 0;
     color: var(--color-muted-2);
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.6;
+    text-align: center;
 }
 
 .method-right {
@@ -684,6 +686,7 @@ a {
 
 .method-card:hover {
     box-shadow: var(--shadow-blue);
+    border-color: var(--color-primary);
 }
 
 @media (max-width: 1000px) {
@@ -717,10 +720,7 @@ a {
 .software-section {
     margin: 0 var(--container-x) var(--section-gap);
     padding: 24px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
     overflow: hidden;
 }
 
@@ -732,15 +732,17 @@ a {
 .software-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
 .software-title {
     margin: 0 0 8px;
     color: var(--color-dark);
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 500;
     letter-spacing: -0.25px;
+    text-align: center;
 }
 
 .software-description {
@@ -749,6 +751,7 @@ a {
     color: var(--color-muted-2);
     font-size: 15px;
     line-height: 1.65;
+    text-align: center;
 }
 
 .software-card {
@@ -907,10 +910,7 @@ a {
 .achievements {
     margin: 0 var(--container-x) var(--section-gap);
     padding: 22px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
     overflow: hidden;
 }
 
@@ -921,6 +921,10 @@ a {
 
 .achievements-header {
     margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .achievements-title {
@@ -929,6 +933,8 @@ a {
     font-size: 22px;
     font-weight: 500;
     letter-spacing: -0.25px;
+    font-size: 32px;
+    text-align: center;
 }
 
 .achievements-description {
@@ -937,6 +943,7 @@ a {
     color: var(--color-muted-2);
     font-size: 15px;
     line-height: 1.65;
+    text-align: center;
 }
 
 .acheivement-card {
