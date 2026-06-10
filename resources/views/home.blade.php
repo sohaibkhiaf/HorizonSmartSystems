@@ -160,72 +160,6 @@
     </div>
 </section>
 
-<!-- Method ---------------------------------------------------------------- -->
-<section class="method">
-    <div class="method-container">
-
-        <div class="method-left">
-            <h2 class="method-title">{{ __('home.method_title') }}</h2>
-
-            <p class="method-description">
-                {{ __('home.method_description') }}
-            </p>
-        </div>
-
-        <div class="method-right">
-
-            <div class="method-card">
-                <div class="card-inner">
-                    <div class="icon">
-                        <i class="fa-solid fa-1"></i>
-                    </div>
-                    <div class="card-text">
-                        <h3>{{ __('home.method_step1_title') }} <i class="fa-solid fa-magnifying-glass"></i></h3>
-                        <p>{{ __('home.method_step1_desc') }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="method-card">
-                <div class="card-inner">
-                    <div class="icon">
-                        <i class="fa-solid fa-2"></i>
-                    </div>
-                    <div class="card-text">
-                        <h3>{{ __('home.method_step2_title') }} <i class="fa-regular fa-pen-to-square"></i></h3>
-                        <p>{{ __('home.method_step2_desc') }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="method-card">
-                <div class="card-inner">
-                    <div class="icon">
-                        <i class="fa-solid fa-3"></i>
-                    </div>
-                    <div class="card-text">
-                        <h3>{{ __('home.method_step3_title') }} <i class="fa-solid fa-code"></i></h3>
-                        <p>{{ __('home.method_step3_desc') }}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="method-card">
-                <div class="card-inner">
-                    <div class="icon">
-                        <i class="fa-solid fa-4"></i>
-                    </div>
-                    <div class="card-text">
-                        <h3>{{ __('home.method_step4_title') }} <i class="fa-solid fa-rocket"></i></h3>
-                        <p>{{ __('home.method_step4_desc') }}</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 <!-- Software ---------------------------------------------------------------- -->
 <section class="software-section" id="softwareSection" data-section="software">
     <div class="software-container">
@@ -498,6 +432,33 @@
     </div>
 </section>
 
+
+<!-- Floating Navigation Buttons -->
+<div class="float-nav">
+    <button id="btnScrollTop" class="float-btn is-hidden">
+        <i class="fas fa-home"></i>
+    </button>
+
+    <button id="btnScrollNext" class="float-btn float-btn-down">
+        <i class="fas fa-arrow-down"></i>
+    </button>
+</div>
+
+<!-- Floating Social Buttons -->
+<div class="social-float">
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/HORIZON.INFORMATIQUE.BISKRA" target="_blank" class="social-btn fb">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/+213659595372" target="_blank" class="social-btn wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+</div>
+
 <script>
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
@@ -526,15 +487,94 @@ new Swiper(".achievements-swiper", {
 
 
 const params = new URLSearchParams(window.location.search);
-    const section = params.get("section");
+const section = params.get("section");
 
-    if (section) {
-        const target = document.querySelector(`[data-section="${section}"]`);
-        if (target) {
-            target.scrollIntoView({ behavior: "smooth" });
-        }
+if (section) {
+    const target = document.querySelector(`[data-section="${section}"]`);
+    if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btnTop = document.getElementById("btnScrollTop");
+    const btnNext = document.getElementById("btnScrollNext");
+    const sections = document.querySelectorAll("[data-section]");
+    const footer = document.querySelector("footer");
+
+    const HEADER_OFFSET = 80;
+
+    // ===== GET CURRENT SECTION INDEX =====
+    function getCurrentSectionIndex() {
+        let index = 0;
+
+        sections.forEach((section, i) => {
+            const rect = section.getBoundingClientRect();
+
+            if (rect.top <= HEADER_OFFSET + 10) {
+                index = i;
+            }
+        });
+
+        return index;
     }
 
+    // ===== SCROLL EVENTS =====
+    window.addEventListener("scroll", () => {
+
+        // Show / hide top button
+        if (window.scrollY < window.innerHeight * 0.8) {
+            btnTop.classList.add("is-hidden");
+        } else {
+            btnTop.classList.remove("is-hidden");
+        }
+
+        // Hide down button at footer
+        if (footer) {
+            const footerTop = footer.offsetTop;
+            const scrollBottom = window.scrollY + window.innerHeight;
+
+            if (scrollBottom >= footerTop) {
+                btnNext.classList.add("is-hidden");
+            } else {
+                btnNext.classList.remove("is-hidden");
+            }
+        }
+    });
+
+    // ===== SCROLL TO TOP =====
+    btnTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    // ===== SCROLL TO NEXT SECTION (FIXED) =====
+    btnNext.addEventListener("click", () => {
+
+        const currentIndex = getCurrentSectionIndex();
+        const nextIndex = currentIndex + 1;
+
+        if (sections[nextIndex]) {
+            window.scrollTo({
+                top: sections[nextIndex].offsetTop - HEADER_OFFSET,
+                behavior: "smooth"
+            });
+        } else {
+            // No next section → go bottom
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth"
+            });
+        }
+
+    });
+
+});
 </script>
 
 @endsection

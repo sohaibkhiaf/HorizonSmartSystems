@@ -30,31 +30,55 @@
 
             <ul class="footer-list">
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('homeSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('homeSection')"
+                        @else
+                            href="/"
+                        @endif
+                        >
                         <i class="fa-solid fa-house"></i>
                         {{ __('footer.home') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/?section=services"
+                        @endif
+                        >
                         <i class="fa-solid fa-arrow-pointer"></i>
                         {{ __('footer.services') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('softwareSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('softwareSection')"
+                        @else
+                            href="/?section=software"
+                        @endif
+                        >
                         <i class="fa-brands fa-microsoft"></i>
                         {{ __('footer.software') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('achievementsSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('achievementsSection')"
+                        @else
+                            href="/?section=achievements"
+                        @endif
+                        >
                         <i class="fa-solid fa-medal"></i>
                         {{ __('footer.achievements') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
@@ -65,10 +89,16 @@
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('contactSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('contactSection')"
+                        @else
+                            href="/?section=contact"
+                        @endif
+                        >
                         <i class="fa-solid fa-message"></i>
                         {{ __('footer.contact') }}
-                    </button>
+                    </a>
                 </li>
             </ul>
         </div>
@@ -79,38 +109,68 @@
 
             <ul class="footer-list">
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/webdev"
+                        @endif
+                        >
                         <i class="fa-solid fa-globe"></i>
                         {{ __('footer.service_web') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/appdev"
+                        @endif
+                        >
                         <i class="fa-solid fa-laptop-code"></i>
                         {{ __('footer.service_apps') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/erp"
+                        @endif
+                        >
                         <i class="fa-solid fa-chart-pie"></i>
                         {{ __('footer.service_erp') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/systems"
+                        @endif
+                        >
                         <i class="fa-solid fa-gears"></i>
                         {{ __('footer.service_systems') }}
-                    </button>
+                    </a>
                 </li>
 
                 <li>
-                    <button type="button" class="footer-link" onclick="scrollToSection('servicesSection')">
+                    <a class="footer-link" 
+                        @if ($page == 'APP')
+                            onclick="scrollToSection('servicesSection')"
+                        @else
+                            href="/support"
+                        @endif
+                        >
                         <i class="fa-solid fa-headset"></i>
-                        {{ __('footer.service_support') }}
-                    </button>
+                        {{ __('footer.service_support') }}  
+                    </a>
                 </li>
             </ul>
         </div>
@@ -148,3 +208,4 @@
         <p>© 2026 Horizon Smart Systems — {{ __('footer.rights') }}</p>
     </div>
 </footer>
+

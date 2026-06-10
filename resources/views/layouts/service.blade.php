@@ -36,7 +36,7 @@
     </main>
 
     {{-- Footer --}}
-    <x-footer />
+    <x-footer page="SERVICE" />
 
 </body>
 </html>

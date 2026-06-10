@@ -92,7 +92,6 @@ a {
 .btn-submit:hover,
 .service-card:hover,
 .about-card:hover,
-.method-card:hover,
 .feature-card:hover,
 .acheivement-card:hover,
 .contact-item:hover,
@@ -211,7 +210,7 @@ a {
    ========================================================= */
 .hero {
     min-height: 100vh;
-    padding: 120px var(--container-x) 50px;
+    padding: 142px var(--container-x) 50px;
     background: var(--body-color);
     display: flex;
     align-items: center;
@@ -242,7 +241,7 @@ a {
     max-width: 620px;
     margin: 0 0 54px;
     color: var(--color-dark);
-    font-size: 42px;
+    font-size: 36px;
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: -1.4px;
@@ -286,7 +285,7 @@ a {
     }
 
     .hero-title {
-        font-size: 42px;
+        font-size: 38px;
     }
 
     .hero-image img {
@@ -322,7 +321,7 @@ a {
     .hero-title {
         max-width: 760px;
         margin-bottom: 28px;
-        font-size: 38px;
+        font-size: 32px;
     }
 
     .hero-buttons {
@@ -361,7 +360,7 @@ a {
         width: 100%;
         max-width: 420px;
         margin: 0 auto 24px;
-        font-size: 32px;
+        font-size: 28px;
         line-height: 1.1;
         letter-spacing: -0.7px;
     }
@@ -396,7 +395,7 @@ a {
 /* Small phones */
 @media (max-width: 480px) {
     .hero {
-        padding: 104px 5% 32px;
+        padding: 142px 5% 32px;
     }
 
     .hero-container {
@@ -405,7 +404,7 @@ a {
 
     .hero-title {
         max-width: 360px;
-        font-size: 28px;
+        font-size: 26px;
         margin-bottom: 22px;
     }
 
@@ -421,9 +420,6 @@ a {
 
 /* Very small screens */
 @media (max-width: 370px) {
-    .hero-title {
-        font-size: 26px;
-    }
 
     .hero-image img {
         max-width: 285px;
@@ -439,14 +435,15 @@ a {
    Services Section
    ========================================================= */
 .services {
-    margin: 0 var(--container-x) var(--section-gap);
-    padding: 22px;
+    margin: 0 0 var(--section-gap);
+    padding: 58px 22px;
     border-radius: var(--radius-md);
+    background: #ffffff;
 }
 
 .services-container {
     max-width: 1180px;
-    margin: 0 auto;
+    margin: 0 var(--container-x);
 }
 
 .section-header {
@@ -633,87 +630,6 @@ a {
     }
 }
 
-/* =========================================================
-   06. Method Section
-   ========================================================= */
-.method {
-    margin: 0 var(--container-x) var(--section-gap);
-    padding: 22px 3%;
-    border-radius: var(--radius-lg);
-}
-
-.method-container {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.method-title {
-    margin: 0 0 6px;
-    color: var(--color-dark);
-    font-size: 32px;
-    font-weight: 500;
-    text-align: center;
-}
-
-.method-description {
-    max-width: 740px;
-    margin: 0;
-    color: var(--color-muted-2);
-    font-size: 14px;
-    line-height: 1.6;
-    text-align: center;
-}
-
-.method-right {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-}
-
-.method-card {
-    padding: 18px;
-    background: var(--color-surface);
-    border: 1px solid rgba(219, 234, 254, 0.9);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-}
-
-.method-card:hover {
-    box-shadow: var(--shadow-blue);
-    border-color: var(--color-primary);
-}
-
-@media (max-width: 1000px) {
-    .method-right {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 600px) {
-    .method {
-        margin: 0 5% 28px;
-        padding: 18px;
-    }
-
-    .method-container {
-        text-align: center;
-    }
-    .method-title {
-        font-size: 21px;
-    }
-    .method-right {
-        grid-template-columns: 1fr;
-    }
-
-    .method-card .card-inner {
-        text-align: start;
-    }
-}
 
 /* =========================================================
    07. Software Section
@@ -1515,12 +1431,153 @@ a {
         min-height: 230px;
     }
 }
+
+
+/* =========================================================
+   FLOATING BUTTONS 
+========================================================= */
+.float-nav {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.float-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    /* Medium black */
+    background: #2f2f2f;
+    color: #ffffff;
+
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.float-btn:hover {
+    background: #1f1f1f;
+    transform: translateY(-3px);
+}
+
+/* Hidden state */
+.float-btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Down button slight variation (optional) */
+.float-btn-down {
+    background: #3a3a3a;
+}
+
+.float-btn-down:hover {
+    background: #262626;
+}
+
+/* Social media */
+.social-float {
+    position: fixed;
+    left: 25px;
+    top: 105px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+/* Facebook brand color */
+.social-btn.fb {
+    background: #1877F2;
+}
+
+.social-btn.fb:hover {
+    background: #0f5ec4;
+    transform: translateY(-3px);
+}
+
+/* WhatsApp brand color */
+.social-btn.wa {
+    background: #25D366;
+}
+
+.social-btn.wa:hover {
+    background: #1da851;
+    transform: translateY(-3px);
+}
+
+
+
+@media (max-width: 900px) {
+    .float-nav {
+        bottom: 20px;
+        right: 20px;
+        gap: 9px;
+    }
+
+    .social-float {
+        left: 20px;
+        top: 95px;
+        gap: 9px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .float-nav {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .social-float {
+        left: 15px;
+        top: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .float-nav {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .social-float {
+        left: 10px;
+        top: 85px;
+    }
+}
+
+
 /* =========================================================
    12. RTL Improvements
    ========================================================= */
 [dir="rtl"] .hero-title,
 [dir="rtl"] .about-description,
-[dir="rtl"] .method-description,
 [dir="rtl"] .software-description,
 [dir="rtl"] .service-card,
 [dir="rtl"] .contact-item,
