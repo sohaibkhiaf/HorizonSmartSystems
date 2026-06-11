@@ -12,8 +12,9 @@ return [
     'services' => 'Services',
     'software' => 'Software',
     'achievements' => 'Achievements',
-    'store' => 'Our Store',
+    'store' => 'Our store',
     'contact' => 'Contact',
+    'client_space' => 'Client space',
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ return [
     'other_services_title' => 'Other Services',
 
     'other_intl_title' => 'International Software Procurement',
-    'other_subscriptions_title' => 'Software Subscriptions',
+    'other_subscriptions_title' => 'Subscription Offering',
     'other_hosting_title' => 'Website Hosting',
     'other_consulting_title' => 'Consulting & Support',
 

@@ -25,7 +25,7 @@ return [
     'about_trust_desc'    => 'Un partenaire fiable pour construire dans la durée.',
 
     // Services /////////////////////////////////////////////////////////////
-    'services_title'      => 'Services proposés',
+    'services_title'      => 'Nos services',
     'services_description' => 'Découvrez nos services numériques conçus pour aider votre entreprise à se développer grâce à des sites web modernes, des logiciels personnalisés, des systèmes de gestion et un support informatique fiable.',
     'service_web_title'   => 'Création de sites web',
     'service_web_desc'    => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
@@ -44,7 +44,7 @@ return [
     'other_services_title'       => 'Autres services',
     'other_intl_title'           => 'Acquisition de logiciels internationaux',
     'other_intl_desc'            => 'Fourniture de logiciels internationaux selon vos besoins et budget.',
-    'other_subscriptions_title'  => 'Abonnements logiciels',
+    'other_subscriptions_title'  => 'Fourniture d\'abonnements',
     'other_subscriptions_desc'   => 'Proposition et gestion d\'abonnements IA (ChatGPT, Gemini...), Steam Cards, Adobe, Microsoft...',
     'other_hosting_title'        => 'Hébergement de sites web',
     'other_hosting_desc'         => 'Hébergement sécurisé, performant et évolutif pour vos sites et applications.',
@@ -84,6 +84,7 @@ return [
 
     // Contact ///////////////////////////////////////////////////////////
     'contact_title'   => 'Contactez-nous',
+    'contact_description' => 'Envoyez-nous un message et nous vous répondrons bientôt',
     'phone_label'     => 'Téléphone',
     'email_label'     => 'Email',
     'facebook_label'  => 'Facebook',

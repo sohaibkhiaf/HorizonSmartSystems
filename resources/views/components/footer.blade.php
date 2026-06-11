@@ -15,12 +15,9 @@
                 </span>
 
                 <span class="footer-social-icon">
-                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-whatsapp"></i>
                 </span>
 
-                <span class="footer-social-icon">
-                    <i class="fa-brands fa-square-instagram"></i>
-                </span>
             </div>
         </div>
 

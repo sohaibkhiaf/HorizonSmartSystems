@@ -14,6 +14,7 @@ return [
     'achievements' => 'إنجازاتنا',
     'store' => 'متجرنا',
     'contact' => 'اتصل بنا',
+    'client_space' => 'فضاء العميل',
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ return [
     'other_services_title' => 'خدمات أخرى',
 
     'other_intl_title' => 'توفير البرمجيات الدولية',
-    'other_subscriptions_title' => 'اشتراكات البرمجيات',
+    'other_subscriptions_title' => 'توفير الاشتراكات',
     'other_hosting_title' => 'استضافة المواقع الإلكترونية',
     'other_consulting_title' => 'الاستشارة والمرافقة',
 

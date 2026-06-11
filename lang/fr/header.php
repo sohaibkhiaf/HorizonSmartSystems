@@ -14,6 +14,7 @@ return [
     'achievements' => 'Réalisations',
     'store' => 'Notre boutique',
     'contact' => 'Contact',
+    'client_space' => 'Espace client',
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +39,7 @@ return [
     'other_services_title' => 'Autres services',
 
     'other_intl_title' => 'Acquisition de logiciels internationaux',
-    'other_subscriptions_title' => 'Abonnements logiciels',
+    'other_subscriptions_title' => 'Fourniture d\'abonnements',
     'other_hosting_title' => 'Hébergement de sites web',
     'other_consulting_title' => 'Conseil et accompagnement',
 

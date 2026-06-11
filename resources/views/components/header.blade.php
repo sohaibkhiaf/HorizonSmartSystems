@@ -145,6 +145,11 @@
             {{ __('header.contact') }}
         </a>
 
+        <a class="nav-tab" 
+            href="client/login">
+            {{ __('header.client_space') }}
+        </a>
+
         @if ($page == "STORE")
         <a class="nav-tab active">
             <i class="fa-solid fa-cart-shopping"></i>
@@ -204,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!element) return;
 
         const offset = 80;
-        const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
+        const y = element.getBoundingClientRect().top + window.pageYOffset - offset ;
 
         window.scrollTo({
             top: y,
@@ -248,6 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Home tab active by default
+    if (@json( $page == "APP" )){
+        tabs[0].classList.add('active');
+    }
+    
 });
 </script>
 

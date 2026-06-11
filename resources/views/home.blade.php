@@ -42,7 +42,6 @@
     </div>
 </section>
 
-
 <!-- Services ---------------------------------------------------------------- -->
 <section class="services" id="servicesSection" data-section="services">
     <div class="services-container">
@@ -61,7 +60,9 @@
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide service-card">
-                        <div class="icon"><i class="fas fa-globe"></i></div>
+                        <div class="service-image">
+                            <img src="{{ asset('images/webdev.jpg') }}" alt="Web Development">
+                        </div>
                         <h3>{{ __('home.service_web_title') }}</h3>
                         <p>{{ __('home.service_web_desc') }}</p>
                         <a href="/webdev" class="plus-link">
@@ -71,7 +72,9 @@
                     </div>
 
                     <div class="swiper-slide service-card">
-                        <div class="icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="service-image">
+                            <img src="{{ asset('images/appdev.jpg') }}" alt="Application Development">
+                        </div>
                         <h3>{{ __('home.service_app_title') }}</h3>
                         <p>{{ __('home.service_app_desc') }}</p>
                         <a href="/appdev" class="plus-link">
@@ -81,7 +84,9 @@
                     </div>
 
                     <div class="swiper-slide service-card">
-                        <div class="icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="service-image">
+                            <img src="{{ asset('images/erp.jpg') }}" alt="Entreprise Resource Planning">
+                        </div>                        
                         <h3>{{ __('home.service_erp_title') }}</h3>
                         <p>{{ __('home.service_erp_desc') }}</p>
                         <a href="/erp" class="plus-link">
@@ -91,7 +96,9 @@
                     </div>
 
                     <div class="swiper-slide service-card">
-                        <div class="icon"><i class="fas fa-cogs"></i></div>
+                        <div class="service-image">
+                            <img src="{{ asset('images/systems.jpg') }}" alt="Custom Management Systems">
+                        </div>
                         <h3>{{ __('home.service_sys_title') }}</h3>
                         <p>{{ __('home.service_sys_desc') }}</p>
                         <a href="/systems" class="plus-link">
@@ -101,7 +108,9 @@
                     </div>
 
                     <div class="swiper-slide service-card">
-                        <div class="icon"><i class="fas fa-headset"></i></div>
+                        <div class="service-image">
+                            <img src="{{ asset('images/support.jpg') }}" alt="IT Support">
+                        </div>                        
                         <h3>{{ __('home.service_support_title') }}</h3>
                         <p>{{ __('home.service_support_desc') }}</p>
                         <a href="/support" class="plus-link">
@@ -272,6 +281,9 @@
 
     <div class="contact-heading">
         <h2>{{ __('home.contact_title') }}</h2>
+        <p class="contact-description">
+            {{ __('home.contact_description') ?? '' }}
+        </p>
     </div>
 
     <div class="contact-container">
@@ -511,8 +523,6 @@ if (section) {
     }
 }
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
 
     const btnTop = document.getElementById("btnScrollTop");
@@ -576,7 +586,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (sections[nextIndex]) {
             window.scrollTo({
-                top: sections[nextIndex].offsetTop - HEADER_OFFSET,
+                top: sections[nextIndex].offsetTop - HEADER_OFFSET ,
                 behavior: "smooth"
             });
         } else {

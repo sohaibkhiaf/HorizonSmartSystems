@@ -64,7 +64,7 @@
 
 .nav a:hover,
 .nav a.active {
-    color: #2563eb;
+    color: #FF6A00;
 }
 
 .nav a.active {
@@ -174,12 +174,12 @@
 .service-link i {
     width: 18px;
     text-align: center;
-    color: #2563eb;
+    color: #FF6A00;
 }
 
 .service-link:hover {
     background: #f3f4f6;
-    color: #2563eb;
+    color: #FF6A00;
 }
 
 
@@ -253,7 +253,7 @@
 }
 
 .language-switcher a.active {
-    background: #2563eb;
+    background: #FF6A00;
     color: #ffffff;
     font-weight: 600;
 }

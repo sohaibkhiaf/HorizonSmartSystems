@@ -45,7 +45,7 @@ return [
     'other_services_title'       => 'خدمات أخرى',
     'other_intl_title'           => 'توفير البرمجيات الدولية',
     'other_intl_desc'            => 'توفير البرمجيات الدولية وفق احتياجاتك وميزانيتك.',
-    'other_subscriptions_title'  => 'اشتراكات البرمجيات',
+    'other_subscriptions_title'  => 'توفير الاشتراكات',
     'other_subscriptions_desc'   => 'توفير وإدارة اشتراكات الذكاء الاصطناعي (ChatGPT, Gemini...)، Steam Cards، Adobe، Microsoft...',
     'other_hosting_title'        => 'استضافة المواقع الإلكترونية',
     'other_hosting_desc'         => 'استضافة آمنة وعالية الأداء وقابلة للتوسع لمواقعك وتطبيقاتك.',
@@ -83,6 +83,7 @@ return [
 
     // Contact /////////////////////////////////////////////////////////////
     'contact_title'   => 'تواصل معنا',
+    'contact_description' => 'أرسل لنا رسالة وسنقوم بالرد قريبًا',
     'phone_label'     => 'الهاتف',
     'email_label'     => 'البريد الإلكتروني',
     'facebook_label'  => 'فيسبوك',

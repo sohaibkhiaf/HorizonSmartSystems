@@ -73,7 +73,7 @@
 
 .confirm-desc {
     color: var(--store-muted);
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.8;
     max-width: 490px;
     margin: 0 auto 22px;
@@ -95,7 +95,7 @@
 
 .reference-box span {
     color: var(--store-muted);
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .reference-box strong {
@@ -148,14 +148,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
     flex-shrink: 0;
 }
 
 .step p {
     color: #374151;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.6;
     margin: 0;
 }
@@ -179,7 +179,7 @@
     justify-content: center;
     gap: 9px;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     box-shadow: var(--store-shadow-soft);
     transition: background 0.2s ease, transform 0.2s ease;
@@ -191,7 +191,7 @@
 }
 
 .continue-btn i {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* =========================================================

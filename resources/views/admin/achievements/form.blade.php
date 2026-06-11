@@ -20,18 +20,11 @@
 
             <div class="form-group">
                 <label>Type</label>
-                <select name="type">
-                    <option value="" disabled selected>Sélectionner le type de projet</option>
-                    <option value="web" {{ old('type', $achievement->type ?? '') === "web" ? 'selected' : '' }}>
-                        Site web
-                    </option>
-                    <option value="ecommerce" {{ old('type', $achievement->type ?? '') === "ecommerce" ? 'selected' : '' }}>
-                        E-commerce
-                    </option>
-                    <option value="software" {{ old('type', $achievement->type ?? '') === "software" ? 'selected' : '' }}>
-                        Logiciel
-                    </option>
-                </select>
+                <input type="text" 
+                    name="type" 
+                    value="{{ old('title', $achievement->type ?? '') }}" 
+                    placeholder="Entrez le type de projet (ex. E-commerce)" 
+                    required/>
             </div>
 
             <div class="form-group full">

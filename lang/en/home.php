@@ -45,7 +45,7 @@ return [
     'other_services_title'       => 'Other Services',
     'other_intl_title'           => 'International Software Procurement',
     'other_intl_desc'            => 'Supply of international software according to your needs and budget.',
-    'other_subscriptions_title'  => 'Software Subscriptions',
+    'other_subscriptions_title'  => 'Subscription offering',
     'other_subscriptions_desc'   => 'Offering and managing AI subscriptions (ChatGPT, Gemini...), Steam Cards, Adobe, Microsoft...',
     'other_hosting_title'        => 'Website Hosting',
     'other_hosting_desc'         => 'Secure, high-performance and scalable hosting for your sites and applications.',
@@ -85,6 +85,7 @@ return [
 
     // Contact ////////////////////////////////////////////////////////////
     'contact_title'   => 'Contact us',
+    'contact_description' => 'Send us a message and we will reply soon',
     'phone_label'     => 'Phone',
     'email_label'     => 'Email',
     'facebook_label'  => 'Facebook',

@@ -52,11 +52,11 @@
 
 <main class="store-page {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
 
-    <!-- Search -->
+    <!-- Search + Categories Combined -->
     <section class="store-search-section">
         <form method="GET" action="{{ route('store.index') }}" class="search-form">
-            <input type="hidden" name="category" value="{{ $currentCategory }}">
 
+            <!-- Search Input -->
             <div class="search-input-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -68,38 +68,36 @@
                     autocomplete="off">
             </div>
 
+            <!-- Categories Dropdown -->
+            <div class="search-category">
+                <select name="category">
+                    @foreach($categories as $key => $item)
+                        <option value="{{ $key }}" 
+                            {{ $currentCategory === $key || ($key === 'all' && empty(request('category'))) ? 'selected' : '' }}>
+                            {{ $item['label'] }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <!-- Actions -->
             <div class="search-actions">
                 @if (!empty($currentSearch))
-                    <a href="{{ route('store.index', ['category' => $currentCategory]) }}" class="btn-reset">
-                        {{ __('store.reset') }}
-                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                    <a href="{{ route('store.index') }}" class="btn-reset">
+                        <i class="fa-solid fa-rotate"></i>
                     </a>
                 @endif
 
                 <button type="submit" class="btn-search">
-                    {{ __('store.search') }}
                     <i class="fa-solid fa-search"></i>
                 </button>
             </div>
+
         </form>
     </section>
 
     <!-- Products -->
     <section class="products-tabs-section">
-
-        <!-- Categories -->
-        <div class="tabs-box">
-            <div class="tabs" aria-label="Product categories">
-                @foreach($categories as $key => $item)
-                    <a
-                        href="{{ route('store.index', ['category' => $key, 'search' => $currentSearch]) }}"
-                        class="tab {{ $currentCategory === $key || ($key === 'all' && empty(request('category'))) ? 'active' : '' }}">
-                        <i class="{{ $item['icon'] }}"></i>
-                        <span>{{ $item['label'] }}</span>
-                    </a>
-                @endforeach
-            </div>
-        </div>
 
         <!-- Products Box -->
         <div class="products-box">

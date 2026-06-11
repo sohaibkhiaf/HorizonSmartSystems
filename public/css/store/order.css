@@ -48,7 +48,7 @@
     color: var(--store-primary);
     border: 1px solid #dbeafe;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
     transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .back-link i {
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /* =========================================================
@@ -115,7 +115,7 @@
 
 .section-head p {
     color: var(--store-muted);
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.7;
     margin-top: 4px;
 }
@@ -138,7 +138,7 @@
     display: block;
     margin-bottom: 8px;
     color: #374151;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
 }
 
@@ -154,7 +154,7 @@
     padding: 0 14px;
     background: #ffffff;
     color: var(--store-text);
-    font-size: 14px;
+    font-size: 15px;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -172,7 +172,7 @@
     display: block;
     margin-top: 6px;
     color: #ef4444;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .secure-message {
@@ -185,7 +185,7 @@
     border-radius: 12px;
     background: #f0fdf4;
     color: #15803d;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.6;
 }
 
@@ -241,7 +241,7 @@
 
 .product-info h3 {
     color: var(--store-text);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.45;
     margin-bottom: 6px;
     font-weight: 600;
@@ -249,7 +249,7 @@
 
 .product-info p {
     color: var(--store-muted);
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.6;
     margin-bottom: 10px;
 }
@@ -269,7 +269,7 @@
     border: 1px solid #dbeafe;
     background: var(--store-primary-soft);
     color: var(--store-primary);
-    font-size: 11px;
+    font-size: 12px;
 }
 
 .badge-soft {
@@ -372,7 +372,7 @@
     align-items: center;
     justify-content: center;
     gap: 9px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
@@ -384,7 +384,7 @@
 }
 
 .place-order-btn i {
-    font-size: 13px;
+    font-size: 16px;
 }
 
 /* =========================================================
