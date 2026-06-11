@@ -111,6 +111,10 @@
                     </div>
 
                 </div>
+
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
 
@@ -179,7 +183,7 @@
                 <div class="software-information">
                     <div class="software-card-header">
                         <div class="software-icon">
-                            <i class="fa-solid fa-w"></i>
+                            <img src="{{ asset('images/wili_logo.png') }}" alt="Wili Logo">
                         </div>
 
                         <div>
@@ -192,12 +196,6 @@
                         {{ __('home.wili_description') }}
                     </p>
 
-                    <div class="software-features">
-                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_1') }}</span>
-                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_2') }}</span>
-                        <span><i class="fa-solid fa-check"></i> {{ __('home.wili_feature_3') }}</span>
-                    </div>
-
                     <a onclick="scrollToSection('contactSection')" class="software-link">
                         {{ __('home.software_cta') }}
                         <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
@@ -205,8 +203,13 @@
                 </div>
 
                 <div class="software-image">
-                    <img src="{{ asset('images/wili_pc_white_bg.png') }}" alt="Wili Stock Management System">
+                    <img src="{{ asset('images/wili_pc.png') }}" alt="Wili Stock Management System">
                 </div>
+
+                <a onclick="scrollToSection('contactSection')" class="software-link-mobile">
+                    {{ __('home.software_cta') }}
+                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                </a>
 
             </div>
 
@@ -256,6 +259,10 @@
                 @endforeach
 
             </div>
+
+            <!-- Navigation buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
 </section>
@@ -476,6 +483,10 @@ const swiper = new Swiper(".services-swiper", {
     slidesPerView: "auto",
     spaceBetween: 20,
     grabCursor: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 });
 
 new Swiper(".achievements-swiper", {
@@ -483,6 +494,10 @@ new Swiper(".achievements-swiper", {
     spaceBetween: 20,
     grabCursor: true,
     centeredSlides: true,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
 });
 
 

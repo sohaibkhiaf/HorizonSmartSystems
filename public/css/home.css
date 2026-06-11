@@ -6,7 +6,7 @@
    ========================================================= */
 
 /* =========================================================
-   01. Design Tokens & Base
+    Design Tokens & Base
    ========================================================= */
 :root {
     --body-color: hsl(0, 0%, 98%);
@@ -17,6 +17,7 @@
     --color-primary-soft: #eff6ff;
     --color-accent: #ff3d2e;
     --color-accent-dark: #e63628;
+    --color-accent-soft: #ffe5e2;
     --color-dark: #111827;
     --color-muted: #64748b;
     --color-muted-2: #6b7280;
@@ -55,8 +56,34 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+    height: 42px;
+    width: 42px;
+    border-radius: 15px; /* more rounded */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #2f2f2f;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+
+    color: #fff;
+    border: none;
+    transition: all 0.2s ease;
+    padding: 11px;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background: #1f1f1f;
+    transform: translateY(-2px);
+}
+
+
 /* =========================================================
-   02. Shared Components
+    Shared Components
    ========================================================= */
 .btn,
 .software-link,
@@ -84,7 +111,7 @@ a {
 }
 
 .btn i {
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .btn:hover,
@@ -137,8 +164,8 @@ a {
     align-items: center;
     justify-content: center;
     flex: 0 0 auto;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
 }
 
 .icon,
@@ -206,7 +233,7 @@ a {
 }
 
 /* =========================================================
-   03. Hero Section
+    Hero Section
    ========================================================= */
 .hero {
     min-height: 100vh;
@@ -432,12 +459,11 @@ a {
 }
 
 /* =========================================================
-   Services Section
+    Services Section
    ========================================================= */
 .services {
     margin: 0 0 var(--section-gap);
-    padding: 58px 22px;
-    border-radius: var(--radius-md);
+    padding: 58px 0;
     background: #ffffff;
 }
 
@@ -458,7 +484,7 @@ a {
     margin: 0 0 8px;
     color: var(--color-dark);
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -467,7 +493,7 @@ a {
     text-align: center;
     margin: 0;
     color: var(--color-muted);
-    font-size: 14px;
+    font-size: 17px;
     line-height: 1.6;
 }
 
@@ -494,8 +520,9 @@ a {
 
 .service-card:hover {
     transform: translateY(-3px);
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-blue);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-red);
+    background: #ffffff;
 }
 
 .service-card .icon {
@@ -505,8 +532,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
     border-radius: 50%;
     font-size: 23px;
 }
@@ -514,14 +541,14 @@ a {
 .service-card h3 {
     margin: 12px 0 6px;
     color: var(--color-dark);
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 500;
 }
 
 .service-card p {
     margin: 0;
     color: var(--color-muted);
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.5;
 }
 
@@ -530,7 +557,7 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    color: var(--color-primary);
+    color: var(--color-accent);
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
@@ -559,17 +586,18 @@ a {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background: #f8fafc;
+    background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
     transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
 }
 
 .other-service-card:hover {
     transform: translateY(-2px);
     background: #ffffff;
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-red);
 }
 
 .other-service-icon {
@@ -579,8 +607,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
     border-radius: 12px;
     font-size: 15px;
 }
@@ -588,14 +616,14 @@ a {
 .other-service-card h3 {
     margin: 0 0 5px;
     color: var(--color-dark);
-    font-size: 14px;
+    font-size: 17px;
     font-weight: 500;
 }
 
 .other-service-card p {
     margin: 0;
     color: var(--color-muted);
-    font-size: 12.5px;
+    font-size: 15px;
     line-height: 1.45;
 }
 
@@ -608,8 +636,8 @@ a {
 
 @media (max-width: 600px) {
     .services {
-        margin: 20px 5%;
-        padding: 16px;
+        margin: 0 0 28px;
+        padding: 18px;
     }
 
     .services-title {
@@ -618,7 +646,7 @@ a {
 
     .service-card,
     .swiper-slide {
-        width: 100% !important;
+        width: 90% !important;
     }
 
     .service-card {
@@ -632,18 +660,17 @@ a {
 
 
 /* =========================================================
-   07. Software Section
+    Software Section
    ========================================================= */
 .software-section {
-    margin: 0 var(--container-x) var(--section-gap);
-    padding: 24px;
-    border-radius: var(--radius-md);
+    margin: 0 0 var(--section-gap);
+    padding: 58px 0;
     overflow: hidden;
 }
 
 .software-container {
     max-width: 1180px;
-    margin: 0 auto;
+    margin: 0 var(--container-x);
 }
 
 .software-content {
@@ -657,7 +684,7 @@ a {
     margin: 0 0 8px;
     color: var(--color-dark);
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.25px;
     text-align: center;
 }
@@ -666,7 +693,7 @@ a {
     max-width: 760px;
     margin: 0;
     color: var(--color-muted-2);
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.65;
     text-align: center;
 }
@@ -677,16 +704,7 @@ a {
     align-items: center;
     gap: 24px;
     padding: 22px;
-    background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
     transition: var(--transition);
-}
-
-.software-card:hover {
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-blue);
 }
 
 .software-card-header {
@@ -697,57 +715,39 @@ a {
 }
 
 .software-icon {
-    width: 50px;
-    height: 50px;
+    width: 62px;
+    height: 62px;
     min-width: 50px;
     border-radius: 14px;
-    font-size: 20px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.software-icon {
+    object-fit: cover;
 }
 
 .software-card h3 {
     margin: 0 0 4px;
     color: var(--color-dark);
-    font-size: 19px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .software-card span {
     color: var(--color-muted-2);
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .software-card p {
     margin: 0 0 16px;
-    color: var(--color-muted-2);
-    font-size: 14px;
+    color: var(--color-dark);
+    font-size: 17px;
     line-height: 1.7;
 }
 
-.software-features {
-    margin-bottom: 18px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.software-features span {
-    padding: 8px 12px;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    background: var(--color-surface-soft);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    color: #374151;
-    font-size: 13px;
-}
-
-.software-features i {
-    color: var(--color-primary);
-    font-size: 12px;
-}
-
-.software-link {
+.software-link, 
+.software-link-mobile {
     width: fit-content;
     min-height: 44px;
     padding: 12px 18px;
@@ -758,13 +758,21 @@ a {
     background: var(--color-accent);
     color: #ffffff;
     border-radius: 12px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     box-shadow: var(--shadow-red);
     transition: var(--transition);
 }
 
-.software-link:hover {
+.software-link-mobile {
+    display: none;
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.software-link:hover,
+.software-link-mobile:hover {
     background: var(--color-accent-dark);
 }
 
@@ -794,12 +802,13 @@ a {
     .software-description {
         margin: 0 auto;
     }
+
 }
 
 @media (max-width: 600px) {
     .software-section {
-        margin: 0 5% 28px;
         padding: 18px;
+        margin: 0 0 28px;
     }
 
     .software-card {
@@ -811,29 +820,32 @@ a {
         font-size: 21px;
     }
 
-    .software-features {
-        flex-direction: column;
-    }
-
-    .software-features span,
     .software-link {
         width: 100%;
     }
+
+    .software-link-mobile {
+        display: block;
+    }
+    .software-link {
+        display: none;
+    }
+
 }
 
 /* =========================================================
-   08. Achievements Section
+    Achievements Section
    ========================================================= */
 .achievements {
-    margin: 0 var(--container-x) var(--section-gap);
-    padding: 22px;
-    border-radius: var(--radius-md);
+    margin: 0 0 var(--section-gap);
+    padding: 58px 0;
     overflow: hidden;
+    background: #ffffff;
 }
 
 .achievements-container {
     max-width: 1180px;
-    margin: 0 auto;
+    margin: 0 var(--container-x);
 }
 
 .achievements-header {
@@ -847,7 +859,7 @@ a {
 .achievements-title {
     margin: 0 0 8px;
     color: var(--color-dark);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.25px;
     font-size: 32px;
     text-align: center;
@@ -857,18 +869,21 @@ a {
     max-width: 760px;
     margin: 0;
     color: var(--color-muted-2);
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 17px;
+    line-height: 1.6;
     text-align: center;
 }
 
+.achievements-swiper {
+    padding: 10px 0;
+}
 .acheivement-card {
     width: 288px;
     min-height: 100%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background: var(--color-surface);
+    background: #ffffff;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
@@ -876,14 +891,14 @@ a {
 }
 
 .acheivement-card:hover {
-    box-shadow: var(--shadow-blue);
+    box-shadow: var(--shadow-red);
 }
 
 .acheivement-image {
     height: 160px;
     flex-shrink: 0;
     overflow: hidden;
-    background: var(--color-primary-soft);
+    background: var(--color-accent-soft);
 }
 
 .acheivement-image img {
@@ -924,9 +939,9 @@ a {
 
 .acheivement-header h3 {
     margin: 0;
-    color: var(--color-primary);
-    font-size: 15px;
-    font-weight: 500;
+    color: var(--color-accent);
+    font-size: 17px;
+    font-weight: 600;
     line-height: 1.35;
 }
 
@@ -935,14 +950,14 @@ a {
     border: 1px solid var(--color-border);
     border-radius: 999px;
     color: var(--color-muted-2);
-    font-size: 11px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
 .acheivement-content p {
     margin: 0 0 12px;
     color: var(--color-muted-2);
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -955,9 +970,9 @@ a {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    color: var(--color-primary);
-    font-size: 14px;
-    font-weight: 700;
+    color: var(--color-accent);
+    font-size: 15px;
+    font-weight: 600;
 }
 
 .achievements .swiper-slide {
@@ -966,8 +981,8 @@ a {
 
 @media (max-width: 600px) {
     .achievements {
-        margin: 0 5% 28px;
         padding: 18px;
+        margin: 0 0 28px;
     }
 
     .achievements-header {
@@ -978,7 +993,7 @@ a {
     }
     .acheivement-card,
     .achievements .swiper-slide {
-        width: 100% !important;
+        width: 90% !important;
     }
 }
 
@@ -986,8 +1001,8 @@ a {
    Contact Section
    ========================================================= */
 .contact-section {
-    margin: 0 var(--container-x) var(--section-gap);
-    padding: 22px 0;
+    margin: 0 0 var(--section-gap);
+    padding: 58px var(--container-x);
 }
 
 .contact-heading {
@@ -1000,7 +1015,7 @@ a {
     margin: 0;
     color: var(--color-dark);
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.7px;
 }
 
@@ -1039,8 +1054,8 @@ a {
 
 .contact-item:hover {
     transform: translateY(-2px);
-    border-color: var(--color-primary);
-    box-shadow: 0 8px 18px rgba(37, 99, 235, 0.08);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-red);
 }
 
 .contact-item i {
@@ -1050,8 +1065,8 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
     border-radius: 14px;
     font-size: 16px;
 }
@@ -1059,14 +1074,14 @@ a {
 .contact-item h4 {
     margin: 0 0 5px;
     color: var(--color-dark);
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .contact-item p {
     margin: 0;
     color: var(--color-muted);
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -1099,7 +1114,7 @@ a {
 }
 
 .hour-row span:last-child {
-    color: var(--color-primary);
+    color: var(--color-dark);
     white-space: nowrap;
 }
 
@@ -1161,8 +1176,8 @@ a {
 .form-group label {
     margin-bottom: 8px;
     color: #334155;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .form-group input,
@@ -1186,9 +1201,9 @@ a {
 .form-group input:focus,
 .form-group textarea:focus {
     background: #ffffff;
-    border-color: var(--color-primary);
+    border-color: var(--color-accent);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    box-shadow: 0 0 0 4px rgba(255, 61, 46, 0.10);
 }
 
 .message-group {
@@ -1278,7 +1293,7 @@ a {
 
 @media (max-width: 900px) {
     .contact-section {
-        padding: 20px 0;
+        padding: 20px;
     }
 
     .contact-heading {
@@ -1311,7 +1326,7 @@ a {
 
 @media (max-width: 600px) {
     .contact-section {
-        padding: 18px 0;
+        padding: 18px;
     }
 
     .contact-heading {
@@ -1574,7 +1589,7 @@ a {
 
 
 /* =========================================================
-   12. RTL Improvements
+    RTL Improvements
    ========================================================= */
 [dir="rtl"] .hero-title,
 [dir="rtl"] .about-description,
