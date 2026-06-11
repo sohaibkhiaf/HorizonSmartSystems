@@ -16,6 +16,16 @@
             </div>
 
             <div class="form-group">
+                <label>Numéro de téléphone</label>
+                <input type="text" name="phone" value="{{ $user->phone ?? '' }}" placeholder="Entrez le numéro de téléphone">
+            </div>
+
+            <div class="form-group">
+                <label>Entreprise</label>
+                <input type="text" name="company" value="{{ $user->company ?? '' }}" placeholder="Entrez le nom de l'entreprise">
+            </div>
+
+            <div class="form-group">
                 <label>Mot de passe</label>
                 <input type="password" name="password" placeholder="{{ isset($user) ? 'Laisser vide pour ne pas modifier' : 'Entrez un mot de passe' }}">
             </div>

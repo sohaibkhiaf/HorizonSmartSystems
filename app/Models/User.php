@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'role',
+        'phone',
+        'company',
         'password',
     ];
 
@@ -55,5 +57,27 @@ class User extends Authenticatable
     public function isOperator()
     {
         return $this->role === 'OPERATOR';
+    }
+
+    public function isClient()
+    {
+        return $this->role === 'CLIENT';
+    }
+
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+
+    public function services() {
+        return $this->hasMany(Service::class);
+    }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function tickets() {
+        return $this->hasMany(Ticket::class);
     }
 }

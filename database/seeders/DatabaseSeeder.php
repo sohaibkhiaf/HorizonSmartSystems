@@ -2,10 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Order;
+use App\Models\Service;
+use App\Models\Subscription;
+use App\Models\Ticket;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,16 +21,34 @@ class DatabaseSeeder extends Seeder
     {
 
         // USERS 
-        User::factory()->create([
-            'name' => 'Sohaib KHIAF',
-            'email' => 'sohaibkhiaf@gmail.com',
-            'role' => 'ADMIN',
-        ]);
-        User::factory()->create([
-            'name' => 'Mohamed Amine SALEM',
-            'email' => 'salemamine@gmail.com',
-            'role' => 'OPERATOR',
-        ]);
+        $admin = User::updateOrCreate(
+            ['email' => 'sohaibkhiaf@gmail.com'],
+            [
+                'name' => 'Sohaib KHIAF',
+                'role' => 'ADMIN',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'salemamine@gmail.com'],
+            [
+                'name' => 'Mohamed Amine SALEM',
+                'role' => 'OPERATOR',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        $client = User::updateOrCreate(
+            ['email' => 'client@hss.dz'],
+            [
+                'name' => 'Nadia Benali',
+                'phone' => '0550 12 34 56',
+                'company' => 'Benali Consulting',
+                'role' => 'CLIENT',
+                'password' => Hash::make('password'),
+            ]
+        );
 
         // ACHIEVEMENTS
         DB::table('achievements')->insert([
@@ -221,6 +244,85 @@ class DatabaseSeeder extends Seeder
                 ]
             );
         }
+
+        $orders = [
+            ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'completed'],
+            ['name' => 'Licence Microsoft Office 2021 Pro Plus', 'price' => 4500, 'status' => 'completed'],
+            ['name' => 'Maintenance site vitrine HSS', 'price' => 18000, 'status' => 'processing'],
+            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'pending'],
+        ];
+
+        foreach ($orders as $order) {
+            Order::updateOrCreate(
+                ['user_id' => $client->id, 'name' => $order['name']],
+                ['price' => $order['price'], 'status' => $order['status']]
+            );
+        }
+
+        $services = [
+            [
+                'name' => 'Licence Microsoft Office 2021 Pro Plus',
+                'expires_at' => null,
+                'status' => 'active',
+                'license_key' => 'HSS-OFFICE-2021-NB75',
+                'download_link' => 'https://example.com/downloads/office-2021',
+            ],
+            [
+                'name' => 'Maintenance site vitrine',
+                'expires_at' => now()->addMonths(6)->toDateString(),
+                'status' => 'active',
+                'license_key' => null,
+                'download_link' => null,
+            ],
+            [
+                'name' => 'Windows 11 Pro',
+                'expires_at' => null,
+                'status' => 'maintenance',
+                'license_key' => 'HSS-WIN11-PRO-49K2',
+                'download_link' => 'https://example.com/downloads/windows-11',
+            ],
+        ];
+
+        foreach ($services as $service) {
+            Service::updateOrCreate(
+                ['user_id' => $client->id, 'name' => $service['name']],
+                $service
+            );
+        }
+
+        $subscriptions = [
+            ['name' => 'ChatGPT Plus', 'price' => 6500, 'renewal_date' => now()->addDays(5)->toDateString(), 'status' => 'active'],
+            ['name' => 'Support prioritaire HSS', 'price' => 12000, 'renewal_date' => now()->addMonth()->toDateString(), 'status' => 'active'],
+            ['name' => 'Adobe Creative Cloud', 'price' => 7500, 'renewal_date' => now()->subDays(10)->toDateString(), 'status' => 'expired'],
+        ];
+
+        foreach ($subscriptions as $subscription) {
+            Subscription::updateOrCreate(
+                ['user_id' => $client->id, 'name' => $subscription['name']],
+                $subscription
+            );
+        }
+
+        $ticket = Ticket::updateOrCreate(
+            ['user_id' => $client->id, 'subject' => 'Activation de ma licence Office'],
+            [
+                'message' => 'Bonjour, je souhaite confirmer la procedure d activation de ma licence Office sur un deuxieme poste.',
+                'status' => 'answered',
+            ]
+        );
+
+        $ticket->replies()->updateOrCreate(
+            ['message' => 'Bonjour Nadia, votre licence est prevue pour un seul poste. Nous pouvons vous proposer une deuxieme cle avec remise client.'],
+            ['user_id' => $admin->id, 'author_type' => 'admin']
+        );
+
+        Ticket::updateOrCreate(
+            ['user_id' => $client->id, 'subject' => 'Suivi de la maintenance du site'],
+            [
+                'message' => 'Merci de me confirmer la date de la prochaine intervention mensuelle.',
+                'status' => 'waiting',
+            ]
+        );
 
     }
 }

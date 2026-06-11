@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function loginPage()
     {
-        if (auth()->check() && auth()->user()->is_admin) {
+        if (auth()->check() && auth()->user()->role == "ADMIN") {
             return redirect()->route('admin.dashboard');
         }
 

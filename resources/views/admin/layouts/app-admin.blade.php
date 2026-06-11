@@ -93,6 +93,28 @@
                 <i class="fas fa-plus"></i>
                 Nouvelle demande
             </a>
+
+            <div class="nav-group-title">Espace client</div>
+
+            <a href="{{ route('admin.client-orders.index') }}" class="{{ request()->routeIs('admin.client-orders.*') ? 'active' : '' }}">
+                <i class="fas fa-receipt"></i>
+                Commandes clients
+            </a>
+
+            <a href="{{ route('admin.client-services.index') }}" class="{{ request()->routeIs('admin.client-services.*') ? 'active' : '' }}">
+                <i class="fas fa-cubes"></i>
+                Services clients
+            </a>
+
+            <a href="{{ route('admin.client-subscriptions.index') }}" class="{{ request()->routeIs('admin.client-subscriptions.*') ? 'active' : '' }}">
+                <i class="fas fa-rotate"></i>
+                Abonnements clients
+            </a>
+
+            <a href="{{ route('admin.client-tickets.index') }}" class="{{ request()->routeIs('admin.client-tickets.*') ? 'active' : '' }}">
+                <i class="fas fa-headset"></i>
+                Tickets clients
+            </a>
         </nav>
 
 
@@ -137,4 +159,3 @@
 
 </body>
 </html>
-
