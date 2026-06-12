@@ -28,7 +28,7 @@
             <div class="message-header">
                 <div>
                     <h3>{{ $message->subject ?: 'Sans objet' }}</h3>
-                    <p>{{ $message->name }}</p>
+                    <p>{{ $message->full_name }}</p>
                 </div>
 
                 @if(!$message->is_seen)

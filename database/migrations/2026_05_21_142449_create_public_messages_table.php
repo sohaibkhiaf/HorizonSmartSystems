@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('achievements', function (Blueprint $table) {
+        Schema::create('public_messages', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
-            $table->string('type');
+            $table->string('full_name');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
 
-            $table->string('short_description', 300);
-            $table->text('description')->nullable();
+            $table->string('subject')->nullable();
+            $table->text('message');
 
-            $table->string('image')->nullable();
-            $table->string('project_url')->nullable();
-
-            $table->boolean('is_published')->default(true);
+            $table->boolean('is_seen')->default(false);
+            $table->text('admin_note')->nullable();
 
             $table->softDeletes();
             $table->timestamps();
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievements');
+        Schema::dropIfExists('public_messages');
     }
 };

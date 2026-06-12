@@ -6,21 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
-class Achievement extends Model
+class PublicMessage extends Model
 {
-    /** @use HasFactory<\Database\Factories\AchievementFactory> */
+    /** @use HasFactory<\Database\Factories\PublicMessageFactory> */
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
-        'title',
-        'type',
-        'short_description',
-        'description',
-        'image',
-        'project_url',
-        'is_published',
+        'full_name',
+        'email',
+        'phone',
+        'subject',
+        'message',
+        'is_seen',
+        'admin_note',
     ];
-
 }

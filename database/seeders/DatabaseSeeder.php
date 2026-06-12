@@ -51,14 +51,23 @@ class DatabaseSeeder extends Seeder
         );
 
         // ACHIEVEMENTS
-        DB::table('achievements')->insert([
+        DB::table('public_achievements')->insert([
             [
-                'title' => 'Wili',
-                'type' => 'software',
+                'en_title' => 'Wili',
+                'ar_title' => 'ويلي',
+                'fr_title' => 'Wili',
 
-                'short_description' => 'A smart stock and business management system built to help companies manage products, inventory, sales, and daily operations efficiently.',
+                'en_type' => 'Software',
+                'ar_type' => 'برمجية',
+                'fr_type' => 'Logiciel',
 
-                'description' => 'Wili is a professional management system designed for businesses that need better control over their stock, products, sales, and internal operations. It provides a clean interface, organized workflows, and practical tools to simplify daily management tasks.',
+                'en_short_description' => 'A smart stock and business management system built to help companies manage products, inventory, sales, and daily operations efficiently.',
+                'ar_short_description' => 'نظام ذكي لإدارة المخزون والأعمال يساعد الشركات على إدارة المنتجات والمخزون والمبيعات والعمليات اليومية بكفاءة.',
+                'fr_short_description' => 'Un système intelligent de gestion de stock et d\'entreprise conçu pour aider les entreprises à gérer les produits, les stocks, les ventes et les opérations quotidiennes efficacement.',
+
+                'en_description' => 'Wili is a professional management system designed for businesses that need better control over their stock, products, sales, and internal operations. It provides a clean interface, organized workflows, and practical tools to simplify daily management tasks.',
+                'ar_description' => 'ويلي هو نظام إدارة احترافي مصمم للشركات التي تحتاج إلى تحكم أفضل في المخزون والمنتجات والمبيعات والعمليات الداخلية. يوفر واجهة نظيفة وعمليات منظمة وأدوات عملية لتبسيط المهام اليومية.',
+                'fr_description' => 'Wili est un système de gestion professionnel conçu pour les entreprises qui ont besoin d\'un meilleur contrôle de leurs stocks, produits, ventes et opérations internes. Il offre une interface claire, des flux de travail organisés et des outils pratiques pour simplifier les tâches quotidiennes.',
 
                 'image' => 'wili_pc.png',
                 'project_url' => null,
@@ -69,12 +78,21 @@ class DatabaseSeeder extends Seeder
             ],
 
             [
-                'title' => 'HORIZON PC',
-                'type' => 'ecommerce',
+                'en_title' => 'HORIZON PC',
+                'ar_title' => 'هوريزون بي سي',
+                'fr_title' => 'HORIZON PC',
 
-                'short_description' => 'A modern ecommerce website for HORIZON PC, designed to showcase digital products, subscriptions, software, and gaming services online.',
+                'en_type' => 'Ecommerce',
+                'ar_type' => 'متجر إلكتروني',
+                'fr_type' => 'E-commerce',
 
-                'description' => 'The HORIZON PC ecommerce website is a clean and responsive online store built to present products such as game keys, gift cards, software, subscriptions, and digital services. It helps customers browse products easily and place orders through a smooth and professional shopping experience.',
+                'en_short_description' => 'A modern ecommerce website for HORIZON PC, designed to showcase digital products, subscriptions, software, and gaming services online.',
+                'ar_short_description' => 'موقع تجارة إلكترونية عصري لـ HORIZON PC مصمم لعرض المنتجات الرقمية والاشتراكات والبرمجيات وخدمات الألعاب عبر الإنترنت.',
+                'fr_short_description' => 'Un site e-commerce moderne pour HORIZON PC, conçu pour présenter des produits numériques, des abonnements, des logiciels et des services de jeux en ligne.',
+
+                'en_description' => 'The HORIZON PC ecommerce website is a clean and responsive online store built to present products such as game keys, gift cards, software, subscriptions, and digital services. It helps customers browse products easily and place orders through a smooth and professional shopping experience.',
+                'ar_description' => 'موقع HORIZON PC هو متجر إلكتروني نظيف ومتجاوب يعرض منتجات مثل مفاتيح الألعاب وبطاقات الهدايا والبرمجيات والاشتراكات والخدمات الرقمية. يساعد العملاء على تصفح المنتجات بسهولة وإجراء الطلبات عبر تجربة شراء سلسة واحترافية.',
+                'fr_description' => 'Le site e-commerce HORIZON PC est une boutique en ligne moderne et responsive présentant des produits tels que des clés de jeux, cartes cadeaux, logiciels, abonnements et services numériques. Il permet aux clients de naviguer facilement et de passer commande via une expérience fluide et professionnelle.',
 
                 'image' => 'horizon_pc_store.png',
                 'project_url' => 'https://horizon-pc.com',

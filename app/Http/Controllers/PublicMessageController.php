@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\PublicMessage;
 use Illuminate\Http\Request;
 
-
-class MessageController extends Controller
+class PublicMessageController extends Controller
 {
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'full_name' => ['required', 'string', 'max:255'],
+            'email' => ['nullable', 'email', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:50'],
+            'subject' => ['nullable', 'string', 'max:255'],
+            'message' => ['required', 'string'],
+        ]);
+
+        PublicMessage::create($data);
+
+        return redirect(url()->previous() . '#contactSection')
+            ->with('success', __('messages.message_sent'));
+    }
+    
     public function waiting(){
-        $messages = Message::where('is_seen', false)
+        $messages = PublicMessage::where('is_seen', false)
             ->latest()
             ->paginate(9);
 
@@ -22,7 +37,7 @@ class MessageController extends Controller
 
     public function seen(){
         
-        $messages = Message::where('is_seen', true)
+        $messages = PublicMessage::where('is_seen', true)
             ->latest()
             ->paginate(9);
 
@@ -33,12 +48,12 @@ class MessageController extends Controller
         ]);
     }
 
-    public function edit(Message $message)
+    public function edit(PublicMessage $message)
     {
         return view('admin.messages.edit', compact('message'));
     }
 
-    public function update(Request $request, Message $message)
+    public function update(Request $request, PublicMessage $message)
     {
         $request->validate([
             'is_seen' => ['nullable', 'boolean'],
@@ -57,7 +72,7 @@ class MessageController extends Controller
             ->with('success', 'Message mis à jour avec succès.');
     }
 
-    public function markSeen(Message $message)
+    public function markSeen(PublicMessage $message)
     {
         $message->update([
             'is_seen' => true,
@@ -66,7 +81,7 @@ class MessageController extends Controller
         return back()->with('success', 'Message marqué comme consulté.');
     }
 
-    public function markWaiting(Message $message)
+    public function markWaiting(PublicMessage $message)
     {
         $message->update([
             'is_seen' => false,
@@ -75,10 +90,12 @@ class MessageController extends Controller
         return back()->with('success', 'Message déplacé en attente.');
     }
 
-    public function destroy(Message $message)
+    public function destroy(PublicMessage $message)
     {
         $message->delete();
 
         return back()->with('success', 'Message supprimé avec succès.');
     }
 }
+
+

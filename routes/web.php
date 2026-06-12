@@ -1,19 +1,18 @@
 <?php
 
-use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\AdminClientOrderController;
 use App\Http\Controllers\AdminClientServiceController;
 use App\Http\Controllers\AdminClientSubscriptionController;
 use App\Http\Controllers\AdminClientTicketController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CSAuthController;
 use App\Http\Controllers\CSDashboardController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\MessageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicAchievementController;
+use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ServiceController;
@@ -22,11 +21,9 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
-use App\Models\Achievement;
-use App\Models\Product;
+use App\Models\PublicAchievement;
 use App\Models\PublicService;
 use App\Models\PublicSoftware;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Language Switcher /////////////////
@@ -43,7 +40,7 @@ Route::get('/language/{locale}', function ($locale) {
 // Home
 Route::get('/', function () {
 
-    $achievements = Achievement::where('is_published', true)
+    $achievements = PublicAchievement::where('is_published', true)
         ->latest()
         ->limit(10)
         ->get();
@@ -89,8 +86,7 @@ Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])-
 
 // Contact /////////////////////
 
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-
+Route::post('/contact', [PublicMessageController::class, 'store'])->name('contact.store');
 
 // Admin Auth Routes ////////////////////
 
@@ -110,12 +106,11 @@ Route::prefix('admin')
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     // Achievements
-    Route::resource('achievements', AchievementController::class)
+    Route::resource('achievements', PublicAchievementController::class)
         ->except(['show']);
 
     // Public Services
-    // Route::resource('public-services', PublicServiceController::class)
-    //     ->except(['show']);
+
 
     Route::get('/public-services/', [PublicServiceController::class, 'index'])
         ->name('publicServices.index');
@@ -144,25 +139,25 @@ Route::prefix('admin')
         ->name('publicSoftware.destroy');
 
     // Messages
-    Route::patch('/messages/{message}/mark-seen', [MessageController::class, 'markSeen'])
+    Route::patch('/messages/{message}/mark-seen', [PublicMessageController::class, 'markSeen'])
         ->name('messages.markSeen');
 
-    Route::patch('/messages/{message}/mark-waiting', [MessageController::class, 'markWaiting'])
+    Route::patch('/messages/{message}/mark-waiting', [PublicMessageController::class, 'markWaiting'])
         ->name('messages.markWaiting');
 
-    Route::get('/messages/waiting', [MessageController::class, 'waiting'])
+    Route::get('/messages/waiting', [PublicMessageController::class, 'waiting'])
         ->name('messages.waiting');
 
-    Route::get('/messages/seen', [MessageController::class, 'seen'])
+    Route::get('/messages/seen', [PublicMessageController::class, 'seen'])
         ->name('messages.seen');
 
-    Route::get('/messages/{message}/edit', [MessageController::class, 'edit'])
+    Route::get('/messages/{message}/edit', [PublicMessageController::class, 'edit'])
         ->name('messages.edit');
 
-    Route::put('/messages/{message}', [MessageController::class, 'update'])
+    Route::put('/messages/{message}', [PublicMessageController::class, 'update'])
         ->name('messages.update');
 
-    Route::delete('/messages/{message}', [MessageController::class, 'destroy'])
+    Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
         ->name('messages.destroy');
 
     Route::resource('users', UserController::class);

@@ -19,7 +19,7 @@
         <div class="details-grid">
             <div>
                 <strong>Nom :</strong>
-                <span>{{ $message->name }}</span>
+                <span>{{ $message->full_name }}</span>
             </div>
 
             <div>

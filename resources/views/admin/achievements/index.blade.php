@@ -34,7 +34,7 @@
 
             <div class="achievement-card-content">
                 <div class="card-row">
-                    <h3>{{ $achievement->title }}</h3>
+                    <h3>{{ $achievement->fr_title }}</h3>
 
                     @if($achievement->is_published)
                         <span class="badge success">Publié</span>
@@ -44,10 +44,10 @@
                 </div>
 
                 @if($achievement->type)
-                    <span class="type-badge">{{ $achievement->type }}</span>
+                    <span class="type-badge">{{ $achievement->fr_type }}</span>
                 @endif
 
-                <p>{{ $achievement->short_description }}</p>
+                <p>{{ $achievement->fr_short_description }}</p>
 
                 <div class="card-actions">
                     <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">

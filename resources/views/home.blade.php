@@ -253,10 +253,34 @@
                         </div>
                         <div class="acheivement-content">
                             <div class="acheivement-header">
-                                <h3>{{ $achievement->title }}</h3>
-                                <span class="type">{{ $achievement->type }}</span>
+                                <h3>
+                                    @if (app()->getLocale() == 'ar')
+                                        {{ $achievement->ar_title }}
+                                    @elseif(app()->getLocale() == 'fr')
+                                        {{ $achievement->fr_title }}
+                                    @else
+                                        {{ $achievement->en_title }}
+                                    @endif
+                                </h3>
+                                <span class="type">
+                                    @if (app()->getLocale() == 'ar')
+                                        {{ $achievement->ar_type }}
+                                    @elseif(app()->getLocale() == 'fr')
+                                        {{ $achievement->fr_type }}
+                                    @else
+                                        {{ $achievement->en_type }}
+                                    @endif
+                                </span>
                             </div>
-                            <p>{{ $achievement->short_description }}</p>
+                            <p>
+                                @if (app()->getLocale() == 'ar')
+                                    {{ $achievement->ar_short_description  }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{$achievement->fr_short_description  }}
+                                @else
+                                    {{ $achievement->en_short_description  }}
+                                @endif
+                            </p>
                             @if($achievement->project_url)
                                 <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
                                     {{ __('home.view_project') }}
@@ -380,8 +404,8 @@
                         <label>{{ __('home.form_fullname') }}</label>
                         <input
                             type="text"
-                            name="name"
-                            value="{{ old('name') }}"
+                            name="full_name"
+                            value="{{ old('full_name') }}"
                             placeholder="{{ __('home.form_fullname_ph') }}"
                             required>
                     </div>

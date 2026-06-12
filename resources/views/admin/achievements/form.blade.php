@@ -8,44 +8,118 @@
         <div class="form-grid">
 
             <div class="form-group">
-                <label>Titre</label>
+                <label>Titre Arabe</label>
                 <input 
                     type="text" 
-                    name="title" 
-                    value="{{ old('title', $achievement->title ?? '') }}" 
+                    name="ar_title" 
+                    value="{{ old('ar_title', $achievement->ar_title ?? '') }}" 
+                    placeholder="Entrez le titre du projet (ex. Site d'entreprise)"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label>Titre Francais</label>
+                <input 
+                    type="text" 
+                    name="fr_title" 
+                    value="{{ old('fr_title', $achievement->fr_title ?? '') }}" 
+                    placeholder="Entrez le titre du projet (ex. Site d'entreprise)"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <label>Titre Anglais</label>
+                <input 
+                    type="text" 
+                    name="en_title" 
+                    value="{{ old('en_title', $achievement->en_title ?? '') }}" 
                     placeholder="Entrez le titre du projet (ex. Site d'entreprise)"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label>Type</label>
+                <label>Type Arabe</label>
                 <input type="text" 
-                    name="type" 
-                    value="{{ old('title', $achievement->type ?? '') }}" 
+                    name="ar_type" 
+                    value="{{ old('ar_type', $achievement->ar_type ?? '') }}" 
+                    placeholder="Entrez le type de projet (ex. E-commerce)" 
+                    required/>
+            </div>
+            <div class="form-group">
+                <label>Type Francais</label>
+                <input type="text" 
+                    name="fr_type" 
+                    value="{{ old('fr_type', $achievement->fr_type ?? '') }}" 
+                    placeholder="Entrez le type de projet (ex. E-commerce)" 
+                    required/>
+            </div>
+            <div class="form-group">
+                <label>Type Anglais</label>
+                <input type="text" 
+                    name="en_type" 
+                    value="{{ old('en_type', $achievement->en_type ?? '') }}" 
                     placeholder="Entrez le type de projet (ex. E-commerce)" 
                     required/>
             </div>
 
             <div class="form-group full">
-                <label>Description courte</label>
+                <label>Description courte Arabe</label>
                 <input 
                     type="text" 
-                    name="short_description" 
+                    name="ar_short_description" 
                     maxlength="300" 
-                    value="{{ old('short_description', $achievement->short_description ?? '') }}" 
+                    value="{{ old('ar_short_description', $achievement->ar_short_description ?? '') }}" 
+                    placeholder="Résumé bref (300 caractères max)"
+                    required
+                >
+            </div>
+            <div class="form-group full">
+                <label>Description courte Francaise</label>
+                <input 
+                    type="text" 
+                    name="fr_short_description" 
+                    maxlength="300" 
+                    value="{{ old('fr_short_description', $achievement->fr_short_description ?? '') }}" 
+                    placeholder="Résumé bref (300 caractères max)"
+                    required
+                >
+            </div>
+            <div class="form-group full">
+                <label>Description courte anglaise</label>
+                <input 
+                    type="text" 
+                    name="en_short_description" 
+                    maxlength="300" 
+                    value="{{ old('en_short_description', $achievement->en_short_description ?? '') }}" 
                     placeholder="Résumé bref (300 caractères max)"
                     required
                 >
             </div>
 
             <div class="form-group full">
-                <label>Description</label>
+                <label>Description Arabe</label>
                 <textarea 
-                    name="description" 
+                    name="ar_description" 
                     rows="5"
                     placeholder="Rédigez une description détaillée du projet..."
-                >{{ old('description', $achievement->description ?? '') }}</textarea>
+                >{{ old('ar_description', $achievement->ar_description ?? '') }}</textarea>
+            </div>
+            <div class="form-group full">
+                <label>Description Francais</label>
+                <textarea 
+                    name="fr_description" 
+                    rows="5"
+                    placeholder="Rédigez une description détaillée du projet..."
+                >{{ old('fr_description', $achievement->fr_description ?? '') }}</textarea>
+            </div>
+            <div class="form-group full">
+                <label>Description Anglaise</label>
+                <textarea 
+                    name="en_description" 
+                    rows="5"
+                    placeholder="Rédigez une description détaillée du projet..."
+                >{{ old('en_description', $achievement->en_description ?? '') }}</textarea>
             </div>
 
             <div class="form-group full">
