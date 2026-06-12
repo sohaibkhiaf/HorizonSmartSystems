@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\CustomerService;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class AdminClientServiceController extends Controller
         $filters = $request->only(['client_id', 'status']);
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
-        $services = Service::with('user')
+        $services = CustomerService::with('user')
             ->when($request->filled('client_id'), fn ($query) => $query->where('user_id', $request->client_id))
             ->when($request->filled('status'), fn ($query) => $query->where('status', $request->status))
             ->latest()
@@ -41,13 +41,13 @@ class AdminClientServiceController extends Controller
             'download_link' => ['nullable', 'url', 'max:255'],
         ]);
 
-        Service::create($data);
+        CustomerService::create($data);
 
         return redirect()->route('admin.client-services.index')
             ->with('success', 'Service client ajoute avec succes.');
     }
 
-    public function edit(Service $clientService)
+    public function edit(CustomerService $clientService)
     {
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
@@ -57,7 +57,7 @@ class AdminClientServiceController extends Controller
         ]);
     }
 
-    public function update(Request $request, Service $clientService)
+    public function update(Request $request, CustomerService $clientService)
     {
         $data = $request->validate([
             'user_id' => ['required', 'exists:users,id'],

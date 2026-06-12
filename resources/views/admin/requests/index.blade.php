@@ -74,11 +74,11 @@
                     <td>#{{ $request->id }}</td>
 
                     <td>
-                        {{ $request->product->name ?? 'N/A' }}
+                        {{ $request->storeSubscription->name ?? 'N/A' }}
                     </td>
 
                     <td>
-                        <strong>{{ $request->client_name }}</strong><br>
+                        <strong>{{ $request->client_full_name }}</strong><br>
                         <small style="color:#6b7280;">
                             {{ $request->client_contact }}
                         </small>

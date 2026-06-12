@@ -26,7 +26,7 @@
             <div class="info-grid">
                 <div class="info-block full">
                     <p class="label">Nom complet</p>
-                    <p class="value">{{ $request->client_name }}</p>
+                    <p class="value">{{ $request->client_full_name }}</p>
                 </div>
                 <div class="info-block">
                     <p class="label">Contact</p>
@@ -49,23 +49,23 @@
             <div class="info-grid">
                 <div class="info-block">
                     <p class="label">Produit</p>
-                    <p class="value">{{ $request->product->name ?? 'N/A' }}</p>
+                    <p class="value">{{ $request->storeSubscription->name ?? 'N/A' }}</p>
                 </div>
                 <div class="info-block">
                     <p class="label">Type</p>
                     <p class="value">
-                        @if ($request->product->type == 'key')
+                        @if ($request->storeSubscription->type == 'key')
                             Clé
-                        @elseif ($request->product->type == 'account')
+                        @elseif ($request->storeSubscription->type == 'account')
                             Compte
-                        @elseif ($request->product->type == 'invitation')
+                        @elseif ($request->storeSubscription->type == 'invitation')
                             Invitation
                         @endif
                     </p>
                 </div>
                 <div class="info-block">
                     <p class="label">Prix unitaire</p>
-                    <p class="value">{{ $request->product->price }} DA</p>
+                    <p class="value">{{ $request->storeSubscription->price }} DA</p>
                 </div>
                 <div class="info-block">
                     <p class="label">Quantité</p>
@@ -80,7 +80,7 @@
             <div class="info-grid">
                 <div class="info-block">
                     <p class="label">Total</p>
-                    <p class="value total">{{ $request->product->price * $request->quantity }} DA</p>
+                    <p class="value total">{{ $request->storeSubscription->price * $request->quantity }} DA</p>
                 </div>
                 <div class="info-block">
                     <p class="label">Statut actuel</p>

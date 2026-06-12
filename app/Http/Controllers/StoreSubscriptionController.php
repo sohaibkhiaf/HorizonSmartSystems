@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\StoreSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class ProductController extends Controller
+class StoreSubscriptionController extends Controller
 {
     public function index() {
-        $products = Product::all();
+        $products = StoreSubscription::all();
         return view('admin.products.index', compact('products'));
     }
 
@@ -24,27 +24,25 @@ class ProductController extends Controller
             $image_url = $req->file('image')->store('products', 'public');
         }
 
-        Product::create([
+        StoreSubscription::create([
             'name' => $req->name,
             'description' => $req->description,
             'price' => $req->price, 
             'image' => $image_url,
             'type' => $req->type,
             'category' => $req->category,
-            'created_by' => auth()->user()->id,
         ]);
 
         return redirect()->route('admin.products.index');
     }
 
     public function edit($id) {
-        $product = Product::findOrFail($id);
+        $product = StoreSubscription::findOrFail($id);
         return view('admin.products.edit', compact('product'));
     }
 
     public function update(Request $req, $id) {
-        $product = Product::findOrFail($id);
-
+        $product = StoreSubscription::findOrFail($id);
 
         $image_url = $product->image;
         if ($req->hasFile('image')) {
@@ -55,7 +53,6 @@ class ProductController extends Controller
             $image_url = $req->file('image')->store('products', 'public');
         }
 
-
         $product->update([
             'name' => $req->name,
             'description' => $req->description,
@@ -63,14 +60,13 @@ class ProductController extends Controller
             'image' => $image_url,
             'type' => $req->type, 
             'category' => $req->category,
-            'created_by' => auth()->user()->id,
         ]);
 
         return redirect()->route('admin.products.index');
     }
 
     public function destroy($id) {
-        Product::destroy($id);
+        StoreSubscription::destroy($id);
         return back();
     }   
 }

@@ -4,19 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Service extends Model
+class CustomerOrder extends Model
 {
-    /** @use HasFactory<\Database\Factories\ServiceFactory> */
+    /** @use HasFactory<\Database\Factories\CustomerOrderFactory> */
     use HasFactory;
-
+    use SoftDeletes;
     protected $fillable = [
-        'user_id', 'name', 'expires_at', 'status',
-        'license_key', 'download_link'
-    ];
-
-    protected $casts = [
-        'expires_at' => 'date',
+        'user_id', 
+        'name', 
+        'price', 
+        'status'
     ];
 
     public function user() {

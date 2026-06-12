@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('store_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('price');
             $table->string('image')->nullable();
-            $table->foreignId('created_by')->nullable()->constrained('users')
-                ->onDelete('set null');
 
             $table->enum('type', [
                 'key', // Clé
@@ -45,6 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('store_subscriptions');
     }
 };

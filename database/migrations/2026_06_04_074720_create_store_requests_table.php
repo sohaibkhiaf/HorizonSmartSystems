@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\StoreSubscription;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,17 +12,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('store_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->nullable()->constrained('products')
-                ->onDelete('set null');
-            $table->foreignId('operator_id')->nullable()->constrained('users')
-                ->onDelete('set null');
-            $table->string('quantity');
-            $table->string('client_name');
+
+            $table->foreignIdFor(StoreSubscription::class)->constrained()
+                ->cascadeOnDelete();
+
+            $table->string('client_full_name');
             $table->string('client_email')->nullable();
             $table->string('client_address')->nullable();
             $table->string('client_contact');
+
+            $table->string('quantity');
 
             $table->enum('status', [
                 'pending', // En attente
@@ -45,6 +47,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('requests');
+        Schema::dropIfExists('store_requests');
     }
 };

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\StoreRequest;
+use App\Models\StoreSubscription;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
     public function index() {
         // query
-        $query = Product::query();
+        $query = StoreSubscription::query();
 
         // search
         $search = null;
@@ -40,7 +41,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function order(Product $product) {
+    public function order(StoreSubscription $product) {
         // view
         return view('/store/order', [
             'product'=> $product, 
@@ -48,10 +49,10 @@ class StoreController extends Controller
         ]);
     }
 
-    public function confirm(Request $request, Product $product) {
+    public function confirm(Request $request, StoreSubscription $storeSubscription) {
         // validation
         $data = $request->validate([
-            'product_id' => ['required', 'integer'],
+            'store_subscription_id' => ['required', 'integer'],
             'full_name' => ['required', 'string', 'max:200'],
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['nullable', 'string'],
@@ -60,9 +61,9 @@ class StoreController extends Controller
         ]);
 
         // create
-        $request = \App\Models\Request::create([
-            'product_id'=> $data['product_id'], 
-            'client_name'=> $data['full_name'], 
+        $request = StoreRequest::create([
+            'store_subscription_id'=> $data['subscription_id'], 
+            'client_full_name'=> $data['full_name'], 
             'client_contact'=> $data['phone'], 
             'client_email'=> $data['email'], 
             'client_address'=> $data['address'], 
@@ -75,7 +76,7 @@ class StoreController extends Controller
         ]);
     }
 
-    public function confirmed(\App\Models\Request $request) {
+    public function confirmed(StoreRequest $request) {
 
         // view
         return view('/store/confirmed', [

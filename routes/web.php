@@ -9,15 +9,15 @@ use App\Http\Controllers\CSAuthController;
 use App\Http\Controllers\CSDashboardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicAchievementController;
 use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
-use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\StoreRequestController;
+use App\Http\Controllers\StoreSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
@@ -34,7 +34,6 @@ Route::get('/language/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('language-switcher');
-
 
 // Public Routes //////////////
 // Home
@@ -111,7 +110,6 @@ Route::prefix('admin')
 
     // Public Services
 
-
     Route::get('/public-services/', [PublicServiceController::class, 'index'])
         ->name('publicServices.index');
     Route::get('/public-services/create', [PublicServiceController::class, 'create'])
@@ -163,30 +161,30 @@ Route::prefix('admin')
     Route::resource('users', UserController::class);
 
     // Products
-    Route::get('/products/', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
-    Route::post('/products/', [ProductController::class, 'store'])->name('products.store');
-    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/', [StoreSubscriptionController::class, 'index'])->name('products.index');
+    Route::get('/products/create', [StoreSubscriptionController::class, 'create'])->name('products.create');
+    Route::post('/products/', [StoreSubscriptionController::class, 'store'])->name('products.store');
+    Route::get('/products/{product}/edit', [StoreSubscriptionController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [StoreSubscriptionController::class, 'update'])->name('products.update');
+    Route::delete('/products/{product}', [StoreSubscriptionController::class, 'destroy'])->name('products.destroy');
 
     // Requests
-    Route::get('requests', [RequestController::class, 'index'])
+    Route::get('requests', [StoreRequestController::class, 'index'])
         ->name('requests.index');
-    Route::get('requests/create', [RequestController::class, 'create'])
+    Route::get('requests/create', [StoreRequestController::class, 'create'])
         ->name('requests.create');
-    Route::post('requests', [RequestController::class, 'store'])
+    Route::post('requests', [StoreRequestController::class, 'store'])
         ->name('requests.store');
         
-    Route::get('requests/{id}', [RequestController::class, 'show'])
+    Route::get('requests/{id}', [StoreRequestController::class, 'show'])
         ->name('requests.show');
-    Route::post('requests/{id}/availability', [RequestController::class, 'update'])
+    Route::post('requests/{id}/availability', [StoreRequestController::class, 'update'])
         ->name('requests.update');
 
-    Route::post('requests/{id}/deliver', [RequestController::class, 'deliverCredentials'])
+    Route::post('requests/{id}/deliver', [StoreRequestController::class, 'deliverCredentials'])
         ->name('requests.deliver');
 
-    Route::delete('requests/{id}', [RequestController::class, 'destroy'])
+    Route::delete('requests/{id}', [StoreRequestController::class, 'destroy'])
         ->name('requests.destroy');
 
     Route::get('client-orders', [AdminClientOrderController::class, 'index'])->name('client-orders.index');

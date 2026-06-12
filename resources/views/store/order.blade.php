@@ -39,7 +39,7 @@
         class="order-container">
         @csrf
 
-        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="subscription_id" value="{{ $product->id }}">
         <input type="hidden" name="quantity" id="hidden_quantity" value="1">
 
         {{-- Order Form --}}

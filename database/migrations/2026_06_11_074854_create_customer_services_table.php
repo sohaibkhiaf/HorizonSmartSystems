@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,16 +12,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('customer_services', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->foreignIdFor(User::class)->constrained()
+                ->cascadeOnDelete();
+                
             $table->string('name');
             $table->date('expires_at')->nullable();
-            $table->string('status'); // active / expired
+            $table->enum('status' , [
+                'active', //Actif
+                'expired',  // Expiré
+                'maintenance', // Maintenance
+                'suspended', // Suspendu
+            ])->default('active');
+
             $table->string('license_key')->nullable();
             $table->string('download_link')->nullable();
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('customer_services');
     }
 };

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Order;
-use App\Models\Service;
-use App\Models\Subscription;
-use App\Models\Ticket;
+use App\Models\CustomerOrder;
+use App\Models\CustomerService;
+use App\Models\CustomerSubscription;
+use App\Models\CustomerTicket;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -249,14 +249,13 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            DB::table('products')->updateOrInsert(
+            DB::table('store_subscriptions')->updateOrInsert(
                 ['name' => $product['name']],
                 [
                     'description' => $product['description'],
                     'price' => $product['price'],
                     'type' => $product['type'],
                     'category' => $product['category'],
-                    'created_by' => null,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]
@@ -264,14 +263,14 @@ class DatabaseSeeder extends Seeder
         }
 
         $orders = [
-            ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'completed'],
+            ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'pending'],
             ['name' => 'Licence Microsoft Office 2021 Pro Plus', 'price' => 4500, 'status' => 'completed'],
             ['name' => 'Maintenance site vitrine HSS', 'price' => 18000, 'status' => 'processing'],
-            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'pending'],
+            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'canceled'],
         ];
 
         foreach ($orders as $order) {
-            Order::updateOrCreate(
+            CustomerOrder::updateOrCreate(
                 ['user_id' => $client->id, 'name' => $order['name']],
                 ['price' => $order['price'], 'status' => $order['status']]
             );
@@ -302,7 +301,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($services as $service) {
-            Service::updateOrCreate(
+            CustomerService::updateOrCreate(
                 ['user_id' => $client->id, 'name' => $service['name']],
                 $service
             );
@@ -315,13 +314,13 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($subscriptions as $subscription) {
-            Subscription::updateOrCreate(
+            CustomerSubscription::updateOrCreate(
                 ['user_id' => $client->id, 'name' => $subscription['name']],
                 $subscription
             );
         }
 
-        $ticket = Ticket::updateOrCreate(
+        $ticket = CustomerTicket::updateOrCreate(
             ['user_id' => $client->id, 'subject' => 'Activation de ma licence Office'],
             [
                 'message' => 'Bonjour, je souhaite confirmer la procedure d activation de ma licence Office sur un deuxieme poste.',
@@ -334,7 +333,7 @@ class DatabaseSeeder extends Seeder
             ['user_id' => $admin->id, 'author_type' => 'admin']
         );
 
-        Ticket::updateOrCreate(
+        CustomerTicket::updateOrCreate(
             ['user_id' => $client->id, 'subject' => 'Suivi de la maintenance du site'],
             [
                 'message' => 'Merci de me confirmer la date de la prochaine intervention mensuelle.',

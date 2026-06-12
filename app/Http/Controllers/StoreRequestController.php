@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\StoreRequest;
+use App\Models\StoreSubscription;
 use Illuminate\Http\Request;
 
-
-class RequestController extends Controller
+class StoreRequestController extends Controller
 {
     public function index() {
         $status = request()->query('status');
@@ -21,7 +21,7 @@ class RequestController extends Controller
             'cancelled',
         ];
 
-        $requests = \App\Models\Request::query()
+        $requests = StoreRequest::query()
             ->when(in_array($status, $allowedStatuses), function ($query) use ($status) {
                 $query->where('status', $status);
             })
@@ -32,21 +32,19 @@ class RequestController extends Controller
     }
 
     public function show($id) {
-        $request = \App\Models\Request::with('product')->findOrFail($id);
+        $request = StoreRequest::with('storeSubscription')->findOrFail($id);
         return view('admin.requests.show', compact('request'));
     }
 
-
     public function create() {
-        $products = Product::all();
+        $products = StoreSubscription::all();
         return view('admin.requests.create', compact('products'));
     }
 
     public function store(Request $req) {
-        \App\Models\Request::create([
-            'product_id' => $req->product_id,
-            'operator_id' => auth()->id(),
-            'client_name' => $req->client_name,
+        StoreRequest::create([
+            'store_subscription_id' => $req->subscription_id,
+            'client_full_name' => $req->client_full_name,
             'client_contact' => $req->client_contact,
             'client_email' => $req->client_email, 
             'client_address' => $req->client_address, 
@@ -63,7 +61,7 @@ class RequestController extends Controller
             'admin_note' => 'nullable|string|max:512',
         ]);
         
-        $request = \App\Models\Request::findOrFail($id);
+        $request = StoreRequest::findOrFail($id);
 
         $request->update([
             'status' => $req->status,
@@ -76,7 +74,7 @@ class RequestController extends Controller
 
 
     public function destroy($id) {
-        \App\Models\Request::find($id)->delete();
+        StoreRequest::find($id)->delete();
         return back();
     }
 }

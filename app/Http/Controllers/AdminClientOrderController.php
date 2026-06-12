@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\CustomerOrder;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class AdminClientOrderController extends Controller
         $filters = $request->only(['client_id', 'status', 'date_from', 'date_to']);
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
-        $orders = Order::with('user')
+        $orders = CustomerOrder::with('user')
             ->when($request->filled('client_id'), fn ($query) => $query->where('user_id', $request->client_id))
             ->when($request->filled('status'), fn ($query) => $query->where('status', $request->status))
             ->when($request->filled('date_from'), fn ($query) => $query->whereDate('created_at', '>=', $request->date_from))
@@ -41,13 +41,13 @@ class AdminClientOrderController extends Controller
             'status' => ['required', 'in:pending,processing,completed,cancelled'],
         ]);
 
-        Order::create($data);
+        CustomerOrder::create($data);
 
         return redirect()->route('admin.client-orders.index')
             ->with('success', 'Commande client ajoutee avec succes.');
     }
 
-    public function edit(Order $clientOrder)
+    public function edit(CustomerOrder $clientOrder)
     {
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
@@ -57,7 +57,7 @@ class AdminClientOrderController extends Controller
         ]);
     }
 
-    public function update(Request $request, Order $clientOrder)
+    public function update(Request $request, CustomerOrder $clientOrder)
     {
         $data = $request->validate([
             'user_id' => ['required', 'exists:users,id'],

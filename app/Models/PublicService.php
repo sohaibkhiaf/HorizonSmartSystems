@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PublicService extends Model
 {
     /** @use HasFactory<\Database\Factories\PublicServiceFactory> */
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'ar_name' ,
@@ -25,6 +27,7 @@ class PublicService extends Model
         
         'image' ,  
         'type' ,
+
         'is_published' ,
     ];
 }

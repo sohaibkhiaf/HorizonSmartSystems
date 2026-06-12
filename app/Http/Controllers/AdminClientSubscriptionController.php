@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscription;
+use App\Models\CustomerSubscription;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class AdminClientSubscriptionController extends Controller
         $filters = $request->only(['client_id', 'status']);
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
-        $subscriptions = Subscription::with('user')
+        $subscriptions = CustomerSubscription::with('user')
             ->when($request->filled('client_id'), fn ($query) => $query->where('user_id', $request->client_id))
             ->when($request->filled('status'), fn ($query) => $query->where('status', $request->status))
             ->latest()
@@ -40,13 +40,13 @@ class AdminClientSubscriptionController extends Controller
             'status' => ['required', 'in:active,pending,cancelled,expired'],
         ]);
 
-        Subscription::create($data);
+        CustomerSubscription::create($data);
 
         return redirect()->route('admin.client-subscriptions.index')
             ->with('success', 'Abonnement client ajoute avec succes.');
     }
 
-    public function edit(Subscription $clientSubscription)
+    public function edit(CustomerSubscription $clientSubscription)
     {
         $clients = User::where('role', 'CLIENT')->orderBy('name')->get();
 
@@ -56,7 +56,7 @@ class AdminClientSubscriptionController extends Controller
         ]);
     }
 
-    public function update(Request $request, Subscription $clientSubscription)
+    public function update(Request $request, CustomerSubscription $clientSubscription)
     {
         $data = $request->validate([
             'user_id' => ['required', 'exists:users,id'],
