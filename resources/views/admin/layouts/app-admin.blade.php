@@ -59,6 +59,31 @@
                 Nos réalisations
             </a>
 
+
+            <div class="nav-group-title">Services publiques</div>
+
+            <a href="{{ route('admin.publicServices.create') }}" class="{{ request()->routeIs('admin.publicServices.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Créer un service
+            </a>
+
+            <a href="{{ route('admin.publicServices.index') }}" class="{{ request()->routeIs('admin.publicServices.index') || request()->routeIs('admin.publicServices.edit') ? 'active' : '' }}">
+                <i class="fas fa-briefcase"></i>
+                Nos services
+            </a>
+
+            <div class="nav-group-title">Logiciels publiques</div>
+
+            <a href="{{ route('admin.publicSoftware.create') }}" class="{{ request()->routeIs('admin.publicSoftware.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Créer un logiciel
+            </a>
+
+            <a href="{{ route('admin.publicSoftware.index') }}" class="{{ request()->routeIs('admin.publicSoftware.index') || request()->routeIs('admin.publicSoftware.edit') ? 'active' : '' }}">
+                <i class="fas fa-briefcase"></i>
+                Nos logiciels
+            </a>
+
             <div class="nav-group-title">Messages</div>
 
             <a href="{{ route('admin.messages.waiting') }}" class="{{ request()->routeIs('admin.messages.waiting') ? 'active' : '' }}">

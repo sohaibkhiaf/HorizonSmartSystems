@@ -1,0 +1,149 @@
+/* CONTAINER */
+.container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    padding: 20px;
+}
+
+
+.admin-card{
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 14px;
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.form-group input::file-selector-button{
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #eff6ff;
+}
+
+
+/* CURRENT IMAGE */
+.current-image {
+    margin-top: 12px;
+}
+.current-image img {
+    width: 180px;
+    height: 110px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+
+/* CHECKBOX */
+.checkbox-row {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.checkbox-row input {
+    width: auto;
+}
+
+
+/* ACTIONS */
+.form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-main,
+.btn-secondary {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-main {
+    background: #2563eb;
+    color: #ffffff;
+}
+.btn-main:hover {
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-main,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+

@@ -324,5 +324,128 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+
+        DB::table('public_services')->insert([
+            [
+                'ar_name' => 'إنشاء مواقع ويب',
+                'fr_name' => 'Création de sites web',
+                'en_name' => 'Website Creation',
+
+                'ar_short_description' => 'مواقع ويب حديثة وسريعة ومتجاوبة.',
+                'fr_short_description' => 'Sites web modernes, rapides et responsive.',
+                'en_short_description' => 'Modern, fast and responsive websites.',
+
+                'ar_description' => 'مواقع ويب حديثة وسريعة ومتجاوبة، مصمَّمة لإبراز نشاطك التجاري.',
+                'fr_description' => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
+                'en_description' => 'Modern, fast and responsive websites designed to showcase your business.',
+
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'تطوير تطبيقات مخصصة',
+                'fr_name' => 'Création d\'application sur mesure',
+                'en_name' => 'Custom Application Development',
+
+                'ar_short_description' => 'تطبيقات مخصصة حسب احتياجاتك.',
+                'fr_short_description' => 'Applications sur mesure adaptées à vos besoins.',
+                'en_short_description' => 'Tailor-made applications.',
+
+                'ar_description' => 'تطبيقات مُخصَّصة ومُكيَّفة مع احتياجاتك الخاصة.',
+                'fr_description' => 'Applications sur mesure adaptées à vos besoins spécifiques.',
+                'en_description' => 'Tailor-made applications adapted to your specific needs.',
+
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'الإدارة التجارية والرواتب وحلول أخرى',
+                'fr_name' => 'Gestion commerciale, paie et autres solutions',
+                'en_name' => 'Business Management & ERP Solutions',
+
+                'ar_short_description' => 'حلول لإدارة وتحسين نشاطك.',
+                'fr_short_description' => 'Solutions pour gérer et optimiser votre activité.',
+                'en_short_description' => 'Integrated business management solutions.',
+
+                'ar_description' => 'حلول متكاملة لإدارة نشاطك وتحسين عملياتك.',
+                'fr_description' => 'Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.',
+                'en_description' => 'Integrated solutions to manage your business and optimize your processes.',
+
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'أنظمة إدارة مخصصة',
+                'fr_name' => 'Systèmes de gestion personnalisés',
+                'en_name' => 'Custom Management Systems',
+
+                'ar_short_description' => 'برامج لتتبع وإدارة أفضل.',
+                'fr_short_description' => 'Logiciels pour un meilleur suivi.',
+                'en_short_description' => 'Custom management software.',
+
+                'ar_description' => 'برامج إدارة مُخصَّصة لتتبع أفضل وإنتاجية أعلى.',
+                'fr_description' => 'Logiciels de gestion sur mesure pour un meilleur suivi et une productivité accrue.',
+                'en_description' => 'Custom management software for better tracking and increased productivity.',
+
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'الدعم البرمجي والتقني',
+                'fr_name' => 'Assistance logicielle et informatique',
+                'en_name' => 'Software & IT Support',
+
+                'ar_short_description' => 'دعم وحلول تقنية.',
+                'fr_short_description' => 'Support et dépannage informatique.',
+                'en_short_description' => 'Technical support and troubleshooting.',
+
+                'ar_description' => 'المساعدة والإصلاح لبرامجك وأنظمتك المعلوماتية واتصالاتك وشبكاتك.',
+                'fr_description' => 'Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.',
+                'en_description' => 'Assistance and troubleshooting for your software, computer systems, internet connection and network issues.',
+
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+
+
+        DB::table('public_software')->insert([
+            [
+                'ar_name' => 'ويلي',
+                'fr_name' => 'Wili',
+                'en_name' => 'Wili',
+
+                'ar_short_description' => 'نظام تسيير المخزون',
+                'fr_short_description' => 'Système de gestion de stock',
+                'en_short_description' => 'Stock Management System',
+
+                'ar_description' => 'Wili هو نظام لتسيير المخزون يساعد المؤسسات على إدارة المنتجات، المخزون، المبيعات وحركات السلع بطريقة سهلة ومنظمة.',
+                'fr_description' => 'Wili est un système de gestion de stock conçu pour aider les entreprises à gérer les produits, l’inventaire, les ventes et les mouvements de stock de manière simple et organisée.',
+                'en_description' => 'Wili is a stock management system built to help businesses manage products, inventory, sales and daily stock movements in a simple and organized way.',
+
+                'image' => null,
+                'icon' => null,
+                'is_published' => true,
+
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
     }
 }

@@ -59,65 +59,37 @@
             <div class="swiper services-swiper">
                 <div class="swiper-wrapper">
 
-                    <div class="swiper-slide service-card">
-                        <div class="service-image">
-                            <img src="{{ asset('images/webdev.jpg') }}" alt="Web Development">
-                        </div>
-                        <h3>{{ __('home.service_web_title') }}</h3>
-                        <p>{{ __('home.service_web_desc') }}</p>
-                        <a href="/webdev" class="plus-link">
-                            {{ __('home.learn_more') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide service-card">
-                        <div class="service-image">
-                            <img src="{{ asset('images/appdev.jpg') }}" alt="Application Development">
-                        </div>
-                        <h3>{{ __('home.service_app_title') }}</h3>
-                        <p>{{ __('home.service_app_desc') }}</p>
-                        <a href="/appdev" class="plus-link">
-                            {{ __('home.learn_more') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide service-card">
-                        <div class="service-image">
-                            <img src="{{ asset('images/erp.jpg') }}" alt="Entreprise Resource Planning">
-                        </div>                        
-                        <h3>{{ __('home.service_erp_title') }}</h3>
-                        <p>{{ __('home.service_erp_desc') }}</p>
-                        <a href="/erp" class="plus-link">
-                            {{ __('home.learn_more') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide service-card">
-                        <div class="service-image">
-                            <img src="{{ asset('images/systems.jpg') }}" alt="Custom Management Systems">
-                        </div>
-                        <h3>{{ __('home.service_sys_title') }}</h3>
-                        <p>{{ __('home.service_sys_desc') }}</p>
-                        <a href="/systems" class="plus-link">
-                            {{ __('home.learn_more') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
-
-                    <div class="swiper-slide service-card">
-                        <div class="service-image">
-                            <img src="{{ asset('images/support.jpg') }}" alt="IT Support">
-                        </div>                        
-                        <h3>{{ __('home.service_support_title') }}</h3>
-                        <p>{{ __('home.service_support_desc') }}</p>
-                        <a href="/support" class="plus-link">
-                            {{ __('home.learn_more') }}
-                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                        </a>
-                    </div>
+                    @foreach ($services as $service )
+                        @if ($service->is_published)
+                        <div class="swiper-slide service-card">
+                            <div class="service-image">
+                                <img src="{{ asset('uploads/'.$service->image ) }}" alt="{{ $service->name }}">
+                            </div>
+                            <h3>
+                                @if (app()->getLocale() == 'ar')
+                                    {{ $service->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_name }}
+                                @else
+                                    {{ $service->en_name }}
+                                @endif
+                            </h3>
+                            <p>
+                                @if (app()->getLocale() == 'ar')
+                                    {{ $service->ar_short_description }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_short_description }}
+                                @else
+                                    {{ $service->en_short_description }}
+                                @endif
+                            </p>
+                            <a href="/" class="plus-link">
+                                {{ __('home.learn_more') }}
+                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                            </a>
+                        </div>   
+                        @endif          
+                    @endforeach
 
                 </div>
 
@@ -188,21 +160,45 @@
                 </p>
             </div>
 
+            @foreach ($software as $s )
+            @if ($s->is_published)
             <div class="software-card">
                 <div class="software-information">
                     <div class="software-card-header">
                         <div class="software-icon">
-                            <img src="{{ asset('images/wili_logo.png') }}" alt="Wili Logo">
+                            <img src="{{ asset('uploads/'.$s->icon) }}" alt="Wili Logo">
                         </div>
 
                         <div>
-                            <h3>{{ __('home.wili_title') }}</h3>
-                            <span>{{ __('home.wili_category') }}</span>
+                            <h3>
+                                @if (app()->getLocale() == 'ar')
+                                    {{ $s->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $s->fr_name }}
+                                @else
+                                    {{ $s->en_name }}
+                                @endif
+                            </h3>
+                            <span>
+                                @if (app()->getLocale() == 'ar')
+                                    {{ $s->ar_short_description }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $s->fr_short_description }}
+                                @else
+                                    {{ $s->en_short_description }}
+                                @endif
+                            </span>
                         </div>
                     </div>
 
                     <p>
-                        {{ __('home.wili_description') }}
+                        @if (app()->getLocale() == 'ar')
+                            {{ $s->ar_description }}
+                        @elseif(app()->getLocale() == 'fr')
+                            {{ $s->fr_description }}
+                        @else
+                            {{ $s->en_description }}
+                        @endif
                     </p>
 
                     <a onclick="scrollToSection('contactSection')" class="software-link">
@@ -212,7 +208,7 @@
                 </div>
 
                 <div class="software-image">
-                    <img src="{{ asset('images/wili_pc.png') }}" alt="Wili Stock Management System">
+                    <img src="{{ asset('uploads/'.$s->image) }}" alt="Wili Stock Management System">
                 </div>
 
                 <a onclick="scrollToSection('contactSection')" class="software-link-mobile">
@@ -221,6 +217,10 @@
                 </a>
 
             </div>
+            @endif
+            @endforeach
+
+            
 
         </div>
 
