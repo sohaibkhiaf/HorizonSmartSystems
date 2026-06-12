@@ -10,31 +10,49 @@ class AuthController extends Controller
 {
     public function loginPage()
     {
+        // forward
         if (auth()->check() && auth()->user()->role == "ADMIN") {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard.index');
+        } else if (auth()->check() && auth()->user()->role == "OPERATOR") {
+            return redirect()->route('admin.requests.index');
+        } else if (auth()->check() && auth()->user()->role == "CLIENT") {
+            return redirect()->route('client.dashboard');
         }
 
-        return view('admin/auth/login');
+        // view
+        return view('auth/login');
     }
 
     public function login(Request $request)
     {
+        // validate
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
+        // remember
         $remember = $request->boolean('remember');
 
+        // attempt
         if (!Auth::attempt($credentials, $remember)) {
             return back()
                 ->withErrors(['email' => 'E-mail ou mot de passe invalide.'])
                 ->onlyInput('email');
         }
 
+        // session
         $request->session()->regenerate();
 
-        if (!auth()->user()->isAdmin()) {
+        // redirect
+        if (auth()->user()->isAdmin() ) {
+            return redirect()->route('admin.dashboard.index');
+        }else if (auth()->user()->isOperator() ) {
+            return redirect()->route('requests.index');
+        }else if (auth()->user()->isClient() ) {
+            return redirect()->route('client.dashboard');
+        }else{
+            // unauthenticated
             Auth::logout();
 
             return back()->withErrors([
@@ -42,16 +60,18 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect()->route('admin.dashboard');
     }
 
     public function logout(Request $request)
     {
+        // logout
         Auth::logout();
 
+        // session invalidate
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        // redirect
         return redirect()->route('login.page');
     }
 }

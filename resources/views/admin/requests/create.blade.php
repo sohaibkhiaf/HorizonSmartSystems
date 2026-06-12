@@ -23,8 +23,8 @@
 
                 <select name="subscription_id" id="subscription_id" class="form-control">
                     <option value="">-- Sélectionnez un produit --</option>
-                    @foreach($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->name }} {{ $product->price }} DA</option>
+                    @foreach($subscriptions as $subscription)
+                        <option value="{{ $subscription->id }}">{{ $subscription->name }} {{ $subscription->price }} DA</option>
                     @endforeach
                 </select>
             </div>

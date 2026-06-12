@@ -9,10 +9,10 @@
 
 @section('content')
 
-@include('admin.products.form', [
-    'action' => route('admin.products.store'),
+@include('admin.store_subscriptions.form', [
+    'action' => route('admin.store_subs.store'),
     'method' => 'POST',
-    'product' => null,
+    'subscription' => null,
     'button' => 'Créer'
 ])
 

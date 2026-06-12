@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" action="{{ isset($service) ? route('admin.publicServices.update', $service) : route('admin.publicServices.store') }}" 
+    <form method="POST" action="{{ isset($service) ? route('admin.public_services.update', $service) : route('admin.public_services.store') }}" 
         enctype="multipart/form-data">
         
         @csrf
@@ -139,7 +139,7 @@
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
-            <a href="{{ route('admin.publicServices.index') }}" class="btn-secondary">
+            <a href="{{ route('admin.public_services.index') }}" class="btn-secondary">
                 Annuler
             </a>
         </div>

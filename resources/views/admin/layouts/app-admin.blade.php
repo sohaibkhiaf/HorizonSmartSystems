@@ -29,8 +29,10 @@
             </div>
         </div>
 
+        
         <nav class="admin-nav">
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+            @if (auth()->user()->isAdmin())
+            <a href="{{ route('admin.dashboard.index') }}" class="{{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">
                 <i class="fas fa-chart-line"></i>
                 Tableau de bord
             </a>
@@ -62,24 +64,24 @@
 
             <div class="nav-group-title">Services publiques</div>
 
-            <a href="{{ route('admin.publicServices.create') }}" class="{{ request()->routeIs('admin.publicServices.create') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_services.create') }}" class="{{ request()->routeIs('admin.public_services.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer un service
             </a>
 
-            <a href="{{ route('admin.publicServices.index') }}" class="{{ request()->routeIs('admin.publicServices.index') || request()->routeIs('admin.publicServices.edit') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_services.index') }}" class="{{ request()->routeIs('admin.public_services.index') || request()->routeIs('admin.public_services.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>
                 Nos services
             </a>
 
             <div class="nav-group-title">Logiciels publiques</div>
 
-            <a href="{{ route('admin.publicSoftware.create') }}" class="{{ request()->routeIs('admin.publicSoftware.create') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_software.create') }}" class="{{ request()->routeIs('admin.public_software.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer un logiciel
             </a>
 
-            <a href="{{ route('admin.publicSoftware.index') }}" class="{{ request()->routeIs('admin.publicSoftware.index') || request()->routeIs('admin.publicSoftware.edit') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_software.index') }}" class="{{ request()->routeIs('admin.public_software.index') || request()->routeIs('admin.public_software.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>
                 Nos logiciels
             </a>
@@ -95,15 +97,16 @@
                 <i class="fas fa-check-circle"></i>
                 Messages consultés
             </a>
+            @endif
 
             <div class="nav-group-title">Ventes</div>
 
-            <a href="{{ route('admin.products.index') }}" class="{{ request()->routeIs('admin.products.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') ? 'active' : '' }}">
                 <i class="fas fa-box"></i>
                 Produits
             </a>
 
-            <a href="{{ route('admin.products.create') }}" class="{{ request()->routeIs('admin.products.create') ? 'active' : '' }}">
+            <a href="{{ route('admin.store_subs.create') }}" class="{{ request()->routeIs('admin.store_subs.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Ajouter un produit
             </a>

@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="header">
-    <a href="{{ route('admin.publicSoftware.create') }}" class="btn-main">
+    <a href="{{ route('admin.public_software.create') }}" class="btn-main">
         <i class="fas fa-plus"></i>
         Créer un logiciel
     </a>
@@ -46,12 +46,12 @@
                 <p>{{ $software->fr_short_description }}</p>
 
                 <div class="card-actions">
-                    <a href="{{ route('admin.publicSoftware.edit', $software) }}" class="action-btn edit">
+                    <a href="{{ route('admin.public_software.edit', $software) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>
                         Modifier
                     </a>
 
-                    <form method="POST" action="{{ route('admin.publicSoftware.destroy', $software) }}" onsubmit="return confirm('Supprimer cette service ?')">
+                    <form method="POST" action="{{ route('admin.public_software.destroy', $software) }}" onsubmit="return confirm('Supprimer cette service ?')">
                         @csrf
                         @method('DELETE')
 

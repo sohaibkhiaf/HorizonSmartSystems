@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // USERS 
+        // USERS //////////////////////////////////////
         $admin = User::updateOrCreate(
             ['email' => 'sohaibkhiaf@gmail.com'],
             [
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // ACHIEVEMENTS
+        // ACHIEVEMENTS //////////////////////////////////////
         DB::table('public_achievements')->insert([
             [
                 'en_title' => 'Wili',
@@ -103,8 +103,8 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        // PRODUCTS
-        $products = [
+        // STORE SUBSCRIPTIONS //////////////////////////////////////
+        $storeSubscriptions = [
             [
                 'name' => 'ChatGPT Plus Subscription 1 Month',
                 'description' => 'Monthly ChatGPT Plus subscription account for AI writing, coding, research, and productivity tasks.',
@@ -248,35 +248,37 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($products as $product) {
+        foreach ($storeSubscriptions as $subscription) {
             DB::table('store_subscriptions')->updateOrInsert(
-                ['name' => $product['name']],
+                ['name' => $subscription['name']],
                 [
-                    'description' => $product['description'],
-                    'price' => $product['price'],
-                    'type' => $product['type'],
-                    'category' => $product['category'],
+                    'description' => $subscription['description'],
+                    'price' => $subscription['price'],
+                    'type' => $subscription['type'],
+                    'category' => $subscription['category'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]
             );
         }
 
-        $orders = [
+        // CUSTOMER ORDERS //////////////////////////////////////
+        $customerOrders = [
             ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'pending'],
             ['name' => 'Licence Microsoft Office 2021 Pro Plus', 'price' => 4500, 'status' => 'completed'],
             ['name' => 'Maintenance site vitrine HSS', 'price' => 18000, 'status' => 'processing'],
             ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'canceled'],
         ];
 
-        foreach ($orders as $order) {
+        foreach ($customerOrders as $order) {
             CustomerOrder::updateOrCreate(
                 ['user_id' => $client->id, 'name' => $order['name']],
                 ['price' => $order['price'], 'status' => $order['status']]
             );
         }
 
-        $services = [
+        // CUSTOMER SERVICES //////////////////////////////////////
+        $customerServices = [
             [
                 'name' => 'Licence Microsoft Office 2021 Pro Plus',
                 'expires_at' => null,
@@ -300,13 +302,14 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($services as $service) {
+        foreach ($customerServices as $service) {
             CustomerService::updateOrCreate(
                 ['user_id' => $client->id, 'name' => $service['name']],
                 $service
             );
         }
 
+        // CUSTOMER SUBSCRIPTIONS //////////////////////////////////////
         $subscriptions = [
             ['name' => 'ChatGPT Plus', 'price' => 6500, 'renewal_date' => now()->addDays(5)->toDateString(), 'status' => 'active'],
             ['name' => 'Support prioritaire HSS', 'price' => 12000, 'renewal_date' => now()->addMonth()->toDateString(), 'status' => 'active'],
@@ -320,6 +323,7 @@ class DatabaseSeeder extends Seeder
             );
         }
 
+        // CUSTOMER TICKETS /////////////////////////////////
         $ticket = CustomerTicket::updateOrCreate(
             ['user_id' => $client->id, 'subject' => 'Activation de ma licence Office'],
             [
@@ -341,7 +345,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-
+        // PUBLIC SERVICES ///////////////////////////////////
         DB::table('public_services')->insert([
             [
                 'ar_name' => 'إنشاء مواقع ويب',
@@ -440,7 +444,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-
+        // PUBLIC SOFTWARE ////////////////////////////////////////
         DB::table('public_software')->insert([
             [
                 'ar_name' => 'ويلي',

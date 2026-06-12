@@ -11,7 +11,7 @@
 
 <div class="header">
 
-    <a href="{{ route('admin.products.create') }}" class="header-btn">
+    <a href="{{ route('admin.store_subs.create') }}" class="header-btn">
         <i class="fas fa-plus"></i> Ajouter
     </a>
 </div>
@@ -30,46 +30,46 @@
         </thead>
 
         <tbody>
-            @forelse($products as $product)
+            @forelse($subscriptions as $subscription)
                 <tr>
-                    <td>{{ $product->name }}</td>
+                    <td>{{ $subscription->name }}</td>
                     <td>
-                        @if ($product->category == 'games')
+                        @if ($subscription->category == 'games')
                             Jeux
-                        @elseif ($product->category == 'gift_cards')
+                        @elseif ($subscription->category == 'gift_cards')
                             Cartes cadeaux
-                        @elseif ($product->category == 'software')
+                        @elseif ($subscription->category == 'software')
                             Logiciels
-                        @elseif ($product->category == 'subscriptions')
+                        @elseif ($subscription->category == 'subscriptions')
                             Abonnements
-                        @elseif ($product->category == 'in_game_currency')
+                        @elseif ($subscription->category == 'in_game_currency')
                             Monnaie virtuelle
-                        @elseif ($product->category == 'other')
+                        @elseif ($subscription->category == 'other')
                             Autre
                         @else
                             N/A
                         @endif
                     </td>
                     <td>
-                        @if ($product->type == 'key')
+                        @if ($subscription->type == 'key')
                             Clé
-                        @elseif ($product->type == 'account')
+                        @elseif ($subscription->type == 'account')
                             Compte
-                        @elseif ($product->type == 'invitation')
+                        @elseif ($subscription->type == 'invitation')
                             Invitation
                         @endif
                     </td>
-                    <td>{{ $product->price }} DA</td>
+                    <td>{{ $subscription->price }} DA</td>
 
                     <td>
                         <div class="table-actions">
 
-                            <a href="{{ route('admin.products.edit', $product->id) }}" 
+                            <a href="{{ route('admin.store_subs.edit', $subscription->id) }}" 
                                class="action-btn edit">
                                 <i class="fas fa-pen"></i>
                             </a>
 
-                            <form action="{{ route('admin.products.destroy', $product->id) }}" 
+                            <form action="{{ route('admin.store_subs.destroy', $subscription->id) }}" 
                                   method="POST">
                                 @csrf
                                 @method('DELETE')

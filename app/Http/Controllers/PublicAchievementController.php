@@ -8,20 +8,25 @@ use Illuminate\Support\Facades\Storage;
 
 class PublicAchievementController extends Controller
 {
-public function index()
+    public function index()
     {
-        $achievements = PublicAchievement::latest()->paginate(9);
+        // fetch
+        $achievements = PublicAchievement::latest()
+            ->paginate(9);
 
-        return view('admin.achievements.index', compact('achievements'));
+        // view
+        return view('admin/achievements/index', compact('achievements'));
     }
 
     public function create()
     {
-        return view('admin.achievements.create');
+        // view
+        return view('admin/achievements/create');
     }
 
     public function store(Request $request)
     {
+        // validate
         $data = $request->validate([
             'ar_title' => ['required', 'string', 'max:255'],
             'en_title' => ['required', 'string', 'max:255'],
@@ -40,14 +45,18 @@ public function index()
             'is_published' => ['nullable', 'boolean'],
         ]);
 
+        // is published
         $data['is_published'] = $request->boolean('is_published');
 
+        // image
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('achievements', 'public');
         }
 
+        // create
         PublicAchievement::create($data);
 
+        // redirect
         return redirect()
             ->route('admin.achievements.index')
             ->with('success', 'Réalisation créée avec succès.');
@@ -55,11 +64,13 @@ public function index()
 
     public function edit(PublicAchievement $achievement)
     {
-        return view('admin.achievements.edit', compact('achievement'));
+        // view
+        return view('admin/achievements/edit', compact('achievement'));
     }
 
     public function update(Request $request, PublicAchievement $achievement)
     {
+        // validate
         $data = $request->validate([
             'ar_title' => ['required', 'string', 'max:255'],
             'en_title' => ['required', 'string', 'max:255'],
@@ -78,9 +89,10 @@ public function index()
             'is_published' => ['nullable', 'boolean'],
         ]);
 
-
+        // is published
         $data['is_published'] = $request->boolean('is_published');
 
+        // image
         if ($request->hasFile('image')) {
             if ($achievement->image) {
                 Storage::disk('public')->delete($achievement->image);
@@ -89,8 +101,10 @@ public function index()
             $data['image'] = $request->file('image')->store('achievements', 'public');
         }
 
+        // update
         $achievement->update($data);
 
+        // redirect
         return redirect()
             ->route('admin.achievements.index')
             ->with('success', 'Réalisation mise à jour avec succès.');
@@ -98,8 +112,10 @@ public function index()
 
     public function destroy(PublicAchievement $achievement)
     {
+        // delete
         $achievement->delete();
 
+        // redirect
         return redirect()
             ->route('admin.achievements.index')
             ->with('success', 'Réalisation supprimée avec succès.');

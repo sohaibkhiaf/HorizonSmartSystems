@@ -103,19 +103,19 @@
         <div class="products-box">
 
             <div class="products-grid">
-                @forelse($products as $product)
+                @forelse($subscriptions as $subscription)
                     <a
                         class="product-card"
-                        href="{{ route('store.order', ['product' => $product]) }}"
-                        data-category="{{ \Illuminate\Support\Str::slug($product->category ?? '') }}"
-                        data-type="{{ \Illuminate\Support\Str::slug($product->type ?? '') }}"
-                        data-id="{{ $product->id }}">
+                        href="{{ route('store.order', ['subscription' => $subscription]) }}"
+                        data-category="{{ \Illuminate\Support\Str::slug($subscription->category ?? '') }}"
+                        data-type="{{ \Illuminate\Support\Str::slug($subscription->type ?? '') }}"
+                        data-id="{{ $subscription->id }}">
 
                         <div class="product-image">
-                            @if($product->image)
+                            @if($subscription->image)
                                 <img
-                                    src="{{ asset('uploads/' . $product->image) }}"
-                                    alt="{{ $product->name }}"
+                                    src="{{ asset('uploads/' . $subscription->image) }}"
+                                    alt="{{ $subscription->name }}"
                                     loading="lazy">
                             @else
                                 <div class="image-placeholder">
@@ -127,21 +127,21 @@
                         <div class="product-content">
 
                             <div class="product-header">
-                                <h3>{{ $product->name }}</h3>
+                                <h3>{{ $subscription->name }}</h3>
 
                                 <span class="product-price">
-                                    {{ $product->price }} {{ __('store.da') }}
+                                    {{ $subscription->price }} {{ __('store.da') }}
                                 </span>
                             </div>
 
                             <div class="product-meta">
                                 <span class="badge">
-                                    {{ $categories[$product->category]['label'] ?? __('store.na') }}
+                                    {{ $categories[$subscription->category]['label'] ?? __('store.na') }}
                                 </span>
 
-                                @if(!empty($product->type) && isset($types[$product->type]))
+                                @if(!empty($subscription->type) && isset($types[$subscription->type]))
                                     <span class="badge badge-soft">
-                                        {{ $types[$product->type] }}
+                                        {{ $types[$subscription->type] }}
                                     </span>
                                 @endif
                             </div>
@@ -170,26 +170,26 @@
                 @endforelse
             </div>
 
-            @if($products->lastPage() > 1)
+            @if($subscriptions->lastPage() > 1)
                 <div class="navigator-container">
 
                     <a
-                        href="{{ $products->appends(['category' => $currentCategory, 'search' => $currentSearch])->previousPageUrl() ?: '#' }}"
-                        class="{{ $products->onFirstPage() ? 'disabled' : '' }}">
+                        href="{{ $subscriptions->appends(['category' => $currentCategory, 'search' => $currentSearch])->previousPageUrl() ?: '#' }}"
+                        class="{{ $subscriptions->onFirstPage() ? 'disabled' : '' }}">
                         <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
                     </a>
 
-                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                    @for ($i = 1; $i <= $subscriptions->lastPage(); $i++)
                         <a
-                            href="{{ $products->appends(['category' => $currentCategory, 'search' => $currentSearch])->url($i) }}"
-                            class="{{ $products->currentPage() == $i ? 'active' : '' }}">
+                            href="{{ $subscriptions->appends(['category' => $currentCategory, 'search' => $currentSearch])->url($i) }}"
+                            class="{{ $subscriptions->currentPage() == $i ? 'active' : '' }}">
                             {{ $i }}
                         </a>
                     @endfor
 
                     <a
-                        href="{{ $products->appends(['category' => $currentCategory, 'search' => $currentSearch])->nextPageUrl() ?: '#' }}"
-                        class="{{ $products->hasMorePages() ? '' : 'disabled' }}">
+                        href="{{ $subscriptions->appends(['category' => $currentCategory, 'search' => $currentSearch])->nextPageUrl() ?: '#' }}"
+                        class="{{ $subscriptions->hasMorePages() ? '' : 'disabled' }}">
                         <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
                     </a>
 

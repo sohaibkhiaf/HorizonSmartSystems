@@ -11,7 +11,7 @@
 @section('content')
 
 <div class="header">
-    <a href="{{ route('admin.publicServices.create') }}" class="btn-main">
+    <a href="{{ route('admin.public_services.create') }}" class="btn-main">
         <i class="fas fa-plus"></i>
         Créer un service
     </a>
@@ -46,12 +46,12 @@
                 <p>{{ $service->fr_short_description }}</p>
 
                 <div class="card-actions">
-                    <a href="{{ route('admin.publicServices.edit', $service) }}" class="action-btn edit">
+                    <a href="{{ route('admin.public_services.edit', $service) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>
                         Modifier
                     </a>
 
-                    <form method="POST" action="{{ route('admin.publicServices.destroy', $service) }}" onsubmit="return confirm('Supprimer cette service ?')">
+                    <form method="POST" action="{{ route('admin.public_services.destroy', $service) }}" onsubmit="return confirm('Supprimer cette service ?')">
                         @csrf
                         @method('DELETE')
 

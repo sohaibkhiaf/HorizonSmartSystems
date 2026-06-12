@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="POST" action="{{ isset($software) ? route('admin.publicSoftware.update', $software) : route('admin.publicSoftware.store') }}" 
+    <form method="POST" action="{{ isset($software) ? route('admin.public_software.update', $software) : route('admin.public_software.store') }}" 
         enctype="multipart/form-data">
         
         @csrf
@@ -144,7 +144,7 @@
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
-            <a href="{{ route('admin.publicSoftware.index') }}" class="btn-secondary">
+            <a href="{{ route('admin.public_software.index') }}" class="btn-secondary">
                 Annuler
             </a>
         </div>

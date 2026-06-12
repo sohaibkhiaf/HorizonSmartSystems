@@ -88,7 +88,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('contactSection')"
+                            onclick="scrollToSection('contact_section')"
                         @else
                             href="/?section=contact"
                         @endif

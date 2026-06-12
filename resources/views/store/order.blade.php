@@ -34,12 +34,12 @@
 
     <form
         id="orderForm"
-        action="{{ route('store.confirm', ['product' => $product]) }}"
+        action="{{ route('store.confirm', ['subscription' => $subscription]) }}"
         method="POST"
         class="order-container">
         @csrf
 
-        <input type="hidden" name="subscription_id" value="{{ $product->id }}">
+        <input type="hidden" name="subscription_id" value="{{ $subscription->id }}">
         <input type="hidden" name="quantity" id="hidden_quantity" value="1">
 
         {{-- Order Form --}}
@@ -141,10 +141,10 @@
 
             <div class="product-summary">
                 <div class="summary-image">
-                    @if($product->image)
+                    @if($subscription->image)
                         <img
-                            src="{{ asset('uploads/' . $product->image) }}"
-                            alt="{{ $product->name }}"
+                            src="{{ asset('uploads/' . $subscription->image) }}"
+                            alt="{{ $subscription->name }}"
                             loading="lazy">
                     @else
                         <img
@@ -156,20 +156,20 @@
                 </div>
 
                 <div class="product-info">
-                    <h3>{{ $product->name }}</h3>
+                    <h3>{{ $subscription->name }}</h3>
 
-                    @if(!empty($product->description))
-                        <p>{{ $product->description }}</p>
+                    @if(!empty($subscription->description))
+                        <p>{{ $subscription->description }}</p>
                     @endif
 
                     <div class="product-badges">
                         <span class="badge">
-                            {{ $categories[$product->category] ?? __('store.na') }}
+                            {{ $categories[$subscription->category] ?? __('store.na') }}
                         </span>
 
-                        @if(!empty($product->type) && isset($types[$product->type]))
+                        @if(!empty($subscription->type) && isset($types[$subscription->type]))
                             <span class="badge badge-soft">
-                                {{ $types[$product->type] }}
+                                {{ $types[$subscription->type] }}
                             </span>
                         @endif
                     </div>
@@ -178,7 +178,7 @@
 
             <div class="summary-row">
                 <span>{{ __('order.unit_price') }}</span>
-                <strong>{{ $product->price }} {{ __('store.da') }}</strong>
+                <strong>{{ $subscription->price }} {{ __('store.da') }}</strong>
             </div>
 
             <div class="summary-row">
@@ -199,7 +199,7 @@
 
             <div class="total-box">
                 <span>{{ __('order.total') }}</span>
-                <strong id="total">{{ $product->price }} {{ __('store.da') }}</strong>
+                <strong id="total">{{ $subscription->price }} {{ __('store.da') }}</strong>
             </div>
 
             <button type="submit" class="place-order-btn">
@@ -213,7 +213,7 @@
 </main>
 
 <script>
-    const productPrice = {{ (int) $product->price }};
+    const productPrice = {{ (int) $subscription->price }};
 
     function changeQty(value) {
         const quantityInput = document.getElementById('quantity');

@@ -11,10 +11,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-
+        // query
         $query = User::query();
 
         // Search
@@ -23,26 +20,22 @@ class UserController extends Controller
                   ->orWhere('email', 'like', '%' . $request->search . '%');
         }
 
+        // paginate
         $users = $query->paginate(10);
 
-        return view('admin.users.index', compact('users'));
+        // view
+        return view('admin/users/index', compact('users'));
     }
 
     public function create()
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-
-        return view('admin.users.create');
+        // view
+        return view('admin/users/create');
     }
 
     public function store(Request $request)
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-
+        // validate
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -52,6 +45,7 @@ class UserController extends Controller
             'role' => 'required'
         ]);
 
+        // create
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -61,53 +55,50 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
 
+        // redirect
         return redirect()->route('admin.users.index')
             ->with('success', 'Utilisateur créé avec succès');
     }
 
     public function edit(User $user)
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-
+        // view
         return view('admin.users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-
+        // validate
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'nullable|string',
             'company' =>  'nullable|string',
-            'role' => 'required'
+            'role' => 'required',
         ]);
 
-        $data = $request->only(['name', 'email', 'phone', 'company',  'role']);
+        // columns
+        $data = $request->only(['name', 'email', 'phone', 'company', 'role']);
 
+        // password
         if ($request->password) {
             $data['password'] = Hash::make($request->password);
         }
 
+        // update
         $user->update($data);
 
+        // redirect
         return redirect()->route('admin.users.index')
             ->with('success', 'Utilisateur mis à jour');
     }
 
     public function destroy(User $user)
     {
-        if (auth()->user()->role !== 'ADMIN') {
-            abort(403);
-        }
-        
+        // delete   
         $user->delete();
 
+        // back
         return back()->with('success', 'Utilisateur supprimé');
     }
 }

@@ -4,194 +4,186 @@ use App\Http\Controllers\AdminClientOrderController;
 use App\Http\Controllers\AdminClientServiceController;
 use App\Http\Controllers\AdminClientSubscriptionController;
 use App\Http\Controllers\AdminClientTicketController;
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CSAuthController;
 use App\Http\Controllers\CSDashboardController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicAchievementController;
 use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
+use App\Http\Controllers\PublicSoftwareController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\SoftwareController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\StoreSubscriptionController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
-use App\Models\PublicAchievement;
-use App\Models\PublicService;
-use App\Models\PublicSoftware;
 use Illuminate\Support\Facades\Route;
 
-// Language Switcher /////////////////
+// LANGUAGE SWITCHER ////////////////////////////////////////////////////////////////
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])
+    ->name('language.switcher');
 
-Route::get('/language/{locale}', function ($locale) {
-    if (in_array($locale, ['en', 'fr', 'ar'])) {
-        session(['locale' => $locale]);
-    }
-    return redirect()->back();
-})->name('language-switcher');
+// HOME /////////////////////////////////////////////////////////////////////////////
+Route::get('/', [HomeController::class, 'home'])
+    ->name('home.index');
 
-// Public Routes //////////////
-// Home
-Route::get('/', function () {
+// STORE /////////////////////////////////////////////////////////////////////////////
+Route::get('/store', [StoreController::class, 'index'])
+    ->name('store.index');
+Route::get('/store/{subscription}/order', [StoreController::class, 'order'])
+    ->name('store.order');
+Route::post('/store/{subscription}/confirm', [StoreController::class, 'confirm'])
+    ->name('store.confirm');
+Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])
+    ->name('store.confirmed');
 
-    $achievements = PublicAchievement::where('is_published', true)
-        ->latest()
-        ->limit(10)
-        ->get();
-    $services = PublicService::all();
-    $software = PublicSoftware::all();
+// CONTACT US /////////////////////////////////////////////////////////////////////
+Route::post('/contact', [PublicMessageController::class, 'store'])
+    ->name('contact.message');
 
-    return view('/home', [
-        'page' => 'home', 
-        'achievements' => $achievements, 
-        'services' => $services, 
-        'software' => $software, 
-    ]);
-});
-
-
-// Services /////////////////
-
-Route::get('/webdev', function () {
-    return view('/services/webdev', ['page' => 'services']);
-});
-
-Route::get('/appdev', function () {
-    return view('/services/appdev', ['page' => 'services']);
-});
-
-Route::get('/erp', function () {
-    return view('/services/erp', ['page' => 'services']);
-});
-
-Route::get('/systems', function () {
-    return view('/services/systems', ['page' => 'services']);
-});
-
-Route::get('/support', function () {
-    return view('/services/support', ['page' => 'services']);
-});
-
-// Store /////////////////////////
-Route::get('/store', [StoreController::class, 'index'])->name('store.index');
-Route::get('/store/{product}/order', [StoreController::class, 'order'])->name('store.order');
-Route::post('/store/{product}/confirm', [StoreController::class, 'confirm'])->name('store.confirm');
-Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])->name('store.confirmed');
-
-// Contact /////////////////////
-
-Route::post('/contact', [PublicMessageController::class, 'store'])->name('contact.store');
-
-// Admin Auth Routes ////////////////////
-
+// AUTHENTICATION ////////////////////////////////////////////////////////////////
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login.page');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
-// Admin Protected Routes ////////////////////
-
+// ADMIN /////////////////////////////////////////////////////////////////////////
 Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'admin'])
     ->group(function () {
     
-    // Dashboard
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    // ADMIN DASHBOARD //////////////////////////////////////////////////////////
+    Route::get('/', [AdminDashboardController::class, 'index'])
+        ->name('dashboard.index');
 
-    // Achievements
-    Route::resource('achievements', PublicAchievementController::class)
-        ->except(['show']);
+    // ACHIEVEMENTS /////////////////////////////////////////////////////////////
+    Route::get('achievements', [PublicAchievementController::class, 'index'])
+        ->name('achievements.index');
+    Route::get('achievements/create', [PublicAchievementController::class, 'create'])
+        ->name('achievements.create');
+    Route::post('achievements', [PublicAchievementController::class, 'store'])
+        ->name('achievements.store');
+    Route::get('achievements/{achievement}/edit', [PublicAchievementController::class, 'edit'])
+        ->name('achievements.edit');
+    Route::put('achievements/{achievement}', [PublicAchievementController::class, 'update'])
+        ->name('achievements.update');
+    Route::delete('achievements/{achievement}', [PublicAchievementController::class, 'destroy'])
+        ->name('achievements.destroy');
 
-    // Public Services
+    // USERS ////////////////////////////////////////////////////////////////////////
+    Route::get('users', [UserController::class, 'index'])
+        ->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])
+        ->name('users.create');
+    Route::post('users', [UserController::class, 'store'])
+        ->name('users.store');
+    Route::get('users/{user}', [UserController::class, 'show'])
+        ->name('users.show');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])
+        ->name('users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])
+        ->name('users.destroy');
 
-    Route::get('/public-services/', [PublicServiceController::class, 'index'])
-        ->name('publicServices.index');
-    Route::get('/public-services/create', [PublicServiceController::class, 'create'])
-        ->name('publicServices.create');
-    Route::post('/public-services/store', [PublicServiceController::class, 'store'])
-        ->name('publicServices.store');
-    Route::get('/public-services/{service}/edit', [PublicServiceController::class, 'edit'])
-        ->name('publicServices.edit');
-    Route::put('/public-services/{service}/update', [PublicServiceController::class, 'update'])
-        ->name('publicServices.update');
-    Route::delete('/public-services/{service}/destroy', [PublicServiceController::class, 'destroy'])
-        ->name('publicServices.destroy');
+    // PUBLIC SERVICES ///////////////////////////////////////////////////////
+    Route::get('/public/services/', [PublicServiceController::class, 'index'])
+        ->name('public_services.index');
+    Route::get('/public/services/create', [PublicServiceController::class, 'create'])
+        ->name('public_services.create');
+    Route::post('/public/services/store', [PublicServiceController::class, 'store'])
+        ->name('public_services.store');
+    Route::get('/public/services/{service}/edit', [PublicServiceController::class, 'edit'])
+        ->name('public_services.edit');
+    Route::put('/public/services/{service}/update', [PublicServiceController::class, 'update'])
+        ->name('public_services.update');
+    Route::delete('/public/services/{service}/destroy', [PublicServiceController::class, 'destroy'])
+        ->name('public_services.destroy');
 
-    Route::get('/public-software/', [SoftwareController::class, 'index'])
-        ->name('publicSoftware.index');
-    Route::get('/public-software/create', [SoftwareController::class, 'create'])
-        ->name('publicSoftware.create');
-    Route::post('/public-software/store', [SoftwareController::class, 'store'])
-        ->name('publicSoftware.store');
-    Route::get('/public-software/{software}/edit', [SoftwareController::class, 'edit'])
-        ->name('publicSoftware.edit');
-    Route::put('/public-software/{software}/update', [SoftwareController::class, 'update'])
-        ->name('publicSoftware.update');
-    Route::delete('/public-software/{software}/destroy', [SoftwareController::class, 'destroy'])
-        ->name('publicSoftware.destroy');
+    // PUBLIC SOFTWARE  //////////////////////////////////////////////////////
+    Route::get('/public/software/', [PublicSoftwareController::class, 'index'])
+        ->name('public_software.index');
+    Route::get('/public/software/create', [PublicSoftwareController::class, 'create'])
+        ->name('public_software.create');
+    Route::post('/public/software/store', [PublicSoftwareController::class, 'store'])
+        ->name('public_software.store');
+    Route::get('/public/software/{software}/edit', [PublicSoftwareController::class, 'edit'])
+        ->name('public_software.edit');
+    Route::put('/public/software/{software}/update', [PublicSoftwareController::class, 'update'])
+        ->name('public_software.update');
+    Route::delete('/public/software/{software}/destroy', [PublicSoftwareController::class, 'destroy'])
+        ->name('public_software.destroy');
 
-    // Messages
-    Route::patch('/messages/{message}/mark-seen', [PublicMessageController::class, 'markSeen'])
+    // PUBLIC MESSAGES //////////////////////////////////////////////////////////
+    Route::patch('/messages/{message}/seen', [PublicMessageController::class, 'markSeen'])
         ->name('messages.markSeen');
-
-    Route::patch('/messages/{message}/mark-waiting', [PublicMessageController::class, 'markWaiting'])
+    Route::patch('/messages/{message}/waiting', [PublicMessageController::class, 'markWaiting'])
         ->name('messages.markWaiting');
-
     Route::get('/messages/waiting', [PublicMessageController::class, 'waiting'])
         ->name('messages.waiting');
-
     Route::get('/messages/seen', [PublicMessageController::class, 'seen'])
         ->name('messages.seen');
-
     Route::get('/messages/{message}/edit', [PublicMessageController::class, 'edit'])
         ->name('messages.edit');
-
     Route::put('/messages/{message}', [PublicMessageController::class, 'update'])
         ->name('messages.update');
-
     Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
         ->name('messages.destroy');
 
-    Route::resource('users', UserController::class);
+});
 
-    // Products
-    Route::get('/products/', [StoreSubscriptionController::class, 'index'])->name('products.index');
-    Route::get('/products/create', [StoreSubscriptionController::class, 'create'])->name('products.create');
-    Route::post('/products/', [StoreSubscriptionController::class, 'store'])->name('products.store');
-    Route::get('/products/{product}/edit', [StoreSubscriptionController::class, 'edit'])->name('products.edit');
-    Route::put('/products/{product}', [StoreSubscriptionController::class, 'update'])->name('products.update');
-    Route::delete('/products/{product}', [StoreSubscriptionController::class, 'destroy'])->name('products.destroy');
+// ADMIN / OPERATOR //////////////////////////////////////////////////////////////
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'operator'])
+    ->group(function () {
 
-    // Requests
-    Route::get('requests', [StoreRequestController::class, 'index'])
+    // STORE SUBSCRIPTIONS ////////////////////////////////////////////////////
+    Route::get('/store/subscriptions/', [StoreSubscriptionController::class, 'index'])
+        ->name('store_subs.index');
+    Route::get('/store/subscriptions/create', [StoreSubscriptionController::class, 'create'])
+        ->name('store_subs.create');
+    Route::post('/store/subscriptions/', [StoreSubscriptionController::class, 'store'])
+        ->name('store_subs.store');
+    Route::get('/store/subscriptions/{product}/edit', [StoreSubscriptionController::class, 'edit'])
+        ->name('store_subs.edit');
+    Route::put('/store/subscriptions/{product}', [StoreSubscriptionController::class, 'update'])
+        ->name('store_subs.update');
+    Route::delete('/store/subscriptions/{product}', [StoreSubscriptionController::class, 'destroy'])
+        ->name('store_subs.destroy');
+
+    // STORE REQUESTS /////////////////////////////////////////////////////////////
+    Route::get('/store/requests', [StoreRequestController::class, 'index'])
         ->name('requests.index');
-    Route::get('requests/create', [StoreRequestController::class, 'create'])
+    Route::get('/store/requests/create', [StoreRequestController::class, 'create'])
         ->name('requests.create');
-    Route::post('requests', [StoreRequestController::class, 'store'])
+    Route::post('/store/requests', [StoreRequestController::class, 'store'])
         ->name('requests.store');
-        
-    Route::get('requests/{id}', [StoreRequestController::class, 'show'])
+    Route::get('/store/requests/{id}', [StoreRequestController::class, 'show'])
         ->name('requests.show');
-    Route::post('requests/{id}/availability', [StoreRequestController::class, 'update'])
+    Route::post('/store/requests/{id}', [StoreRequestController::class, 'update'])
         ->name('requests.update');
-
-    Route::post('requests/{id}/deliver', [StoreRequestController::class, 'deliverCredentials'])
-        ->name('requests.deliver');
-
-    Route::delete('requests/{id}', [StoreRequestController::class, 'destroy'])
+    Route::delete('/store/requests/{id}', [StoreRequestController::class, 'destroy'])
         ->name('requests.destroy');
 
-    Route::get('client-orders', [AdminClientOrderController::class, 'index'])->name('client-orders.index');
-    Route::get('client-orders/create', [AdminClientOrderController::class, 'create'])->name('client-orders.create');
-    Route::post('client-orders', [AdminClientOrderController::class, 'store'])->name('client-orders.store');
-    Route::get('client-orders/{clientOrder}/edit', [AdminClientOrderController::class, 'edit'])->name('client-orders.edit');
-    Route::put('client-orders/{clientOrder}', [AdminClientOrderController::class, 'update'])->name('client-orders.update');
+    // CLIENT ORDERS ///////////////////////////////////////////CONTINUE
+    Route::get('/client/orders', [AdminClientOrderController::class, 'index'])
+        ->name('client-orders.index');
+    Route::get('/client/orders/create', [AdminClientOrderController::class, 'create'])
+        ->name('client-orders.create');
+    Route::post('/client/orders', [AdminClientOrderController::class, 'store'])
+        ->name('client-orders.store');
+    Route::get('/client/orders/{clientOrder}/edit', [AdminClientOrderController::class, 'edit'])
+        ->name('client-orders.edit');
+    Route::put('/client/orders/{clientOrder}', [AdminClientOrderController::class, 'update'])
+        ->name('client-orders.update');
 
     Route::get('client-services', [AdminClientServiceController::class, 'index'])->name('client-services.index');
     Route::get('client-services/create', [AdminClientServiceController::class, 'create'])->name('client-services.create');
@@ -209,14 +201,9 @@ Route::prefix('admin')
     Route::get('client-tickets/{ticket}', [AdminClientTicketController::class, 'show'])->name('client-tickets.show');
     Route::post('client-tickets/{ticket}/reply', [AdminClientTicketController::class, 'reply'])->name('client-tickets.reply');
 });
-
 // Client Space ////////////////////
 
-// Client Auth Routes 
 
-Route::get('/client/login', [CSAuthController::class, 'loginPage'])->name('client.login.page');
-Route::post('/client/login', [CSAuthController::class, 'login'])->name('client.login.submit');
-Route::post('/client/logout', [CSAuthController::class, 'logout'])->name('client.logout');
 
 Route::middleware(['auth' , 'client'])
     ->prefix('client')

@@ -137,7 +137,7 @@
 
         <a class="nav-tab"
             @if ($page == 'APP' || $page == 'SERVICE')
-                onclick="scrollToSection('contactSection')"
+                onclick="scrollToSection('contact_section')"
             @else
                 href="/?section=contact"
             @endif
@@ -146,7 +146,7 @@
         </a>
 
         <a class="nav-tab" 
-            href="client/login">
+            href="/login">
             {{ __('header.client_space') }}
         </a>
 
@@ -170,17 +170,17 @@
     {{-- Language Switcher --}}
     <div class="actions">
         <div class="language-switcher">
-            <a href="{{ route('language-switcher', 'fr') }}"
+            <a href="{{ route('language.switcher', 'fr') }}"
                class="{{ app()->getLocale() == 'fr' ? 'active' : '' }}">
                 FR
             </a>
 
-            <a href="{{ route('language-switcher', 'en') }}"
+            <a href="{{ route('language.switcher', 'en') }}"
                class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">
                 EN
             </a>
 
-            <a href="{{ route('language-switcher', 'ar') }}"
+            <a href="{{ route('language.switcher', 'ar') }}"
                class="{{ app()->getLocale() == 'ar' ? 'active' : '' }}">
                 ع
             </a>

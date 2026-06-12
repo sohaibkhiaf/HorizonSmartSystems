@@ -30,29 +30,29 @@ class StoreController extends Controller
         }
 
         // paginate
-        $products = $query->latest()->paginate(12);
+        $subscriptions = $query->latest()->paginate(12);
 
         // view
         return view('/store/index', [
-            'products'=> $products, 
+            'subscriptions'=> $subscriptions, 
             'search'=> $search,
             'category' => $category, 
-            'page' => 'store', 
         ]);
     }
 
-    public function order(StoreSubscription $product) {
+    public function order(StoreSubscription $subscription) {
+
         // view
         return view('/store/order', [
-            'product'=> $product, 
-            'page' => 'store', 
+            'subscription'=> $subscription, 
         ]);
     }
 
-    public function confirm(Request $request, StoreSubscription $storeSubscription) {
+    public function confirm(Request $request) {
+
         // validation
         $data = $request->validate([
-            'store_subscription_id' => ['required', 'integer'],
+            'subscription_id' => ['required', 'integer'],
             'full_name' => ['required', 'string', 'max:200'],
             'phone' => ['required', 'string', 'max:30'],
             'email' => ['nullable', 'string'],
@@ -81,7 +81,6 @@ class StoreController extends Controller
         // view
         return view('/store/confirmed', [
             'request'=> $request, 
-            'page' => 'services', 
         ]);
     }
 

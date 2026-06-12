@@ -18,7 +18,7 @@
             </h1>
 
             <div class="hero-buttons">
-                <a onclick="scrollToSection('contactSection')" class="btn btn-primary">
+                <a onclick="scrollToSection('contact_section')" class="btn btn-primary">
                     {{ __('home.hero_btn_contact') }}
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
@@ -83,7 +83,7 @@
                                     {{ $service->en_short_description }}
                                 @endif
                             </p>
-                            <a href="/" class="plus-link">
+                            <a href="#" class="plus-link">
                                 {{ __('home.learn_more') }}
                                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                             </a>
@@ -201,7 +201,7 @@
                         @endif
                     </p>
 
-                    <a onclick="scrollToSection('contactSection')" class="software-link">
+                    <a onclick="scrollToSection('contact_section')" class="software-link">
                         {{ __('home.software_cta') }}
                         <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
@@ -211,7 +211,7 @@
                     <img src="{{ asset('uploads/'.$s->image) }}" alt="Wili Stock Management System">
                 </div>
 
-                <a onclick="scrollToSection('contactSection')" class="software-link-mobile">
+                <a onclick="scrollToSection('contact_section')" class="software-link-mobile">
                     {{ __('home.software_cta') }}
                     <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
@@ -301,7 +301,7 @@
 </section>
 
 <!-- Contact ------------------------------------------------------------------- -->
-<section class="contact-section" id="contactSection" data-section="contact">
+<section class="contact-section" id="contact_section" data-section="contact">
 
     <div class="contact-heading">
         <h2>{{ __('home.contact_title') }}</h2>
@@ -396,7 +396,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('contact.store') }}">
+            <form method="POST" action="{{ route('contact.message') }}">
                 @csrf
 
                 <div class="form-grid">

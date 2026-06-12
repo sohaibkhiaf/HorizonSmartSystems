@@ -9,21 +9,28 @@ use Illuminate\Support\Facades\Storage;
 class StoreSubscriptionController extends Controller
 {
     public function index() {
-        $products = StoreSubscription::all();
-        return view('admin.products.index', compact('products'));
+        // fetch 
+        $subscriptions = StoreSubscription::all();
+
+        // view
+        return view('admin/store_subscriptions/index', compact('subscriptions'));
     }
 
     public function create() {
-        return view('admin.products.create');
+
+        // view
+        return view('admin/store_subscriptions/create');
     }
 
     public function store(Request $req) {
 
+        // image
         $image_url = null;
         if ($req->hasFile('image')) {
-            $image_url = $req->file('image')->store('products', 'public');
+            $image_url = $req->file('image')->store('subscriptions', 'public');
         }
 
+        // create
         StoreSubscription::create([
             'name' => $req->name,
             'description' => $req->description,
@@ -33,27 +40,34 @@ class StoreSubscriptionController extends Controller
             'category' => $req->category,
         ]);
 
-        return redirect()->route('admin.products.index');
+        // redirect
+        return redirect()->route('admin.store_subs.index');
     }
 
     public function edit($id) {
-        $product = StoreSubscription::findOrFail($id);
-        return view('admin.products.edit', compact('product'));
+        // find
+        $subscription = StoreSubscription::findOrFail($id);
+
+        // view
+        return view('admin/store_subscriptions/edit', compact('subscription'));
     }
 
     public function update(Request $req, $id) {
-        $product = StoreSubscription::findOrFail($id);
+        // find
+        $subscription = StoreSubscription::findOrFail($id);
 
-        $image_url = $product->image;
+        // image
+        $image_url = $subscription->image;
         if ($req->hasFile('image')) {
-            if ($product->image) {
-                Storage::disk('public')->delete($product->image);
+            if ($subscription->image) {
+                Storage::disk('public')->delete($subscription->image);
             }
 
-            $image_url = $req->file('image')->store('products', 'public');
+            $image_url = $req->file('image')->store('subscriptions', 'public');
         }
 
-        $product->update([
+        // update
+        $subscription->update([
             'name' => $req->name,
             'description' => $req->description,
             'price' => $req->price,
@@ -62,11 +76,15 @@ class StoreSubscriptionController extends Controller
             'category' => $req->category,
         ]);
 
-        return redirect()->route('admin.products.index');
+        // redirect
+        return redirect()->route('admin.store_subs.index');
     }
 
     public function destroy($id) {
+        // destroy
         StoreSubscription::destroy($id);
+
+        // back
         return back();
     }   
 }

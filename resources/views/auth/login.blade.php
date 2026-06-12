@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
+@extends('layouts.app')
 
-    {{-- Font Awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+@section('title','Connextion')
 
+@section('style')
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-</head>
-<body class="login-body">
+@endsection
+
+@section('content')
+
 
 <div class="container">
     <div class="icon">
         <i class="fas fa-lock"></i>
     </div>
 
-    <h1>Connexion Admin</h1>
+    <h1>Connexion Utilisateur</h1>
     <p>Accédez à votre panneau de gestion du site</p>
 
     @if($errors->any())
@@ -61,6 +57,5 @@
     </form>
 </div>
 
-</body>
-</html>
+@endsection
 
