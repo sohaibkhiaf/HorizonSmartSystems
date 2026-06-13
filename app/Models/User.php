@@ -66,23 +66,6 @@ class User extends Authenticatable
         return $this->role === 'CUSTOMER';
     }
 
-
-    public function orders() {
-        return $this->hasMany(CustomerOrder::class);
-    }
-
-    public function services() {
-        return $this->hasMany(CustomerService::class);
-    }
-
-    public function subscriptions() {
-        return $this->hasMany(CustomerSubscription::class);
-    }
-
-    public function tickets() {
-        return $this->hasMany(CustomerTicket::class);
-    }
-
     public function demos()
     {
         return $this->hasMany(CustomerDemo::class);

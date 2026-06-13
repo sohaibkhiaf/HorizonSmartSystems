@@ -1,9 +1,5 @@
 <div class="container">
 
-    <div class="form-note">
-        <span>*</span> Champs obligatoires
-    </div>
-
     <form
         method="POST"
         action="{{ isset($service) ? route('admin.public_services.update', $service) : route('admin.public_services.store') }}"
@@ -186,35 +182,24 @@
                 </select>
             </div>
 
-            <div class="form-group full">
-                <label class="checkbox-card">
-                    <input
-                        type="checkbox"
-                        name="is_published"
-                        value="1"
-                        {{ old('is_published', $service->is_published ?? true) ? 'checked' : '' }}>
 
-                    <span class="checkbox-ui">
-                        <i class="fas fa-check"></i>
-                    </span>
-
-                    <span>
-                        <strong>Publier ce service</strong>
-                        <small>Le service sera visible sur le site public.</small>
-                    </span>
-                </label>
-            </div>
+            <label class="checkbox-label">
+                <input
+                    type="checkbox"
+                    name="is_published"
+                    value="1"
+                    {{ old('is_published', $service->is_published ?? true) ? 'checked' : '' }}>
+                    Publier ce service
+            </label>
 
         </div>
 
         <div class="form-actions">
             <button type="submit" class="btn-main">
-                <i class="fas fa-floppy-disk"></i>
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
             <a href="{{ route('admin.public_services.index') }}" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i>
                 Annuler
             </a>
         </div>

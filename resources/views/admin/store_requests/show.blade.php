@@ -9,12 +9,6 @@
 
 @section('content')
 
-@if(session('success'))
-    <div class="flash-success">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="grid">
 
     <div class="container">
@@ -28,39 +22,39 @@
                 @csrf
                 @method('PUT')
 
-                <p class="section-label">Client</p>
-
                 <div class="form-group">
                     <label>Nom complet <span class="required">*</span></label>
                     <input type="text"
-                           name="customer_full_name"
-                           value="{{ old('customer_full_name', $request->customer_full_name) }}"
-                           required>
+                        name="customer_full_name"
+                        value="{{ old('customer_full_name', $request->customer_full_name) }}"
+                        placeholder="Entrez le nom complet"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label>Contact <span class="required">*</span></label>
                     <input type="text"
-                           name="customer_contact"
-                           value="{{ old('customer_contact', $request->customer_contact) }}"
-                           required>
+                        name="customer_contact"
+                        value="{{ old('customer_contact', $request->customer_contact) }}"
+                        placeholder="Entrez le numéro de contact"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label>E-mail</label>
                     <input type="email"
-                           name="customer_email"
-                           value="{{ old('customer_email', $request->customer_email) }}">
+                        name="customer_email"
+                        value="{{ old('customer_email', $request->customer_email) }}"
+                        placeholder="Entrez l'adresse e-mail">
                 </div>
 
                 <div class="form-group">
                     <label>Adresse</label>
                     <input type="text"
-                           name="customer_address"
-                           value="{{ old('customer_address', $request->customer_address) }}">
+                        name="customer_address"
+                        value="{{ old('customer_address', $request->customer_address) }}"
+                        placeholder="Entrez l'adresse">
                 </div>
-
-                <p class="section-label">Abonnement</p>
 
                 <div class="form-group">
                     <label>Abonnement <span class="required">*</span></label>
@@ -80,27 +74,28 @@
 
                 <div class="form-group">
                     <label>Type</label>
-                    <input type="text" id="subscriptionType" value="" readonly>
+                    <input type="text" id="subscriptionType" value="" placeholder="Type d'abonnement" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Prix unitaire</label>
-                    <input type="text" id="subscriptionPrice" value="" readonly>
+                    <input type="text" id="subscriptionPrice" value="" placeholder="Prix unitaire" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Quantité <span class="required">*</span></label>
                     <input type="number"
-                           name="quantity"
-                           id="quantity"
-                           value="{{ old('quantity', $request->quantity) }}"
-                           min="1"
-                           required>
+                        name="quantity"
+                        id="quantity"
+                        value="{{ old('quantity', $request->quantity) }}"
+                        placeholder="Entrez la quantité"
+                        min="1"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label>Total</label>
-                    <input type="text" id="totalPrice" value="" readonly>
+                    <input type="text" id="totalPrice" value="" placeholder="Total calculé" readonly>
                 </div>
 
                 <button type="submit" class="btn-primary">

@@ -189,14 +189,20 @@
 
     <a href="{{ route('admin.store_subs.index') }}" class="tab-card">
         <i class="fas fa-box"></i>
-        <h3>Produits boutique</h3>
-        <p>Gérer les produits, clés, comptes et invitations.</p>
+        <h3>Abonnements boutique</h3>
+        <p>Gérer les abonnements, clés, comptes et invitations.</p>
     </a>
 
     <a href="{{ route('admin.requests.index') }}" class="tab-card">
         <i class="fas fa-cart-shopping"></i>
         <h3>Demandes boutique</h3>
         <p>Suivre les commandes reçues depuis la boutique.</p>
+    </a>
+
+    <a href="{{ route('admin.customer_portals.index') }}" class="tab-card">
+        <i class="fas fa-users"></i>
+        <h3>Portails clients</h3>
+        <p>Gérer les comptes clients et leurs informations.</p>
     </a>
 
 </div>

@@ -9,8 +9,6 @@
 
 /* MESSAGE PANEL */
 .message-panel {
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 22px;
     margin-bottom: 22px;
 }
 
@@ -206,54 +204,11 @@
     resize: vertical;
 }
 
-/* CHECKBOX CARD */
-.checkbox-card {
-    display: flex !important;
-    align-items: center;
-    gap: 12px;
-    padding: 13px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #f9fafb;
-    cursor: pointer;
-}
-
-.checkbox-card input {
-    display: none;
-}
-
-.checkbox-ui {
-    width: 22px;
-    height: 22px;
-    border-radius: 7px;
-    border: 1px solid #d1d5db;
-    background: #ffffff;
-    color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.checkbox-card input:checked + .checkbox-ui {
-    background: #2563eb;
-    border-color: #2563eb;
-    color: #ffffff;
-}
-
-.checkbox-card strong {
-    display: block;
-    margin-bottom: 3px;
+/* CHECKBOX LABEL */
+.checkbox-label {
     color: #111827;
     font-size: 13px;
     font-weight: 600;
-}
-
-.checkbox-card small {
-    display: block;
-    color: #6b7280;
-    font-size: 12px;
-    line-height: 1.4;
 }
 
 /* ACTIONS */

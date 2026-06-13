@@ -66,7 +66,7 @@
             </div>
 
             <div class="message-preview">
-                {{ Str::limit($message->message, 170) }}
+                {{ $message->message }}
             </div>
 
             <div class="card-actions">

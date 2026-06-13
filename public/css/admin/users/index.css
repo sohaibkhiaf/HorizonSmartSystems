@@ -211,6 +211,17 @@
     color: #6b7280;
 }
 
+
+/* =========================================================
+   TABLE ID COLUMN
+   ========================================================= */
+
+.table td:first-child {
+    font-weight: 600;
+    color: #6b7280;
+}
+
+
 /* NAVIGATOR */
 .navigator-container {
     display: flex;

@@ -87,24 +87,14 @@
 
         <div class="form-grid">
 
-            <div class="form-group full">
-                <label class="checkbox-card">
-                    <input
-                        type="checkbox"
-                        name="is_seen"
-                        value="1"
-                        {{ old('is_seen', $message->is_seen) ? 'checked' : '' }}>
-
-                    <span class="checkbox-ui">
-                        <i class="fas fa-check"></i>
-                    </span>
-
-                    <span>
-                        <strong>Marquer comme consulté</strong>
-                        <small>Décochez cette option pour remettre le message en attente.</small>
-                    </span>
-                </label>
-            </div>
+            <label class="checkbox-label">
+                <input
+                    type="checkbox"
+                    name="is_seen"
+                    value="1"
+                    {{ old('is_seen', $message->is_seen) ? 'checked' : '' }}>
+                    Marquer comme consulté
+            </label>
 
             <div class="form-group full">
                 <label>Note de l'administrateur</label>
@@ -119,12 +109,10 @@
 
         <div class="form-actions">
             <button type="submit" class="btn-main">
-                <i class="fas fa-floppy-disk"></i>
                 Mettre à jour
             </button>
 
             <a href="{{ $message->is_seen ? route('admin.messages.seen') : route('admin.messages.waiting') }}" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i>
                 Annuler
             </a>
         </div>

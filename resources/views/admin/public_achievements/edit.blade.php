@@ -10,7 +10,7 @@
 
 @section('content')
 
-@include('admin.achievements.form', [
+@include('admin.public_achievements.form', [
     'achievement' => $achievement,
     'buttonText' => 'Mettre à jour la réalisation'
 ])

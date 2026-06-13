@@ -3,10 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\CustomerDemo;
-use App\Models\CustomerOrder;
-use App\Models\CustomerService;
-use App\Models\CustomerSubscription;
-use App\Models\CustomerTicket;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -70,7 +66,7 @@ class DatabaseSeeder extends Seeder
                 'ar_description' => 'ويلي هو نظام إدارة احترافي مصمم للشركات التي تحتاج إلى تحكم أفضل في المخزون والمنتجات والمبيعات والعمليات الداخلية. يوفر واجهة نظيفة وعمليات منظمة وأدوات عملية لتبسيط المهام اليومية.',
                 'fr_description' => 'Wili est un système de gestion professionnel conçu pour les entreprises qui ont besoin d\'un meilleur contrôle de leurs stocks, produits, ventes et opérations internes. Il offre une interface claire, des flux de travail organisés et des outils pratiques pour simplifier les tâches quotidiennes.',
 
-                'image' => 'wili_pc.png',
+                'image' => null,
                 'project_url' => null,
 
                 'is_published' => true,
@@ -95,7 +91,7 @@ class DatabaseSeeder extends Seeder
                 'ar_description' => 'موقع HORIZON PC هو متجر إلكتروني نظيف ومتجاوب يعرض منتجات مثل مفاتيح الألعاب وبطاقات الهدايا والبرمجيات والاشتراكات والخدمات الرقمية. يساعد العملاء على تصفح المنتجات بسهولة وإجراء الطلبات عبر تجربة شراء سلسة واحترافية.',
                 'fr_description' => 'Le site e-commerce HORIZON PC est une boutique en ligne moderne et responsive présentant des produits tels que des clés de jeux, cartes cadeaux, logiciels, abonnements et services numériques. Il permet aux clients de naviguer facilement et de passer commande via une expérience fluide et professionnelle.',
 
-                'image' => 'horizon_pc_store.png',
+                'image' => null,
                 'project_url' => 'https://horizon-pc.com',
 
                 'is_published' => true,
@@ -262,88 +258,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-        // CUSTOMER ORDERS //////////////////////////////////////
-        $customerOrders = [
-            ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'pending'],
-            ['name' => 'Licence Microsoft Office 2021 Pro Plus', 'price' => 4500, 'status' => 'completed'],
-            ['name' => 'Maintenance site vitrine HSS', 'price' => 18000, 'status' => 'processing'],
-            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'cancelled'],
-        ];
-
-        foreach ($customerOrders as $order) {
-            CustomerOrder::updateOrCreate(
-                ['user_id' => $customer->id, 'name' => $order['name']],
-                ['price' => $order['price'], 'status' => $order['status']]
-            );
-        }
-
-        // CUSTOMER SERVICES //////////////////////////////////////
-        $customerServices = [
-            [
-                'name' => 'Licence Microsoft Office 2021 Pro Plus',
-                'expires_at' => null,
-                'status' => 'active',
-                'license_key' => 'HSS-OFFICE-2021-NB75',
-                'download_link' => 'https://example.com/downloads/office-2021',
-            ],
-            [
-                'name' => 'Maintenance site vitrine',
-                'expires_at' => now()->addMonths(6)->toDateString(),
-                'status' => 'active',
-                'license_key' => null,
-                'download_link' => null,
-            ],
-            [
-                'name' => 'Windows 11 Pro',
-                'expires_at' => null,
-                'status' => 'maintenance',
-                'license_key' => 'HSS-WIN11-PRO-49K2',
-                'download_link' => 'https://example.com/downloads/windows-11',
-            ],
-        ];
-
-        foreach ($customerServices as $service) {
-            CustomerService::updateOrCreate(
-                ['user_id' => $customer->id, 'name' => $service['name']],
-                $service
-            );
-        }
-
-        // CUSTOMER SUBSCRIPTIONS //////////////////////////////////////
-        $subscriptions = [
-            ['name' => 'ChatGPT Plus', 'price' => 6500, 'renewal_date' => now()->addDays(5)->toDateString(), 'status' => 'active'],
-            ['name' => 'Support prioritaire HSS', 'price' => 12000, 'renewal_date' => now()->addMonth()->toDateString(), 'status' => 'active'],
-            ['name' => 'Adobe Creative Cloud', 'price' => 7500, 'renewal_date' => now()->subDays(10)->toDateString(), 'status' => 'expired'],
-        ];
-
-        foreach ($subscriptions as $subscription) {
-            CustomerSubscription::updateOrCreate(
-                ['user_id' => $customer->id, 'name' => $subscription['name']],
-                $subscription
-            );
-        }
-
-        // CUSTOMER TICKETS /////////////////////////////////
-        $ticket = CustomerTicket::updateOrCreate(
-            ['user_id' => $customer->id, 'subject' => 'Activation de ma licence Office'],
-            [
-                'message' => 'Bonjour, je souhaite confirmer la procedure d activation de ma licence Office sur un deuxieme poste.',
-                'status' => 'answered',
-            ]
-        );
-
-        $ticket->replies()->updateOrCreate(
-            ['message' => 'Bonjour Nadia, votre licence est prevue pour un seul poste. Nous pouvons vous proposer une deuxieme cle avec remise client.'],
-            ['user_id' => $admin->id, 'author_type' => 'admin']
-        );
-
-        CustomerTicket::updateOrCreate(
-            ['user_id' => $customer->id, 'subject' => 'Suivi de la maintenance du site'],
-            [
-                'message' => 'Merci de me confirmer la date de la prochaine intervention mensuelle.',
-                'status' => 'waiting',
-            ]
-        );
 
         // PUBLIC SERVICES ///////////////////////////////////
         DB::table('public_services')->insert([
@@ -467,15 +381,6 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
-
-
-        CustomerDemo::create([
-            'user_id' => 1,
-            'name' => 'Wili Management System',
-            'demo_link' => 'https://icoderdz.cv/',
-            'is_active' => true,
-        ]);
-
 
     }
 }

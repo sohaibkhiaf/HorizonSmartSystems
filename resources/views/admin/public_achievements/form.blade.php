@@ -1,9 +1,5 @@
 <div class="container">
 
-    <div class="form-note">
-        <span>*</span> Champs obligatoires
-    </div>
-
     <form
         method="POST"
         action="{{ isset($achievement) ? route('admin.achievements.update', $achievement) : route('admin.achievements.store') }}"
@@ -45,19 +41,21 @@
                     required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group full">
                 <label>
                     Titre du projet en anglais
                     <span class="required">*</span>
                 </label>
 
-                <input
+                <input 
+                    class="half"
                     type="text"
                     name="en_title"
                     value="{{ old('en_title', $achievement->en_title ?? '') }}"
                     placeholder="Ex: Horizon PC e-commerce website"
                     required>
             </div>
+
 
             <div class="form-group">
                 <label>
@@ -88,13 +86,14 @@
                     required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group full">
                 <label>
                     Type du projet en anglais
                     <span class="required">*</span>
                 </label>
 
                 <input
+                    class="half"
                     type="text"
                     name="en_type"
                     value="{{ old('en_type', $achievement->en_type ?? '') }}"
@@ -206,35 +205,23 @@
                 @endif
             </div>
 
-            <div class="form-group full">
-                <label class="checkbox-card">
-                    <input
-                        type="checkbox"
-                        name="is_published"
-                        value="1"
-                        {{ old('is_published', $achievement->is_published ?? true) ? 'checked' : '' }}>
-
-                    <span class="checkbox-ui">
-                        <i class="fas fa-check"></i>
-                    </span>
-
-                    <span>
-                        <strong>Publier cette réalisation</strong>
-                        <small>La réalisation sera visible sur le site public.</small>
-                    </span>
-                </label>
-            </div>
+            <label class="checkbox-label">
+                <input
+                    type="checkbox"
+                    name="is_published"
+                    value="1"
+                    {{ old('is_published', $achievement->is_published ?? true) ? 'checked' : '' }}>
+                    Publier cette réalisation
+            </label>
 
         </div>
 
         <div class="form-actions">
             <button type="submit" class="btn-main">
-                <i class="fas fa-floppy-disk"></i>
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
             <a href="{{ route('admin.achievements.index') }}" class="btn-secondary">
-                <i class="fas fa-arrow-left"></i>
                 Annuler
             </a>
         </div>

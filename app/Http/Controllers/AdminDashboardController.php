@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerOrder;
-use App\Models\CustomerSubscription;
-use App\Models\CustomerTicket;
+
 use App\Models\PublicAchievement;
 use App\Models\PublicMessage;
 use App\Models\StoreRequest;
-use App\Models\CustomerService;
 use App\Models\PublicService;
 use App\Models\PublicSoftware;
 use App\Models\StoreSubscription;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
