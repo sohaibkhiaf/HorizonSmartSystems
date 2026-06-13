@@ -228,7 +228,6 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Fortnite V-Bucks 1000',
                 'description' => 'Fortnite V-Bucks digital code for skins, battle passes, emotes, and in-game items.',
                 'price' => 2500,
-                'image' => 'products/fortnite-vbucks.jpg',
                 'type' => 'key',
                 'category' => 'in_game_currency',
             ],
