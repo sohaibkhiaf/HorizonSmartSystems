@@ -167,6 +167,8 @@ Route::prefix('admin')
         ->name('requests.update');
     Route::delete('/store/requests/{id}', [StoreRequestController::class, 'destroy'])
         ->name('requests.destroy');
+    Route::put('/store/requests/{id}/info', [StoreRequestController::class, 'updateInfo'])
+        ->name('requests.updateInfo');
 
     //  CUSTOMER ORDERS ///////////////////////////////////////////////////////////
     Route::get('/customer/orders', [CustomerOrderController::class, 'index'])

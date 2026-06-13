@@ -17,7 +17,7 @@ class CustomerPortalController extends Controller
         $subscriptions = $user->subscriptions()->latest()->get();
 
         // view
-        return view('customer.dashboard.index', [
+        return view('customer/dashboard', [
             'orders_count' => $orders->count(),
             'orders_total' => $orders->sum('price'),
             'services_count' => $services->where('status', 'active')->count(),
@@ -41,7 +41,7 @@ class CustomerPortalController extends Controller
         $orders = auth()->user()->orders()->latest()->get();
 
         // view
-        return view('customer.orders.index', compact('orders'));
+        return view('customer/orders/index', compact('orders'));
     }
 
     public function customerOrder($id)
@@ -50,7 +50,7 @@ class CustomerPortalController extends Controller
         $order = auth()->user()->orders()->findOrFail($id);
 
         // view
-        return view('customer.orders.show', compact('order'));
+        return view('customer/orders/show', compact('order'));
     }
 
 
@@ -62,7 +62,7 @@ class CustomerPortalController extends Controller
         $services = auth()->user()->services()->latest()->get();
 
         // view
-        return view('customer.services.index', compact('services'));
+        return view('customer/services/index', compact('services'));
     }
 
 
@@ -73,7 +73,7 @@ class CustomerPortalController extends Controller
         $subscriptions = auth()->user()->subscriptions()->orderBy('renewal_date')->get();
 
         // view
-        return view('customer.subscriptions.index', compact('subscriptions'));
+        return view('customer/subscriptions/index', compact('subscriptions'));
     }
 
 
@@ -85,13 +85,13 @@ class CustomerPortalController extends Controller
         $tickets = auth()->user()->tickets()->withCount('replies')->latest()->get();
 
         // view
-        return view('customer.tickets.index', compact('tickets'));
+        return view('customer/tickets/index', compact('tickets'));
     }
 
     public function createCustomerTicket()
     {
         // view
-        return view('customer.tickets.create');
+        return view('customer/tickets/create');
     }
 
     public function storeCustomerTicket(Request $request)
@@ -116,7 +116,7 @@ class CustomerPortalController extends Controller
         $ticket = auth()->user()->tickets()->with('replies.user')->findOrFail($id);
 
         // view
-        return view('customer.tickets.show', compact('ticket'));
+        return view('customer/tickets/show', compact('ticket'));
     }
 
     public function replyCustomerTicket(Request $request, $id)
@@ -150,7 +150,7 @@ class CustomerPortalController extends Controller
     public function editCustomerProfile()
     {
         // view
-        return view('customer.profile.edit');
+        return view('customer/profile/edit');
     }
 
     public function updateCustomerProfile(Request $request)

@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreSubscriptionController extends Controller
 {
-    public function index() {
-        // fetch 
-        $subscriptions = StoreSubscription::all();
+    public function index()
+    {
+        $subscriptions = StoreSubscription::latest()->paginate(10);
 
-        // view
-        return view('admin/store_subscriptions/index', compact('subscriptions'));
+        return view('admin.store_subscriptions.index', compact('subscriptions'));
     }
 
     public function create() {

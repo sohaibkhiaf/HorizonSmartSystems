@@ -10,17 +10,17 @@
         <div class="form-grid">
 
             <div class="form-group">
-                <label>Nom du produit</label>
-                <input type="text" 
+                <label>Nom de l’abonnement <span class="required">*</span></label>
+                <input type="text"
                        name="name"
                        value="{{ old('name', $subscription->name ?? '') }}"
-                       placeholder="Entrez le nom du produit"
+                       placeholder="Entrez le nom de l’abonnement"
                        required>
             </div>
 
             <div class="form-group">
-                <label>Prix</label>
-                <input type="number" 
+                <label>Prix <span class="required">*</span></label>
+                <input type="number"
                        name="price"
                        value="{{ old('price', $subscription->price ?? '') }}"
                        placeholder="Entrez le prix"
@@ -30,45 +30,43 @@
             </div>
 
             <div class="form-group">
-                <label>Type</label>
-                <select name="type" id="" required>
+                <label>Type <span class="required">*</span></label>
+                <select name="type" required>
                     <option value="">-- Sélectionner --</option>
-                    <option value="key" {{ $subscription && $subscription->type == 'key' ? 'selected' :''  }}>Clé</option>
-                    <option value="account" {{ $subscription && $subscription->type == 'account' ? 'selected' :''  }}>Compte</option>
-                    <option value="invitation" {{ $subscription && $subscription->type == 'invitation' ? 'selected' :''  }}>Invitation</option>
+                    <option value="key" {{ $subscription && $subscription->type == 'key' ? 'selected' : '' }}>Clé</option>
+                    <option value="account" {{ $subscription && $subscription->type == 'account' ? 'selected' : '' }}>Compte</option>
+                    <option value="invitation" {{ $subscription && $subscription->type == 'invitation' ? 'selected' : '' }}>Invitation</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>Catégorie</label>
-                <select name="category" id="" required>
+                <label>Catégorie <span class="required">*</span></label>
+                <select name="category" required>
                     <option value="">-- Sélectionner --</option>
-                    <option value="games" {{ $subscription && $subscription->category == 'games' ? 'selected' :''  }}>Jeux</option>
-                    <option value="gift_cards" {{ $subscription && $subscription->category == 'gift_cards' ? 'selected' :''  }}>Cartes cadeaux</option>
-                    <option value="software" {{ $subscription && $subscription->category == 'software' ? 'selected' :''  }}>Logiciel</option>
-                    <option value="subscriptions" {{ $subscription && $subscription->category == 'subscriptions' ? 'selected' :''  }}>Abonnements</option>
-                    <option value="in_game_currency" {{ $subscription && $subscription->category == 'in_game_currency' ? 'selected' :''  }}>Monnaie virtuelle</option>
-                    <option value="other" {{ $subscription && $subscription->category == 'other' ? 'selected' :''  }}>Autre</option>
+                    <option value="games" {{ $subscription && $subscription->category == 'games' ? 'selected' : '' }}>Jeux</option>
+                    <option value="gift_cards" {{ $subscription && $subscription->category == 'gift_cards' ? 'selected' : '' }}>Cartes cadeaux</option>
+                    <option value="software" {{ $subscription && $subscription->category == 'software' ? 'selected' : '' }}>Logiciel</option>
+                    <option value="subscriptions" {{ $subscription && $subscription->category == 'subscriptions' ? 'selected' : '' }}>Abonnements</option>
+                    <option value="in_game_currency" {{ $subscription && $subscription->category == 'in_game_currency' ? 'selected' : '' }}>Monnaie virtuelle</option>
+                    <option value="other" {{ $subscription && $subscription->category == 'other' ? 'selected' : '' }}>Autre</option>
                 </select>
             </div>
 
             <div class="form-group full">
                 <label>Description</label>
                 <textarea name="description"
-                          placeholder="Entrez la description du produit">{{ old('description', $subscription->description ?? '') }}</textarea>
+                          placeholder="Entrez la description de l’abonnement">{{ old('description', $subscription->description ?? '') }}</textarea>
             </div>
 
             <div class="form-group full">
                 <label>Image</label>
-                <input 
-                    type="file" 
-                    name="image" 
-                    accept="image/*">
-                <small>Télécharger une image du projet (JPG, PNG, etc.)</small>
+                <input type="file" name="image" accept="image/*">
+
+                <small>Télécharger une image de l’abonnement (JPG, PNG, WEBP, etc.)</small>
 
                 @if(!empty($subscription?->image))
                     <div class="current-image">
-                        <img src="{{ asset('uploads/' . $subscription->image) }}" alt="">
+                        <img src="{{ asset('uploads/' . $subscription->image) }}" alt="Image de l’abonnement">
                     </div>
                 @endif
             </div>

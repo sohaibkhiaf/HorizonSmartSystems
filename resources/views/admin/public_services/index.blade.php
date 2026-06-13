@@ -17,33 +17,66 @@
     </a>
 </div>
 
-<div class="container">
+<div class="services-grid">
 
     @forelse($public_services as $service)
-        <div class="achievement-card">
+        <div class="service-card">
 
-            <div class="achievement-card-image">
+            <div class="service-image">
                 @if($service->image)
-                    <img src="{{ asset('uploads/'.$service->image) }}" alt="{{ $service->title }}">
+                    <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->fr_name }}">
                 @else
                     <div class="image-placeholder">
-                        <i class="fas fa-image"></i>
+                        <i class="fas fa-layer-group"></i>
                     </div>
                 @endif
             </div>
 
-            <div class="achievement-card-content">
-                <div class="card-row">
-                    <h3>{{ $service->fr_name }}</h3>
+            <div class="service-content">
 
-                    @if($service->is_published)
-                        <span class="badge success">Publié</span>
-                    @else
-                        <span class="badge muted">Masqué</span>
-                    @endif
+                <div class="card-top">
+                    <div>
+                        <h3>{{ $service->fr_name }}</h3>
+
+                        <div class="card-badges">
+                            @if($service->is_published)
+                                <span class="badge success">
+                                    <i class="fas fa-eye"></i>
+                                    Publié
+                                </span>
+                            @else
+                                <span class="badge muted">
+                                    <i class="fas fa-eye-slash"></i>
+                                    Masqué
+                                </span>
+                            @endif
+
+                            <span class="badge type">
+                                @if($service->type === 'main')
+                                    Service principal
+                                @else
+                                    Service secondaire
+                                @endif
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
-                <p>{{ $service->fr_short_description }}</p>
+                <p class="description">
+                    {{ Str::limit($service->fr_short_description, 140) }}
+                </p>
+
+                <div class="meta-grid">
+                    <div>
+                        <span>Créé le</span>
+                        <strong>{{ $service->created_at?->format('Y-m-d') }}</strong>
+                    </div>
+
+                    <div>
+                        <span>Mis à jour</span>
+                        <strong>{{ $service->updated_at?->format('Y-m-d') }}</strong>
+                    </div>
+                </div>
 
                 <div class="card-actions">
                     <a href="{{ route('admin.public_services.edit', $service) }}" class="action-btn edit">
@@ -51,7 +84,7 @@
                         Modifier
                     </a>
 
-                    <form method="POST" action="{{ route('admin.public_services.destroy', $service) }}" onsubmit="return confirm('Supprimer cette service ?')">
+                    <form method="POST" action="{{ route('admin.public_services.destroy', $service) }}" onsubmit="return confirm('Supprimer ce service ?')">
                         @csrf
                         @method('DELETE')
 
@@ -61,38 +94,56 @@
                         </button>
                     </form>
                 </div>
+
             </div>
 
         </div>
     @empty
-        <div class="empty-box">
-            Aucun service trouvé.
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+
+            <h3>Aucun service trouvé</h3>
+            <p>Vous n’avez pas encore ajouté de service sur le site.</p>
+
+            <a href="{{ route('admin.public_services.create') }}" class="empty-link">
+                <i class="fas fa-plus"></i>
+                Créer un service
+            </a>
         </div>
     @endforelse
 
 </div>
 
-<div class="navigator-container">
-    @if ($public_services->currentPage() > 1)
-        <a href="{{$public_services->previousPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
-    @else
-        <a href="{{$public_services->url($public_services->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
-    @endif
-
-    @for ($i = 1; $i <= $public_services->lastPage(); $i++)
-        @if ($public_services->currentPage() == $i)
-            <a href="{{$public_services->url($i)}}" class="active">{{$i}}</a>
+@if($public_services->hasPages())
+    <div class="navigator-container">
+        @if ($public_services->currentPage() > 1)
+            <a href="{{ $public_services->previousPageUrl() }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @else
-            <a href="{{$public_services->url($i)}}">{{$i}}</a>
+            <a href="{{ $public_services->url($public_services->currentPage()) }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @endif
-    @endfor
 
-    @if ($public_services->currentPage() < $public_services->lastPage())
-        <a href="{{$public_services->nextPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
-    @else
-        <a href="{{$public_services->url($public_services->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
-    @endif
-</div>
+        @for ($i = 1; $i <= $public_services->lastPage(); $i++)
+            <a href="{{ $public_services->url($i) }}" class="{{ $public_services->currentPage() == $i ? 'active' : '' }}">
+                {{ $i }}
+            </a>
+        @endfor
+
+        @if ($public_services->currentPage() < $public_services->lastPage())
+            <a href="{{ $public_services->nextPageUrl() }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @else
+            <a href="{{ $public_services->url($public_services->currentPage()) }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @endif
+    </div>
+@endif
 
 @endsection
-

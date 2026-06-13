@@ -8,11 +8,13 @@ use Illuminate\Http\Request;
 
 class StoreRequestController extends Controller
 {
-    public function index() {
-        // query
-        $status = request()->query('status');
+    public function index()
+    {
+        $status = request('status');
+        $search = request('search');
+        $dateFrom = request('date_from');
+        $dateTo = request('date_to');
 
-        // allowed
         $allowedStatuses = [
             'pending',
             'processing',
@@ -23,24 +25,55 @@ class StoreRequestController extends Controller
             'cancelled',
         ];
 
-        // fetch
-        $requests = StoreRequest::query()
+        $requests = StoreRequest::with('storeSubscription')
             ->when(in_array($status, $allowedStatuses), function ($query) use ($status) {
                 $query->where('status', $status);
             })
+            ->when($search, function ($query) use ($search) {
+                $query->where('customer_full_name', 'like', '%' . $search . '%');
+            })
+            ->when($dateFrom, function ($query) use ($dateFrom) {
+                $query->whereDate('created_at', '>=', $dateFrom);
+            })
+            ->when($dateTo, function ($query) use ($dateTo) {
+                $query->whereDate('created_at', '<=', $dateTo);
+            })
             ->latest()
-            ->paginate(10);
+            ->paginate(10)
+            ->withQueryString();
 
-        // view
-        return view('admin/requests/index', compact('requests', 'status'));
+        return view('admin.store_requests.index', compact(
+            'requests',
+            'status',
+            'search',
+            'dateFrom',
+            'dateTo'
+        ));
     }
 
-    public function show($id) {
-        // find
+    public function show($id)
+    {
         $request = StoreRequest::with('storeSubscription')->findOrFail($id);
+        $subscriptions = StoreSubscription::latest()->get();
 
-        // view
-        return view('admin/requests/show', compact('request'));
+        return view('admin.store_requests.show', compact('request', 'subscriptions'));
+    }
+
+    public function updateInfo(Request $req, $id)
+    {
+        $data = $req->validate([
+            'store_subscription_id' => ['required', 'exists:store_subscriptions,id'],
+            'quantity' => ['required', 'integer', 'min:1'],
+            'customer_full_name' => ['required', 'string', 'max:255'],
+            'customer_contact' => ['required', 'string', 'max:50'],
+            'customer_email' => ['nullable', 'email', 'max:255'],
+            'customer_address' => ['nullable', 'string', 'max:500'],
+        ]);
+
+        $request = StoreRequest::findOrFail($id);
+        $request->update($data);
+
+        return back()->with('success', 'Informations de la demande mises à jour avec succès !');
     }
 
     public function create() {
@@ -48,7 +81,7 @@ class StoreRequestController extends Controller
         $subscriptions = StoreSubscription::all();
 
         // view
-        return view('admin/requests/create', compact('subscriptions'));
+        return view('admin/store_requests/create', compact('subscriptions'));
     }
 
     public function store(Request $req) {
@@ -81,9 +114,9 @@ class StoreRequestController extends Controller
 
         // validate
         $req->validate([
-            'admin_note' => 'nullable|string|max:512',
+            'status' => ['required', 'in:pending,processing,available,paid,delivered,postponed,cancelled'],
+            'admin_note' => ['nullable', 'string', 'max:512'],
         ]);
-        
         // find
         $request = StoreRequest::findOrFail($id);
 

@@ -15,13 +15,13 @@ class PublicAchievementController extends Controller
             ->paginate(9);
 
         // view
-        return view('admin/achievements/index', compact('achievements'));
+        return view('admin/public_achievements/index', compact('achievements'));
     }
 
     public function create()
     {
         // view
-        return view('admin/achievements/create');
+        return view('admin/public_achievements/create');
     }
 
     public function store(Request $request)
@@ -65,7 +65,7 @@ class PublicAchievementController extends Controller
     public function edit(PublicAchievement $achievement)
     {
         // view
-        return view('admin/achievements/edit', compact('achievement'));
+        return view('admin/public_achievements/edit', compact('achievement'));
     }
 
     public function update(Request $request, PublicAchievement $achievement)
