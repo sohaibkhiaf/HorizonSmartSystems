@@ -82,4 +82,16 @@ class User extends Authenticatable
     public function tickets() {
         return $this->hasMany(CustomerTicket::class);
     }
+
+    public function demos()
+    {
+        return $this->hasMany(CustomerDemo::class);
+    }
+
+    public function chatMessages()
+    {
+        return $this->hasMany(CustomerChatMessage::class);
+    }
+
+
 }

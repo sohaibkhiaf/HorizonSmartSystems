@@ -12,21 +12,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_tickets', function (Blueprint $table) {
+        Schema::create('customer_chat_messages', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignIdFor(User::class)->constrained()
-                ->cascadeOnDelete();
 
-            $table->string('subject');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+
+            $table->enum('sender_type', ['customer', 'admin'])->default('customer');
             $table->text('message');
 
-            $table->enum('status', [
-                'open', // Ouvert
-                'waiting', // En attente
-                'answered', // Repondu
-                'closed', // Fermé
-            ])->default('open');
+            $table->boolean('is_seen')->default(false);
 
             $table->softDeletes();
             $table->timestamps();
@@ -38,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_tickets');
+        Schema::dropIfExists('customer_chat_messages');
     }
 };

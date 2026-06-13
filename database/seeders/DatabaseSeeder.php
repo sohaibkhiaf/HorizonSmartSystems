@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\CustomerDemo;
 use App\Models\CustomerOrder;
 use App\Models\CustomerService;
 use App\Models\CustomerSubscription;
@@ -466,6 +467,15 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+
+
+        CustomerDemo::create([
+            'user_id' => 1,
+            'name' => 'Wili Management System',
+            'demo_link' => 'https://icoderdz.cv/',
+            'is_active' => true,
+        ]);
+
 
     }
 }

@@ -1,13 +1,10 @@
 <?php
 
 
+use App\Http\Controllers\AdminCustomerPortalController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CustomerOrderController;
 use App\Http\Controllers\CustomerPortalController;
-use App\Http\Controllers\CustomerServiceController;
-use App\Http\Controllers\CustomerSubscriptionController;
-use App\Http\Controllers\CustomerTicketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PublicAchievementController;
@@ -132,6 +129,25 @@ Route::prefix('admin')
     Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
         ->name('messages.destroy');
 
+
+    Route::get('/customer-portals', [AdminCustomerPortalController::class, 'index'])
+        ->name('customer_portals.index');
+
+    Route::get('/customer-portals/{user}', [AdminCustomerPortalController::class, 'show'])
+        ->name('customer_portals.show');
+
+    Route::post('/customer-portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
+        ->name('customer_portals.demos.store');
+
+    Route::put('/customer-portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
+        ->name('customer_portals.demos.update');
+
+    Route::delete('/customer-portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
+        ->name('customer_portals.demos.destroy');
+
+    Route::post('/customer-portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
+        ->name('customer_portals.messages.send');
+
 });
 
 // ADMIN / OPERATOR //////////////////////////////////////////////////////////////
@@ -169,50 +185,6 @@ Route::prefix('admin')
         ->name('requests.destroy');
     Route::put('/store/requests/{id}/info', [StoreRequestController::class, 'updateInfo'])
         ->name('requests.updateInfo');
-
-    //  CUSTOMER ORDERS ///////////////////////////////////////////////////////////
-    Route::get('/customer/orders', [CustomerOrderController::class, 'index'])
-        ->name('customer_orders.index');
-    Route::get('/customer/orders/create', [CustomerOrderController::class, 'create'])
-        ->name('customer_orders.create');
-    Route::post('/customer/orders', [CustomerOrderController::class, 'store'])
-        ->name('customer_orders.store');
-    Route::get('/customer/orders/{order}/edit', [CustomerOrderController::class, 'edit'])
-        ->name('customer_orders.edit');
-    Route::put('/customer/orders/{order}', [CustomerOrderController::class, 'update'])
-        ->name('customer_orders.update');
-
-    //  CUSTOMER SERVICES ///////////////////////////////////////////////////////////
-    Route::get('/customer/services', [CustomerServiceController::class, 'index'])
-        ->name('customer_services.index');
-    Route::get('/customer/services/create', [CustomerServiceController::class, 'create'])
-        ->name('customer_services.create');
-    Route::post('/customer/services', [CustomerServiceController::class, 'store'])
-        ->name('customer_services.store');
-    Route::get('/customer/services/{service}/edit', [CustomerServiceController::class, 'edit'])
-        ->name('customer_services.edit');
-    Route::put('/customer/services/{service}', [CustomerServiceController::class, 'update'])
-        ->name('customer_services.update');
-
-    //  CUSTOMER SUBSCRIPTIONS ///////////////////////////////////////////////////////////
-    Route::get('/customer/subscriptions', [CustomerSubscriptionController::class, 'index'])
-        ->name('customer_subscriptions.index');
-    Route::get('/customer/subscriptions/create', [CustomerSubscriptionController::class, 'create'])
-        ->name('customer_subscriptions.create');
-    Route::post('/customer/subscriptions', [CustomerSubscriptionController::class, 'store'])
-        ->name('customer_subscriptions.store');
-    Route::get('/customer/subscriptions/{subscription}/edit', [CustomerSubscriptionController::class, 'edit'])
-        ->name('customer_subscriptions.edit');
-    Route::put('/customer/subscriptions/{subscription}', [CustomerSubscriptionController::class, 'update'])
-        ->name('customer_subscriptions.update');
-
-    //  CUSTOMER TICKETS  ///////////////////////////////////////////////////////////
-    Route::get('/customer/tickets', [CustomerTicketController::class, 'index'])
-        ->name('customer_tickets.index');
-    Route::get('/customer/tickets/{ticket}', [CustomerTicketController::class, 'show'])
-        ->name('customer_tickets.show');
-    Route::post('/customer/tickets/{ticket}/reply', [CustomerTicketController::class, 'reply'])
-        ->name('customer_tickets.reply');
 });
 
 
@@ -222,39 +194,12 @@ Route::middleware(['auth' , 'customer'])
     ->name('customer.')
     ->group(function () {
 
-    // CUSTOMER DASHBOARD //////////////////////////////////////////////////////////////////////////
-    Route::get('/dashboard', [CustomerPortalController::class, 'customerDashboard'])
-        ->name('dashboard.index');
+    Route::get('/portal', [CustomerPortalController::class, 'index'])
+        ->name('portal.index');
 
-    // CUSTOMER ORDERS //////////////////////////////////////////////////////////////////////////
-    Route::get('/orders', [CustomerPortalController::class, 'customerOrders'])
-        ->name('orders.index');
-    Route::get('/orders/{id}', [CustomerPortalController::class, 'customerOrder'])
-        ->name('orders.show');
+    Route::put('/portal/contact', [CustomerPortalController::class, 'updateContact'])
+        ->name('portal.contact.update');
 
-    // CUSTOMER SERVICES //////////////////////////////////////////////////////////////////////////
-    Route::get('services', [CustomerPortalController::class, 'customerServices'])
-        ->name('services.index');
-
-    // CUSTOMER SUBSCRIPTIONS //////////////////////////////////////////////////////////////////////////
-    Route::get('subscriptions', [CustomerPortalController::class, 'customerSubscriptions'])
-        ->name('subscriptions.index');
-
-    // CUSTOMER TICKETS //////////////////////////////////////////////////////////////////////////
-    Route::get('/tickets', [CustomerPortalController::class, 'customerTickets'])
-        ->name('tickets.index');
-    Route::get('/tickets/create', [CustomerPortalController::class, 'createCustomerTicket'])
-        ->name('tickets.create');
-    Route::post('/tickets', [CustomerPortalController::class, 'storeCustomerTicket'])
-        ->name('tickets.store');
-    Route::get('/tickets/{ticket}', [CustomerPortalController::class, 'customerTicket'])
-        ->name('tickets.show');
-    Route::post('/tickets/{ticket}/reply', [CustomerPortalController::class, 'replyCustomerTicket'])
-        ->name('tickets.reply');
-
-    // CUSTOMER PROFILE //////////////////////////////////////////////////////////////////////////
-    Route::get('profile', [CustomerPortalController::class, 'editCustomerProfile'])
-        ->name('profile.edit');
-    Route::post('profile', [CustomerPortalController::class, 'updateCustomerProfile'])
-        ->name('profile.update');
+    Route::post('/portal/chat', [CustomerPortalController::class, 'sendMessage'])
+        ->name('portal.chat.send');
 });

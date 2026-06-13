@@ -12,24 +12,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_subscriptions', function (Blueprint $table) {
+        Schema::create('customer_demos', function (Blueprint $table) {
             $table->id();
 
             $table->foreignIdFor(User::class)->constrained()
                 ->cascadeOnDelete();
 
             $table->string('name');
-            $table->integer('price');
-            $table->date('renewal_date');
+            $table->string('demo_link');
 
-            $table->enum('status', [
-                'active', // Actif
-                'pending', //En attente
-                'cancelled', // Annulé
-                'expired', // Expiré
-            ])->default('active');
+            $table->boolean('is_active')->default(true);
 
             $table->softDeletes();
+
             $table->timestamps();
         });
     }
@@ -39,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_subscriptions');
+        Schema::dropIfExists('customer_demos');
     }
 };

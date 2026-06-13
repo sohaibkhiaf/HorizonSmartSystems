@@ -123,25 +123,11 @@
 
             <div class="nav-group-title">Espace client</div>
 
-            <a href="{{ route('admin.customer_orders.index') }}" class="{{ request()->routeIs('admin.customer_orders.*') ? 'active' : '' }}">
-                <i class="fas fa-receipt"></i>
-                Commandes clients
+            <a href="{{ route('admin.customer_portals.index') }}" class="{{ request()->routeIs('admin.customer_portals.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i>
+                Portails clients
             </a>
 
-            <a href="{{ route('admin.customer_services.index') }}" class="{{ request()->routeIs('admin.customer_services.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-bell-concierge"></i>
-                Services clients
-            </a>
-
-            <a href="{{ route('admin.customer_subscriptions.index') }}" class="{{ request()->routeIs('admin.customer_subscriptions.*') ? 'active' : '' }}">
-                <i class="fas fa-rotate"></i>
-                Abonnements clients
-            </a>
-
-            <a href="{{ route('admin.customer_tickets.index') }}" class="{{ request()->routeIs('admin.customer_tickets.*') ? 'active' : '' }}">
-                <i class="fas fa-headset"></i>
-                Tickets clients
-            </a>
         </nav>
 
         <form method="POST" action="{{ route('logout') }}" class="logout-form">
