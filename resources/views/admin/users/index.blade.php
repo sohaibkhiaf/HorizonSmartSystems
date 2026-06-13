@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('title', 'Utilisateurs')
 @section('page_title', 'Utilisateurs')
@@ -12,8 +12,42 @@
 
 <div class="header">
     <form method="GET" class="search-bar">
-        <input type="text" name="search" placeholder="Rechercher nom ou email..." value="{{ request('search') }}">
-        <button class="btn-secondary">Rechercher</button>
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Rechercher nom ou email..."
+            value="{{ request('search') }}">
+
+        <select name="role">
+            <option value="">Tous les rôles</option>
+
+            @foreach($roles as $role)
+                <option value="{{ $role }}" @selected(request('role') === $role)>
+                    @if($role === 'ADMIN')
+                        Administrateur
+                    @elseif($role === 'OPERATOR')
+                        Opérateur
+                    @elseif($role === 'CUSTOMER')
+                        Client
+                    @else
+                        Utilisateur
+                    @endif
+                </option>
+            @endforeach
+        </select>
+
+        <button class="btn-secondary">
+            <i class="fas fa-search"></i>
+            Rechercher
+        </button>
+
+        @if(request('search') || request('role'))
+            <a href="{{ route('admin.users.index') }}" class="btn-light">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+                Réinitialiser
+            </a>
+        @endif
     </form>
 
     <a href="{{ route('admin.users.create') }}" class="btn-main">
@@ -25,47 +59,79 @@
 <div class="container">
 
     @if($users->count())
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Rôle</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Email</th>
+                        <th>Entreprise</th>
+                        <th>Contact</th>
+                        <th>Rôle</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-            @foreach($users as $user)
-            <tr>
-                <td><strong>{{ $user->name }}</strong></td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <span class="role-badge role-{{ strtolower($user->role) }}">
-                        {{ $user->role }}
-                    </span>
-                </td>
-                <td>
-                    <div class="table-actions">
-                        <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
-                            <i class="fas fa-pen"></i>
-                        </a>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>#{{ $user->id }}</td>
 
-                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button class="action-btn delete"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                            <td>
+                                <strong>{{ $user->name }}</strong>
+                            </td>
 
+                            <td>{{ $user->email }}</td>
+
+                            <td>
+                                {{ $user->company ?: '—' }}
+                            </td>
+
+                            <td>
+                                {{ $user->phone ?: '—' }}
+                            </td>
+
+                            <td>
+                                <span class="role-badge role-{{ strtolower($user->role) }}">
+                                    @if($user->role === 'ADMIN')
+                                        Administrateur
+                                    @elseif($user->role === 'OPERATOR')
+                                        Opérateur
+                                    @elseif($user->role === 'CUSTOMER')
+                                        Client
+                                    @else
+                                        Utilisateur
+                                    @endif
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="table-actions">
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
+                                        <i class="fas fa-pen"></i>
+                                        Modifier
+                                    </a>
+
+                                    <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button
+                                            type="submit"
+                                            class="action-btn delete"
+                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                                            <i class="fas fa-trash"></i>
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     @else
         <div class="empty">
             Aucun utilisateur trouvé
@@ -74,27 +140,32 @@
 
     <div class="navigator-container">
         @if ($users->currentPage() > 1)
-            <a href="{{$users->previousPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+            <a href="{{ $users->previousPageUrl() }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @else
-            <a href="{{$users->url($users->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left'}}"></i></a>
+            <a href="{{ $users->url($users->currentPage()) }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @endif
 
         @for ($i = 1; $i <= $users->lastPage(); $i++)
-            @if ($users->currentPage() == $i)
-                <a href="{{$users->url($i)}}" class="active">{{$i}}</a>
-            @else
-                <a href="{{$users->url($i)}}">{{$i}}</a>
-            @endif
+            <a href="{{ $users->url($i) }}" class="{{ $users->currentPage() == $i ? 'active' : '' }}">
+                {{ $i }}
+            </a>
         @endfor
 
         @if ($users->currentPage() < $users->lastPage())
-            <a href="{{$users->nextPageUrl()}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+            <a href="{{ $users->nextPageUrl() }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
         @else
-            <a href="{{$users->url($users->currentPage())}}"><i class="{{(app()->getLocale() === 'ar') ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right'}}"></i></a>
+            <a href="{{ $users->url($users->currentPage()) }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
         @endif
     </div>
 
 </div>
 
 @endsection
-

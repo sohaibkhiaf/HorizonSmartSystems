@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('page_title', 'Détails de la demande')
 @section('page_subtitle', 'Gestion complète de la requête')
@@ -116,7 +116,7 @@
         <div class="body">
 
             {{-- STATUS FORM --}}
-            <form method="POST" action="{{ url('admin/requests/'.$request->id.'/availability') }}" class="form">
+            <form method="POST" action="{{ route('admin.requests.update', $request->id) }}" class="form">
                 @csrf
 
                 <div class="form-group">

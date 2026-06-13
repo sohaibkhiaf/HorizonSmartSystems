@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('title', 'Abonnements clients')
 @section('page_title', 'Abonnements clients')

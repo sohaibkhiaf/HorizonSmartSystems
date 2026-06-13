@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('page_title', 'Nouvelle demande client')
 @section('page_subtitle', 'Créer une requête pour un client')

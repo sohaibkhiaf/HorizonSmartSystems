@@ -36,7 +36,7 @@ class PublicMessageController extends Controller
             ->paginate(9);
 
         // view
-        return view('admin/messages/index', [
+        return view('admin/public_messages/index', [
             'messages' => $messages,
             'is_seen' => false,
             'title' => 'Messages en attente',
@@ -50,7 +50,7 @@ class PublicMessageController extends Controller
             ->paginate(9);
 
         // view
-        return view('admin/messages/index', [
+        return view('admin/public_messages/index', [
             'messages' => $messages,
             'is_seen' => true,
             'title' => 'Messages consultés',
@@ -60,7 +60,7 @@ class PublicMessageController extends Controller
     public function edit(PublicMessage $message)
     {
         // view
-        return view('admin/messages/edit', compact('message'));
+        return view('admin/public_messages/edit', compact('message'));
     }
 
     public function update(Request $request, PublicMessage $message)

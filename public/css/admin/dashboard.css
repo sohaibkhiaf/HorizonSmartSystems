@@ -1,3 +1,11 @@
+/* SECTION TITLE */
+.dashboard-section-title {
+    margin: 26px 0 14px;
+    color: #111827;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 /* STATS */
 .stats-grid {
     display: grid;
@@ -33,6 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .stat-icon.warning {
@@ -45,9 +54,16 @@
     color: #16a34a;
 }
 
+.stat-icon.danger {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
 .stat-card h3 {
     margin: 0;
-    font-size: 24px;
+    color: #111827;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .stat-card p {
@@ -61,6 +77,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
+    margin-bottom: 22px;
 }
 
 .tab-card {
@@ -90,6 +107,7 @@
     margin: 0 0 8px;
     color: #111827;
     font-size: 16px;
+    font-weight: 600;
 }
 
 .tab-card p {
@@ -99,21 +117,137 @@
     line-height: 1.5;
 }
 
+/* RECENT ACTIVITY */
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.content-card {
+    padding: 18px;
+}
+
+.card-header {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.card-header h3 {
+    margin: 0;
+    color: #111827;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item strong {
+    display: block;
+    color: #111827;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.activity-item p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* BADGES */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 82px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    white-space: nowrap;
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.status-badge.warning,
+.status-pending,
+.status-waiting,
+.status-processing,
+.status-postponed,
+.status-maintenance {
+    background: #fff7ed;
+    color: #ea580c;
+}
+
+.status-badge.success,
+.status-active,
+.status-available,
+.status-paid,
+.status-delivered,
+.status-completed,
+.status-answered {
+    background: #ecfdf5;
+    color: #16a34a;
+}
+
+.status-cancelled,
+.status-expired,
+.status-suspended,
+.status-open {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.status-closed {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.empty-text {
+    margin: 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+
 /* RESPONSIVE */
-@media (max-width: 1100px) {
-    
+@media (max-width: 1200px) {
     .stats-grid,
     .admin-tabs {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-@media (max-width: 800px) {
-
-    .stats-grid,
-    .admin-tabs {
+    .dashboard-sections {
         grid-template-columns: 1fr;
     }
 }
 
+@media (max-width: 800px) {
+    .stats-grid,
+    .admin-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        align-items: flex-start;
+    }
+
+    .activity-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
 

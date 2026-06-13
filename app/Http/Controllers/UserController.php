@@ -11,20 +11,27 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        // query
+        $roles = ['USER', 'ADMIN', 'OPERATOR', 'CUSTOMER'];
+
         $query = User::query();
 
-        // Search
-        if ($request->search) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('email', 'like', '%' . $request->search . '%');
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
+                ->orWhere('email', 'like', '%' . $request->search . '%');
+            });
         }
 
-        // paginate
-        $users = $query->paginate(10);
+        if ($request->filled('role') && in_array($request->role, $roles)) {
+            $query->where('role', $request->role);
+        }
 
-        // view
-        return view('admin/users/index', compact('users'));
+        $users = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     public function create()
@@ -42,7 +49,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'phone' => 'nullable|string',
             'company' => 'nullable|string',
-            'role' => 'required'
+            'role' => 'required',
         ]);
 
         // create

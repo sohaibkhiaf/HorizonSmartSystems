@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('page_title', 'Ajouter un produit')
 @section('page_subtitle', 'Créer un nouveau produit de vente')

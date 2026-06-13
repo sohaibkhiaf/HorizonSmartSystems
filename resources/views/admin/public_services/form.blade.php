@@ -1,134 +1,207 @@
 <div class="container">
-    <form method="POST" action="{{ isset($service) ? route('admin.public_services.update', $service) : route('admin.public_services.store') }}" 
+
+    <div class="form-note">
+        <span>*</span> Champs obligatoires
+    </div>
+
+    <form
+        method="POST"
+        action="{{ isset($service) ? route('admin.public_services.update', $service) : route('admin.public_services.store') }}"
         enctype="multipart/form-data">
-        
+
         @csrf
-        @if(isset($service)) @method('PUT') @endif
+        @if(isset($service))
+            @method('PUT')
+        @endif
 
         <div class="form-grid">
 
             <div class="form-group">
-                <label>Nom Arabe</label>
-                <input 
-                    type="text" 
-                    name="ar_name" 
-                    value="{{ old('title', $service->ar_name ?? '') }}" 
-                    placeholder="Entrez le nom de service en arabe"
+                <label>
+                    Nom du service en arabe
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="ar_name"
+                    value="{{ old('ar_name', $service->ar_name ?? '') }}"
+                    placeholder="مثال: تطوير المواقع الإلكترونية"
+                    dir="rtl"
                     required>
             </div>
 
             <div class="form-group">
-                <label>Nom Francais</label>
-                <input 
-                    type="text" 
-                    name="fr_name" 
-                    value="{{ old('title', $service->fr_name ?? '') }}" 
-                    placeholder="Entrez le nom de service en francais"
+                <label>
+                    Nom du service en français
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="fr_name"
+                    value="{{ old('fr_name', $service->fr_name ?? '') }}"
+                    placeholder="Ex: Création de sites web"
                     required>
             </div>
+
             <div class="form-group">
-                <label>Nom Anglais</label>
-                <input 
-                    type="text" 
-                    name="en_name" 
-                    value="{{ old('title', $service->en_name ?? '') }}" 
-                    placeholder="Entrez le nom de service en anglais"
+                <label>
+                    Nom du service en anglais
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="en_name"
+                    value="{{ old('en_name', $service->en_name ?? '') }}"
+                    placeholder="Ex: Website development"
                     required>
             </div>
 
             <div class="form-group full">
-                <label>Description courte en arabe</label>
-                <input 
-                    type="text" 
-                    name="ar_short_description" 
-                    maxlength="300" 
-                    value="{{ old('short_description', $service->ar_short_description ?? '') }}" 
-                    placeholder="Résumé bref (300 caractères max)"
-                    required
-                >
-            </div>
-            <div class="form-group full">
-                <label>Description courte en francais</label>
-                <input 
-                    type="text" 
-                    name="fr_short_description" 
-                    maxlength="300" 
-                    value="{{ old('short_description', $service->fr_short_description ?? '') }}" 
-                    placeholder="Résumé bref (300 caractères max)"
-                    required
-                >
-            </div>
-            <div class="form-group full">
-                <label>Description courte en anglais</label>
-                <input 
-                    type="text" 
-                    name="en_short_description" 
-                    maxlength="300" 
-                    value="{{ old('short_description', $service->en_short_description ?? '') }}" 
-                    placeholder="Résumé bref (300 caractères max)"
-                    required
-                >
+                <label>
+                    Description courte en arabe
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="ar_short_description"
+                    maxlength="300"
+                    value="{{ old('ar_short_description', $service->ar_short_description ?? '') }}"
+                    placeholder="اكتب ملخصا قصيرا للخدمة يظهر في البطاقات"
+                    dir="rtl"
+                    required>
             </div>
 
             <div class="form-group full">
-                <label>Description arabe</label>
-                <textarea 
-                    name="ar_description" 
-                    rows="5"
-                    placeholder="Rédigez un service détaillée..."
-                >{{ old('description', $service->ar_description ?? '') }}</textarea>
-            </div>
-            <div class="form-group full">
-                <label>Description francaise</label>
-                <textarea 
-                    name="fr_description" 
-                    rows="5"
-                    placeholder="Rédigez un service détaillée..."
-                >{{ old('description', $service->fr_description ?? '') }}</textarea>
-            </div>
-            <div class="form-group full">
-                <label>Description anglaise</label>
-                <textarea 
-                    name="en_description" 
-                    rows="5"
-                    placeholder="Rédigez un service détaillée..."
-                >{{ old('description', $service->en_description ?? '') }}</textarea>
+                <label>
+                    Description courte en français
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="fr_short_description"
+                    maxlength="300"
+                    value="{{ old('fr_short_description', $service->fr_short_description ?? '') }}"
+                    placeholder="Résumé court affiché dans la carte du service"
+                    required>
             </div>
 
+            <div class="form-group full">
+                <label>
+                    Description courte en anglais
+                    <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    name="en_short_description"
+                    maxlength="300"
+                    value="{{ old('en_short_description', $service->en_short_description ?? '') }}"
+                    placeholder="Short summary displayed inside the service card"
+                    required>
+            </div>
 
             <div class="form-group full">
-                <label>Image</label>
-                <input 
-                    type="file" 
-                    name="image" 
+                <label>
+                    Description détaillée en arabe
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    name="ar_description"
+                    rows="5"
+                    dir="rtl"
+                    placeholder="اشرح الخدمة بالتفصيل: ماذا تقدم، لمن هي موجهة، وما هي فوائدها..."
+                    required>{{ old('ar_description', $service->ar_description ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>
+                    Description détaillée en français
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    name="fr_description"
+                    rows="5"
+                    placeholder="Décrivez le service en détail : objectif, avantages, public ciblé..."
+                    required>{{ old('fr_description', $service->fr_description ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>
+                    Description détaillée en anglais
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    name="en_description"
+                    rows="5"
+                    placeholder="Describe the service in detail: purpose, benefits, and target audience..."
+                    required>{{ old('en_description', $service->en_description ?? '') }}</textarea>
+            </div>
+
+            <div class="form-group full">
+                <label>Image du service</label>
+
+                <input
+                    type="file"
+                    name="image"
                     accept="image/*">
-                <small>Télécharger une image du projet (JPG, PNG, etc.)</small>
+
+                <small class="field-help">
+                    Formats recommandés : JPG, PNG ou WEBP.
+                </small>
 
                 @if(!empty($service?->image))
                     <div class="current-image">
-                        <img src="{{ asset('uploads/' . $service->image) }}" alt="">
+                        <span>Image actuelle</span>
+                        <img src="{{ asset('uploads/' . $service->image) }}" alt="Image du service">
                     </div>
                 @endif
             </div>
 
             <div class="form-group full">
-                <label>Type</label>
-                <select name="type" >
-                    <option value="">-- Séléctionner --</option>
-                    <option value="main">Principale</option>
-                    <option value="other">Autre</option>
+                <label>
+                    Type du service
+                    <span class="required">*</span>
+                </label>
+
+                <select name="type" required>
+                    <option value="" disabled {{ old('type', $service->type ?? '') === '' ? 'selected' : '' }}>
+                        Sélectionner un type
+                    </option>
+
+                    <option value="main" {{ old('type', $service->type ?? '') === 'main' ? 'selected' : '' }}>
+                        Service principal
+                    </option>
+
+                    <option value="other" {{ old('type', $service->type ?? '') === 'other' ? 'selected' : '' }}>
+                        Service secondaire
+                    </option>
                 </select>
             </div>
 
-
             <div class="form-group full">
-                <label class="checkbox-row">
-                    <input 
-                        type="checkbox" 
-                        name="is_published" 
+                <label class="checkbox-card">
+                    <input
+                        type="checkbox"
+                        name="is_published"
                         value="1"
                         {{ old('is_published', $service->is_published ?? true) ? 'checked' : '' }}>
-                    <span>Publié (visible sur le site)</span>
+
+                    <span class="checkbox-ui">
+                        <i class="fas fa-check"></i>
+                    </span>
+
+                    <span>
+                        <strong>Publier ce service</strong>
+                        <small>Le service sera visible sur le site public.</small>
+                    </span>
                 </label>
             </div>
 
@@ -136,15 +209,15 @@
 
         <div class="form-actions">
             <button type="submit" class="btn-main">
+                <i class="fas fa-floppy-disk"></i>
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
             <a href="{{ route('admin.public_services.index') }}" class="btn-secondary">
+                <i class="fas fa-arrow-left"></i>
                 Annuler
             </a>
         </div>
 
     </form>
 </div>
-
-

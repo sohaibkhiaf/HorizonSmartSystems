@@ -1,4 +1,4 @@
-@extends('admin.layouts.app-admin')
+@extends('admin.layouts.admin')
 
 @section('page_title', 'Modifier produit')
 @section('page_subtitle', 'Mettre à jour un produit')
