@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('role')->default('USER');// USER/ ADMIN/ OPERATOR/ CLIENT
+            $table->string('role')->default('USER');// USER/ ADMIN/ OPERATOR/ CUSTOMER
             $table->string('phone')->nullable();
             $table->string('company')->nullable();
             $table->timestamp('email_verified_at')->nullable();

@@ -17,7 +17,7 @@ return [
 
     // About /////////////////////////////////////////////////////////////
     'about_title'         => 'Who are we?',
-    'about_description'   => 'Horizon Smart Systems is a software and web development firm built on innovation, quality, and client proximity.',
+    'about_description'   => 'Horizon Smart Systems is a software and web development firm built on innovation, quality, and customer proximity.',
     'about_innovation'    => 'Innovation',
     'about_innovation_desc' => 'Modern technologies at the service of your ideas.',
     'about_performance'   => 'Performance',

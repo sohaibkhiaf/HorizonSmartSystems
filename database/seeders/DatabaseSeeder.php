@@ -39,13 +39,13 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $client = User::updateOrCreate(
-            ['email' => 'client@hss.dz'],
+        $customer = User::updateOrCreate(
+            ['email' => 'customer@hss.dz'],
             [
                 'name' => 'Nadia Benali',
                 'phone' => '0550 12 34 56',
                 'company' => 'Benali Consulting',
-                'role' => 'CLIENT',
+                'role' => 'CUSTOMER',
                 'password' => Hash::make('password'),
             ]
         );
@@ -267,12 +267,12 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Abonnement ChatGPT Plus - 1 mois', 'price' => 6500, 'status' => 'pending'],
             ['name' => 'Licence Microsoft Office 2021 Pro Plus', 'price' => 4500, 'status' => 'completed'],
             ['name' => 'Maintenance site vitrine HSS', 'price' => 18000, 'status' => 'processing'],
-            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'canceled'],
+            ['name' => 'Windows 11 Pro Key', 'price' => 3500, 'status' => 'cancelled'],
         ];
 
         foreach ($customerOrders as $order) {
             CustomerOrder::updateOrCreate(
-                ['user_id' => $client->id, 'name' => $order['name']],
+                ['user_id' => $customer->id, 'name' => $order['name']],
                 ['price' => $order['price'], 'status' => $order['status']]
             );
         }
@@ -304,7 +304,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($customerServices as $service) {
             CustomerService::updateOrCreate(
-                ['user_id' => $client->id, 'name' => $service['name']],
+                ['user_id' => $customer->id, 'name' => $service['name']],
                 $service
             );
         }
@@ -318,14 +318,14 @@ class DatabaseSeeder extends Seeder
 
         foreach ($subscriptions as $subscription) {
             CustomerSubscription::updateOrCreate(
-                ['user_id' => $client->id, 'name' => $subscription['name']],
+                ['user_id' => $customer->id, 'name' => $subscription['name']],
                 $subscription
             );
         }
 
         // CUSTOMER TICKETS /////////////////////////////////
         $ticket = CustomerTicket::updateOrCreate(
-            ['user_id' => $client->id, 'subject' => 'Activation de ma licence Office'],
+            ['user_id' => $customer->id, 'subject' => 'Activation de ma licence Office'],
             [
                 'message' => 'Bonjour, je souhaite confirmer la procedure d activation de ma licence Office sur un deuxieme poste.',
                 'status' => 'answered',
@@ -338,7 +338,7 @@ class DatabaseSeeder extends Seeder
         );
 
         CustomerTicket::updateOrCreate(
-            ['user_id' => $client->id, 'subject' => 'Suivi de la maintenance du site'],
+            ['user_id' => $customer->id, 'subject' => 'Suivi de la maintenance du site'],
             [
                 'message' => 'Merci de me confirmer la date de la prochaine intervention mensuelle.',
                 'status' => 'waiting',

@@ -39,7 +39,7 @@
                     Reportée
                 </option>
 
-                <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>
+                <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>
                     Annulée
                 </option>
 
@@ -78,9 +78,9 @@
                     </td>
 
                     <td>
-                        <strong>{{ $request->client_full_name }}</strong><br>
+                        <strong>{{ $request->customer_full_name }}</strong><br>
                         <small style="color:#6b7280;">
-                            {{ $request->client_contact }}
+                            {{ $request->customer_contact }}
                         </small>
                     </td>
 
@@ -97,7 +97,7 @@
                             <span class="badge success">Livré</span>
                         @elseif($request->status === 'postponed')
                             <span class="badge muted">Reportée</span>
-                        @elseif($request->status === 'canceled')
+                        @elseif($request->status === 'cancelled')
                             <span class="badge warning">Annulée</span>
                         @endif
                     </td>

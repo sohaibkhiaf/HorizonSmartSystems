@@ -147,7 +147,7 @@
 
         <a class="nav-tab" 
             href="/login">
-            {{ __('header.client_space') }}
+            {{ __('header.customer_space') }}
         </a>
 
         @if ($page == "STORE")

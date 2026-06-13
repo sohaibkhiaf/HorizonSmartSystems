@@ -23,9 +23,9 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->enum('author_type', [
-                'client', 
+                'customer', 
                 'admin',
-            ])->default('client');
+            ])->default('customer');
 
             $table->text('message');
             

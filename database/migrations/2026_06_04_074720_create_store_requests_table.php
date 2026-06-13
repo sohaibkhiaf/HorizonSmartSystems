@@ -18,10 +18,10 @@ return new class extends Migration
             $table->foreignIdFor(StoreSubscription::class)->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('client_full_name');
-            $table->string('client_email')->nullable();
-            $table->string('client_address')->nullable();
-            $table->string('client_contact');
+            $table->string('customer_full_name');
+            $table->string('customer_email')->nullable();
+            $table->string('customer_address')->nullable();
+            $table->string('customer_contact');
 
             $table->string('quantity');
 
@@ -29,7 +29,7 @@ return new class extends Migration
                 'pending', // En attente
                 'processing', // En cours
                 'available', // Disponible
-                'canceled', // Annulée
+                'cancelled', // Annulée
                 'postponed', // Reportée
                 'paid', // Payée
                 'delivered' // Livrée

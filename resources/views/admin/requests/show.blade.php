@@ -20,25 +20,25 @@
 
         <div class="body">
 
-            {{-- CLIENT --}}
+            {{-- CUSTOMER --}}
             <p class="section-label">Client</p>
 
             <div class="info-grid">
                 <div class="info-block full">
                     <p class="label">Nom complet</p>
-                    <p class="value">{{ $request->client_full_name }}</p>
+                    <p class="value">{{ $request->customer_full_name }}</p>
                 </div>
                 <div class="info-block">
                     <p class="label">Contact</p>
-                    <p class="value">{{ $request->client_contact }}</p>
+                    <p class="value">{{ $request->customer_contact }}</p>
                 </div>
                 <div class="info-block">
                     <p class="label">E-mail</p>
-                    <p class="value">{{ $request->client_email ?? 'N/A' }}</p>
+                    <p class="value">{{ $request->customer_email ?? 'N/A' }}</p>
                 </div>
                 <div class="info-block full">
                     <p class="label">Adresse</p>
-                    <p class="value">{{ $request->client_address ?? 'N/A' }}</p>
+                    <p class="value">{{ $request->customer_address ?? 'N/A' }}</p>
                 </div>
             </div>
 
@@ -96,7 +96,7 @@
                         <span class="badge success">Livré</span>
                     @elseif($request->status === 'postponed')
                         <span class="badge muted">Reportée</span>
-                    @elseif($request->status === 'canceled')
+                    @elseif($request->status === 'cancelled')
                         <span class="badge warning">Annulée</span>
                     @endif
                 </div>
@@ -127,7 +127,7 @@
                         <option value="processing" {{ $request->status == 'processing' ? 'selected' : '' }}>En cours</option>
                         <option value="available" {{ $request->status == 'available' ? 'selected' : '' }}>Disponible</option>
                         <option value="postponed" {{ $request->status == 'postponed' ? 'selected' : '' }}>Reportée</option>
-                        <option value="canceled" {{ $request->status == 'canceled' ? 'selected' : '' }}>Annulée</option>
+                        <option value="cancelled" {{ $request->status == 'cancelled' ? 'selected' : '' }}>Annulée</option>
                         <option value="paid" {{ $request->status == 'paid' ? 'selected' : '' }}>Payée</option>
                         <option value="delivered" {{ $request->status == 'delivered' ? 'selected' : '' }}>Livrée</option>
                     </select>

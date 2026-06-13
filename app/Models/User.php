@@ -61,9 +61,9 @@ class User extends Authenticatable
         return $this->role === 'OPERATOR';
     }
 
-    public function isClient()
+    public function isCustomer()
     {
-        return $this->role === 'CLIENT';
+        return $this->role === 'CUSTOMER';
     }
 
 

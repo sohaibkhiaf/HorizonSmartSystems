@@ -15,10 +15,10 @@ class StoreRequest extends Model
     protected $fillable = [
         'store_subscription_id',
 
-        'client_full_name',
-        'client_contact',
-        'client_email',
-        'client_address',
+        'customer_full_name',
+        'customer_contact',
+        'customer_email',
+        'customer_address',
 
         'quantity', 
         'status',

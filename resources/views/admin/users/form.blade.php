@@ -37,7 +37,7 @@
                     <option value="USER" {{ ($user->role ?? '') == 'USER' ? 'selected' : '' }}>USER</option>
                     <option value="ADMIN" {{ ($user->role ?? '') == 'ADMIN' ? 'selected' : '' }}>ADMIN</option>
                     <option value="OPERATOR" {{ ($user->role ?? '') == 'OPERATOR' ? 'selected' : '' }}>OPERATOR</option>
-                    <option value="CLIENT" {{ ($user->role ?? '') == 'CLIENT' ? 'selected' : '' }}>CLIENT</option>
+                    <option value="CUSTOMER" {{ ($user->role ?? '') == 'CUSTOMER' ? 'selected' : '' }}>CUSTOMER</option>
                 </select>
             </div>
 

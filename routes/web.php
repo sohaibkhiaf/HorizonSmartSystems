@@ -1,27 +1,22 @@
 <?php
 
-use App\Http\Controllers\AdminClientOrderController;
-use App\Http\Controllers\AdminClientServiceController;
-use App\Http\Controllers\AdminClientSubscriptionController;
-use App\Http\Controllers\AdminClientTicketController;
+
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CSDashboardController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CustomerOrderController;
+use App\Http\Controllers\CustomerPortalController;
+use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\CustomerSubscriptionController;
+use App\Http\Controllers\CustomerTicketController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicAchievementController;
 use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\PublicSoftwareController;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\StoreSubscriptionController;
-use App\Http\Controllers\SubscriptionController;
-use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -173,54 +168,91 @@ Route::prefix('admin')
     Route::delete('/store/requests/{id}', [StoreRequestController::class, 'destroy'])
         ->name('requests.destroy');
 
-    // CLIENT ORDERS ///////////////////////////////////////////CONTINUE
-    Route::get('/client/orders', [AdminClientOrderController::class, 'index'])
-        ->name('client-orders.index');
-    Route::get('/client/orders/create', [AdminClientOrderController::class, 'create'])
-        ->name('client-orders.create');
-    Route::post('/client/orders', [AdminClientOrderController::class, 'store'])
-        ->name('client-orders.store');
-    Route::get('/client/orders/{clientOrder}/edit', [AdminClientOrderController::class, 'edit'])
-        ->name('client-orders.edit');
-    Route::put('/client/orders/{clientOrder}', [AdminClientOrderController::class, 'update'])
-        ->name('client-orders.update');
+    //  CUSTOMER ORDERS ///////////////////////////////////////////////////////////
+    Route::get('/customer/orders', [CustomerOrderController::class, 'index'])
+        ->name('customer_orders.index');
+    Route::get('/customer/orders/create', [CustomerOrderController::class, 'create'])
+        ->name('customer_orders.create');
+    Route::post('/customer/orders', [CustomerOrderController::class, 'store'])
+        ->name('customer_orders.store');
+    Route::get('/customer/orders/{order}/edit', [CustomerOrderController::class, 'edit'])
+        ->name('customer_orders.edit');
+    Route::put('/customer/orders/{order}', [CustomerOrderController::class, 'update'])
+        ->name('customer_orders.update');
 
-    Route::get('client-services', [AdminClientServiceController::class, 'index'])->name('client-services.index');
-    Route::get('client-services/create', [AdminClientServiceController::class, 'create'])->name('client-services.create');
-    Route::post('client-services', [AdminClientServiceController::class, 'store'])->name('client-services.store');
-    Route::get('client-services/{clientService}/edit', [AdminClientServiceController::class, 'edit'])->name('client-services.edit');
-    Route::put('client-services/{clientService}', [AdminClientServiceController::class, 'update'])->name('client-services.update');
+    //  CUSTOMER SERVICES ///////////////////////////////////////////////////////////
+    Route::get('/customer/services', [CustomerServiceController::class, 'index'])
+        ->name('customer_services.index');
+    Route::get('/customer/services/create', [CustomerServiceController::class, 'create'])
+        ->name('customer_services.create');
+    Route::post('/customer/services', [CustomerServiceController::class, 'store'])
+        ->name('customer_services.store');
+    Route::get('/customer/services/{service}/edit', [CustomerServiceController::class, 'edit'])
+        ->name('customer_services.edit');
+    Route::put('/customer/services/{service}', [CustomerServiceController::class, 'update'])
+        ->name('customer_services.update');
 
-    Route::get('client-subscriptions', [AdminClientSubscriptionController::class, 'index'])->name('client-subscriptions.index');
-    Route::get('client-subscriptions/create', [AdminClientSubscriptionController::class, 'create'])->name('client-subscriptions.create');
-    Route::post('client-subscriptions', [AdminClientSubscriptionController::class, 'store'])->name('client-subscriptions.store');
-    Route::get('client-subscriptions/{clientSubscription}/edit', [AdminClientSubscriptionController::class, 'edit'])->name('client-subscriptions.edit');
-    Route::put('client-subscriptions/{clientSubscription}', [AdminClientSubscriptionController::class, 'update'])->name('client-subscriptions.update');
+    //  CUSTOMER SUBSCRIPTIONS ///////////////////////////////////////////////////////////
+    Route::get('/customer/subscriptions', [CustomerSubscriptionController::class, 'index'])
+        ->name('customer_subscriptions.index');
+    Route::get('/customer/subscriptions/create', [CustomerSubscriptionController::class, 'create'])
+        ->name('customer_subscriptions.create');
+    Route::post('/customer/subscriptions', [CustomerSubscriptionController::class, 'store'])
+        ->name('customer_subscriptions.store');
+    Route::get('/customer/subscriptions/{subscription}/edit', [CustomerSubscriptionController::class, 'edit'])
+        ->name('customer_subscriptions.edit');
+    Route::put('/customer/subscriptions/{subscription}', [CustomerSubscriptionController::class, 'update'])
+        ->name('customer_subscriptions.update');
 
-    Route::get('client-tickets', [AdminClientTicketController::class, 'index'])->name('client-tickets.index');
-    Route::get('client-tickets/{ticket}', [AdminClientTicketController::class, 'show'])->name('client-tickets.show');
-    Route::post('client-tickets/{ticket}/reply', [AdminClientTicketController::class, 'reply'])->name('client-tickets.reply');
+    //  CUSTOMER TICKETS  ///////////////////////////////////////////////////////////
+    Route::get('/customer/tickets', [CustomerTicketController::class, 'index'])
+        ->name('customer_tickets.index');
+    Route::get('/customer/tickets/{ticket}', [CustomerTicketController::class, 'show'])
+        ->name('customer_tickets.show');
+    Route::post('/customer/tickets/{ticket}/reply', [CustomerTicketController::class, 'reply'])
+        ->name('customer_tickets.reply');
 });
-// Client Space ////////////////////
 
 
-
-Route::middleware(['auth' , 'client'])
-    ->prefix('client')
-    ->name('client.')
+// CUSTOMER PORTAL //////////////////////////////////////////////////////////////////////////
+Route::middleware(['auth' , 'customer'])
+    ->prefix('customer')
+    ->name('customer.')
     ->group(function () {
 
-    Route::get('/dashboard', [CSDashboardController::class, 'index'])->name('dashboard');
+    // CUSTOMER DASHBOARD //////////////////////////////////////////////////////////////////////////
+    Route::get('/dashboard', [CustomerPortalController::class, 'customerDashboard'])
+        ->name('dashboard.index');
 
-    Route::resource('orders', OrderController::class)->only(['index', 'show']);
+    // CUSTOMER ORDERS //////////////////////////////////////////////////////////////////////////
+    Route::get('/orders', [CustomerPortalController::class, 'customerOrders'])
+        ->name('orders.index');
+    Route::get('/orders/{id}', [CustomerPortalController::class, 'customerOrder'])
+        ->name('orders.show');
 
-    Route::get('services', [ServiceController::class, 'index'])->name('services.index');
+    // CUSTOMER SERVICES //////////////////////////////////////////////////////////////////////////
+    Route::get('services', [CustomerPortalController::class, 'customerServices'])
+        ->name('services.index');
 
-    Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+    // CUSTOMER SUBSCRIPTIONS //////////////////////////////////////////////////////////////////////////
+    Route::get('subscriptions', [CustomerPortalController::class, 'customerSubscriptions'])
+        ->name('subscriptions.index');
 
-    Route::resource('tickets', TicketController::class)->only(['index', 'create', 'store', 'show']);
-    Route::post('tickets/{id}/reply', [TicketController::class, 'reply'])->name('tickets.reply');
+    // CUSTOMER TICKETS //////////////////////////////////////////////////////////////////////////
+    Route::get('/tickets', [CustomerPortalController::class, 'customerTickets'])
+        ->name('tickets.index');
+    Route::get('/tickets/create', [CustomerPortalController::class, 'createCustomerTicket'])
+        ->name('tickets.create');
+    Route::post('/tickets', [CustomerPortalController::class, 'storeCustomerTicket'])
+        ->name('tickets.store');
+    Route::get('/tickets/{ticket}', [CustomerPortalController::class, 'customerTicket'])
+        ->name('tickets.show');
+    Route::post('/tickets/{ticket}/reply', [CustomerPortalController::class, 'replyCustomerTicket'])
+        ->name('tickets.reply');
 
-    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+    // CUSTOMER PROFILE //////////////////////////////////////////////////////////////////////////
+    Route::get('profile', [CustomerPortalController::class, 'editCustomerProfile'])
+        ->name('profile.edit');
+    Route::post('profile', [CustomerPortalController::class, 'updateCustomerProfile'])
+        ->name('profile.update');
 });

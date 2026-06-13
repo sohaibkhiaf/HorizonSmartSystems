@@ -55,20 +55,20 @@ class StoreRequestController extends Controller
         // validation
         $req->validate([
             'subscription_id'     => 'required|exists:store_subscriptions,id',
-            'client_full_name'    => 'required|string|max:255',
-            'client_contact'      => 'required|string|max:50',
-            'client_email'        => 'nullable|email|max:255',
-            'client_address'      => 'nullable|string|max:500',
+            'customer_full_name'    => 'required|string|max:255',
+            'customer_contact'      => 'required|string|max:50',
+            'customer_email'        => 'nullable|email|max:255',
+            'customer_address'      => 'nullable|string|max:500',
             'quantity'            => 'required|integer|min:1',
         ]);
 
         // create
         StoreRequest::create([
             'store_subscription_id' => $req->subscription_id,
-            'client_full_name' => $req->client_full_name,
-            'client_contact' => $req->client_contact,
-            'client_email' => $req->client_email, 
-            'client_address' => $req->client_address, 
+            'customer_full_name' => $req->customer_full_name,
+            'customer_contact' => $req->customer_contact,
+            'customer_email' => $req->customer_email, 
+            'customer_address' => $req->customer_address, 
             'quantity' => $req->quantity, 
         ]);
 

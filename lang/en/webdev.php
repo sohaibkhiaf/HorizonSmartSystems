@@ -7,7 +7,7 @@ return [
 
     // Description 
     'desc_title' => 'Web development tailored to your needs',
-    'desc_text'  => 'A website is much more than a simple showcase. It is a professional tool that presents your company, reassures your clients and facilitates contact with your audience. At Horizon Smart Systems, we create clear, high-performance and easy-to-use websites, built around your project\'s objectives.',
+    'desc_text'  => 'A website is much more than a simple showcase. It is a professional tool that presents your company, reassures your customers and facilitates contact with your audience. At Horizon Smart Systems, we create clear, high-performance and easy-to-use websites, built around your project\'s objectives.',
 
     // Website Types 
     // — Corporate

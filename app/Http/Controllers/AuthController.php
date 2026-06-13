@@ -15,8 +15,8 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard.index');
         } else if (auth()->check() && auth()->user()->role == "OPERATOR") {
             return redirect()->route('admin.requests.index');
-        } else if (auth()->check() && auth()->user()->role == "CLIENT") {
-            return redirect()->route('client.dashboard');
+        } else if (auth()->check() && auth()->user()->role == "CUSTOMER") {
+            return redirect()->route('customer.dashboard.index');
         }
 
         // view
@@ -49,8 +49,8 @@ class AuthController extends Controller
             return redirect()->route('admin.dashboard.index');
         }else if (auth()->user()->isOperator() ) {
             return redirect()->route('requests.index');
-        }else if (auth()->user()->isClient() ) {
-            return redirect()->route('client.dashboard');
+        }else if (auth()->user()->isCustomer() ) {
+            return redirect()->route('customer.dashboard.index');
         }else{
             // unauthenticated
             Auth::logout();

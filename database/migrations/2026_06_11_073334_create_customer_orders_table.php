@@ -25,7 +25,7 @@ return new class extends Migration
                 'pending', // En attente
                 'processing', // En cours
                 'completed', // Terminée
-                'canceled', // Annulée
+                'cancelled', // Annulée
             ])->default('pending');
 
             $table->softDeletes();

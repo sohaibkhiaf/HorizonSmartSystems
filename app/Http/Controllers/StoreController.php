@@ -63,10 +63,10 @@ class StoreController extends Controller
         // create
         $request = StoreRequest::create([
             'store_subscription_id'=> $data['subscription_id'], 
-            'client_full_name'=> $data['full_name'], 
-            'client_contact'=> $data['phone'], 
-            'client_email'=> $data['email'], 
-            'client_address'=> $data['address'], 
+            'customer_full_name'=> $data['full_name'], 
+            'customer_contact'=> $data['phone'], 
+            'customer_email'=> $data['email'], 
+            'customer_address'=> $data['address'], 
             'quantity' => $data['quantity'],
         ]);
 

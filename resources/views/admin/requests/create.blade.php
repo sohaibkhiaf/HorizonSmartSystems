@@ -44,7 +44,7 @@
                 <label>Nom client</label>
                 <input 
                     type="text" 
-                    name="client_full_name" 
+                    name="customer_full_name" 
                     class="form-control" 
                     placeholder="Entrez le nom du client" 
                     required>
@@ -54,7 +54,7 @@
                 <label>Contact client</label>
                 <input 
                     type="text" 
-                    name="client_contact" 
+                    name="customer_contact" 
                     class="form-control" 
                     placeholder="Numéro de téléphone" 
                     required>
@@ -64,7 +64,7 @@
                 <label>E-mail client</label>
                 <input 
                     type="text" 
-                    name="client_email" 
+                    name="customer_email" 
                     class="form-control" 
                     placeholder="E-mail" >
             </div>
@@ -73,7 +73,7 @@
                 <label>Adresse client</label>
                 <input 
                     type="text" 
-                    name="client_address" 
+                    name="customer_address" 
                     class="form-control" 
                     placeholder="Adresse" >
             </div>
