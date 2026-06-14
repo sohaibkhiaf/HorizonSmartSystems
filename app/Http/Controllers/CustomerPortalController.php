@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerChatMessage;
+use App\Models\PublicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -23,7 +24,9 @@ class CustomerPortalController extends Controller
             ->oldest()
             ->get();
 
-        return view('customer.portal.index', compact('user', 'demos', 'messages'));
+        $services = PublicService::all();
+
+        return view('customer.portal.index', compact('user', 'demos', 'messages', 'services'));
     }
 
     public function updateProfile(Request $request)
