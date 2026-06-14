@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Gestion des demandes d’abonnements')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/requests/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_requests/index.css') }}">
 @endsection
 
 @section('content')

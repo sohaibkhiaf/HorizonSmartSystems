@@ -35,7 +35,7 @@ class AdminDashboardController extends Controller
 
             // BOUTIQUE
             'storeStats' => [
-                'products_total' => StoreSubscription::count(),
+                'subscriptions_total' => StoreSubscription::count(),
 
                 'requests_total' => StoreRequest::count(),
                 'requests_pending' => StoreRequest::where('status', 'pending')->count(),

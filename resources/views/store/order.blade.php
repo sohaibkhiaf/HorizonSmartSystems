@@ -139,7 +139,7 @@
         <aside class="summary-card">
             <h2>{{ __('order.summary_title') }}</h2>
 
-            <div class="product-summary">
+            <div class="subscription-summary">
                 <div class="summary-image">
                     @if($subscription->image)
                         <img
@@ -147,22 +147,20 @@
                             alt="{{ $subscription->name }}"
                             loading="lazy">
                     @else
-                        <img
-                            src="{{ asset('images/product-placeholder.png') }}"
-                            alt="{{ __('store.no_image') }}"
-                            loading="lazy"
-                            class="placeholder-img">
+                        <div class="image-placeholder">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
                     @endif
                 </div>
 
-                <div class="product-info">
+                <div class="subscription-info">
                     <h3>{{ $subscription->name }}</h3>
 
                     @if(!empty($subscription->description))
                         <p>{{ $subscription->description }}</p>
                     @endif
 
-                    <div class="product-badges">
+                    <div class="subscription-badges">
                         <span class="badge">
                             {{ $categories[$subscription->category] ?? __('store.na') }}
                         </span>
@@ -213,7 +211,7 @@
 </main>
 
 <script>
-    const productPrice = {{ (int) $subscription->price }};
+    const subscriptionPrice = {{ (int) $subscription->price }};
 
     function changeQty(value) {
         const quantityInput = document.getElementById('quantity');
@@ -228,7 +226,7 @@
 
         quantityInput.value = quantity;
         hiddenQuantityInput.value = quantity;
-        total.textContent = (productPrice * quantity) + ' {{ __('store.da') }}';
+        total.textContent = (subscriptionPrice * quantity) + ' {{ __('store.da') }}';
     }
 </script>
 

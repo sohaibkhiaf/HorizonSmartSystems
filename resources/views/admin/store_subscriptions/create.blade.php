@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Créer un nouveau abonnement')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/products/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/form.css') }}">
 @endsection
 
 @section('content')

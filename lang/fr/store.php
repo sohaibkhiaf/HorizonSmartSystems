@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'title' => 'Boutique',
+    'title' => 'Boutique — Horizon Smart Systems',
 
     'search' => 'Rechercher',
-    'search_placeholder' => 'Rechercher des produits...',
+    'search_placeholder' => 'Rechercher des abonnements...',
     'reset' => 'Réinit',
 
     'categories' => [

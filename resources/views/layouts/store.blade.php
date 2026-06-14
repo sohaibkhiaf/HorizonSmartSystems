@@ -28,7 +28,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header page="STORE" />
+    <x-header page="STORE" :services="$services" />
 
     {{-- Main Content --}}
     <main>

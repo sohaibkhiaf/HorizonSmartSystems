@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Ajouter un nouveau projet à votre site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/achievements/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_achievements/form.css') }}">
 @endsection
 
 @section('content')

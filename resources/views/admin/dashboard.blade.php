@@ -81,7 +81,7 @@
             <i class="fas fa-box"></i>
         </div>
         <div>
-            <h3>{{ $storeStats['products_total'] }}</h3>
+            <h3>{{ $storeStats['subscriptions_total'] }}</h3>
             <p>Produits boutique</p>
         </div>
     </div>

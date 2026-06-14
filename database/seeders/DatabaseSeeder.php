@@ -258,7 +258,6 @@ class DatabaseSeeder extends Seeder
             );
         }
 
-
         // PUBLIC SERVICES ///////////////////////////////////
         DB::table('public_services')->insert([
             [
@@ -270,9 +269,11 @@ class DatabaseSeeder extends Seeder
                 'fr_short_description' => 'Sites web modernes, rapides et responsive.',
                 'en_short_description' => 'Modern, fast and responsive websites.',
 
-                'ar_description' => 'مواقع ويب حديثة وسريعة ومتجاوبة، مصمَّمة لإبراز نشاطك التجاري.',
-                'fr_description' => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
-                'en_description' => 'Modern, fast and responsive websites designed to showcase your business.',
+                'ar_description' => 'نقدم خدمة إنشاء مواقع ويب احترافية وعصرية مصممة بعناية لتلبية احتياجات نشاطك التجاري وتعزيز حضورك الرقمي. نقوم بتطوير مواقع سريعة، متجاوبة مع جميع الأجهزة (الهاتف، الحاسوب، اللوحيات)، وسهلة الاستخدام لضمان أفضل تجربة للمستخدم. نركز على تصميم واجهات جذابة وتجربة مستخدم متقدمة، بالإضافة إلى تحسين محركات البحث (SEO) لضمان ظهور موقعك في نتائج البحث. سواء كنت تحتاج إلى موقع تعريفي، متجر إلكتروني، منصة خدمات أو نظام مخصص، فإننا نوفر حلولًا متكاملة من التصميم إلى الإطلاق والدعم المستمر.',
+
+                'fr_description' => 'Nous proposons des services complets de création de sites web modernes et professionnels, conçus pour répondre parfaitement aux besoins de votre activité et renforcer votre présence en ligne. Nos sites sont rapides, sécurisés, entièrement responsives et optimisés pour offrir une تجربة utilisateur fluide sur tous les appareils. Nous accordons une grande importance au design, à l’ergonomie ainsi qu’au référencement naturel (SEO) afin d’améliorer votre visibilité sur les moteurs de recherche. Que ce soit pour un site vitrine, un e-commerce ou une plateforme personnalisée, nous vous accompagnons de la conception jusqu’au déploiement et au suivi technique.',
+
+                'en_description' => 'We provide comprehensive website creation services tailored to elevate your business presence online. Our websites are modern, fast, secure, and fully responsive, ensuring seamless performance across all devices including smartphones, tablets, and desktops. We focus on clean design, intuitive user experience, and SEO optimization to help your business stand out in search results. Whether you need a corporate website, an e-commerce platform, or a custom web solution, we guide you through every stage—from planning and design to development, launch, and ongoing support.',
 
                 'type' => 'main',
                 'is_published' => true,
@@ -290,9 +291,11 @@ class DatabaseSeeder extends Seeder
                 'fr_short_description' => 'Applications sur mesure adaptées à vos besoins.',
                 'en_short_description' => 'Tailor-made applications.',
 
-                'ar_description' => 'تطبيقات مُخصَّصة ومُكيَّفة مع احتياجاتك الخاصة.',
-                'fr_description' => 'Applications sur mesure adaptées à vos besoins spécifiques.',
-                'en_description' => 'Tailor-made applications adapted to your specific needs.',
+                'ar_description' => 'نقوم بتطوير تطبيقات مخصصة تلبي احتياجاتك الفريدة بدقة، سواء كانت تطبيقات ويب، تطبيقات مكتبية أو أنظمة داخلية. نحلل متطلباتك بعناية ونصمم حلولًا تقنية فعالة تساعدك على تحسين الأداء، تقليل التكاليف، وزيادة الإنتاجية. نعتمد على أحدث التقنيات لضمان الأمان، السرعة، وقابلية التوسع، مع توفير تجربة استخدام سلسة وواجهة سهلة. خدماتنا تشمل التصميم، التطوير، الاختبار، النشر، والدعم المستمر.',
+
+                'fr_description' => 'Nous développons des applications sur mesure parfaitement adaptées à vos besoins spécifiques, qu’il s’agisse d’applications web, de logiciels métiers ou de systèmes internes. Nous analysons vos exigences en profondeur afin de concevoir des solutions efficaces qui optimisent vos processus et améliorent votre productivité. Nos applications sont sécurisées, évolutives et conçues avec des technologies modernes, tout en offrant une expérience utilisateur fluide et intuitive.',
+
+                'en_description' => 'We specialize in developing custom applications tailored precisely to your business requirements. Whether you need web apps, internal systems, or specialized tools, we design and build scalable, secure, and high-performance solutions. Our process includes deep requirement analysis, user-focused design, robust development, and continuous improvement. The goal is to streamline your operations, enhance efficiency, and provide long-term value through technology.',
 
                 'type' => 'main',
                 'is_published' => true,
@@ -310,9 +313,11 @@ class DatabaseSeeder extends Seeder
                 'fr_short_description' => 'Solutions pour gérer et optimiser votre activité.',
                 'en_short_description' => 'Integrated business management solutions.',
 
-                'ar_description' => 'حلول متكاملة لإدارة نشاطك وتحسين عملياتك.',
-                'fr_description' => 'Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.',
-                'en_description' => 'Integrated solutions to manage your business and optimize your processes.',
+                'ar_description' => 'نوفر حلولًا متكاملة لإدارة الأعمال تشمل إدارة المبيعات، المخزون، الموارد البشرية، والرواتب، مما يساعدك على التحكم الكامل في نشاطك التجاري. تتيح لك هذه الأنظمة تتبع العمليات بدقة، تحسين الكفاءة، واتخاذ قرارات مبنية على بيانات دقيقة. حلولنا مرنة وقابلة للتخصيص لتناسب مختلف أنواع الشركات، مع واجهات سهلة الاستخدام وتقارير مفصلة.',
+
+                'fr_description' => 'Nous proposons des solutions complètes de gestion d’entreprise incluant la gestion commerciale, la paie, les ressources humaines et le suivi des opérations. Ces systèmes vous permettent de centraliser vos données, améliorer votre productivité et prendre des décisions stratégiques basées sur des informations fiables. Nos solutions sont flexibles, évolutives et adaptées à tous types d’entreprises.',
+
+                'en_description' => 'We deliver integrated business management solutions including sales tracking, inventory management, payroll systems, and HR tools. These systems help you gain full control over your operations, improve efficiency, and make data-driven decisions. Our ERP solutions are customizable, scalable, and designed to simplify complex business processes while providing powerful reporting capabilities.',
 
                 'type' => 'main',
                 'is_published' => true,
@@ -330,9 +335,11 @@ class DatabaseSeeder extends Seeder
                 'fr_short_description' => 'Logiciels pour un meilleur suivi.',
                 'en_short_description' => 'Custom management software.',
 
-                'ar_description' => 'برامج إدارة مُخصَّصة لتتبع أفضل وإنتاجية أعلى.',
-                'fr_description' => 'Logiciels de gestion sur mesure pour un meilleur suivi et une productivité accrue.',
-                'en_description' => 'Custom management software for better tracking and increased productivity.',
+                'ar_description' => 'نقوم بتصميم وتطوير أنظمة إدارة مخصصة تساعدك على تنظيم أعمالك وتتبع كل تفاصيل نشاطك بدقة. سواء كنت بحاجة إلى نظام لإدارة العملاء، المشاريع، الطلبات أو العمليات الداخلية، فإننا نقدم حلولًا فعالة وسهلة الاستخدام تعزز إنتاجيتك وتقلل الأخطاء البشرية.',
+
+                'fr_description' => 'Nous développons des systèmes de gestion personnalisés pour vous aider à structurer et suivre efficacement votre activité. Nos solutions sont conçues pour améliorer la productivité, automatiser les tâches et offrir une meilleure visibilité sur vos العمليات.',
+
+                'en_description' => 'We build custom management systems that help you track, organize, and optimize your operations. Whether it’s CRM, project tracking, or workflow automation, our solutions are designed to simplify your work and improve productivity with intuitive interfaces and reliable performance.',
 
                 'type' => 'main',
                 'is_published' => true,
@@ -350,17 +357,19 @@ class DatabaseSeeder extends Seeder
                 'fr_short_description' => 'Support et dépannage informatique.',
                 'en_short_description' => 'Technical support and troubleshooting.',
 
-                'ar_description' => 'المساعدة والإصلاح لبرامجك وأنظمتك المعلوماتية واتصالاتك وشبكاتك.',
-                'fr_description' => 'Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.',
-                'en_description' => 'Assistance and troubleshooting for your software, computer systems, internet connection and network issues.',
-                
+                'ar_description' => 'نقدم خدمات دعم تقني متكاملة تشمل صيانة الأنظمة، إصلاح الأعطال، حل مشاكل الشبكات والاتصال، وضمان استمرارية عملك دون انقطاع. فريقنا جاهز للتدخل السريع وتقديم حلول فعالة للحفاظ على استقرار أنظمتك.',
+
+                'fr_description' => 'Nous assurons un support informatique complet incluant la maintenance, le dépannage, la gestion des réseaux et la résolution des problèmes techniques afin de garantir la continuité de votre activité.',
+
+                'en_description' => 'We provide reliable IT support services including troubleshooting, system maintenance, network management, and performance optimization to ensure your systems run smoothly and efficiently at all times.',
+
                 'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            
+
             [
                 'ar_name' => 'توفير البرمجيات الدولية',
                 'fr_name' => 'Acquisition de logiciels internationaux',

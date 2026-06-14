@@ -206,7 +206,7 @@
     margin-bottom: 18px;
 }
 
-.product-summary {
+.subscription-summary {
     display: flex;
     gap: 14px;
     padding-bottom: 18px;
@@ -229,17 +229,20 @@
     object-fit: cover;
 }
 
-.summary-image img.placeholder-img {
-    object-fit: contain;
-    padding: 18px;
-    background: #f8fafc;
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: var(--store-primary);
+    font-size: 24px;
 }
 
-.product-info {
+.subscription-info {
     min-width: 0;
 }
 
-.product-info h3 {
+.subscription-info h3 {
     color: var(--store-text);
     font-size: 16px;
     line-height: 1.45;
@@ -247,14 +250,14 @@
     font-weight: 600;
 }
 
-.product-info p {
+.subscription-info p {
     color: var(--store-muted);
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 10px;
 }
 
-.product-badges {
+.subscription-badges {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -432,7 +435,7 @@
         justify-content: center;
     }
 
-    .product-summary {
+    .subscription-summary {
         flex-direction: column;
     }
 

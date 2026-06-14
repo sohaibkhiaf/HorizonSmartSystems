@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Consulter et mettre à jour le statut du message')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/messages/edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_messages/edit.css') }}">
 @endsection
 
 @section('content')

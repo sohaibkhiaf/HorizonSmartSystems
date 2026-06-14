@@ -80,7 +80,7 @@
 .login-visual h1 {
     margin: 0 0 18px;
 
-    color: var(--color-primary);
+    color: var(--color-dark);
     font-size: 42px;
     font-weight: 600;
     line-height: 1.15;
@@ -318,28 +318,6 @@
     transform: translateY(-2px);
 }
 
-/* =========================================================
-   RTL
-========================================================= */
-
-[dir="rtl"] .login-visual,
-[dir="rtl"] .login-card,
-[dir="rtl"] .form-group {
-    text-align: right;
-}
-
-[dir="rtl"] .input-wrapper i {
-    right: 14px;
-    left: auto;
-}
-
-[dir="rtl"] .input-wrapper input {
-    padding: 13px 42px 13px 14px;
-}
-
-[dir="rtl"] .login-btn i {
-    transform: rotate(180deg);
-}
 
 /* =========================================================
    Responsive

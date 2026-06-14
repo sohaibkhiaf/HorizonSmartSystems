@@ -161,11 +161,11 @@ Route::prefix('admin')
         ->name('store_subs.create');
     Route::post('/store/subscriptions/', [StoreSubscriptionController::class, 'store'])
         ->name('store_subs.store');
-    Route::get('/store/subscriptions/{product}/edit', [StoreSubscriptionController::class, 'edit'])
+    Route::get('/store/subscriptions/{subscription}/edit', [StoreSubscriptionController::class, 'edit'])
         ->name('store_subs.edit');
-    Route::put('/store/subscriptions/{product}', [StoreSubscriptionController::class, 'update'])
+    Route::put('/store/subscriptions/{subscription}', [StoreSubscriptionController::class, 'update'])
         ->name('store_subs.update');
-    Route::delete('/store/subscriptions/{product}', [StoreSubscriptionController::class, 'destroy'])
+    Route::delete('/store/subscriptions/{subscription}', [StoreSubscriptionController::class, 'destroy'])
         ->name('store_subs.destroy');
 
     // STORE REQUESTS /////////////////////////////////////////////////////////////

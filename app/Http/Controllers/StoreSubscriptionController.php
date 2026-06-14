@@ -10,8 +10,10 @@ class StoreSubscriptionController extends Controller
 {
     public function index()
     {
+        // fetch
         $subscriptions = StoreSubscription::latest()->paginate(10);
 
+        // view
         return view('admin.store_subscriptions.index', compact('subscriptions'));
     }
 

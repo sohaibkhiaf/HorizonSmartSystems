@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'title' => 'Store',
+    'title' => 'Store — Horizon Smart Systems',
 
     'search' => 'Search',
-    'search_placeholder' => 'Search products...',
+    'search_placeholder' => 'Search subscriptions...',
     'reset' => 'Reset',
 
     'categories' => [
@@ -30,5 +30,5 @@ return [
     'na' => 'N/A',
     'da' => 'DA', 
 
-'order_now' => 'Order now',
+    'order_now' => 'Order now',
 ];

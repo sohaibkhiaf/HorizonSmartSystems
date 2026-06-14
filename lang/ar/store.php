@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'title' => 'المتجر',
+    'title' => 'المتجر — Horizon Smart Systems',
 
     'search' => 'بحث',
-    'search_placeholder' => 'ابحث عن المنتجات...',
+    'search_placeholder' => 'ابحث عن اشتراكات...',
     'reset' => 'إعادة',
 
     'categories' => [

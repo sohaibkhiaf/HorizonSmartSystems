@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PublicService;
 use App\Models\StoreRequest;
 use App\Models\StoreSubscription;
 use Illuminate\Http\Request;
@@ -32,19 +33,27 @@ class StoreController extends Controller
         // paginate
         $subscriptions = $query->latest()->paginate(12);
 
+        // services
+        $services = PublicService::all();
+
         // view
         return view('/store/index', [
             'subscriptions'=> $subscriptions, 
             'search'=> $search,
             'category' => $category, 
+            'services' => $services, 
         ]);
     }
 
     public function order(StoreSubscription $subscription) {
 
+        // services
+        $services = PublicService::all();
+
         // view
         return view('/store/order', [
             'subscription'=> $subscription, 
+            'services' => $services, 
         ]);
     }
 
@@ -78,9 +87,13 @@ class StoreController extends Controller
 
     public function confirmed(StoreRequest $request) {
 
+        // services
+        $services = PublicService::all();
+
         // view
         return view('/store/confirmed', [
             'request'=> $request, 
+            'services' => $services, 
         ]);
     }
 

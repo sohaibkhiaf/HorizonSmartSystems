@@ -127,15 +127,20 @@ class StoreRequestController extends Controller
         ]);
 
         // back
-        return back();
+        return back()->with('success', 'Statut de la demande mis à jour avec succès !');
     }
 
 
     public function destroy($id) {
-        // delete
-        StoreRequest::find($id)->delete();
+        $request = StoreRequest::find($id);
 
-        // back
-        return back();
+        if (!$request) {
+            return back()->with('error', 'Demande introuvable.');
+        }
+
+        $request->delete();
+
+        return back()->with('success', 'Demande supprimée avec succès !');
     }
+    
 }

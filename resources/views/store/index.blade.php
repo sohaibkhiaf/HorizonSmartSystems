@@ -96,22 +96,22 @@
         </form>
     </section>
 
-    <!-- Products -->
-    <section class="products-tabs-section">
+    <!-- Subscriptions -->
+    <section class="subscriptions-tabs-section">
 
-        <!-- Products Box -->
-        <div class="products-box">
+        <!-- Subscriptions Box -->
+        <div class="subscriptions-box">
 
-            <div class="products-grid">
+            <div class="subscriptions-grid">
                 @forelse($subscriptions as $subscription)
                     <a
-                        class="product-card"
+                        class="subscription-card"
                         href="{{ route('store.order', ['subscription' => $subscription]) }}"
                         data-category="{{ \Illuminate\Support\Str::slug($subscription->category ?? '') }}"
                         data-type="{{ \Illuminate\Support\Str::slug($subscription->type ?? '') }}"
                         data-id="{{ $subscription->id }}">
 
-                        <div class="product-image">
+                        <div class="subscription-image">
                             @if($subscription->image)
                                 <img
                                     src="{{ asset('uploads/' . $subscription->image) }}"
@@ -124,17 +124,17 @@
                             @endif
                         </div>
 
-                        <div class="product-content">
+                        <div class="subscription-content">
 
-                            <div class="product-header">
+                            <div class="subscription-header">
                                 <h3>{{ $subscription->name }}</h3>
 
-                                <span class="product-price">
+                                <span class="subscription-price">
                                     {{ $subscription->price }} {{ __('store.da') }}
                                 </span>
                             </div>
 
-                            <div class="product-meta">
+                            <div class="subscription-meta">
                                 <span class="badge">
                                     {{ $categories[$subscription->category]['label'] ?? __('store.na') }}
                                 </span>

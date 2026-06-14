@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'إتمام الطلب',
+    'title' => 'إتمام الطلب — Horizon Smart Systems',
 
     'back_to_catalog' => 'العودة إلى المتجر',
 

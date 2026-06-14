@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Order created',
+    'title' => 'Order created — Horizon Smart Systems',
 
     'heading' => 'Order confirmed!',
     'description' => 'We have received your order successfully. Our team will contact you shortly to confirm the details and prepare your product.',

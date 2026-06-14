@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Commande créée',
+    'title' => 'Commande créée — Horizon Smart Systems',
 
     'heading' => 'Commande confirmée !',
     'description' => 'Nous avons bien reçu votre commande. Notre équipe vous contactera prochainement pour confirmer les détails et préparer votre produit.',

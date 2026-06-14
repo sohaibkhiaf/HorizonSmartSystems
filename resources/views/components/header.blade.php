@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
 
-        if ( @json($page != 'STORE') AND @json($page != 'AUTH' ) ) {
+        if ( @json($page != 'STORE') && @json($page != 'AUTH' ) ) {
             updateActiveTab();
         }
     });

@@ -28,7 +28,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header page="AUTH" />
+    <x-header page="AUTH" :services="$services" />
 
     {{-- Main Content --}}
     <main>

@@ -14,10 +14,6 @@
         {{-- Left Content --}}
         <div class="login-visual">
 
-            <span class="login-label">
-                {{ __('login.badge') }}
-            </span>
-
             <h1>
                 {{ __('login.heading') }}
             </h1>

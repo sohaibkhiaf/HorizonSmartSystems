@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PublicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,10 @@ class AuthController extends Controller
             return redirect()->route('customer.portal.index');
         }
 
+        $services = PublicService::all();
+
         // view
-        return view('auth/login');
+        return view('auth/login', compact('services'));
     }
 
     public function login(Request $request)
