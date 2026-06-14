@@ -55,7 +55,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('softwareSection')"
+                            onclick="scrollToSection('software_section')"
                         @else
                             href="/?section=software"
                         @endif

@@ -274,6 +274,7 @@ class DatabaseSeeder extends Seeder
                 'fr_description' => 'Sites web modernes, rapides et responsive, conçus pour valoriser votre activité.',
                 'en_description' => 'Modern, fast and responsive websites designed to showcase your business.',
 
+                'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),
@@ -293,6 +294,7 @@ class DatabaseSeeder extends Seeder
                 'fr_description' => 'Applications sur mesure adaptées à vos besoins spécifiques.',
                 'en_description' => 'Tailor-made applications adapted to your specific needs.',
 
+                'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),
@@ -312,6 +314,7 @@ class DatabaseSeeder extends Seeder
                 'fr_description' => 'Solutions intégrées pour gérer votre activité et optimiser vos processus métiers.',
                 'en_description' => 'Integrated solutions to manage your business and optimize your processes.',
 
+                'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),
@@ -331,6 +334,7 @@ class DatabaseSeeder extends Seeder
                 'fr_description' => 'Logiciels de gestion sur mesure pour un meilleur suivi et une productivité accrue.',
                 'en_description' => 'Custom management software for better tracking and increased productivity.',
 
+                'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),
@@ -349,7 +353,8 @@ class DatabaseSeeder extends Seeder
                 'ar_description' => 'المساعدة والإصلاح لبرامجك وأنظمتك المعلوماتية واتصالاتك وشبكاتك.',
                 'fr_description' => 'Assistance et dépannage pour vos logiciels, systèmes informatiques, connexion Internet et problèmes réseau.',
                 'en_description' => 'Assistance and troubleshooting for your software, computer systems, internet connection and network issues.',
-
+                
+                'type' => 'main',
                 'is_published' => true,
                 'image' => null,
                 'created_at' => now(),

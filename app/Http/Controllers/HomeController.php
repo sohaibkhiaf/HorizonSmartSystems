@@ -27,4 +27,19 @@ class HomeController extends Controller
             'software' => $software, 
         ]);
     }
+
+    public function show(PublicService $service)
+    {
+        abort_if(! $service->is_published, 404);
+
+        $otherServices = PublicService::where('is_published', true)
+            ->where('id', '!=', $service->id)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $services = PublicService::all();
+
+        return view('service', compact('service', 'services' , 'otherServices'));
+    }
 }

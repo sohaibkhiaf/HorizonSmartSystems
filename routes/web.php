@@ -25,6 +25,9 @@ Route::get('/language/{locale}', [LanguageController::class, 'switch'])
 Route::get('/', [HomeController::class, 'home'])
     ->name('home.index');
 
+Route::get('/services/{service}', [HomeController::class, 'show'])
+    ->name('services.show');
+
 // STORE /////////////////////////////////////////////////////////////////////////////
 Route::get('/store', [StoreController::class, 'index'])
     ->name('store.index');

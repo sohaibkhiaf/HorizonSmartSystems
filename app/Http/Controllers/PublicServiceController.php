@@ -38,6 +38,7 @@ class PublicServiceController extends Controller
             'fr_description' => ['nullable', 'string'],
             'en_description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'fa_icon' => ['nullable','string'],
             'type' => ['required', 'in:main,other'],
             'is_published' => ['nullable', 'boolean'],
         ]);
@@ -79,6 +80,7 @@ class PublicServiceController extends Controller
             'fr_description' => ['nullable', 'string'],
             'en_description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'], 
+            'fa_icon' => ['nullable','string'],
             'type' => ['required', 'in:main,other'],
             'is_published' => ['nullable', 'boolean'],
         ]);

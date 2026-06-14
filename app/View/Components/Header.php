@@ -4,6 +4,7 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\Component;
 
 class Header extends Component
@@ -12,7 +13,8 @@ class Header extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $page
+        public string $page, 
+        public Collection $services,
     )
     {
         //

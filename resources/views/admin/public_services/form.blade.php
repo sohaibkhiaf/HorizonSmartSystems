@@ -163,6 +163,18 @@
 
             <div class="form-group full">
                 <label>
+                    Icône Font Awesome
+                </label>
+
+                <input
+                    type="text"
+                    name="fa_icon"
+                    value="{{ old('fa_icon', $service->fa_icon ?? '') }}"
+                    placeholder="Ex: fa-solid fa-globe">
+            </div>
+
+            <div class="form-group full">
+                <label>
                     Type du service
                     <span class="required">*</span>
                 </label>

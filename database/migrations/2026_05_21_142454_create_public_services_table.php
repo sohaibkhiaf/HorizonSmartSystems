@@ -32,7 +32,7 @@ return new class extends Migration
                 'other'
             ])->default('main');
 
-            $table->string('fa_icon');
+            $table->string('fa_icon')->nullable();
 
             $table->boolean('is_published')->default(true);
 

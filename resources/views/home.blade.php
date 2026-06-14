@@ -89,7 +89,7 @@
                                     {{ $service->en_short_description }}
                                 @endif
                             </p>
-                            <a href="#" class="plus-link">
+                            <a href="{{ route('services.show', $service) }}" class="plus-link">
                                 {{ __('home.learn_more') }}
                                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                             </a>

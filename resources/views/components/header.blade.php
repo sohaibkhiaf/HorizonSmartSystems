@@ -1,4 +1,4 @@
-<header class="header" id="mainHeader">
+<header class="header" id="main_header">
 
     {{-- Logo --}}
     <div class="logo">
@@ -40,90 +40,57 @@
                 <div class="mega-column">
                     <h4>{{ __('header.services_title') }}</h4>
 
-                    <a class="service-link" href="/webdev">
-                        <i class="fa-solid fa-globe"></i>
-                        <span>{{ __('header.service_web_title') }}</span>
-                    </a>
-
-                    <a class="service-link" href="/appdev">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <span>{{ __('header.service_app_title') }}</span>
-                    </a>
-
-                    <a class="service-link" href="/erp">
-                        <i class="fa-solid fa-chart-pie"></i>
-                        <span>{{ __('header.service_erp_title') }}</span>
-                    </a>
-
-                    <a class="service-link" href="/systems">
-                        <i class="fa-solid fa-gears"></i>
-                        <span>{{ __('header.service_sys_title') }}</span>
-                    </a>
-
-                    <a class="service-link" href="/support">
-                        <i class="fa-solid fa-headset"></i>
-                        <span>{{ __('header.service_support_title') }}</span>
-                    </a>
+                    @foreach($services as $service)
+                        @if ($service->is_published && $service->type == "main")
+                        <a class="service-link" href="{{ route('services.show', $service) }}">
+                            <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
+                            <span>
+                                @if(app()->getLocale() == 'ar')
+                                    {{ $service->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_name }}
+                                @else
+                                    {{ $service->en_name }}
+                                @endif
+                            </span>
+                        </a>
+                        @endif
+                    @endforeach
                 </div>
 
                 <div class="mega-column">
                     <h4>{{ __('header.other_services_title') }}</h4>
 
-                    <a class="service-link" onclick="scrollToSection('services_section')">
-                        <i class="fa-solid fa-earth-europe"></i>
-                        <span>{{ __('header.other_intl_title') }}</span>
-                    </a>
-
-                    <a class="service-link" onclick="scrollToSection('services_section')">
-                        <i class="fa-solid fa-credit-card"></i>
-                        <span>{{ __('header.other_subscriptions_title') }}</span>
-                    </a>
-
-                    <a class="service-link" onclick="scrollToSection('services_section')">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span>{{ __('header.other_hosting_title') }}</span>
-                    </a>
-
-                    <a class="service-link" onclick="scrollToSection('services_section')">
-                        <i class="fa-solid fa-circle-info"></i>
-                        <span>{{ __('header.other_consulting_title') }}</span>
-                    </a>
+                    @foreach($services as $service)
+                        @if ($service->is_published && $service->type == "other")
+                        <a class="service-link" href="{{ route('services.show', $service) }}">
+                            <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
+                            <span>
+                                @if(app()->getLocale() == 'ar')
+                                    {{ $service->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_name }}
+                                @else
+                                    {{ $service->en_name }}
+                                @endif
+                            </span>
+                        </a>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
 
         {{-- Software --}}
-        <div class="nav-item has-dropdown">
-
-            <a class="nav-tab"
-                @if ($page == 'APP')
-                    onclick="scrollToSection('software_section')"
-                @else
-                    href="/?section=software"
-                @endif
-               data-target="software">
-                {{ __('header.software') }}
-                <span class="caret-down">
-                    <i class="fa-solid fa-caret-down"></i>
-                </span>
-            </a>
-
-            <div class="mega-menu mega-menu-single">
-                <div class="mega-column">
-                    <h4>{{ __('header.software_title') }}</h4>
-
-                    <a class="service-link" 
-                        @if ($page == 'APP')
-                        onclick="scrollToSection('software_section')">
-                        @else
-                        href="/?section=software">
-                        @endif
-                        <i class="fa-solid fa-w"></i>
-                        <span>{{ __('header.software_wili') }}</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <a class="nav-tab"
+            @if ($page == 'APP')
+                onclick="scrollToSection('software_section')"
+            @else
+                href="/?section=software"
+            @endif
+            data-target="software">
+            {{ __('header.software') }}
+        </a>
 
         <a class="nav-tab"
             @if ($page == 'APP')
@@ -197,7 +164,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    const header = document.getElementById("mainHeader");
+    const header = document.getElementById("main_header");
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
     const sections = document.querySelectorAll("[data-section]");

@@ -75,7 +75,7 @@
 
                 <div class="meta-grid">
                     <div>
-                        <span>Type FR</span>
+                        <span>Type</span>
                         <strong>{{ Str::limit($achievement->fr_type, 28) }}</strong>
                     </div>
 
