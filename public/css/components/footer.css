@@ -4,9 +4,9 @@
 
 .site-footer {
     padding: 60px 20px 20px;
-    background: hsl(0, 0%, 98%);
+    background: var(--body-color);
     color: #4b5563;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--color-border);
 }
 
 .footer-container {
@@ -17,7 +17,6 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
 }
-
 
 /* =====================================================
    Footer Sections
@@ -32,13 +31,11 @@
 }
 
 .footer-section h3 {
-    margin-bottom: 15px;
-
+    margin: 0 0 15px;
+    color: var(--color-dark);
     font-size: 18px;
     font-weight: 600;
-    color: #111827;
 }
-
 
 /* =====================================================
    Brand
@@ -52,84 +49,83 @@
 
 .footer-description {
     max-width: 280px;
-
+    color: var(--color-muted-2);
     font-size: 15px;
     line-height: 1.6;
-    color: #6b7280;
 }
 
-
 /* =====================================================
-   Social Icons - Representation Only
+   Social Icons
 ===================================================== */
 
 .footer-socials {
+    margin-top: 15px;
+
     display: flex;
     align-items: center;
     gap: 12px;
-
-    margin-top: 15px;
 }
 
 .footer-social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 20px;
-    color: #FF6A00;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: 18px;
 
     cursor: pointer;
     user-select: none;
 
-    transition: color 0.3s ease,
+    transition: background 0.3s ease,
+                color 0.3s ease,
                 transform 0.3s ease;
-            
 }
 
 .footer-social-icon:hover {
-    color: #D95500;
+    background: var(--color-primary);
+    color: #ffffff;
     transform: translateY(-2px);
 }
-
 
 /* =====================================================
    Lists
 ===================================================== */
 
 .footer-list {
-    list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .footer-list li {
     margin-bottom: 10px;
-
+    color: var(--color-muted-2);
     font-size: 15px;
-    color: #6b7280;
-
     transition: color 0.3s ease;
 }
-
-
 
 /* =====================================================
    Footer Links
 ===================================================== */
 
 .footer-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-
     padding: 0;
     border: none;
     background: transparent;
 
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: inherit;
     font-family: inherit;
     font-size: 15px;
-    color: inherit;
     text-decoration: none;
 
     cursor: pointer;
@@ -140,17 +136,17 @@
 
 .footer-link i {
     width: 18px;
+    color: var(--color-primary);
     text-align: center;
-    color: inherit;
+}
+
+.footer-link:hover,
+.footer-list li:hover {
+    color: var(--color-primary);
 }
 
 .footer-link:hover {
-    color: #FF6A00;
     transform: translateX(2px);
-}
-
-.footer-list li:hover {
-    color: #FF6A00;
 }
 
 /* =====================================================
@@ -166,14 +162,13 @@
 .footer-contact .footer-list li i {
     width: 18px;
     margin-top: 2px;
-    color: inherit;
+    color: var(--color-primary);
     text-align: center;
 }
 
 .footer-contact span {
     line-height: 1.5;
 }
-
 
 /* =====================================================
    Bottom
@@ -183,13 +178,25 @@
     margin-top: 40px;
     padding-top: 20px;
 
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid var(--color-border);
 
+    color: #9ca3af;
     text-align: center;
     font-size: 15px;
-    color: #9ca3af;
 }
 
+/* =====================================================
+   RTL
+===================================================== */
+
+[dir="rtl"] .footer-section:not(:first-child) {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+[dir="rtl"] .footer-link:hover {
+    transform: translateX(-2px);
+}
 
 /* =====================================================
    Responsive
@@ -200,22 +207,23 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .footer-section:not(:first-child) {
+    .footer-section:not(:first-child),
+    [dir="rtl"] .footer-section:not(:first-child) {
         padding-left: 0;
+        padding-right: 0;
     }
 }
 
 @media (max-width: 500px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-    }
-
     .site-footer {
         padding-top: 45px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
     }
 
     .footer-description {
         max-width: 100%;
     }
 }
-

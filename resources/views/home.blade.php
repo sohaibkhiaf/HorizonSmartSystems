@@ -9,12 +9,12 @@
 @section('content')
 
 <!-- Hero ---------------------------------------------------------------------- -->
-<section class="hero" id="homeSection" data-section="home">
+<section class="hero" id="home_section" data-section="home">
     <div class="hero-container">
 
         <div class="hero-text">
             <h1 class="hero-title">
-            <span class="hero-dev">{{ __('home.hero_development') }}</span> {{ __('home.hero_title') }}
+                <span class="hero-dev">{{ __('home.hero_development') }}</span> {{ __('home.hero_title') }}
             </h1>
 
             <div class="hero-buttons">
@@ -23,7 +23,7 @@
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
 
-                <a onclick="scrollToSection('softwareSection')" class="btn btn-outline">
+                <a onclick="scrollToSection('software_section')" class="btn btn-outline">
                     {{ __('home.hero_btn_software') }}
                     <i class="fa-solid fa-laptop-code"></i>
                 </a>
@@ -43,7 +43,7 @@
 </section>
 
 <!-- Services ---------------------------------------------------------------- -->
-<section class="services" id="servicesSection" data-section="services">
+<section class="services" id="services_section" data-section="services">
     <div class="services-container">
 
         <div class="section-header">
@@ -60,10 +60,16 @@
                 <div class="swiper-wrapper">
 
                     @foreach ($services as $service )
-                        @if ($service->is_published)
+                        @if ($service->type == 'main' && $service->is_published)
                         <div class="swiper-slide service-card">
                             <div class="service-image">
-                                <img src="{{ asset('uploads/'.$service->image ) }}" alt="{{ $service->name }}">
+                                @if($service->image)
+                                    <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->name }}">
+                                @else
+                                    <div class="image-placeholder">
+                                        <i class="fa-solid fa-image"></i>
+                                    </div>
+                                @endif
                             </div>
                             <h3>
                                 @if (app()->getLocale() == 'ar')
@@ -101,52 +107,43 @@
 
         <!-- Secondary Services -->
         <div class="other-services">
-            <div class="other-service-card">
-                <div class="other-service-icon">
-                    <i class="fa-solid fa-earth-europe"></i>
+            @foreach ($services as $service )
+                @if ($service->type == 'other' && $service->is_published)
+                <div class="other-service-card">
+                    <div class="other-service-icon">
+                        <i class="{{ $service->fa_icon }}"></i>
+                    </div>
+                    <div>
+                        <h3>
+                            @if (app()->getLocale() == 'ar')
+                                {{ $service->ar_name }}
+                            @elseif(app()->getLocale() == 'fr')
+                                {{ $service->fr_name }}
+                            @else
+                                {{ $service->en_name }}
+                            @endif
+                        </h3>
+                        <p>
+                            @if (app()->getLocale() == 'ar')
+                                {{ $service->ar_short_description }}
+                            @elseif(app()->getLocale() == 'fr')
+                                {{ $service->fr_short_description }}
+                            @else
+                                {{ $service->en_short_description }}
+                            @endif
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <h3>{{ __('home.other_intl_title') }}</h3>
-                    <p>{{ __('home.other_intl_desc') }}</p>
-                </div>
-            </div>
+                @endif
+            @endforeach
 
-            <div class="other-service-card">
-                <div class="other-service-icon">
-                    <i class="fa-solid fa-credit-card"></i>
-                </div>
-                <div>
-                    <h3>{{ __('home.other_subscriptions_title') }}</h3>
-                    <p>{{ __('home.other_subscriptions_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="other-service-card">
-                <div class="other-service-icon">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                </div>
-                <div>
-                    <h3>{{ __('home.other_hosting_title') }}</h3>
-                    <p>{{ __('home.other_hosting_desc') }}</p>
-                </div>
-            </div>
-
-            <div class="other-service-card">
-                <div class="other-service-icon">
-                    <i class="fa-solid fa-circle-info"></i>
-                </div>
-                <div>
-                    <h3>{{ __('home.other_consulting_title') }}</h3>
-                    <p>{{ __('home.other_consulting_desc') }}</p>
-                </div>
-            </div>
         </div>
 
     </div>
 </section>
 
 <!-- Software ---------------------------------------------------------------- -->
-<section class="software-section" id="softwareSection" data-section="software">
+<section class="software-section" id="software_section" data-section="software">
     <div class="software-container">
 
         <div class="software-content">
@@ -166,7 +163,13 @@
                 <div class="software-information">
                     <div class="software-card-header">
                         <div class="software-icon">
-                            <img src="{{ asset('uploads/'.$s->icon) }}" alt="Wili Logo">
+                            @if($s->icon)
+                                <img src="{{ asset('uploads/' . $s->icon) }}" alt="Wili Logo">
+                            @else
+                                <div class="image-placeholder image-placeholder-sm">
+                                    <i class="fa-solid fa-image"></i>
+                                </div>
+                            @endif
                         </div>
 
                         <div>
@@ -208,7 +211,13 @@
                 </div>
 
                 <div class="software-image">
-                    <img src="{{ asset('uploads/'.$s->image) }}" alt="Wili Stock Management System">
+                    @if($s->image)
+                        <img src="{{ asset('uploads/' . $s->image) }}" alt="Wili Stock Management System">
+                    @else
+                        <div class="image-placeholder software-image-placeholder">
+                            <i class="fa-solid fa-image"></i>
+                        </div>
+                    @endif
                 </div>
 
                 <a onclick="scrollToSection('contact_section')" class="software-link-mobile">
@@ -228,7 +237,7 @@
 </section>
 
 <!-- Achievements ----------------------------------------------------------- -->
-<section class="achievements" id="achievementsSection" data-section="achievements">
+<section class="achievements" id="achievements_section" data-section="achievements">
     <div class="achievements-container">
         <div class="achievements-header">
             <h2 class="achievements-title">{{ __('home.achievements_title') }}</h2>
@@ -247,7 +256,7 @@
                                 <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
                             @else
                                 <div class="image-placeholder">
-                                    <i class="fas fa-image"></i>
+                                    <i class="fa-solid fa-image"></i>
                                 </div>
                             @endif
                         </div>

@@ -8,30 +8,37 @@
 
 
 :root {
-  --light-blue: #088bf6;
-  --normal-blue: #0046f6;
-  --darker-blue: #003fdf;
-  --dark-blue: #002057;
+    --body-color: hsl(0, 0%, 98%);
+    --color-surface: #ffffff;
+    --color-surface-soft: #f8fafc;
 
-  --light-black: hsl(0, 0%, 30%);
-  --normal-black: hsl(0, 0%, 20%);
-  --dark-black: hsl(0, 0%, 10%);
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-soft: #eff6ff;
 
-  --error-color: #950606;
-  --body-color: hsl(0, 0%, 98%);
-  --hover-color: hsl(0, 0%, 95%);
+    --color-danger: #ff3d2e;
+    --color-danger-dark: #e63628;
+    --color-danger-soft: #ffe5e2;
 
-  --border-style: 1px solid hsl(0, 0%, 80%);
+    --color-dark: #111827;
+    --color-muted: #64748b;
+    --color-muted-2: #6b7280;
+    --color-border: #e5e7eb;
+    --color-border-soft: #dbeafe;
 
-  --body-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.055);
-  --header-shadow: 2px 2px 2px hsla(0, 0%, 0%, 0.2);
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
 
-  --light-text: hsl(0, 0%, 50%);
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 8px 22px rgba(15, 23, 42, 0.07);
+    --shadow-blue: 0 12px 26px rgba(37, 99, 235, 0.13);
+    --shadow-danger: 0 12px 26px rgba(255, 61, 46, 0.18);
 
-  --night-color: #0f172a;
-  
+    --container-x: 8%;
+    --section-gap: 120px;
+    --transition: 0.25s ease;
 }
-
 
 *{
     font-family: "Cairo", sans-serif;

@@ -14,7 +14,7 @@ return [
     'achievements' => 'Réalisations',
     'store' => 'Notre boutique',
     'contact' => 'Contact',
-    'customer_space' => 'Espace client',
+    'customer_portal' => 'Espace client',
 
     /*
     |--------------------------------------------------------------------------

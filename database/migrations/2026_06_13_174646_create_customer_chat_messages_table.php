@@ -22,6 +22,9 @@ return new class extends Migration
 
             $table->boolean('is_seen')->default(false);
 
+            $table->string('link')->nullable();
+            $table->string('image')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

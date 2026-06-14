@@ -78,8 +78,32 @@
 </div>
 
 @if($customers->hasPages())
-    <div class="pagination-wrapper">
-        {{ $customers->links() }}
+    <div class="navigator-container">
+        @if ($customers->currentPage() > 1)
+            <a href="{{ $customers->previousPageUrl() }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        @else
+            <a href="{{ $customers->url($customers->currentPage()) }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        @endif
+
+        @for ($i = 1; $i <= $customers->lastPage(); $i++)
+            <a href="{{ $customers->url($i) }}" class="{{ $customers->currentPage() == $i ? 'active' : '' }}">
+                {{ $i }}
+            </a>
+        @endfor
+
+        @if ($customers->currentPage() < $customers->lastPage())
+            <a href="{{ $customers->nextPageUrl() }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @else
+            <a href="{{ $customers->url($customers->currentPage()) }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @endif
     </div>
 @endif
 

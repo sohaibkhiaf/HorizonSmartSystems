@@ -29,7 +29,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('homeSection')"
+                            onclick="scrollToSection('home_section')"
                         @else
                             href="/"
                         @endif
@@ -42,7 +42,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/?section=services"
                         @endif
@@ -68,7 +68,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('achievementsSection')"
+                            onclick="scrollToSection('achievements_section')"
                         @else
                             href="/?section=achievements"
                         @endif
@@ -108,7 +108,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/webdev"
                         @endif
@@ -121,7 +121,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/appdev"
                         @endif
@@ -134,7 +134,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/erp"
                         @endif
@@ -147,7 +147,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/systems"
                         @endif
@@ -160,7 +160,7 @@
                 <li>
                     <a class="footer-link" 
                         @if ($page == 'APP')
-                            onclick="scrollToSection('servicesSection')"
+                            onclick="scrollToSection('services_section')"
                         @else
                             href="/support"
                         @endif

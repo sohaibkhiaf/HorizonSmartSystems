@@ -37,13 +37,13 @@
             @endforeach
         </select>
 
-        <button class="btn-secondary">
+        <button class="btn-search">
             <i class="fas fa-search"></i>
             Rechercher
         </button>
 
         @if(request('search') || request('role'))
-            <a href="{{ route('admin.users.index') }}" class="btn-light">
+            <a href="{{ route('admin.users.index') }}" class="btn-secondary">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
                 Réinitialiser
             </a>

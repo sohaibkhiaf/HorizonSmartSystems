@@ -56,6 +56,7 @@
 
         @if(request('status') || request('search') || request('date_from') || request('date_to'))
             <a href="{{ route('admin.requests.index') }}" class="reset-filter">
+                <i class="fa-solid fa-arrow-rotate-right"></i>
                 Réinitialiser
             </a>
         @endif
@@ -150,9 +151,34 @@
 
 </div>
 
-@if ($requests->hasPages())
+
+@if($requests->hasPages())
     <div class="navigator-container">
-        {{ $requests->links() }}
+        @if ($requests->currentPage() > 1)
+            <a href="{{ $requests->previousPageUrl() }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        @else
+            <a href="{{ $requests->url($requests->currentPage()) }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+        @endif
+
+        @for ($i = 1; $i <= $requests->lastPage(); $i++)
+            <a href="{{ $requests->url($i) }}" class="{{ $requests->currentPage() == $i ? 'active' : '' }}">
+                {{ $i }}
+            </a>
+        @endfor
+
+        @if ($requests->currentPage() < $requests->lastPage())
+            <a href="{{ $requests->nextPageUrl() }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @else
+            <a href="{{ $requests->url($requests->currentPage()) }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
+        @endif
     </div>
 @endif
 

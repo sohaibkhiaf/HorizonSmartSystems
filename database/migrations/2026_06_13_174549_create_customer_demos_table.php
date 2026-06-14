@@ -23,6 +23,10 @@ return new class extends Migration
 
             $table->boolean('is_active')->default(true);
 
+            $table->text('admin_note')->nullable();
+
+            $table->string('image')->nullable();
+
             $table->softDeletes();
 
             $table->timestamps();

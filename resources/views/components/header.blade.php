@@ -12,7 +12,7 @@
 
         <a class="nav-tab"
             @if ($page == 'APP')
-                onclick="scrollToSection('homeSection')"
+                onclick="scrollToSection('home_section')"
             @else
                 href="/"
             @endif
@@ -25,7 +25,7 @@
 
             <a class="nav-tab"
                 @if ($page == 'APP')
-                    onclick="scrollToSection('servicesSection')"
+                    onclick="scrollToSection('services_section')"
                 @else
                     href="/?section=services"
                 @endif
@@ -69,22 +69,22 @@
                 <div class="mega-column">
                     <h4>{{ __('header.other_services_title') }}</h4>
 
-                    <a class="service-link" onclick="scrollToSection('servicesSection')">
+                    <a class="service-link" onclick="scrollToSection('services_section')">
                         <i class="fa-solid fa-earth-europe"></i>
                         <span>{{ __('header.other_intl_title') }}</span>
                     </a>
 
-                    <a class="service-link" onclick="scrollToSection('servicesSection')">
+                    <a class="service-link" onclick="scrollToSection('services_section')">
                         <i class="fa-solid fa-credit-card"></i>
                         <span>{{ __('header.other_subscriptions_title') }}</span>
                     </a>
 
-                    <a class="service-link" onclick="scrollToSection('servicesSection')">
+                    <a class="service-link" onclick="scrollToSection('services_section')">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <span>{{ __('header.other_hosting_title') }}</span>
                     </a>
 
-                    <a class="service-link" onclick="scrollToSection('servicesSection')">
+                    <a class="service-link" onclick="scrollToSection('services_section')">
                         <i class="fa-solid fa-circle-info"></i>
                         <span>{{ __('header.other_consulting_title') }}</span>
                     </a>
@@ -97,7 +97,7 @@
 
             <a class="nav-tab"
                 @if ($page == 'APP')
-                    onclick="scrollToSection('softwareSection')"
+                    onclick="scrollToSection('software_section')"
                 @else
                     href="/?section=software"
                 @endif
@@ -114,7 +114,7 @@
 
                     <a class="service-link" 
                         @if ($page == 'APP')
-                        onclick="scrollToSection('softwareSection')">
+                        onclick="scrollToSection('software_section')">
                         @else
                         href="/?section=software">
                         @endif
@@ -127,7 +127,7 @@
 
         <a class="nav-tab"
             @if ($page == 'APP')
-                onclick="scrollToSection('achievementsSection')"
+                onclick="scrollToSection('achievements_section')"
             @else
                 href="/?section=achievements"
             @endif
@@ -145,9 +145,9 @@
             {{ __('header.contact') }}
         </a>
 
-        <a class="nav-tab" 
+        <a class="nav-tab {{ $page == "AUTH" ? 'active' : '' }}" 
             href="/login">
-            {{ __('header.customer_space') }}
+            {{ __('header.customer_portal') }}
         </a>
 
         @if ($page == "STORE")
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
 
-        if (@json($page != 'STORE')) {
+        if ( @json($page != 'STORE') AND @json($page != 'AUTH' ) ) {
             updateActiveTab();
         }
     });
@@ -257,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (@json( $page == "APP" )){
         tabs[0].classList.add('active');
     }
-    
+
 });
 </script>
 

@@ -28,6 +28,8 @@ class PublicService extends Model
         'image' ,  
         'type' ,
 
+        'fa_icon',
+
         'is_published' ,
     ];
 }

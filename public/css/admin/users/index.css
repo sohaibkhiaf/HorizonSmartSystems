@@ -41,6 +41,7 @@
 /* BUTTONS */
 .btn-main,
 .btn-secondary,
+.btn-search,
 .btn-light {
     border-radius: 10px;
     padding: 12px 18px;
@@ -54,7 +55,8 @@
 }
 
 .btn-main,
-.btn-secondary {
+.btn-secondary,
+.btn-search {
     border: none;
 }
 
@@ -65,6 +67,15 @@
 
 .btn-secondary:hover {
     background: #e5e7eb;
+}
+
+.btn-search {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-search:hover {
+    background: #1d4ed8;
 }
 
 .btn-main {

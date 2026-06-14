@@ -32,6 +32,8 @@ return new class extends Migration
                 'other'
             ])->default('main');
 
+            $table->string('fa_icon');
+
             $table->boolean('is_published')->default(true);
 
             $table->string('image')->nullable();

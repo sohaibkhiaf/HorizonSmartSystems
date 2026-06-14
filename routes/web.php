@@ -129,23 +129,18 @@ Route::prefix('admin')
     Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
         ->name('messages.destroy');
 
-
-    Route::get('/customer-portals', [AdminCustomerPortalController::class, 'index'])
+    //  CUSTOMER PORTAL ///////////////////////////////////////////////////////////
+    Route::get('/customer/portals', [AdminCustomerPortalController::class, 'index'])
         ->name('customer_portals.index');
-
-    Route::get('/customer-portals/{user}', [AdminCustomerPortalController::class, 'show'])
+    Route::get('/customer/portals/{user}', [AdminCustomerPortalController::class, 'show'])
         ->name('customer_portals.show');
-
-    Route::post('/customer-portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
+    Route::post('/customer/portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
         ->name('customer_portals.demos.store');
-
-    Route::put('/customer-portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
+    Route::put('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
         ->name('customer_portals.demos.update');
-
-    Route::delete('/customer-portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
+    Route::delete('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
         ->name('customer_portals.demos.destroy');
-
-    Route::post('/customer-portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
+    Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
         ->name('customer_portals.messages.send');
 
 });
@@ -187,19 +182,17 @@ Route::prefix('admin')
         ->name('requests.updateInfo');
 });
 
-
 // CUSTOMER PORTAL //////////////////////////////////////////////////////////////////////////
 Route::middleware(['auth' , 'customer'])
     ->prefix('customer')
     ->name('customer.')
     ->group(function () {
 
+    // PORTAL  ////////////////////////////////////////////////////////////////
     Route::get('/portal', [CustomerPortalController::class, 'index'])
         ->name('portal.index');
-
-    Route::put('/portal/contact', [CustomerPortalController::class, 'updateContact'])
-        ->name('portal.contact.update');
-
+    Route::put('/portal/profile', [CustomerPortalController::class, 'updateProfile'])
+        ->name('portal_profile.update');
     Route::post('/portal/chat', [CustomerPortalController::class, 'sendMessage'])
-        ->name('portal.chat.send');
+        ->name('portal_chat.send');
 });

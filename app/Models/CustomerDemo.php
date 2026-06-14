@@ -16,7 +16,13 @@ class CustomerDemo extends Model
         'user_id',
         'name',
         'demo_link',
+        'admin_note',
+        'image',
         'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
     ];
 
     public function user()

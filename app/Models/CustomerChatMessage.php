@@ -9,14 +9,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CustomerChatMessage extends Model
 {
     /** @use HasFactory<\Database\Factories\CustomerChatMessageFactory> */
-    use HasFactory;
+    use HasFactory; 
     use SoftDeletes;
 
     protected $fillable = [
         'user_id',
         'sender_type',
         'message',
+        'link',
+        'image',
         'is_seen',
+    ];
+
+    protected $casts = [
+        'is_seen' => 'boolean',
     ];
 
     public function user()

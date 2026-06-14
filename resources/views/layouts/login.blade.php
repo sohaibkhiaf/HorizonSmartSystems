@@ -28,7 +28,7 @@
 <body>
 
     {{-- Header --}}
-    <x-header page="SERVICE" />
+    <x-header page="AUTH" />
 
     {{-- Main Content --}}
     <main>
@@ -36,7 +36,7 @@
     </main>
 
     {{-- Footer --}}
-    <x-footer page="SERVICE" />
+    <x-footer page="AUTH" />
 
 </body>
 </html>

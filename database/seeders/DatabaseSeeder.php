@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\CustomerDemo;
+
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -355,6 +355,87 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            
+            [
+                'ar_name' => 'توفير البرمجيات الدولية',
+                'fr_name' => 'Acquisition de logiciels internationaux',
+                'en_name' => 'International Software Procurement',
+
+                'ar_short_description' => 'توفير البرمجيات الدولية حسب احتياجاتك.',
+                'fr_short_description' => 'Fourniture de logiciels internationaux selon vos besoins.',
+                'en_short_description' => 'International software procurement according to your needs.',
+
+                'ar_description' => 'نوفر البرمجيات والحلول الدولية الأصلية وفق احتياجاتك وميزانيتك، مع المرافقة في الاختيار والتفعيل.',
+                'fr_description' => 'Fourniture de logiciels internationaux et de solutions professionnelles selon vos besoins et votre budget, avec accompagnement dans le choix et l’activation.',
+                'en_description' => 'Supply of international software and professional solutions according to your needs and budget, including guidance for selection and activation.',
+
+                'type' => 'other',
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'توفير الاشتراكات',
+                'fr_name' => 'Fourniture d\'abonnements',
+                'en_name' => 'Subscription Services',
+
+                'ar_short_description' => 'اشتراكات رقمية وبرمجيات عالمية.',
+                'fr_short_description' => 'Abonnements numériques et logiciels internationaux.',
+                'en_short_description' => 'Digital subscriptions and software services.',
+
+                'ar_description' => 'توفير وإدارة اشتراكات الذكاء الاصطناعي والخدمات الرقمية مثل ChatGPT وGemini وAdobe وMicrosoft وSteam Cards وغيرها.',
+                'fr_description' => 'Fourniture et gestion d’abonnements IA et de services numériques tels que ChatGPT, Gemini, Adobe, Microsoft, Steam Cards et bien d’autres.',
+                'en_description' => 'Provision and management of AI subscriptions and digital services such as ChatGPT, Gemini, Adobe, Microsoft, Steam Cards and more.',
+
+                'type' => 'other',
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'استضافة المواقع الإلكترونية',
+                'fr_name' => 'Hébergement de sites web',
+                'en_name' => 'Website Hosting',
+
+                'ar_short_description' => 'استضافة آمنة وسريعة لمواقعك.',
+                'fr_short_description' => 'Hébergement sécurisé et performant.',
+                'en_short_description' => 'Secure and high-performance hosting.',
+
+                'ar_description' => 'استضافة احترافية وآمنة وعالية الأداء لمواقعك وتطبيقاتك مع قابلية التوسع والدعم التقني.',
+                'fr_description' => 'Hébergement professionnel, sécurisé et performant pour vos sites web et applications avec évolutivité et assistance technique.',
+                'en_description' => 'Professional, secure and scalable hosting for your websites and applications with technical support.',
+
+                'type' => 'other',
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            [
+                'ar_name' => 'الاستشارة والمرافقة',
+                'fr_name' => 'Conseil et accompagnement',
+                'en_name' => 'Consulting & Support',
+
+                'ar_short_description' => 'مرافقة استراتيجية وتقنية لمشاريعك.',
+                'fr_short_description' => 'Conseil stratégique et accompagnement.',
+                'en_short_description' => 'Strategic consulting and project support.',
+
+                'ar_description' => 'نقدم الاستشارة التقنية والاستراتيجية ونرافقك في جميع مراحل تنفيذ وتطوير مشاريعك الرقمية.',
+                'fr_description' => 'Nous vous accompagnons à chaque étape de vos projets grâce à un conseil stratégique et technique adapté à vos objectifs.',
+                'en_description' => 'We provide strategic and technical consulting and support throughout every stage of your digital projects.',
+
+                'type' => 'other',
+                'is_published' => true,
+                'image' => null,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
         ]);
 
 

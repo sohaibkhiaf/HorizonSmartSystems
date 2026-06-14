@@ -1,18 +1,31 @@
-
-
 .portal-section {
+    min-height: 100vh;
     padding: 120px 24px 60px;
     background: #f9fafb;
-    min-height: 100vh;
+}
+
+.portal-header,
+.main-grid,
+.profile-card {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .portal-header {
-    max-width: 1180px;
-    margin: 0 auto 24px;
+    margin-bottom: 24px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 16px;
+}
+
+.welcome-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .portal-header h1 {
@@ -38,23 +51,32 @@
     font-weight: 500;
 }
 
-.alert-success {
+.alert-success,
+.alert-error {
     max-width: 1180px;
     margin: 0 auto 20px;
-    background: #ecfdf5;
-    color: #166534;
-    border: 1px solid #bbf7d0;
     padding: 14px 16px;
     border-radius: 12px;
     font-size: 14px;
 }
 
-.portal-grid {
-    max-width: 1180px;
-    margin: 0 auto;
+.alert-success {
+    background: #ecfdf5;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.alert-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.main-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.25fr;
     gap: 20px;
+    align-items: start;
 }
 
 .portal-card {
@@ -72,104 +94,112 @@
     font-weight: 600;
 }
 
-.form-group {
-    margin-bottom: 14px;
+.demo-list {
+    display: grid;
+    gap: 12px;
 }
-
-.form-group label {
-    display: block;
-    margin-bottom: 7px;
-    color: #374151;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.form-group input,
-.chat-form textarea {
-    width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    padding: 12px 14px;
-    font-size: 14px;
-    outline: none;
+.demo-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 16px;
     background: #ffffff;
 }
 
-.form-group input:focus,
-.chat-form textarea:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px #eff6ff;
-}
-
-.form-group input[readonly] {
-    background: #f9fafb;
-    color: #6b7280;
-    cursor: not-allowed;
-}
-
-.btn-main {
+.demo-card-image {
     width: 100%;
-    border: none;
-    background: #2563eb;
-    color: #ffffff;
-    padding: 12px 18px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.btn-main:hover {
-    background: #1d4ed8;
-}
-
-.demo-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    padding: 14px;
-    border: 1px solid #e5e7eb;
+    height: 170px;
     border-radius: 12px;
-    margin-bottom: 12px;
+    overflow: hidden;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 14px;
 }
 
-.demo-item h3 {
-    margin: 0 0 5px;
+.demo-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.demo-card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9ca3af;
+    font-size: 28px;
+}
+
+.demo-card h3 {
+    margin: 0 0 6px;
     color: #111827;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.demo-item p {
+.demo-card p {
     margin: 0;
     color: #6b7280;
     font-size: 13px;
 }
 
+.demo-note {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+.demo-note strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #374151;
+    font-size: 13px;
+}
+
+.demo-note p {
+    color: #111827;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
 .demo-link {
-    background: #eff6ff;
-    color: #2563eb;
-    padding: 9px 13px;
-    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    margin-top: 14px;
+    padding: 11px 14px;
+
+    color: #ffffff;
+
+    background: #22c55e;
+    border-color: #22c55e;
+    border-radius: 10px;
+
     text-decoration: none;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
 }
 
 .demo-link:hover {
-    background: #dbeafe;
+    background: #16a34a;
+    border-color: #16a34a;
 }
 
-.chat-card {
-    grid-column: 1 / -1;
+.demo-link i {
+    font-size: 12px;
 }
-
 .chat-box {
     background: #f9fafb;
     border: 1px solid #e5e7eb;
     border-radius: 14px;
     padding: 16px;
-    height: 360px;
+    height: 460px;
     overflow-y: auto;
     margin-bottom: 16px;
 }
@@ -188,7 +218,7 @@
 }
 
 .message-content {
-    max-width: 70%;
+    max-width: 76%;
     padding: 12px 14px;
     border-radius: 14px;
 }
@@ -205,25 +235,131 @@
 }
 
 .message-content p {
-    margin: 0 0 6px;
+    margin: 0 0 8px;
     font-size: 14px;
     line-height: 1.5;
+    white-space: pre-line;
 }
 
 .message-content span {
+    display: block;
+    margin-top: 7px;
     font-size: 11px;
     opacity: 0.75;
 }
 
+.message-link {
+    display: block;
+    margin-top: 8px;
+    color: inherit;
+    font-size: 13px;
+    word-break: break-all;
+    text-decoration: underline;
+}
+
+.message-image {
+    display: block;
+    max-width: 220px;
+    max-height: 180px;
+    margin-top: 10px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
 .chat-form {
     display: grid;
-    grid-template-columns: 1fr 140px;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
 }
 
 .chat-form textarea {
-    min-height: 48px;
+    grid-column: 1 / -1;
+    min-height: 70px;
     resize: vertical;
+}
+
+.chat-form button {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.chat-form input,
+.chat-form textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14px;
+    outline: none;
+    background: #ffffff;
+}
+
+.form-group input:focus,
+.chat-form input:focus,
+.chat-form textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #eff6ff;
+}
+
+.form-group input[readonly] {
+    background: #f9fafb;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.chat-form input::file-selector-button {
+    margin-right: 12px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.profile-card {
+    margin-top: 20px;
+}
+
+.profile-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.profile-form .form-group {
+    margin-bottom: 0;
+}
+
+.profile-form .btn-main {
+    grid-column: 1 / -1;
+}
+
+.btn-main {
+    width: 100%;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-main:hover {
+    background: #1d4ed8;
 }
 
 .empty-text {
@@ -232,13 +368,20 @@
     margin: 0;
 }
 
-@media (max-width: 800px) {
-    .portal-grid {
+@media (max-width: 950px) {
+
+    .main-grid {
         grid-template-columns: 1fr;
     }
 
-    .chat-card {
-        grid-column: auto;
+    .right-column {
+        order: -1;
+    }
+}
+
+@media (max-width: 650px) {
+    .portal-section {
+        padding: 90px 14px 40px;
     }
 
     .portal-header {
@@ -246,10 +389,15 @@
         align-items: flex-start;
     }
 
+    .portal-header h1 {
+        font-size: 28px;
+    }
+
     .logout-btn {
         width: 100%;
     }
 
+    .profile-form,
     .chat-form {
         grid-template-columns: 1fr;
     }
@@ -257,30 +405,8 @@
     .message-content {
         max-width: 88%;
     }
-}
 
-@media (max-width: 480px) {
-    .portal-section {
-        padding: 90px 14px 40px;
-    }
-
-    .portal-header h1 {
-        font-size: 28px;
-    }
-
-    .portal-card {
-        padding: 16px;
-    }
-
-    .demo-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .demo-link {
-        width: 100%;
-        text-align: center;
+    .message-image {
+        max-width: 180px;
     }
 }
-
-

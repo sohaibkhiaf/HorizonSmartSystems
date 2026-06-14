@@ -40,7 +40,8 @@ class StoreSubscriptionController extends Controller
         ]);
 
         // redirect
-        return redirect()->route('admin.store_subs.index');
+        return redirect()->route('admin.store_subs.index')
+            ->with('success', 'L’abonnement a été créé avec succès.');;
     }
 
     public function edit($id) {
@@ -76,7 +77,8 @@ class StoreSubscriptionController extends Controller
         ]);
 
         // redirect
-        return redirect()->route('admin.store_subs.index');
+        return redirect()->route('admin.store_subs.index')
+            ->with('success', 'L’abonnement a été mis à jour avec succès.');
     }
 
     public function destroy($id) {
@@ -84,6 +86,6 @@ class StoreSubscriptionController extends Controller
         StoreSubscription::destroy($id);
 
         // back
-        return back();
+        return back()->with('success','L’abonnement a été supprimé avec succès.');
     }   
 }
