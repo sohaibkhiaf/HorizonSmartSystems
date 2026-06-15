@@ -2,9 +2,15 @@
 
     <form method="POST" action="{{ isset($user) ? route('admin.users.update', $user) : route('admin.users.store') }}">
         @csrf
+
         @if(isset($user))
             @method('PUT')
         @endif
+
+        @php
+            $isEditing = isset($user);
+            $isSelfAdmin = $isEditing && auth()->id() === $user->id && $user->role === 'ADMIN';
+        @endphp
 
         <div class="form-grid">
 
@@ -83,27 +89,49 @@
                     <span class="required">*</span>
                 </label>
 
-                <select name="role" required>
-                    <option value="" disabled {{ !isset($user) ? 'selected' : '' }}>
-                        Sélectionner un rôle
-                    </option>
+                @if($isSelfAdmin)
+                    <input type="text" value="Administrateur" readonly>
 
-                    <option value="ADMIN" {{ ($user->role ?? '') == 'ADMIN' ? 'selected' : '' }}>
-                        Administrateur
-                    </option>
+                    <input type="hidden" name="role" value="ADMIN">
 
-                    <option value="OPERATOR" {{ ($user->role ?? '') == 'OPERATOR' ? 'selected' : '' }}>
-                        Opérateur
-                    </option>
+                    <small class="field-help">
+                        Vous pouvez modifier vos informations, mais pas votre rôle.
+                    </small>
+                @else
+                    <select name="role" required>
+                        <option value="" disabled {{ !isset($user) ? 'selected' : '' }}>
+                            Sélectionner un rôle
+                        </option>
 
-                    <option value="CUSTOMER" {{ ($user->role ?? '') == 'CUSTOMER' ? 'selected' : '' }}>
-                        Client
-                    </option>
+                        @if(auth()->user()->role === 'ADMIN')
+                            <option value="ADMIN"
+                                {{ old('role', $user->role ?? '') === 'ADMIN' ? 'selected' : '' }}>
+                                Administrateur
+                            </option>
+                        @endif
 
-                    <option value="USER" {{ ($user->role ?? '') == 'USER' ? 'selected' : '' }}>
-                        Utilisateur
-                    </option>
-                </select>
+                        <option value="OPERATOR"
+                            {{ old('role', $user->role ?? '') === 'OPERATOR' ? 'selected' : '' }}>
+                            Opérateur
+                        </option>
+
+                        <option value="CUSTOMER"
+                            {{ old('role', $user->role ?? '') === 'CUSTOMER' ? 'selected' : '' }}>
+                            Client
+                        </option>
+
+                        <option value="USER"
+                            {{ old('role', $user->role ?? '') === 'USER' ? 'selected' : '' }}>
+                            Utilisateur
+                        </option>
+                    </select>
+
+                    @if(auth()->user()->role === 'OPERATOR')
+                        <small class="field-help">
+                            Les opérateurs ne peuvent pas créer ou attribuer le rôle Administrateur.
+                        </small>
+                    @endif
+                @endif
             </div>
 
         </div>

@@ -108,23 +108,33 @@
 
                             <td>
                                 <div class="table-actions">
-                                    <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
-                                        <i class="fas fa-pen"></i>
-                                        Modifier
-                                    </a>
 
-                                    <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
-                                        @csrf
-                                        @method('DELETE')
+                                    @if($user->role !== 'ADMIN' || auth()->id() === $user->id)
+                                        <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
+                                            <i class="fas fa-pen"></i>
+                                            Modifier
+                                        </a>
+                                    @endif
 
-                                        <button
-                                            type="submit"
-                                            class="action-btn delete"
-                                            onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
-                                            <i class="fas fa-trash"></i>
-                                            Supprimer
-                                        </button>
-                                    </form>
+                                    @if($user->role !== 'ADMIN')
+                                        <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button
+                                                type="submit"
+                                                class="action-btn delete"
+                                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                                                <i class="fas fa-trash"></i>
+                                                Supprimer
+                                            </button>
+                                        </form>
+                                    @endif
+
+                                    @if($user->role === 'ADMIN' && auth()->id() !== $user->id)
+                                        <span class="empty-text">Protégé</span>
+                                    @endif
+
                                 </div>
                             </td>
                         </tr>

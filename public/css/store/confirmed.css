@@ -226,3 +226,82 @@
     }
 }
 
+/* =========================================================
+   Very Large Screens
+   ========================================================= */
+
+@media (min-width: 1440px) {
+    .confirmed-page {
+        padding-top: 150px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .confirm-container {
+        max-width: 760px;
+        padding: 36px;
+    }
+
+    .confirm-title {
+        font-size: 30px;
+    }
+
+    .confirm-desc {
+        max-width: 620px;
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .confirmed-page {
+        padding-top: 170px;
+    }
+
+    .confirm-container {
+        max-width: 860px;
+        padding: 42px;
+    }
+
+    .confirm-icon {
+        width: 78px;
+        height: 78px;
+        font-size: 36px;
+    }
+
+    .confirm-title {
+        font-size: 34px;
+    }
+
+    .reference-box strong {
+        font-size: 28px;
+    }
+
+    .next-steps h2 {
+        font-size: 22px;
+    }
+
+    .step p {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .confirm-container {
+        max-width: 980px;
+        padding: 50px;
+    }
+
+    .confirm-title {
+        font-size: 38px;
+    }
+
+    .confirm-desc {
+        font-size: 18px;
+    }
+
+    .continue-btn {
+        min-height: 56px;
+        font-size: 17px;
+    }
+}
+

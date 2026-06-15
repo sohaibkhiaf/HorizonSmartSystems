@@ -462,3 +462,53 @@
     }
 }
 
+/* =========================================================
+   Very Large Screens
+   ========================================================= */
+
+@media (min-width: 1440px) {
+    .order-page {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .order-container {
+        max-width: 1320px;
+        margin: 0 auto;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 24px;
+    }
+
+    .back-link {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1700px) {
+    .order-page {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+
+    .order-container {
+        max-width: 1450px;
+        gap: 30px;
+    }
+
+    .order-card,
+    .summary-card {
+        padding: 26px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .order-container {
+        max-width: 1580px;
+    }
+
+    .order-page {
+        padding-top: 150px;
+    }
+}
+

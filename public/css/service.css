@@ -26,7 +26,7 @@ a {
 }
 
 .service-hero {
-    padding: 140px var(--container-x) 70px;
+    padding: 190px var(--container-x) 110px;
     background: var(--body-color);
 }
 
@@ -37,20 +37,6 @@ a {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 46px;
-}
-
-.service-label {
-    width: fit-content;
-    margin-bottom: 18px;
-    padding: 9px 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--color-primary-soft);
-    color: var(--color-primary);
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 500;
 }
 
 .service-hero h1 {
@@ -105,15 +91,17 @@ a {
 }
 
 .btn-outline-light {
-    background: #ffffff;
-    color: var(--color-dark);
-    border: 1px solid var(--color-border);
+    background: var(--color-danger);
+    color: #ffffff;
+    border-color: var(--color-danger);
+    box-shadow: 0 12px 26px rgba(255, 61, 46, 0.18);
 }
 
 .btn-outline-light:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
+    background: var(--color-danger-dark);
+    border-color: var(--color-danger-dark);
 }
+
 
 .service-hero-image {
     display: flex;
@@ -125,12 +113,23 @@ a {
     width: 100%;
     max-width: 520px;
     min-height: 350px;
-    border-radius: 22px;
+    border-radius: 14px 0 0 14px;
     object-fit: cover;
     background: #ffffff;
-    border: 1px solid var(--color-border);
-    box-shadow: var(--shadow-sm);
 }
+
+.service-hero-image img {
+border-radius: 24px;
+    box-shadow:
+        0 30px 60px rgba(15,23,42,.08),
+        0 10px 20px rgba(15,23,42,.05);
+
+    transform: rotate(-2deg);
+}
+
+.service-hero-image img:hover {
+    transform: translateY(-6px);
+} 
 
 .service-image-placeholder {
     display: flex;
@@ -142,6 +141,7 @@ a {
 
 .service-details {
     padding: 20px var(--container-x) 80px;
+    background: #ffffff;
 }
 
 .service-details-container {
@@ -156,9 +156,6 @@ a {
 .service-main-card,
 .service-side-card {
     background: #ffffff;
-    border: 1px solid var(--color-border);
-    border-radius: 18px;
-    box-shadow: var(--shadow-sm);
 }
 
 .service-main-card {
@@ -221,10 +218,11 @@ a {
     align-items: center;
     gap: 11px;
     color: var(--color-dark);
-    background: var(--body-color);
     border: 1px solid var(--color-border);
     border-radius: 12px;
     transition: var(--transition);
+        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    background: #ffffff;
 }
 
 .side-service-link:hover {
@@ -669,6 +667,149 @@ a {
 }
 
 
+
+
+/* =========================================================
+   FLOATING BUTTONS 
+========================================================= */
+.float-nav {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.float-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+
+    /* Medium black */
+    background: #2f2f2f;
+    color: #ffffff;
+
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.float-btn:hover {
+    background: #1f1f1f;
+    transform: translateY(-3px);
+}
+
+/* Hidden state */
+.float-btn.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Down button slight variation (optional) */
+.float-btn-down {
+    background: #3a3a3a;
+}
+
+.float-btn-down:hover {
+    background: #262626;
+}
+
+/* Social media */
+.social-float {
+    position: fixed;
+    left: 25px;
+    top: 105px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    transition: all 0.3s ease;
+}
+
+/* Facebook brand color */
+.social-btn.fb {
+    background: #1877F2;
+}
+
+.social-btn.fb:hover {
+    background: #0f5ec4;
+    transform: translateY(-3px);
+}
+
+/* WhatsApp brand color */
+.social-btn.wa {
+    background: #25D366;
+}
+
+.social-btn.wa:hover {
+    background: #1da851;
+    transform: translateY(-3px);
+}
+
+
+
+@media (max-width: 900px) {
+    .float-nav {
+        bottom: 20px;
+        right: 20px;
+        gap: 9px;
+    }
+
+    .social-float {
+        left: 20px;
+        top: 95px;
+        gap: 9px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .float-nav {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .social-float {
+        left: 15px;
+        top: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .float-nav {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .social-float {
+        left: 10px;
+        top: 85px;
+    }
+}
+
+
+
 /* =========================================================
    RESPONSIVE 
 ========================================================= */
@@ -740,4 +881,158 @@ a {
 [dir="rtl"] .service-side-card {
     direction: rtl;
     text-align: right;
+}
+
+
+
+/* =========================================================
+   VERY LARGE SCREENS RESPONSIVE
+   Only improves spacing and max widths on wide displays.
+   ========================================================= */
+@media (min-width: 1440px) {
+    :root {
+        --container-x: 6%;
+    }
+
+    .service-hero-container,
+    .service-details-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1360px;
+    }
+
+    .service-hero {
+        padding-top: 205px;
+        padding-bottom: 125px;
+    }
+
+    .service-hero-container {
+        gap: 58px;
+    }
+
+    .service-hero h1 {
+        font-size: 46px;
+    }
+
+    .service-hero p {
+        max-width: 700px;
+        font-size: 19px;
+    }
+
+    .service-hero-image img,
+    .service-image-placeholder {
+        max-width: 600px;
+        min-height: 390px;
+    }
+
+    .service-details-container {
+        grid-template-columns: 1.45fr 0.55fr;
+        gap: 38px;
+    }
+
+    .service-main-card {
+        padding: 34px;
+    }
+
+    .service-main-card h2 {
+        font-size: 30px;
+    }
+
+    .service-side-card {
+        padding: 24px;
+    }
+
+    .contact-container {
+        gap: 40px;
+    }
+}
+
+@media (min-width: 1800px) {
+    :root {
+        --container-x: 5%;
+    }
+
+    .service-hero-container,
+    .service-details-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1560px;
+    }
+
+    .service-hero {
+        padding-top: 220px;
+        padding-bottom: 140px;
+    }
+
+    .service-hero-container {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 72px;
+    }
+
+    .service-hero h1 {
+        font-size: 52px;
+    }
+
+    .service-hero p {
+        max-width: 760px;
+        font-size: 20px;
+    }
+
+    .service-hero-image img,
+    .service-image-placeholder {
+        max-width: 700px;
+        min-height: 450px;
+    }
+
+    .service-details {
+        padding-bottom: 105px;
+    }
+
+    .service-details-container {
+        gap: 48px;
+    }
+
+    .service-main-card {
+        padding: 40px;
+    }
+
+    .service-main-card h2 {
+        font-size: 34px;
+    }
+
+    .service-main-card p {
+        font-size: 18px;
+    }
+
+    .service-side-card {
+        padding: 28px;
+    }
+
+    .side-service-link {
+        padding: 15px;
+    }
+
+    .contact-container {
+        grid-template-columns: 0.9fr 1.45fr;
+        gap: 48px;
+    }
+}
+
+@media (min-width: 2200px) {
+    .service-hero-container,
+    .service-details-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1760px;
+    }
+
+    .service-hero h1 {
+        font-size: 56px;
+    }
+
+    .service-hero-image img,
+    .service-image-placeholder {
+        max-width: 780px;
+        min-height: 500px;
+    }
 }

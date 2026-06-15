@@ -318,6 +318,117 @@
     transform: translateY(-2px);
 }
 
+/* =========================================================
+   Large Screens Responsive
+   Only affects very large screens
+========================================================= */
+
+@media (min-width: 1440px) {
+    .login-section {
+        padding-inline: 9%;
+    }
+
+    .login-container {
+        max-width: 1320px;
+        grid-template-columns: minmax(0, 1fr) 460px;
+        gap: 70px;
+    }
+
+    .login-visual {
+        max-width: 720px;
+    }
+
+    .login-visual h1 {
+        max-width: 700px;
+        font-size: 48px;
+    }
+
+    .login-visual p {
+        max-width: 650px;
+        font-size: 18px;
+    }
+
+    .login-card {
+        padding: 34px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .login-section {
+        padding-inline: 10%;
+    }
+
+    .login-container {
+        max-width: 1480px;
+        grid-template-columns: minmax(0, 1fr) 500px;
+        gap: 90px;
+    }
+
+    .login-visual {
+        max-width: 800px;
+    }
+
+    .login-visual h1 {
+        max-width: 760px;
+        font-size: 54px;
+        line-height: 1.12;
+    }
+
+    .login-visual p {
+        max-width: 700px;
+        font-size: 19px;
+    }
+
+    .feature-item {
+        font-size: 16px;
+    }
+
+    .feature-item i {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+    }
+
+    .login-card {
+        padding: 38px;
+    }
+
+    .login-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 26px;
+    }
+
+    .login-card h2 {
+        font-size: 30px;
+    }
+}
+
+@media (min-width: 2100px) {
+    .login-container {
+        max-width: 1640px;
+        grid-template-columns: minmax(0, 1fr) 540px;
+        gap: 110px;
+    }
+
+    .login-visual {
+        max-width: 880px;
+    }
+
+    .login-visual h1 {
+        max-width: 840px;
+        font-size: 60px;
+    }
+
+    .login-visual p {
+        max-width: 760px;
+        font-size: 20px;
+    }
+
+    .login-card {
+        padding: 42px;
+    }
+}
 
 /* =========================================================
    Responsive
@@ -411,4 +522,3 @@
         padding: 18px;
     }
 }
-

@@ -227,3 +227,106 @@
         max-width: 100%;
     }
 }
+
+/* =====================================================
+   Footer - Very Large Screens
+   Add this block at the end of your footer CSS file
+   Nothing else is changed
+===================================================== */
+
+@media (min-width: 1440px) {
+    .site-footer {
+        padding: 72px 5% 24px;
+    }
+
+    .footer-container {
+        max-width: 1360px;
+        grid-template-columns: 1.25fr 0.9fr 1fr 1.15fr;
+        gap: 52px;
+    }
+
+    .footer-logo {
+        width: 155px;
+    }
+
+    .footer-description {
+        max-width: 340px;
+        font-size: 16px;
+    }
+
+    .footer-section h3 {
+        font-size: 19px;
+        margin-bottom: 18px;
+    }
+
+    .footer-list li,
+    .footer-link {
+        font-size: 16px;
+    }
+
+    .footer-bottom {
+        max-width: 1360px;
+        margin: 48px auto 0;
+    }
+}
+
+@media (min-width: 1700px) {
+    .site-footer {
+        padding: 82px 6% 28px;
+    }
+
+    .footer-container {
+        max-width: 1520px;
+        gap: 66px;
+    }
+
+    .footer-section:not(:first-child) {
+        padding-left: 28px;
+    }
+
+    [dir="rtl"] .footer-section:not(:first-child) {
+        padding-left: 0;
+        padding-right: 28px;
+    }
+
+    .footer-logo {
+        width: 170px;
+    }
+
+    .footer-description {
+        max-width: 380px;
+        font-size: 17px;
+        line-height: 1.7;
+    }
+
+    .footer-social-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
+    }
+
+    .footer-list li,
+    .footer-link {
+        font-size: 17px;
+    }
+
+    .footer-bottom {
+        max-width: 1520px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 2100px) {
+    .site-footer {
+        padding: 95px 7% 32px;
+    }
+
+    .footer-container,
+    .footer-bottom {
+        max-width: 1680px;
+    }
+
+    .footer-container {
+        gap: 78px;
+    }
+}

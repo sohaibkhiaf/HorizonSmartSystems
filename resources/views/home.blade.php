@@ -36,7 +36,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="{{ asset('images/over.png') }}" alt="{{ __('home.hero_title') }}">
+            <img src="{{ asset('images/beside.png') }}" alt="{{ __('home.hero_title') }}">
         </div>
 
     </div>
@@ -505,7 +505,7 @@
     </a>
 
     <!-- WhatsApp -->
-    <a href="https://wa.me/+213659595372" target="_blank" class="social-btn wa">
+    <a href="https://wa.me/+213561655100" target="_blank" class="social-btn wa">
         <i class="fab fa-whatsapp"></i>
     </a>
 

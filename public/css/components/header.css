@@ -344,3 +344,113 @@
         display: none;
     }
 }
+
+/* =====================================================
+   Header - Very Large Screens Only
+   Add this block at the end of your header CSS
+===================================================== */
+
+@media (min-width: 1440px) {
+    .header {
+        padding: 20px 7%;
+        gap: 28px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav {
+        gap: 30px;
+    }
+
+    .nav a,
+    .store-btn {
+        font-size: 18px;
+    }
+
+    .store-btn {
+        padding: 10px 18px;
+    }
+
+    .language-switcher a {
+        padding: 7px 12px;
+        font-size: 14px;
+    }
+
+    .mega-menu {
+        width: 780px;
+        padding: 26px;
+        gap: 30px;
+    }
+
+    .service-link {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .header {
+        padding-inline: 9%;
+    }
+
+    .nav {
+        gap: 34px;
+    }
+
+    .logo img {
+        height: 54px;
+    }
+
+    .nav a,
+    .store-btn {
+        font-size: 19px;
+    }
+
+    .mega-menu {
+        width: 840px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .header {
+        padding-inline: 11%;
+    }
+
+    .nav {
+        gap: 38px;
+    }
+
+    .logo img {
+        height: 58px;
+    }
+
+    .nav a,
+    .store-btn {
+        font-size: 20px;
+    }
+
+    .store-btn {
+        padding: 11px 20px;
+    }
+
+    .language-switcher a {
+        padding: 8px 13px;
+        font-size: 15px;
+    }
+
+    .mega-menu {
+        width: 900px;
+        padding: 30px;
+    }
+
+    .mega-column h4 {
+        font-size: 14px;
+    }
+
+    .service-link {
+        font-size: 16px;
+    }
+}
+

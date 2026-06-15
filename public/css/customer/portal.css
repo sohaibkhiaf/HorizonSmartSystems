@@ -49,6 +49,7 @@
     border-radius: 10px;
     cursor: pointer;
     font-weight: 500;
+    font-size: 16px;
 }
 
 .alert-success,
@@ -103,11 +104,16 @@
     border-radius: 14px;
     padding: 16px;
     background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+.demo-card:hover {
+    border-color: #dbeafe;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
 }
 
 .demo-card-image {
     width: 100%;
-    height: 170px;
+    height: 290px;
     border-radius: 12px;
     overflow: hidden;
     background: #f9fafb;
@@ -408,5 +414,168 @@
 
     .message-image {
         max-width: 180px;
+    }
+
+    .demo-card-image{
+        height: 220px;
+    }
+}
+
+
+/* =========================================================
+   Very Large Screens
+   ========================================================= */
+
+@media (min-width: 1440px) {
+
+    .portal-header,
+    .main-grid,
+    .profile-card,
+    .alert-success,
+    .alert-error {
+        max-width: 1400px;
+    }
+
+    .portal-section {
+        padding-top: 145px;
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .portal-header h1 {
+        font-size: 40px;
+    }
+
+    .portal-header p,
+    .welcome-label {
+        font-size: 16px;
+    }
+
+    .portal-card h2 {
+        font-size: 24px;
+    }
+
+    .demo-card h3,
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .demo-card p,
+    .message-content p,
+    .form-group input,
+    .chat-form input,
+    .chat-form textarea,
+    .empty-text {
+        font-size: 15px;
+    }
+
+    .btn-main,
+    .demo-link {
+        font-size: 15px;
+    }
+
+    .demo-card-image {
+        height: 340px;
+    }
+
+    .chat-box {
+        height: 560px;
+    }
+}
+
+@media (min-width: 1700px) {
+
+    .portal-header,
+    .main-grid,
+    .profile-card,
+    .alert-success,
+    .alert-error {
+        max-width: 1600px;
+    }
+
+    .portal-header h1 {
+        font-size: 46px;
+    }
+
+    .portal-header p,
+    .welcome-label {
+        font-size: 18px;
+    }
+
+    .portal-card h2 {
+        font-size: 28px;
+    }
+
+    .demo-card h3 {
+        font-size: 20px;
+    }
+
+    .demo-card p,
+    .message-content p,
+    .form-group input,
+    .chat-form input,
+    .chat-form textarea {
+        font-size: 17px;
+    }
+
+    .form-group label {
+        font-size: 17px;
+    }
+
+    .btn-main,
+    .demo-link {
+        font-size: 17px;
+    }
+
+    .portal-card {
+        padding: 28px;
+    }
+
+    .demo-card-image {
+        height: 400px;
+    }
+
+    .chat-box {
+        height: 650px;
+    }
+}
+
+@media (min-width: 2000px) {
+
+    .portal-header h1 {
+        font-size: 52px;
+    }
+
+    .portal-card h2 {
+        font-size: 30px;
+    }
+
+    .demo-card h3 {
+        font-size: 22px;
+    }
+
+    .demo-card p,
+    .message-content p,
+    .form-group input,
+    .chat-form input,
+    .chat-form textarea {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        font-size: 18px;
+    }
+
+    .btn-main,
+    .demo-link {
+        font-size: 18px;
+    }
+
+    .demo-card-image {
+        height: 460px;
+    }
+
+    .chat-box {
+        height: 760px;
     }
 }

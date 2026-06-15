@@ -23,7 +23,7 @@
         {{-- Services --}}
         <div class="nav-item has-dropdown">
 
-            <a class="nav-tab"
+            <a class="nav-tab {{ $page == "SERVICE" ? 'active' : '' }}"
                 @if ($page == 'APP')
                     onclick="scrollToSection('services_section')"
                 @else
@@ -112,7 +112,7 @@
             {{ __('header.contact') }}
         </a>
 
-        <a class="nav-tab {{ $page == "AUTH" ? 'active' : '' }}" 
+        <a class="nav-tab {{ $page == "AUTH" || $page == "CUSTOMER" ? 'active' : '' }}" 
             href="/login">
             {{ __('header.customer_portal') }}
         </a>
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", () => {
 
-        if ( @json($page != 'STORE') && @json($page != 'AUTH' ) ) {
+        if ( @json($page != 'STORE') && @json($page != 'AUTH' ) && @json($page != 'SERVICE') && @json($page != 'CUSTOMER') ) {
             updateActiveTab();
         }
     });

@@ -1664,3 +1664,181 @@ a {
 [dir="rtl"] .form-check {
     text-align: right;
 }
+
+/* =========================================================
+   Very Large Screens Responsive
+   Add only large-screen improvements without changing smaller layouts
+   ========================================================= */
+@media (min-width: 1440px) {
+    :root {
+        --container-x: 6%;
+        --section-gap: 140px;
+    }
+
+    .hero-container,
+    .services-container,
+    .software-container,
+    .achievements-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1360px;
+    }
+
+    .hero-title {
+        max-width: 700px;
+        font-size: 42px;
+    }
+
+    .hero-image img {
+        width: min(100%, 840px);
+    }
+
+    .services-title,
+    .software-title,
+    .achievements-title,
+    .contact-heading h2 {
+        font-size: 36px;
+    }
+
+    .section-description,
+    .software-description,
+    .achievements-description,
+    .contact-description {
+        font-size: 18px;
+    }
+
+    .service-card,
+    .swiper-slide {
+        width: 270px;
+    }
+
+    .service-card {
+        min-height: 270px;
+    }
+
+    .service-image {
+        height: 175px;
+    }
+
+    .achievements .swiper-slide,
+    .acheivement-card {
+        width: 315px;
+    }
+
+    .acheivement-image {
+        height: 180px;
+    }
+
+    .software-image img {
+        max-width: 700px;
+    }
+
+    .contact-container {
+        grid-template-columns: 0.9fr 1.45fr;
+    }
+}
+
+@media (min-width: 1800px) {
+    :root {
+        --container-x: 5%;
+        --section-gap: 160px;
+    }
+
+    .hero-container,
+    .services-container,
+    .software-container,
+    .achievements-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1560px;
+    }
+
+    .hero-container {
+        grid-template-columns: 0.85fr 1.15fr;
+    }
+
+    .hero-title {
+        max-width: 760px;
+        font-size: 48px;
+    }
+
+    .hero-image img {
+        width: min(100%, 960px);
+    }
+
+    .service-card,
+    .swiper-slide {
+        width: 295px;
+    }
+
+    .service-card {
+        min-height: 295px;
+    }
+
+    .service-image {
+        height: 190px;
+    }
+
+    .achievements .swiper-slide,
+    .acheivement-card {
+        width: 340px;
+    }
+
+    .acheivement-image {
+        height: 195px;
+    }
+
+    .software-card {
+        gap: 44px;
+    }
+
+    .software-image img {
+        max-width: 780px;
+    }
+
+    .contact-container {
+        gap: 44px;
+    }
+
+    .contact-map,
+    .contact-map iframe {
+        min-height: 430px;
+    }
+}
+
+@media (min-width: 2200px) {
+    .hero-container,
+    .services-container,
+    .software-container,
+    .achievements-container,
+    .contact-heading,
+    .contact-container {
+        max-width: 1760px;
+    }
+
+    .hero-title {
+        font-size: 52px;
+    }
+
+    .hero-image img {
+        width: min(100%, 1080px);
+    }
+
+    .service-card,
+    .swiper-slide {
+        width: 320px;
+    }
+
+    .service-image {
+        height: 205px;
+    }
+
+    .achievements .swiper-slide,
+    .acheivement-card {
+        width: 365px;
+    }
+
+    .acheivement-image {
+        height: 210px;
+    }
+}

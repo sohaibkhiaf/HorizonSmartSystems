@@ -509,3 +509,99 @@ html[dir="rtl"] .subscription-card:hover .order-btn i {
 }
 
 
+
+
+/* =========================================================
+   Very Large Screens
+   Add only at the end - does not affect current responsive rules
+   ========================================================= */
+
+@media (min-width: 1600px) {
+    .store-page {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .store-search-section,
+    .subscriptions-tabs-section {
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .subscriptions-grid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .subscription-image {
+        height: 145px;
+    }
+
+    .subscription-content {
+        padding: 14px;
+    }
+
+    .subscription-header h3 {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1900px) {
+    .store-page {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .store-search-section,
+    .subscriptions-tabs-section {
+        max-width: 1680px;
+    }
+
+    .subscriptions-grid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .subscription-image {
+        height: 160px;
+    }
+
+    .subscription-content {
+        padding: 16px;
+    }
+
+    .subscription-header h3 {
+        font-size: 16px;
+    }
+
+    .subscription-price {
+        font-size: 15px;
+        padding: 7px 10px;
+    }
+
+    .badge {
+        font-size: 12px;
+        min-height: 26px;
+    }
+
+    .order-btn {
+        min-height: 36px;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 2300px) {
+    .store-search-section,
+    .subscriptions-tabs-section {
+        max-width: 1880px;
+    }
+
+    .subscriptions-grid {
+        grid-template-columns: repeat(9, minmax(0, 1fr));
+    }
+
+    .subscription-image {
+        height: 170px;
+    }
+}

@@ -51,7 +51,7 @@ class AuthController extends Controller
         if (auth()->user()->isAdmin() ) {
             return redirect()->route('admin.dashboard.index');
         }else if (auth()->user()->isOperator() ) {
-            return redirect()->route('requests.index');
+            return redirect()->route('admin.requests.index');
         }else if (auth()->user()->isCustomer() ) {
             return redirect()->route('customer.portal.index');
         }else{
