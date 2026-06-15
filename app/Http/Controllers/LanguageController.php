@@ -12,6 +12,10 @@ class LanguageController extends Controller
         if (in_array($locale, ['en', 'fr', 'ar'])) {
 
             session(['locale' => $locale]);
+
+            // back + cookie
+            return redirect()->back()
+                ->withCookie(cookie('locale', $locale, 60 * 24 * 30));
         }
 
         // back

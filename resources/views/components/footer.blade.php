@@ -10,13 +10,15 @@
             </p>
 
             <div class="footer-socials" aria-label="Social media">
-                <span class="footer-social-icon">
+                <a class="footer-social-icon" target="_blank"
+                    href="https://www.facebook.com/HORIZON.INFORMATIQUE.BISKRA">
                     <i class="fa-brands fa-facebook"></i>
-                </span>
+                </a>
 
-                <span class="footer-social-icon">
-                    <i class="fa-brands fa-whatsapp"></i>
-                </span>
+                <a class="footer-social-icon" target="_blank" 
+                    href="https://wa.me/+213561655100">
+                    <i class="fa-brands fa-whatsapp"></i>    
+                </a>
 
             </div>
         </div>
