@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Espace client',
+    'title' => 'Espace client — Horizon Smart Systems',
 
     'welcome_label' => 'Espace client',
     'hello' => 'Bonjour, :name',

@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'فضاء العميل',
+    'title' => 'فضاء العميل — Horizon Smart Systems',
 
     'welcome_label' => 'فضاء العميل',
     'hello' => 'مرحباً، :name',

@@ -105,70 +105,25 @@
             <h3>{{ __('footer.our_services') }}</h3>
 
             <ul class="footer-list">
-                <li>
-                    <a class="footer-link" 
-                        @if ($page == 'APP')
-                            onclick="scrollToSection('services_section')"
-                        @else
-                            href="/webdev"
-                        @endif
-                        >
-                        <i class="fa-solid fa-globe"></i>
-                        {{ __('footer.service_web') }}
-                    </a>
-                </li>
 
-                <li>
-                    <a class="footer-link" 
-                        @if ($page == 'APP')
-                            onclick="scrollToSection('services_section')"
-                        @else
-                            href="/appdev"
-                        @endif
-                        >
-                        <i class="fa-solid fa-laptop-code"></i>
-                        {{ __('footer.service_apps') }}
-                    </a>
-                </li>
-
-                <li>
-                    <a class="footer-link" 
-                        @if ($page == 'APP')
-                            onclick="scrollToSection('services_section')"
-                        @else
-                            href="/erp"
-                        @endif
-                        >
-                        <i class="fa-solid fa-chart-pie"></i>
-                        {{ __('footer.service_erp') }}
-                    </a>
-                </li>
-
-                <li>
-                    <a class="footer-link" 
-                        @if ($page == 'APP')
-                            onclick="scrollToSection('services_section')"
-                        @else
-                            href="/systems"
-                        @endif
-                        >
-                        <i class="fa-solid fa-gears"></i>
-                        {{ __('footer.service_systems') }}
-                    </a>
-                </li>
-
-                <li>
-                    <a class="footer-link" 
-                        @if ($page == 'APP')
-                            onclick="scrollToSection('services_section')"
-                        @else
-                            href="/support"
-                        @endif
-                        >
-                        <i class="fa-solid fa-headset"></i>
-                        {{ __('footer.service_support') }}  
-                    </a>
-                </li>
+                @foreach ($services as $service )
+                    @if ($service->is_published && $service->type == "main")
+                    <li>
+                        <a class="footer-link" 
+                            href="{{ route('services.show', $service) }}">
+                            <i class="{{ $service->fa_icon }}"></i>
+                            @if(app()->getLocale() == 'ar')
+                                {{ $service->ar_name }}
+                            @elseif(app()->getLocale() == 'fr')
+                                {{ $service->fr_name }}
+                            @else
+                                {{ $service->en_name }}
+                            @endif
+                        </a>
+                    </li>
+                    @endif
+                @endforeach
+                
             </ul>
         </div>
 

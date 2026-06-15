@@ -612,6 +612,7 @@ a {
     border-radius: 14px;
     transition: var(--transition);
     box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    cursor: pointer;
 }
 
 .other-service-card:hover {

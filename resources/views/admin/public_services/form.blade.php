@@ -171,7 +171,13 @@
                     name="fa_icon"
                     value="{{ old('fa_icon', $service->fa_icon ?? '') }}"
                     placeholder="Ex: fa-solid fa-globe">
+
+                <small class="field-help">
+                    Pour un service lié à la boutique, utilisez :
+                    <code>fa-solid fa-credit-card</code>
+                </small>
             </div>
+
 
             <div class="form-group full">
                 <label>

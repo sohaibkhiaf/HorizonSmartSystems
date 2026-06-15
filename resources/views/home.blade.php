@@ -109,7 +109,7 @@
         <div class="other-services">
             @foreach ($services as $service )
                 @if ($service->type == 'other' && $service->is_published)
-                <div class="other-service-card">
+                <a href="{{ route('services.show', [$service]) }}" class="other-service-card">
                     <div class="other-service-icon">
                         <i class="{{ $service->fa_icon }}"></i>
                     </div>
@@ -133,7 +133,7 @@
                             @endif
                         </p>
                     </div>
-                </div>
+                </a>
                 @endif
             @endforeach
 

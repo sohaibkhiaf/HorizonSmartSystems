@@ -12,9 +12,11 @@ return [
     'services' => 'Services',
     'software' => 'Software',
     'achievements' => 'Achievements',
-    'store' => 'Our store',
+    'store' => 'Store',
     'contact' => 'Contact',
     'customer_portal' => 'Customer portal',
+
+    'our_store' => 'Our store',
 
     /*
     |--------------------------------------------------------------------------

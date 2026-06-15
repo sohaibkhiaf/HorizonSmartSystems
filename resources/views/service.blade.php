@@ -46,15 +46,24 @@
             <p>{{ $serviceShort }}</p>
 
             <div class="service-actions">
+
+                @if ($service->fa_icon == "fa-solid fa-credit-card")
+                <a href="/store" class="btn btn-primary">
+                    {{ __('header.our_store') }}
+                    <i class="fa-solid fa-shopping-cart"></i>
+                </a>
+                @else 
                 <a onclick="scrollToSection('contact_section')" class="btn btn-primary">
                     {{ __('service.request_service') }}
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
+                @endif
 
                 <a href="/" class="btn btn-outline-light">
                     {{ __('service.back_home') }}
                     <i class="fa-solid fa-house"></i>
                 </a>
+
             </div>
         </div>
 
@@ -81,10 +90,17 @@
                 {!! nl2br(e($serviceDescription)) !!}
             </p>
 
+            @if ($service->fa_icon == "fa-solid fa-credit-card")
+            <a href="/store" class="btn btn-primary">
+                {{ __('header.our_store') }}
+                <i class="fa-solid fa-shopping-cart"></i>
+            </a>
+            @else 
             <a onclick="scrollToSection('contact_section')" class="service-cta">
                 {{ __('service.contact_us') }}
                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
             </a>
+            @endif
         </div>
 
         <aside class="service-side-card">

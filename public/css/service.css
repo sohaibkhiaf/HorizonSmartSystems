@@ -25,35 +25,107 @@ a {
     text-decoration: none;
 }
 
+/* =========================================================
+   Service Hero - Full Width Image Background
+   ========================================================= */
+
 .service-hero {
-    padding: 190px var(--container-x) 110px;
+    position: relative;
+    min-height: 680px;
+    padding: 0;
     background: var(--body-color);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
 }
 
 .service-hero-container {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    max-width: none;
+    min-height: 680px;
+    margin: 0;
+    padding: 180px var(--container-x) 100px;
+    position: relative;
+    display: flex;
     align-items: center;
-    gap: 46px;
+}
+
+.service-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+}
+
+.service-hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15, 23, 42, 0.78) 0%,
+            rgba(15, 23, 42, 0.58) 42%,
+            rgba(15, 23, 42, 0.24) 100%
+        );
+    z-index: 2;
+}
+
+[dir="rtl"] .service-hero-image::after {
+    background:
+        linear-gradient(
+            270deg,
+            rgba(15, 23, 42, 0.78) 0%,
+            rgba(15, 23, 42, 0.58) 42%,
+            rgba(15, 23, 42, 0.24) 100%
+        );
+}
+
+.service-hero-image img,
+.service-image-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    max-width: none;
+    padding: 0;
+    border-radius: 0;
+    object-fit: cover;
+    background: #111827;
+    box-shadow: none;
+    transform: none;
+}
+
+.service-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 90px;
+}
+
+.service-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
 }
 
 .service-hero h1 {
     margin: 0 0 18px;
-    color: var(--color-dark);
-    font-size: 42px;
+    color: #ffffff;
+    font-size: 48px;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.15;
     letter-spacing: -0.8px;
 }
 
 .service-hero p {
-    max-width: 620px;
-    margin: 0 0 28px;
-    color: var(--color-muted);
+    max-width: 660px;
+    margin: 0 0 30px;
+    color: rgba(255, 255, 255, 0.88);
     font-size: 18px;
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 .service-actions {
@@ -91,53 +163,27 @@ a {
 }
 
 .btn-outline-light {
-    background: var(--color-danger);
+    background: rgba(255, 255, 255, 0.14);
     color: #ffffff;
-    border-color: var(--color-danger);
-    box-shadow: 0 12px 26px rgba(255, 61, 46, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    box-shadow: none;
+    backdrop-filter: blur(8px);
 }
 
 .btn-outline-light:hover {
-    background: var(--color-danger-dark);
-    border-color: var(--color-danger-dark);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.6);
 }
 
-
-.service-hero-image {
-    display: flex;
-    justify-content: center;
+[dir="rtl"] .service-hero-content {
+    margin-left: auto;
+    direction: rtl;
+    text-align: right;
 }
 
-.service-hero-image img,
-.service-image-placeholder {
-    width: 100%;
-    max-width: 520px;
-    min-height: 350px;
-    border-radius: 14px 0 0 14px;
-    object-fit: cover;
-    background: #ffffff;
-}
-
-.service-hero-image img {
-border-radius: 24px;
-    box-shadow:
-        0 30px 60px rgba(15,23,42,.08),
-        0 10px 20px rgba(15,23,42,.05);
-
-    transform: rotate(-2deg);
-}
-
-.service-hero-image img:hover {
-    transform: translateY(-6px);
-} 
-
-.service-image-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-primary);
-    font-size: 72px;
-}
+/* =========================================================
+   Service Details
+   ========================================================= */
 
 .service-details {
     padding: 20px var(--container-x) 80px;
@@ -221,7 +267,7 @@ border-radius: 24px;
     border: 1px solid var(--color-border);
     border-radius: 12px;
     transition: var(--transition);
-        box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
     background: #ffffff;
 }
 
@@ -243,10 +289,10 @@ border-radius: 24px;
     border-radius: 10px;
 }
 
-
 /* =========================================================
    Contact Section
    ========================================================= */
+
 .contact-section {
     margin: 0 0 var(--section-gap);
     padding: 58px var(--container-x);
@@ -295,6 +341,7 @@ border-radius: 24px;
 }
 
 /* Contact info */
+
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -347,6 +394,7 @@ border-radius: 24px;
 }
 
 /* Hours inside contact item */
+
 .contact-hours {
     margin-top: 10px;
     display: flex;
@@ -382,6 +430,7 @@ border-radius: 24px;
 }
 
 /* Contact form */
+
 .contact-form {
     padding: 22px;
     background: var(--color-surface);
@@ -520,10 +569,10 @@ border-radius: 24px;
     background: var(--color-primary-dark);
 }
 
-
 /* =========================================================
    Contact Responsive
    ========================================================= */
+
 @media (max-width: 1100px) {
     .contact-container {
         gap: 24px;
@@ -552,7 +601,6 @@ border-radius: 24px;
         grid-template-columns: 1fr;
         gap: 16px;
     }
-
 }
 
 @media (max-width: 600px) {
@@ -625,7 +673,6 @@ border-radius: 24px;
     .btn-submit {
         width: 100%;
     }
-
 }
 
 @media (max-width: 480px) {
@@ -645,7 +692,6 @@ border-radius: 24px;
     .hour-row span:last-child {
         white-space: normal;
     }
-
 }
 
 @media (max-width: 360px) {
@@ -663,15 +709,12 @@ border-radius: 24px;
         min-width: 34px;
         border-radius: 11px;
     }
-
 }
 
-
-
-
 /* =========================================================
-   FLOATING BUTTONS 
-========================================================= */
+   FLOATING BUTTONS
+   ========================================================= */
+
 .float-nav {
     position: fixed;
     bottom: 25px;
@@ -688,29 +731,23 @@ border-radius: 24px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
-
-    /* Medium black */
     background: #2f2f2f;
     color: #ffffff;
-
     font-size: 18px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
 }
 
-/* Hover */
 .float-btn:hover {
     background: #1f1f1f;
     transform: translateY(-3px);
 }
 
-/* Hidden state */
 .float-btn.is-hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Down button slight variation (optional) */
 .float-btn-down {
     background: #3a3a3a;
 }
@@ -720,11 +757,11 @@ border-radius: 24px;
 }
 
 /* Social media */
+
 .social-float {
     position: fixed;
     left: 25px;
     top: 105px;
-
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -738,16 +775,13 @@ border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: white;
     font-size: 18px;
     text-decoration: none;
-
     box-shadow: 0 6px 18px rgba(0,0,0,0.25);
     transition: all 0.3s ease;
 }
 
-/* Facebook brand color */
 .social-btn.fb {
     background: #1877F2;
 }
@@ -757,7 +791,6 @@ border-radius: 24px;
     transform: translateY(-3px);
 }
 
-/* WhatsApp brand color */
 .social-btn.wa {
     background: #25D366;
 }
@@ -766,8 +799,6 @@ border-radius: 24px;
     background: #1da851;
     transform: translateY(-3px);
 }
-
-
 
 @media (max-width: 900px) {
     .float-nav {
@@ -781,7 +812,6 @@ border-radius: 24px;
         top: 95px;
         gap: 9px;
     }
-
 }
 
 @media (max-width: 600px) {
@@ -808,23 +838,35 @@ border-radius: 24px;
     }
 }
 
-
-
 /* =========================================================
-   RESPONSIVE 
-========================================================= */
+   RESPONSIVE
+   ========================================================= */
+
 @media (max-width: 900px) {
-    .service-hero {
-        padding: 110px 6% 45px;
+    .service-hero,
+    .service-hero-container {
+        min-height: 620px;
     }
 
-    .service-hero-container,
-    .service-details-container {
-        grid-template-columns: 1fr;
+    .service-hero-container {
+        padding: 135px 6% 70px;
+        align-items: flex-end;
+    }
+
+    .service-hero-content {
+        max-width: 100%;
     }
 
     .service-hero h1 {
-        font-size: 34px;
+        font-size: 36px;
+    }
+
+    .service-hero p {
+        font-size: 16px;
+    }
+
+    .service-details-container {
+        grid-template-columns: 1fr;
     }
 
     .service-side-card {
@@ -833,16 +875,32 @@ border-radius: 24px;
 }
 
 @media (max-width: 600px) {
-    .service-hero {
-        padding: 100px 18px 35px;
+    .service-hero,
+    .service-hero-container {
+        min-height: 590px;
+    }
+
+    .service-hero-container {
+        padding: 125px 18px 55px;
+    }
+
+    .service-hero-image::after {
+        background:
+            linear-gradient(
+                180deg,
+                rgba(15, 23, 42, 0.25) 0%,
+                rgba(15, 23, 42, 0.62) 48%,
+                rgba(15, 23, 42, 0.88) 100%
+            );
     }
 
     .service-hero h1 {
-        font-size: 28px;
+        font-size: 30px;
     }
 
     .service-hero p {
         font-size: 15px;
+        line-height: 1.65;
     }
 
     .service-actions {
@@ -869,60 +927,47 @@ border-radius: 24px;
     .service-main-card p {
         font-size: 15px;
     }
-
-    .service-hero-image img,
-    .service-image-placeholder {
-        min-height: 240px;
-    }
 }
 
-[dir="rtl"] .service-hero-content,
 [dir="rtl"] .service-main-card,
 [dir="rtl"] .service-side-card {
     direction: rtl;
     text-align: right;
 }
 
-
-
 /* =========================================================
    VERY LARGE SCREENS RESPONSIVE
    Only improves spacing and max widths on wide displays.
    ========================================================= */
+
 @media (min-width: 1440px) {
     :root {
         --container-x: 6%;
     }
 
-    .service-hero-container,
     .service-details-container,
     .contact-heading,
     .contact-container {
         max-width: 1360px;
     }
 
-    .service-hero {
+    .service-hero,
+    .service-hero-container {
+        min-height: 730px;
+    }
+
+    .service-hero-container {
         padding-top: 205px;
         padding-bottom: 125px;
     }
 
-    .service-hero-container {
-        gap: 58px;
-    }
-
     .service-hero h1 {
-        font-size: 46px;
+        font-size: 54px;
     }
 
     .service-hero p {
-        max-width: 700px;
+        max-width: 720px;
         font-size: 19px;
-    }
-
-    .service-hero-image img,
-    .service-image-placeholder {
-        max-width: 600px;
-        min-height: 390px;
     }
 
     .service-details-container {
@@ -952,36 +997,29 @@ border-radius: 24px;
         --container-x: 5%;
     }
 
-    .service-hero-container,
     .service-details-container,
     .contact-heading,
     .contact-container {
         max-width: 1560px;
     }
 
-    .service-hero {
+    .service-hero,
+    .service-hero-container {
+        min-height: 780px;
+    }
+
+    .service-hero-container {
         padding-top: 220px;
         padding-bottom: 140px;
     }
 
-    .service-hero-container {
-        grid-template-columns: 0.95fr 1.05fr;
-        gap: 72px;
-    }
-
     .service-hero h1 {
-        font-size: 52px;
+        font-size: 60px;
     }
 
     .service-hero p {
         max-width: 760px;
         font-size: 20px;
-    }
-
-    .service-hero-image img,
-    .service-image-placeholder {
-        max-width: 700px;
-        min-height: 450px;
     }
 
     .service-details {
@@ -1019,20 +1057,18 @@ border-radius: 24px;
 }
 
 @media (min-width: 2200px) {
-    .service-hero-container,
     .service-details-container,
     .contact-heading,
     .contact-container {
         max-width: 1760px;
     }
 
-    .service-hero h1 {
-        font-size: 56px;
+    .service-hero,
+    .service-hero-container {
+        min-height: 840px;
     }
 
-    .service-hero-image img,
-    .service-image-placeholder {
-        max-width: 780px;
-        min-height: 500px;
+    .service-hero h1 {
+        font-size: 64px;
     }
 }

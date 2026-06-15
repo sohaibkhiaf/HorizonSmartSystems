@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Customer Portal',
+    'title' => 'Customer Portal — Horizon Smart Systems',
 
     'welcome_label' => 'Customer Portal',
     'hello' => 'Hello, :name',

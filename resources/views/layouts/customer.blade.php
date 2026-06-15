@@ -36,7 +36,7 @@
     </main>
 
     {{-- Footer --}}
-    <x-footer page="CUSTOMER" />
+    <x-footer page="CUSTOMER" :services="$services" />
 
 </body>
 </html>

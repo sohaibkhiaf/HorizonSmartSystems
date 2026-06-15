@@ -118,7 +118,7 @@
         </a>
 
         @if ($page == "STORE")
-        <a class="nav-tab active">
+        <a class="nav-tab active" href="/store">
             <i class="fa-solid fa-cart-shopping"></i>
             {{ __('header.store') }}
         </a>
@@ -130,7 +130,7 @@
     @if ($page != "STORE")
     <a href="/store" class="store-btn store-btn-primary">
         <i class="fa-solid fa-cart-shopping"></i>
-        {{ __('header.store') }}
+        {{ __('header.our_store') }}
     </a>
     @endif
 
