@@ -30,7 +30,6 @@
         </div>
         
         <nav class="admin-nav">
-            @if (auth()->user()->isAdmin())
             <a href="{{ route('admin.dashboard.index') }}" class="{{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">
                 <i class="fas fa-chart-line"></i>
                 Tableau de bord
@@ -95,8 +94,6 @@
                 <i class="fas fa-plus"></i>
                 Créer une réalisation
             </a>
-
-            @endif
 
             <div class="nav-group-title">Store</div>
 

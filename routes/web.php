@@ -34,26 +34,29 @@ Route::get('/store', [StoreController::class, 'index'])
 Route::get('/store/{subscription}/order', [StoreController::class, 'order'])
     ->name('store.order');
 Route::post('/store/{subscription}/confirm', [StoreController::class, 'confirm'])
+    ->middleware('throttle:order')
     ->name('store.confirm');
 Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])
     ->name('store.confirmed');
 
 // CONTACT US /////////////////////////////////////////////////////////////////////
 Route::post('/contact', [PublicMessageController::class, 'store'])
+    ->middleware('throttle:contact')
     ->name('contact.message');
 
 // AUTHENTICATION ////////////////////////////////////////////////////////////////
 Route::get('/login', [AuthController::class, 'loginPage'])->name('login.page');
-Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::post('/login', [AuthController::class, 'login'])
+    ->middleware('throttle:login')
+    ->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-// ADMIN /////////////////////////////////////////////////////////////////////////
+// ADMIN / OPERATOR //////////////////////////////////////////////////////////////
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'admin'])
+    ->middleware(['auth', 'operator'])
     ->group(function () {
-    
+
     // ADMIN DASHBOARD //////////////////////////////////////////////////////////
     Route::get('/', [AdminDashboardController::class, 'index'])
         ->name('dashboard.index');
@@ -132,28 +135,6 @@ Route::prefix('admin')
     Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
         ->name('messages.destroy');
 
-    //  CUSTOMER PORTAL ///////////////////////////////////////////////////////////
-    Route::get('/customer/portals', [AdminCustomerPortalController::class, 'index'])
-        ->name('customer_portals.index');
-    Route::get('/customer/portals/{user}', [AdminCustomerPortalController::class, 'show'])
-        ->name('customer_portals.show');
-    Route::post('/customer/portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
-        ->name('customer_portals.demos.store');
-    Route::put('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
-        ->name('customer_portals.demos.update');
-    Route::delete('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
-        ->name('customer_portals.demos.destroy');
-    Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
-        ->name('customer_portals.messages.send');
-
-});
-
-// ADMIN / OPERATOR //////////////////////////////////////////////////////////////
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware(['auth', 'operator'])
-    ->group(function () {
-
     // STORE SUBSCRIPTIONS ////////////////////////////////////////////////////
     Route::get('/store/subscriptions/', [StoreSubscriptionController::class, 'index'])
         ->name('store_subs.index');
@@ -183,6 +164,20 @@ Route::prefix('admin')
         ->name('requests.destroy');
     Route::put('/store/requests/{id}/info', [StoreRequestController::class, 'updateInfo'])
         ->name('requests.updateInfo');
+
+    //  CUSTOMER PORTAL ///////////////////////////////////////////////////////////
+    Route::get('/customer/portals', [AdminCustomerPortalController::class, 'index'])
+        ->name('customer_portals.index');
+    Route::get('/customer/portals/{user}', [AdminCustomerPortalController::class, 'show'])
+        ->name('customer_portals.show');
+    Route::post('/customer/portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
+        ->name('customer_portals.demos.store');
+    Route::put('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
+        ->name('customer_portals.demos.update');
+    Route::delete('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
+        ->name('customer_portals.demos.destroy');
+    Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
+        ->name('customer_portals.messages.send');
 });
 
 // CUSTOMER PORTAL //////////////////////////////////////////////////////////////////////////
@@ -197,5 +192,6 @@ Route::middleware(['auth' , 'customer'])
     Route::put('/portal/profile', [CustomerPortalController::class, 'updateProfile'])
         ->name('portal_profile.update');
     Route::post('/portal/chat', [CustomerPortalController::class, 'sendMessage'])
+        ->middleware('throttle:chat')
         ->name('portal_chat.send');
 });

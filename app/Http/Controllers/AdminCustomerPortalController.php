@@ -10,9 +10,19 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminCustomerPortalController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
-        $customers = User::where('role', 'CUSTOMER')
+        $customers = User::query()
+            ->where('role', 'CUSTOMER')
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $search = $request->search;
+
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+                });
+            })
             ->withCount([
                 'demos',
                 'chatMessages as unread_messages_count' => function ($query) {
@@ -26,7 +36,6 @@ class AdminCustomerPortalController extends Controller
 
         return view('admin.customer_portals.index', compact('customers'));
     }
-
     public function show(User $user)
     {
         abort_if($user->role !== 'CUSTOMER', 404);

@@ -16,6 +16,71 @@
     </a>
 </div>
 
+<div class="filter-container">
+    <form method="GET" action="{{ route('admin.store_subs.index') }}" class="filter-form">
+
+        <div class="filter-group">
+            <input
+                type="text"
+                name="search"
+                value="{{ request('search') }}"
+                placeholder="Rechercher par nom...">
+        </div>
+
+        <div class="filter-group">
+            <select name="category">
+                <option value="">Toutes les catégories</option>
+                <option value="games" {{ request('category') == 'games' ? 'selected' : '' }}>
+                    Jeux
+                </option>
+                <option value="gift_cards" {{ request('category') == 'gift_cards' ? 'selected' : '' }}>
+                    Cartes cadeaux
+                </option>
+                <option value="software" {{ request('category') == 'software' ? 'selected' : '' }}>
+                    Logiciels
+                </option>
+                <option value="subscriptions" {{ request('category') == 'subscriptions' ? 'selected' : '' }}>
+                    Abonnements
+                </option>
+                <option value="in_game_currency" {{ request('category') == 'in_game_currency' ? 'selected' : '' }}>
+                    Monnaie virtuelle
+                </option>
+                <option value="other" {{ request('category') == 'other' ? 'selected' : '' }}>
+                    Autre
+                </option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="type">
+                <option value="">Tous les types</option>
+                <option value="key" {{ request('type') == 'key' ? 'selected' : '' }}>
+                    Clé
+                </option>
+                <option value="account" {{ request('type') == 'account' ? 'selected' : '' }}>
+                    Compte
+                </option>
+                <option value="invitation" {{ request('type') == 'invitation' ? 'selected' : '' }}>
+                    Invitation
+                </option>
+            </select>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="filter-btn">
+                <i class="fas fa-filter"></i>
+                Filtrer
+            </button>
+
+            <a href="{{ route('admin.store_subs.index') }}" class="reset-btn">
+                <i class="fas fa-rotate-left"></i>
+                Réinitialiser
+            </a>
+        </div>
+
+    </form>
+</div>
+
 <div class="container">
 
     <table class="table">
@@ -109,23 +174,31 @@
 @if ($subscriptions->hasPages())
     <div class="navigator-container">
         @if ($subscriptions->currentPage() > 1)
-            <a href="{{$subscriptions->previousPageUrl()}}"><i class="fa-solid fa-angle-left"></i></a>
+            <a href="{{ $subscriptions->previousPageUrl() }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @else
-            <a href="{{$subscriptions->url($subscriptions->currentPage())}}"><i class="fa-solid fa-angle-left"></i></a>
+            <a href="{{ $subscriptions->url($subscriptions->currentPage()) }}">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
         @endif
 
         @for ($i = 1; $i <= $subscriptions->lastPage(); $i++)
             @if ($subscriptions->currentPage() == $i)
-                <a href="{{$subscriptions->url($i)}}" class="active">{{$i}}</a>
+                <a href="{{ $subscriptions->url($i) }}" class="active">{{ $i }}</a>
             @else
-                <a href="{{$subscriptions->url($i)}}">{{$i}}</a>
+                <a href="{{ $subscriptions->url($i) }}">{{ $i }}</a>
             @endif
         @endfor
 
         @if ($subscriptions->currentPage() < $subscriptions->lastPage())
-            <a href="{{$subscriptions->nextPageUrl()}}"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="{{ $subscriptions->nextPageUrl() }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
         @else
-            <a href="{{$subscriptions->url($subscriptions->currentPage())}}"><i class="fa-solid fa-angle-right"></i></a>
+            <a href="{{ $subscriptions->url($subscriptions->currentPage()) }}">
+                <i class="fa-solid fa-angle-right"></i>
+            </a>
         @endif
     </div>
 @endif

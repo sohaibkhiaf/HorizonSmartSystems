@@ -1,4 +1,3 @@
-
 @extends('admin.layouts.admin')
 
 @section('page_title', 'Portails clients')
@@ -9,6 +8,32 @@
 @endsection
 
 @section('content')
+
+<div class="filter-container">
+    <form method="GET" action="{{ route('admin.customer_portals.index') }}" class="filter-form">
+
+        <div class="filter-group">
+            <input
+                type="text"
+                name="search"
+                value="{{ request('search') }}"
+                placeholder="Rechercher par nom ou email...">
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="filter-btn">
+                <i class="fas fa-search"></i>
+                Rechercher
+            </button>
+
+            <a href="{{ route('admin.customer_portals.index') }}" class="reset-btn">
+                <i class="fas fa-rotate-left"></i>
+                Réinitialiser
+            </a>
+        </div>
+
+    </form>
+</div>
 
 <div class="container">
 

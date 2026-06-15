@@ -8,15 +8,25 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreSubscriptionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // fetch
-        $subscriptions = StoreSubscription::latest()->paginate(10);
+        $subscriptions = StoreSubscription::query()
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->search . '%');
+            })
+            ->when($request->filled('category'), function ($query) use ($request) {
+                $query->where('category', $request->category);
+            })
+            ->when($request->filled('type'), function ($query) use ($request) {
+                $query->where('type', $request->type);
+            })
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
-        // view
         return view('admin.store_subscriptions.index', compact('subscriptions'));
     }
-
+    
     public function create() {
 
         // view
