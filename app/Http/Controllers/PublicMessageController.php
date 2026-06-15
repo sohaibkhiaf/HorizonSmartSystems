@@ -33,7 +33,8 @@ class PublicMessageController extends Controller
         // fetch
         $messages = PublicMessage::where('is_seen', false)
             ->latest()
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
         // view
         return view('admin/public_messages/index', [
@@ -47,7 +48,8 @@ class PublicMessageController extends Controller
         // fetch
         $messages = PublicMessage::where('is_seen', true)
             ->latest()
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
         // view
         return view('admin/public_messages/index', [

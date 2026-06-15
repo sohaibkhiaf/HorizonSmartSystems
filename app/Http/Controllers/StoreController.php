@@ -31,7 +31,8 @@ class StoreController extends Controller
         }
 
         // paginate
-        $subscriptions = $query->latest()->paginate(12);
+        $subscriptions = $query->latest()->paginate(2)
+            ->withQueryString();
 
         // services
         $services = PublicService::all();

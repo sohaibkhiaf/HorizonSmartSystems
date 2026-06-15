@@ -12,7 +12,8 @@ class PublicAchievementController extends Controller
     {
         // fetch
         $achievements = PublicAchievement::latest()
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
         // view
         return view('admin/public_achievements/index', compact('achievements'));

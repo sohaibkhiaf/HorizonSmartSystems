@@ -12,7 +12,8 @@ class PublicServiceController extends Controller
     {
         // fetch
         $public_services = PublicService::latest()
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
         // view
         return view('admin/public_services/index', compact('public_services'));
