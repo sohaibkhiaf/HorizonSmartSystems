@@ -98,7 +98,7 @@
             <div class="nav-group-title">Store</div>
 
             <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') ? 'active' : '' }}">
-                <i class="fas fa-box"></i>
+                <i class="fa-solid fa-box-open"></i>
                 Abonnements
             </a>
 
@@ -108,7 +108,7 @@
             </a>
 
             <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.index') ? 'active' : '' }}">
-                <i class="fas fa-inbox"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
                 Toutes les demandes
             </a>
 
