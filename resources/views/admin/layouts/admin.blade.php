@@ -7,8 +7,8 @@
     <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
     {{-- Font Awesome --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+    
     {{-- Admin CSS --}}
     <link rel="stylesheet" href="{{ asset('css/admin/layout.css') }}">
 
@@ -125,6 +125,13 @@
                 Portails clients
             </a>
 
+            <div class="nav-group-title">Hero</div>
+
+            <a href="{{ route('admin.hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-flag"></i>
+                Modifier le hero
+            </a>
+
         </nav>
 
         <form method="POST" action="{{ route('logout') }}" class="logout-form">
@@ -166,4 +173,18 @@
 </div>
 
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const activeLink = document.querySelector('.admin-nav a.active');
+
+        if (activeLink) {
+            activeLink.scrollIntoView({
+                behavior: "smooth",   // or "auto" if you prefer no animation
+                block: "center"       // "start" | "center" | "end"
+            });
+        }
+    });
+</script>
+
 </html>

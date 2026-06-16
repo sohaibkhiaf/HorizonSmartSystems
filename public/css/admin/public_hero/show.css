@@ -1,0 +1,212 @@
+/* CONTAINER */
+.container {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    padding: 20px;
+}
+
+.admin-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* FORM NOTE */
+
+.required {
+    color: #dc2626;
+}
+
+.required {
+    margin-left: 2px;
+}
+
+/* FORM */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #ffffff;
+    outline: none;
+    color: #111827;
+    font-size: 14px;
+
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    font-style: normal;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 130px;
+    line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9ca3af;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px #eff6ff;
+}
+
+.form-group input::file-selector-button {
+    margin-right: 12px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 7px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.form-group input.half {
+    width: 50%;
+}
+
+/* HELP TEXT */
+.field-help,
+.form-group small {
+    display: block;
+    margin-top: 6px;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* CURRENT IMAGE */
+.current-image {
+    margin-top: 14px;
+}
+
+.current-image span {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.current-image img {
+    width: 180px;
+    height: 110px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+}
+
+.current-image.icon-preview img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+/* CHECKBOX LABEL */
+.checkbox-label {
+    color: #111827;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
+/* ACTIONS */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.btn-main,
+.btn-secondary {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 14px;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    text-decoration: none;
+}
+
+.btn-main {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-main:hover {
+    background: #1d4ed8;
+}
+
+.btn-secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #e5e7eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-main,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+

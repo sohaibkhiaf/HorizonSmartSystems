@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PublicAchievement;
+use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\PublicSoftware;
 use Illuminate\Http\Request;
@@ -19,12 +20,14 @@ class HomeController extends Controller
         // fetch
         $services = PublicService::all();
         $software = PublicSoftware::all();
+        $hero = PublicHero::findOrFail(1);
 
         // view
         return view('/home', [
             'achievements' => $achievements, 
             'services' => $services, 
             'software' => $software, 
+            'hero' => $hero,
         ]);
     }
 
@@ -39,7 +42,8 @@ class HomeController extends Controller
             ->get();
 
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
-        return view('service', compact('service', 'services' , 'otherServices'));
+        return view('service', compact('service', 'services' , 'otherServices', 'hero'));
     }
 }

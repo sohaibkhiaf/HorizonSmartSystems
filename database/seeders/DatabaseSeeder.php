@@ -477,5 +477,23 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
+        // HERO /////////////////////////////////////////////
+        DB::table('public_heroes')->insert([
+            [
+                'id' => 1 ,
+                'ar_title' => 'إنشاء مواقع إلكترونية، برمجيات، أنظمة ERP وحلول معلوماتية مصممة للمؤسسات الجزائرية',
+                'fr_title' => 'Développement de sites web, de logiciels, de systèmes ERP et de solutions informatiques conçus pour les entreprises algériennes',
+                'en_title' => 'Development of websites, software, ERP systems, and IT solutions tailored for Algerian businesses.',
+
+                'facebook_url' => 'https://www.facebook.com/HORIZON.INFORMATIQUE.BISKRA', 
+                'whatsapp_url' => 'https://wa.me/+213561655100', 
+
+                'image' => null,
+
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
     }
 }

@@ -273,7 +273,7 @@ a {
     justify-content: center;
 }
 
-.hero-dev {
+.hero-focus {
     color: var(--color-danger);
 }
 
@@ -1602,7 +1602,25 @@ a {
     transform: translateY(-3px);
 }
 
+/* LinkedIn brand color */
+.social-btn.li {
+    background: #0A66C2;
+}
 
+.social-btn.li:hover {
+    background: #084a92;
+    transform: translateY(-3px);
+}
+
+/* Instagram brand color */
+.social-btn.ig {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.social-btn.ig:hover {
+    filter: brightness(0.9);
+    transform: translateY(-3px);
+}
 
 @media (max-width: 900px) {
     .float-nav {

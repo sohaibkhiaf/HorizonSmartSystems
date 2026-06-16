@@ -124,6 +124,11 @@
                             {{ __('customer_portal.no_messages') }}
                         </p>
                     @endforelse
+
+                    <div id="refreshNotice" class="chat-refresh">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                        {{ __('customer_portal.refresh_messages') }}
+                    </div>
                 </div>
 
                 <form method="POST"
@@ -216,13 +221,45 @@
 </section>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const chatBox = document.getElementById('chatBox');
+// AUTO SCROLL CHAT TO LAST MESSAGES ////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const chatBox = document.getElementById('chatBox');
 
-        if (chatBox) {
+    if (chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+});
+
+// REFRESH BUTTON ////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    const chatBox = document.getElementById('chatBox');
+    const refreshNotice = document.getElementById('refreshNotice');
+
+    // Scroll to bottom initially
+    if (chatBox) {
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    // Show after 10s
+    setTimeout(() => {
+        if (refreshNotice) {
+            refreshNotice.style.display = 'block';
+
+            // Scroll again so user sees it
             chatBox.scrollTop = chatBox.scrollHeight;
         }
-    });
+    }, 12000);
+
+    // Click = refresh
+    if (refreshNotice) {
+        refreshNotice.addEventListener('click', () => {
+            location.reload();
+        });
+    }
+});
+
 </script>
+
 
 @endsection

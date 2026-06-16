@@ -12,54 +12,46 @@
 <div class="filter-container">
     <form method="GET" action="{{ route('admin.requests.index') }}" class="filter-form">
 
-        <div class="filter-group">
-            <input type="text"
-                   name="search"
-                   class="filter-input"
-                   value="{{ request('search') }}"
-                   placeholder="Rechercher par nom du client">
-        </div>
-
-        <div class="filter-group">
-            <input type="date"
-                name="date_from"
+        <input type="text"
+                name="search"
                 class="filter-input"
-                value="{{ request('date_from') }}"
-                title="Date début">
-        </div>
+                value="{{ request('search') }}"
+                placeholder="Rechercher par nom du client">
 
-        <div class="filter-group">
-            <input type="date"
-                name="date_to"
-                class="filter-input"
-                value="{{ request('date_to') }}"
-                title="Date fin">
-        </div>
+        <input type="date"
+            name="date_from"
+            class="filter-input"
+            value="{{ request('date_from') }}"
+            title="Date début">
 
-        <div class="filter-group">
-            <select name="status" class="filter-select">
-                <option value="">Tous les statuts</option>
-                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>En attente</option>
-                <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>En cours</option>
-                <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Disponible</option>
-                <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Payé</option>
-                <option value="delivered" {{ request('status') == 'delivered' ? 'selected' : '' }}>Livré</option>
-                <option value="postponed" {{ request('status') == 'postponed' ? 'selected' : '' }}>Reportée</option>
-                <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Annulée</option>
-            </select>
-        </div>
+        <input type="date"
+            name="date_to"
+            class="filter-input"
+            value="{{ request('date_to') }}"
+            title="Date fin">
 
-        <button type="submit" class="filter-btn">
-            <i class="fas fa-filter"></i>
-            Filtrer
-        </button>
+        <select name="status" class="filter-select">
+            <option value="">Tous les statuts</option>
+            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>En attente</option>
+            <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>En cours</option>
+            <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Disponible</option>
+            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Payé</option>
+            <option value="delivered" {{ request('status') == 'delivered' ? 'selected' : '' }}>Livré</option>
+            <option value="postponed" {{ request('status') == 'postponed' ? 'selected' : '' }}>Reportée</option>
+            <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Annulée</option>
+        </select>
 
-        @if(request('status') || request('search') || request('date_from') || request('date_to'))
+        <div class="filter-actions">
+            <button type="submit" class="filter-btn">
+                <i class="fas fa-filter"></i>
+                Filtrer
+            </button>
+
             <a href="{{ route('admin.requests.index') }}" class="reset-filter">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
                 Réinitialiser
             </a>
-        @endif
+        </div>
 
     </form>
 </div>

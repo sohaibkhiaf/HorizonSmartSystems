@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerPortalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PublicAchievementController;
+use App\Http\Controllers\PublicHeroController;
 use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\PublicSoftwareController;
@@ -178,6 +179,13 @@ Route::prefix('admin')
         ->name('customer_portals.demos.destroy');
     Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
         ->name('customer_portals.messages.send');
+
+
+    // PUBLIC HERO  ///////////////////////////////////////////////////////////
+    Route::get('/hero/{hero}', [PublicHeroController::class, 'show'])
+        ->name('hero.show');
+    Route::put('/hero/{hero}', [PublicHeroController::class, 'update'])
+        ->name('hero.update');
 });
 
 // CUSTOMER PORTAL //////////////////////////////////////////////////////////////////////////

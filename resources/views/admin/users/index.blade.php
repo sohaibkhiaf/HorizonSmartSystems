@@ -11,7 +11,14 @@
 @section('content')
 
 <div class="header">
-    <form method="GET" class="search-bar">
+    <a href="{{ route('admin.users.create') }}" class="header-btn">
+        <i class="fas fa-user-plus"></i>
+        Ajouter
+    </a>
+</div>
+
+<div class="filter">
+    <form method="GET" class="filter-form">
 
         <input
             type="text"
@@ -37,23 +44,20 @@
             @endforeach
         </select>
 
-        <button class="btn-search">
-            <i class="fas fa-search"></i>
-            Rechercher
-        </button>
+        <div class="filter-actions">
+            <button class="btn-search">
+                <i class="fas fa-search"></i>
+                Rechercher
+            </button>
 
-        @if(request('search') || request('role'))
             <a href="{{ route('admin.users.index') }}" class="btn-secondary">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
                 Réinitialiser
             </a>
-        @endif
+        </div>
+
     </form>
 
-    <a href="{{ route('admin.users.create') }}" class="btn-main">
-        <i class="fas fa-user-plus"></i>
-        Ajouter
-    </a>
 </div>
 
 <div class="container">

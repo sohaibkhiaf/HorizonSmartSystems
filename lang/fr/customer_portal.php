@@ -42,4 +42,6 @@ return [
     'update' => 'Mettre à jour',
 
     'message_image_alt' => 'Image message',
+
+    'refresh_messages' => 'Actualisez la page pour voir les derniers messages de l\'administration', 
 ];

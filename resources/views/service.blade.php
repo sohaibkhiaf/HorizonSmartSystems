@@ -329,14 +329,32 @@
 <div class="social-float">
     
     <!-- Facebook -->
-    <a href="https://www.facebook.com/HORIZON.INFORMATIQUE.BISKRA" target="_blank" class="social-btn fb">
+    @if ($hero->facebook_url)
+    <a href="{{ $hero->facebook_url }}" target="_blank" class="social-btn fb">
         <i class="fab fa-facebook-f"></i>
     </a>
+    @endif
+
+    <!-- Instagram -->
+    @if ($hero->instagram_url)
+    <a href="{{ $hero->instagram_url  }}" target="_blank" class="social-btn ig">
+        <i class="fa-brands fa-square-instagram"></i>
+    </a>
+    @endif
 
     <!-- WhatsApp -->
-    <a href="https://wa.me/+213561655100" target="_blank" class="social-btn wa">
+    @if ($hero->whatsapp_url)
+    <a href="{{ $hero->whatsapp_url  }}" target="_blank" class="social-btn wa">
         <i class="fab fa-whatsapp"></i>
     </a>
+    @endif
+
+    <!-- Linkedin -->
+    @if ($hero->linked_in_url)
+    <a href="{{ $hero->linked_in_url  }}" target="_blank" class="social-btn li">
+        <i class="fa-brands fa-linkedin"></i>
+    </a>
+    @endif
 
 </div>
 

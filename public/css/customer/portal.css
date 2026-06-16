@@ -272,6 +272,30 @@
     object-fit: cover;
 }
 
+
+.chat-refresh {
+    display: none;
+    margin-top: 10px;
+    text-align: center;
+
+    background: #2563eb;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chat-refresh i {
+    margin-right: 6px;
+    font-size: 11px;
+}
+
+.chat-refresh:hover {
+    background: #1d4ed8;
+}
+
 .chat-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
