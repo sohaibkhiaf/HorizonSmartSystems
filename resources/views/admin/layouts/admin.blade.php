@@ -49,12 +49,12 @@
 
             <div class="nav-group-title">Messages</div>
 
-            <a href="{{ route('admin.messages.waiting') }}" class="{{ request()->routeIs('admin.messages.waiting') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_messages.waiting') }}" class="{{ request()->routeIs('admin.public_messages.waiting') ? 'active' : '' }}">
                 <i class="fas fa-clock"></i>
                 Messages en attente
             </a>
 
-            <a href="{{ route('admin.messages.seen') }}" class="{{ request()->routeIs('admin.messages.seen') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_messages.seen') }}" class="{{ request()->routeIs('admin.public_messages.seen') ? 'active' : '' }}">
                 <i class="fas fa-check-circle"></i>
                 Messages consultés
             </a>
@@ -127,10 +127,19 @@
 
             <div class="nav-group-title">Hero</div>
 
-            <a href="{{ route('admin.hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-flag"></i>
                 Modifier le hero
             </a>
+
+            @if(auth()->user()->isAdmin())
+            <div class="nav-group-title">Logs</div>
+
+            <a href="{{ route('admin.logs.index') }}" class="{{ request()->routeIs('admin.logs.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                Journal d'activité
+            </a>
+            @endif
 
         </nav>
 

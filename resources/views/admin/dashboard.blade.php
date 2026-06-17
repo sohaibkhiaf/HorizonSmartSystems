@@ -181,7 +181,7 @@
 
 <div class="admin-tabs">
 
-    <a href="{{ route('admin.messages.waiting') }}" class="tab-card">
+    <a href="{{ route('admin.public_messages.waiting') }}" class="tab-card">
         <i class="fas fa-envelope"></i>
         <h3>Messages en attente</h3>
         <p>Consulter les nouveaux messages reçus depuis le site.</p>

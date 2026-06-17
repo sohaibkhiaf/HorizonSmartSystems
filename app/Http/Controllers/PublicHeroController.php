@@ -53,7 +53,7 @@ class PublicHeroController extends Controller
 
         // redirect
         return redirect()
-            ->route('admin.hero.show', $hero)
+            ->route('admin.public_hero.show', $hero)
             ->with('success', 'Mise à jour du hero réussie.');
     }
 }

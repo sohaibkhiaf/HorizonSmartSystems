@@ -84,7 +84,7 @@ class PublicMessageController extends Controller
 
         // redirect
         return redirect()
-            ->route($is_seen ? 'admin.messages.seen' : 'admin.messages.waiting')
+            ->route($is_seen ? 'admin.public_messages.seen' : 'admin.public_messages.waiting')
             ->with('success', 'Message mis à jour avec succès.');
     }
 

@@ -11,12 +11,12 @@
 @section('content')
 
 <div class="tabs">
-    <a href="{{ route('admin.messages.waiting') }}" class="{{ !$is_seen ? 'active' : '' }}">
+    <a href="{{ route('admin.public_messages.waiting') }}" class="{{ !$is_seen ? 'active' : '' }}">
         <i class="fas fa-clock"></i>
         Messages en attente
     </a>
 
-    <a href="{{ route('admin.messages.seen') }}" class="{{ $is_seen ? 'active' : '' }}">
+    <a href="{{ route('admin.public_messages.seen') }}" class="{{ $is_seen ? 'active' : '' }}">
         <i class="fas fa-check-circle"></i>
         Messages consultés
     </a>
@@ -70,13 +70,13 @@
             </div>
 
             <div class="card-actions">
-                <a href="{{ route('admin.messages.edit', $message) }}" class="action-btn edit">
+                <a href="{{ route('admin.public_messages.edit', $message) }}" class="action-btn edit">
                     <i class="fas fa-pen"></i>
                     Modifier
                 </a>
 
                 @if(!$message->is_seen)
-                    <form method="POST" action="{{ route('admin.messages.markSeen', $message) }}">
+                    <form method="POST" action="{{ route('admin.public_messages.markSeen', $message) }}">
                         @csrf
                         @method('PATCH')
 
@@ -86,7 +86,7 @@
                         </button>
                     </form>
                 @else
-                    <form method="POST" action="{{ route('admin.messages.markWaiting', $message) }}">
+                    <form method="POST" action="{{ route('admin.public_messages.markWaiting', $message) }}">
                         @csrf
                         @method('PATCH')
 
@@ -97,7 +97,7 @@
                     </form>
                 @endif
 
-                <form method="POST" action="{{ route('admin.messages.destroy', $message) }}" onsubmit="return confirm('Supprimer ce message ?')">
+                <form method="POST" action="{{ route('admin.public_messages.destroy', $message) }}" onsubmit="return confirm('Supprimer ce message ?')">
                     @csrf
                     @method('DELETE')
 
@@ -122,11 +122,11 @@
             </p>
 
             @if($is_seen)
-                <a href="{{ route('admin.messages.waiting') }}" class="empty-link">
+                <a href="{{ route('admin.public_messages.waiting') }}" class="empty-link">
                     Voir les messages en attente
                 </a>
             @else
-                <a href="{{ route('admin.messages.seen') }}" class="empty-link">
+                <a href="{{ route('admin.public_messages.seen') }}" class="empty-link">
                     Voir les messages consultés
                 </a>
             @endif

@@ -113,6 +113,7 @@
                             <td>
                                 <div class="table-actions">
 
+                                    {{-- Edit --}}
                                     @if($user->role !== 'ADMIN' || auth()->id() === $user->id)
                                         <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
                                             <i class="fas fa-pen"></i>
@@ -120,7 +121,12 @@
                                         </a>
                                     @endif
 
-                                    @if($user->role !== 'ADMIN')
+                                    {{-- Delete : ADMIN only, cannot delete self, cannot delete another admin --}}
+                                    @if(
+                                        auth()->user()->role === 'ADMIN'
+                                        && $user->role !== 'ADMIN'
+                                        && auth()->id() !== $user->id
+                                    )
                                         <form method="POST" action="{{ route('admin.users.destroy', $user) }}">
                                             @csrf
                                             @method('DELETE')
@@ -133,10 +139,6 @@
                                                 Supprimer
                                             </button>
                                         </form>
-                                    @endif
-
-                                    @if($user->role === 'ADMIN' && auth()->id() !== $user->id)
-                                        <span class="empty-text">Protégé</span>
                                     @endif
 
                                 </div>

@@ -81,7 +81,7 @@
 
     </div>
 
-    <form method="POST" action="{{ route('admin.messages.update', $message) }}" class="update-form">
+    <form method="POST" action="{{ route('admin.public_messages.update', $message) }}" class="update-form">
         @csrf
         @method('PUT')
 
@@ -112,7 +112,7 @@
                 Mettre à jour
             </button>
 
-            <a href="{{ $message->is_seen ? route('admin.messages.seen') : route('admin.messages.waiting') }}" class="btn-secondary">
+            <a href="{{ $message->is_seen ? route('admin.public_messages.seen') : route('admin.public_messages.waiting') }}" class="btn-secondary">
                 Annuler
             </a>
         </div>

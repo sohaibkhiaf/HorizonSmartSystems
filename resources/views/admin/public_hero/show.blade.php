@@ -14,7 +14,7 @@
 
     <form
         method="POST"
-        action="{{ route('admin.hero.update', $hero) }}"
+        action="{{ route('admin.public_hero.update', $hero) }}"
         enctype="multipart/form-data">
 
         @csrf
@@ -209,7 +209,7 @@
                 {{ $buttonText ?? 'Enregistrer' }}
             </button>
 
-            <a href="{{ route('admin.hero.show', $hero) }}" class="btn-secondary">
+            <a href="{{ route('admin.public_hero.show', $hero) }}" class="btn-secondary">
                 Annuler
             </a>
         </div>

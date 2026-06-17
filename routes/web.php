@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AdminCustomerPortalController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
@@ -51,6 +52,21 @@ Route::post('/login', [AuthController::class, 'login'])
     ->middleware('throttle:login')
     ->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// ADMIN //////////////////////////////////////////////////////////////////////
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
+
+    // ACTIVITY LOGS ///////////////////////////////////////////////////////////
+    Route::get('/logs', [ActivityLogController::class, 'index'])
+        ->name('logs.index');
+    Route::delete('/logs', [ActivityLogController::class, 'delete'])
+        ->name('logs.destroy');
+});
+    
+
 
 // ADMIN / OPERATOR //////////////////////////////////////////////////////////////
 Route::prefix('admin')
@@ -122,19 +138,19 @@ Route::prefix('admin')
 
     // PUBLIC MESSAGES //////////////////////////////////////////////////////////
     Route::patch('/messages/{message}/seen', [PublicMessageController::class, 'markSeen'])
-        ->name('messages.markSeen');
+        ->name('public_messages.markSeen');
     Route::patch('/messages/{message}/waiting', [PublicMessageController::class, 'markWaiting'])
-        ->name('messages.markWaiting');
+        ->name('public_messages.markWaiting');
     Route::get('/messages/waiting', [PublicMessageController::class, 'waiting'])
-        ->name('messages.waiting');
+        ->name('public_messages.waiting');
     Route::get('/messages/seen', [PublicMessageController::class, 'seen'])
-        ->name('messages.seen');
+        ->name('public_messages.seen');
     Route::get('/messages/{message}/edit', [PublicMessageController::class, 'edit'])
-        ->name('messages.edit');
+        ->name('public_messages.edit');
     Route::put('/messages/{message}', [PublicMessageController::class, 'update'])
-        ->name('messages.update');
+        ->name('public_messages.update');
     Route::delete('/messages/{message}', [PublicMessageController::class, 'destroy'])
-        ->name('messages.destroy');
+        ->name('public_messages.destroy');
 
     // STORE SUBSCRIPTIONS ////////////////////////////////////////////////////
     Route::get('/store/subscriptions/', [StoreSubscriptionController::class, 'index'])
@@ -183,9 +199,10 @@ Route::prefix('admin')
 
     // PUBLIC HERO  ///////////////////////////////////////////////////////////
     Route::get('/hero/{hero}', [PublicHeroController::class, 'show'])
-        ->name('hero.show');
+        ->name('public_hero.show');
     Route::put('/hero/{hero}', [PublicHeroController::class, 'update'])
-        ->name('hero.update');
+        ->name('public_hero.update');
+
 });
 
 // CUSTOMER PORTAL //////////////////////////////////////////////////////////////////////////

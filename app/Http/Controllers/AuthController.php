@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\PublicService;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,17 +51,34 @@ class AuthController extends Controller
 
         // redirect
         if (auth()->user()->isAdmin() ) {
+            ActivityLog::create([
+                'user_id'    => auth()->id(),
+                'action'     => 'login',
+                'model_type' => User::class,
+                'model_id'   => auth()->user()->id,
+            ]);
             return redirect()->route('admin.dashboard.index');
         }else if (auth()->user()->isOperator() ) {
+            ActivityLog::create([
+                'user_id'    => auth()->id(),
+                'action'     => 'login',
+                'model_type' => User::class,
+                'model_id'   => auth()->user()->id,
+            ]);
             return redirect()->route('admin.requests.index');
         }else if (auth()->user()->isCustomer() ) {
+            ActivityLog::create([
+                'user_id'    => auth()->id(),
+                'action'     => 'login',
+                'model_type' => User::class,
+                'model_id'   => auth()->user()->id,
+            ]);
             return redirect()->route('customer.portal.index');
         }else{
-            // unauthenticated
             Auth::logout();
 
             return back()->withErrors([
-                'email' => 'Ce compte n\'est pas autorisé à accéder au panneau d\'administration.',
+                'email' => 'Votre compte n’est pas autorisé à accéder à l’espace client.',
             ]);
         }
 
@@ -67,6 +86,13 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        ActivityLog::create([
+            'user_id'    => auth()->id(),
+            'action'     => 'logout',
+            'model_type' => User::class,
+            'model_id'   => auth()->user()->id,
+        ]);
+
         // logout
         Auth::logout();
 

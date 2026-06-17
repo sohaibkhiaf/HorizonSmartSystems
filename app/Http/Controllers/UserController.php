@@ -43,12 +43,22 @@ class UserController extends Controller
 
     private function canDeleteUser(User $user): bool
     {
-        if (! $this->canManageUsers()) {
+        // Only ADMIN can delete users
+        if ($this->authUser()->role !== 'ADMIN') {
             return false;
         }
 
-        // Nobody can delete admins
-        return $user->role !== 'ADMIN';
+        // Admin cannot delete himself
+        if ($this->isSelf($user)) {
+            return false;
+        }
+
+        // Admins cannot delete other admins
+        if ($user->role === 'ADMIN') {
+            return false;
+        }
+
+        return true;
     }
 
     private function canUseRole(string $role): bool
@@ -84,7 +94,6 @@ class UserController extends Controller
         }
 
         $users = $query
-            ->latest()
             ->paginate(10)
             ->withQueryString();
 
