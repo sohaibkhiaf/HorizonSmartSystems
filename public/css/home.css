@@ -37,7 +37,7 @@
     --shadow-danger: 0 12px 26px rgba(255, 61, 46, 0.18);
 
     --container-x: 8%;
-    --section-gap: 120px;
+    --section-padding-y: 90px;
     --transition: 0.25s ease;
 }
 
@@ -249,16 +249,14 @@ a {
    ========================================================= */
 .hero {
     min-height: 100vh;
-    padding: 142px var(--container-x) 50px;
+    padding: 142px 0 50px;
     background: var(--body-color);
     display: flex;
     align-items: center;
-    margin: 0 0 var(--section-gap);
+    margin: 0;
 }
 
 .hero-container {
-    width: 100%;
-    max-width: 1240px;
     min-height: calc(100vh - 164px);
     margin: 0 auto;
     display: grid;
@@ -475,13 +473,19 @@ a {
     Services Section
    ========================================================= */
 .services {
-    margin: 0 0 var(--section-gap);
-    padding: 58px 0;
+    margin: 0;
+    padding: var(--section-padding-y) 0;
     background: #ffffff;
 }
 
-.services-container {
+.hero-container,
+.services-container,
+.software-container,
+.achievements-container,
+.contact-heading,
+.contact-container {
     width: min(1180px, calc(100% - 2 * var(--container-x)));
+    max-width: 1180px;
     margin-inline: auto;
 }
 
@@ -515,7 +519,6 @@ a {
 }
 
 .service-card {
-    width: 245px;
     min-height: 245px;
     overflow: hidden;
     margin: 5px 0;
@@ -539,6 +542,7 @@ a {
 }
 
 .service-image {
+    width: 100%;
     height: 160px;
     flex-shrink: 0;
     overflow: hidden;
@@ -548,7 +552,6 @@ a {
 .service-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     transition: transform 0.35s ease;
 }
 
@@ -590,9 +593,17 @@ a {
     gap: 10px;
 }
 
-.swiper-slide {
-    width: 245px;
+.services-group .swiper,
+.services-swiper,
+.achievements-swiper {
+    width: 100%;
 }
+
+.services-group .swiper-wrapper,
+.achievements .swiper-wrapper {
+    width: 100%;
+}
+
 
 /* Secondary services merged inside main services */
 .other-services {
@@ -658,17 +669,11 @@ a {
 
 @media (max-width: 600px) {
     .services {
-        margin: 0 0 28px;
-        padding: 18px;
+        padding: var(--section-padding-y) 0;
     }
 
     .services-title {
         font-size: 21px;
-    }
-
-    .service-card,
-    .swiper-slide {
-        width: 90% !important;
     }
 
     .service-card {
@@ -685,14 +690,9 @@ a {
     Software Section
    ========================================================= */
 .software-section {
-    margin: 0 0 var(--section-gap);
-    padding: 58px 0;
+    margin: 0;
+    padding: var(--section-padding-y) 0;
     overflow: hidden;
-}
-
-.software-container {
-    width: min(1180px, calc(100% - 2 * var(--container-x)));
-    margin-inline: auto;
 }
 
 .software-content {
@@ -721,6 +721,7 @@ a {
 }
 
 .software-card {
+    width: 100%;
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: center;
@@ -801,6 +802,7 @@ a {
 }
 
 .software-image {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -808,7 +810,7 @@ a {
 
 .software-image img {
     width: 100%;
-    max-width: 620px;
+    max-width: none;
     height: auto;
     display: block;
 }
@@ -831,8 +833,7 @@ a {
 
 @media (max-width: 600px) {
     .software-section {
-        padding: 18px;
-        margin: 0 0 28px;
+        padding: var(--section-padding-y) 0;
     }
 
     .software-card {
@@ -861,15 +862,10 @@ a {
     Achievements Section
    ========================================================= */
 .achievements {
-    margin: 0 0 var(--section-gap);
-    padding: 58px 0;
+    margin: 0;
+    padding: var(--section-padding-y) 0;
     overflow: hidden;
     background: #ffffff;
-}
-
-.achievements-container {
-    width: min(1180px, calc(100% - 2 * var(--container-x)));
-    margin-inline: auto;
 }
 
 .achievements-header {
@@ -899,10 +895,12 @@ a {
 }
 
 .achievements-swiper {
+    width: 100%;
     padding: 10px 0;
 }
+
 .acheivement-card {
-    width: 288px;
+    width: 100%;
     min-height: 100%;
     display: flex;
     flex-direction: column;
@@ -919,6 +917,7 @@ a {
 }
 
 .acheivement-image {
+    width: 100%;
     height: 160px;
     flex-shrink: 0;
     overflow: hidden;
@@ -1019,38 +1018,39 @@ a {
     font-weight: 600;
 }
 
-.achievements .swiper-slide {
-    width: 288px;
+
+.swiper-slide {
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.service-card,
+.acheivement-card {
+    width: 100%;
 }
 
 @media (max-width: 600px) {
-    .achievements {
-        padding: 18px;
-        margin: 0 0 28px;
+    .services-group .swiper-slide,
+    .achievements .swiper-slide {
+        width: 100% !important;
     }
 
-    .achievements-header {
-        flex-direction: column;
-    }
-    .achievements-title {
-        font-size: 21px;
-    }
-    .acheivement-card,
-    .achievements .swiper-slide {
-        width: 90% !important;
+    .service-card,
+    .acheivement-card {
+        width: calc(100% - 24px);
+        max-width: 360px;
     }
 }
-
 /* =========================================================
    Contact Section
    ========================================================= */
 .contact-section {
-    margin: 0 0 var(--section-gap);
-    padding: 58px var(--container-x);
+    margin: 0;
+    padding: var(--section-padding-y) 0;
 }
 
 .contact-heading {
-    max-width: 1180px;
     margin: 0 auto 30px;
     text-align: center;
     display: flex;
@@ -1076,8 +1076,6 @@ a {
 }
 
 .contact-container {
-    max-width: 1180px;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 0.85fr 1.4fr;
     align-items: stretch;
@@ -1349,7 +1347,7 @@ a {
 
 @media (max-width: 900px) {
     .contact-section {
-        padding: 20px;
+        padding: var(--section-padding-y) 0;
     }
 
     .contact-heading {
@@ -1382,7 +1380,7 @@ a {
 
 @media (max-width: 600px) {
     .contact-section {
-        padding: 18px;
+        padding: var(--section-padding-y) 0;
     }
 
     .contact-heading {
@@ -1684,14 +1682,30 @@ a {
     text-align: right;
 }
 
+
+/* =========================================================
+   Section Width & Vertical Spacing Responsive
+   ========================================================= */
+@media (max-width: 900px) {
+    :root {
+        --section-padding-y: 70px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --container-x: 5%;
+        --section-padding-y: 50px;
+    }
+}
+
 /* =========================================================
    Very Large Screens Responsive
-   Add only large-screen improvements without changing smaller layouts
    ========================================================= */
 @media (min-width: 1440px) {
     :root {
         --container-x: 6%;
-        --section-gap: 140px;
+        --section-padding-y: 110px;
     }
 
     .hero-container,
@@ -1700,7 +1714,8 @@ a {
     .achievements-container,
     .contact-heading,
     .contact-container {
-        max-width: 1360px;
+        width: min(1300px, calc(100% - 2 * var(--container-x)));
+        max-width: 1300px;
     }
 
     .hero-title {
@@ -1726,11 +1741,6 @@ a {
         font-size: 18px;
     }
 
-    .service-card,
-    .swiper-slide {
-        width: 270px;
-    }
-
     .service-card {
         min-height: 270px;
     }
@@ -1739,17 +1749,8 @@ a {
         height: 175px;
     }
 
-    .achievements .swiper-slide,
-    .acheivement-card {
-        width: 315px;
-    }
-
     .acheivement-image {
         height: 180px;
-    }
-
-    .software-image img {
-        max-width: 700px;
     }
 
     .contact-container {
@@ -1760,7 +1761,7 @@ a {
 @media (min-width: 1800px) {
     :root {
         --container-x: 5%;
-        --section-gap: 160px;
+        --section-padding-y: 130px;
     }
 
     .hero-container,
@@ -1769,7 +1770,8 @@ a {
     .achievements-container,
     .contact-heading,
     .contact-container {
-        max-width: 1560px;
+        width: min(1500px, calc(100% - 2 * var(--container-x)));
+        max-width: 1500px;
     }
 
     .hero-container {
@@ -1785,11 +1787,6 @@ a {
         width: min(100%, 960px);
     }
 
-    .service-card,
-    .swiper-slide {
-        width: 295px;
-    }
-
     .service-card {
         min-height: 295px;
     }
@@ -1798,21 +1795,12 @@ a {
         height: 190px;
     }
 
-    .achievements .swiper-slide,
-    .acheivement-card {
-        width: 340px;
-    }
-
     .acheivement-image {
         height: 195px;
     }
 
     .software-card {
         gap: 44px;
-    }
-
-    .software-image img {
-        max-width: 780px;
     }
 
     .contact-container {
@@ -1832,7 +1820,8 @@ a {
     .achievements-container,
     .contact-heading,
     .contact-container {
-        max-width: 1760px;
+        width: min(1700px, calc(100% - 2 * var(--container-x)));
+        max-width: 1700px;
     }
 
     .hero-title {
@@ -1843,18 +1832,8 @@ a {
         width: min(100%, 1080px);
     }
 
-    .service-card,
-    .swiper-slide {
-        width: 320px;
-    }
-
     .service-image {
         height: 205px;
-    }
-
-    .achievements .swiper-slide,
-    .acheivement-card {
-        width: 365px;
     }
 
     .acheivement-image {
