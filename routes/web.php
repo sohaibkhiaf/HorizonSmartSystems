@@ -78,7 +78,21 @@ Route::prefix('admin')
     Route::get('/', [AdminDashboardController::class, 'index'])
         ->name('dashboard.index');
 
-    // ACHIEVEMENTS /////////////////////////////////////////////////////////////
+    // USERS ////////////////////////////////////////////////////////////////////////
+    Route::get('users', [UserController::class, 'index'])
+        ->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])
+        ->name('users.create');
+    Route::post('users', [UserController::class, 'store'])
+        ->name('users.store');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit');
+    Route::put('users/{user}', [UserController::class, 'update'])
+        ->name('users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])
+        ->name('users.destroy');
+
+    //  PUBLIC ACHIEVEMENTS /////////////////////////////////////////////////////////////
     Route::get('achievements', [PublicAchievementController::class, 'index'])
         ->name('achievements.index');
     Route::get('achievements/create', [PublicAchievementController::class, 'create'])
@@ -91,22 +105,6 @@ Route::prefix('admin')
         ->name('achievements.update');
     Route::delete('achievements/{achievement}', [PublicAchievementController::class, 'destroy'])
         ->name('achievements.destroy');
-
-    // USERS ////////////////////////////////////////////////////////////////////////
-    Route::get('users', [UserController::class, 'index'])
-        ->name('users.index');
-    Route::get('users/create', [UserController::class, 'create'])
-        ->name('users.create');
-    Route::post('users', [UserController::class, 'store'])
-        ->name('users.store');
-    Route::get('users/{user}', [UserController::class, 'show'])
-        ->name('users.show');
-    Route::get('users/{user}/edit', [UserController::class, 'edit'])
-        ->name('users.edit');
-    Route::put('users/{user}', [UserController::class, 'update'])
-        ->name('users.update');
-    Route::delete('users/{user}', [UserController::class, 'destroy'])
-        ->name('users.destroy');
 
     // PUBLIC SERVICES ///////////////////////////////////////////////////////
     Route::get('/public/services/', [PublicServiceController::class, 'index'])
@@ -168,19 +166,19 @@ Route::prefix('admin')
 
     // STORE REQUESTS /////////////////////////////////////////////////////////////
     Route::get('/store/requests', [StoreRequestController::class, 'index'])
-        ->name('requests.index');
+        ->name('store_requests.index');
     Route::get('/store/requests/create', [StoreRequestController::class, 'create'])
-        ->name('requests.create');
+        ->name('store_requests.create');
     Route::post('/store/requests', [StoreRequestController::class, 'store'])
-        ->name('requests.store');
+        ->name('store_requests.store');
     Route::get('/store/requests/{id}', [StoreRequestController::class, 'show'])
-        ->name('requests.show');
+        ->name('store_requests.show');
     Route::post('/store/requests/{id}', [StoreRequestController::class, 'update'])
-        ->name('requests.update');
+        ->name('store_requests.update');
     Route::delete('/store/requests/{id}', [StoreRequestController::class, 'destroy'])
-        ->name('requests.destroy');
+        ->name('store_requests.destroy');
     Route::put('/store/requests/{id}/info', [StoreRequestController::class, 'updateInfo'])
-        ->name('requests.updateInfo');
+        ->name('store_requests.updateInfo');
 
     //  CUSTOMER PORTAL ///////////////////////////////////////////////////////////
     Route::get('/customer/portals', [AdminCustomerPortalController::class, 'index'])

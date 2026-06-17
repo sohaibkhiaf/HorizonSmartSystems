@@ -106,7 +106,7 @@ class StoreRequestController extends Controller
         ]);
 
         // redirect
-        return redirect()->route('admin.requests.index')
+        return redirect()->route('admin.store_requests.index')
             ->with('success', 'Demande créée avec succès !');
     }
     

@@ -132,12 +132,13 @@
 
 .form-group input::file-selector-button {
     margin-right: 12px;
-    background: #2563eb;
-    color: #ffffff;
+    background: #eff6ff;
+    color: #2563eb;
     border: none;
-    padding: 7px 12px;
+    padding: 6px 12px;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .checkbox-line {
@@ -209,14 +210,22 @@
     box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
 }
 
+.demo-image-row {
+    display: grid;
+    grid-template-columns: 1fr 58px;
+    gap: 10px;
+    align-items: center;
+}
+
 .demo-preview {
-    width: 100%;
-    height: 180px;
-    border-radius: 12px;
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
     overflow: hidden;
     background: #f9fafb;
     border: 1px solid #e5e7eb;
-    margin-bottom: 14px;
+    flex-shrink: 0;
+    margin-bottom: 0;
 }
 
 .demo-preview img {
@@ -230,7 +239,7 @@
     align-items: center;
     justify-content: center;
     color: #9ca3af;
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .demo-form {
@@ -396,12 +405,13 @@
 
 .chat-form input::file-selector-button {
     margin-right: 12px;
-    background: #2563eb;
-    color: #ffffff;
+    background: #eff6ff;
+    color: #2563eb;
     border: none;
-    padding: 4px 12px;
+    padding: 3px 12px;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .empty {
@@ -438,6 +448,10 @@
 }
 
 @media (max-width: 768px) {
+    .demos-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .demo-form {
         grid-template-columns: 1fr;
     }
@@ -463,5 +477,14 @@
 
     .message-image {
         max-width: 180px;
+    }
+
+    .demo-image-row {
+        grid-template-columns: 1fr 64px;
+    }
+
+    .demo-preview {
+        width: 64px;
+        height: 64px;
     }
 }

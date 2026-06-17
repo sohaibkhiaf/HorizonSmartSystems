@@ -542,6 +542,10 @@
 </div>
 
 <script>
+/* ==========================================================================
+   Smooth Scroll Helper
+========================================================================== */
+
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
     const offset = 80; // space for fixed navbar
@@ -550,19 +554,25 @@ function scrollToSection(sectionId) {
 
     window.scrollTo({
         top: y,
-        behavior: 'smooth'
+        behavior: "smooth"
     });
 }
+
+
+/* ==========================================================================
+   Services Swiper
+========================================================================== */
 
 const swiper = new Swiper(".services-swiper", {
     slidesPerView: 1,
     spaceBetween: 10,
     grabCursor: true,
+
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
-    
+
     breakpoints: {
         480: {
             slidesPerView: 2,
@@ -576,17 +586,22 @@ const swiper = new Swiper(".services-swiper", {
             slidesPerView: 4,
             spaceBetween: 28,
         },
-
     }
 });
+
+
+/* ==========================================================================
+   Achievements Swiper
+========================================================================== */
 
 new Swiper(".achievements-swiper", {
     slidesPerView: 1,
     spaceBetween: 16,
     grabCursor: true,
+
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
     },
 
     breakpoints: {
@@ -597,23 +612,32 @@ new Swiper(".achievements-swiper", {
         1024: {
             slidesPerView: 3,
             spaceBetween: 28,
-        }
+        },
     }
 });
 
+
+/* ==========================================================================
+   Scroll To Section From URL Query
+========================================================================== */
 
 const params = new URLSearchParams(window.location.search);
 const section = params.get("section");
 
 if (section) {
     const target = document.querySelector(`[data-section="${section}"]`);
+
     if (target) {
         target.scrollIntoView({ behavior: "smooth" });
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
 
+/* ==========================================================================
+   Floating Scroll Buttons
+========================================================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
     const btnTop = document.getElementById("btnScrollTop");
     const btnNext = document.getElementById("btnScrollNext");
     const sections = document.querySelectorAll("[data-section]");
@@ -621,7 +645,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const HEADER_OFFSET = 80;
 
-    // ===== GET CURRENT SECTION INDEX =====
     function getCurrentSectionIndex() {
         let index = 0;
 
@@ -636,17 +659,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return index;
     }
 
-    // ===== SCROLL EVENTS =====
     window.addEventListener("scroll", () => {
-
-        // Show / hide top button
         if (window.scrollY < window.innerHeight * 0.8) {
             btnTop.classList.add("is-hidden");
         } else {
             btnTop.classList.remove("is-hidden");
         }
 
-        // Hide down button at footer
         if (footer) {
             const footerTop = footer.offsetTop;
             const scrollBottom = window.scrollY + window.innerHeight;
@@ -659,7 +678,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // ===== SCROLL TO TOP =====
     btnTop.addEventListener("click", () => {
         window.scrollTo({
             top: 0,
@@ -667,27 +685,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ===== SCROLL TO NEXT SECTION (FIXED) =====
     btnNext.addEventListener("click", () => {
-
         const currentIndex = getCurrentSectionIndex();
         const nextIndex = currentIndex + 1;
 
         if (sections[nextIndex]) {
             window.scrollTo({
-                top: sections[nextIndex].offsetTop - HEADER_OFFSET ,
+                top: sections[nextIndex].offsetTop - HEADER_OFFSET,
                 behavior: "smooth"
             });
         } else {
-            // No next section → go bottom
             window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: "smooth"
             });
         }
-
     });
-
 });
 </script>
 

@@ -164,32 +164,27 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* ==========================================================================
+       Elements
+    ========================================================================== */
+
     const header = document.getElementById("main_header");
     const menuToggle = document.getElementById("menuToggle");
     const navMenu = document.getElementById("navMenu");
+
     const sections = document.querySelectorAll("[data-section]");
     const tabs = document.querySelectorAll(".nav-tab");
 
-    window.scrollToSection = function(sectionId) {
-        const element = document.getElementById(sectionId);
-
-        if (!element) return;
-
-        const offset = 80;
-        const y = element.getBoundingClientRect().top + window.pageYOffset - offset ;
-
-        window.scrollTo({
-            top: y,
-            behavior: "smooth"
-        });
-
-        navMenu.classList.remove("active");
-    };
+    /* ==========================================================================
+       Navigation Active Tab
+    ========================================================================== */
 
     function updateActiveTab() {
+
         let current = "";
 
         sections.forEach(section => {
+
             const sectionTop = section.offsetTop;
             const sectionHeight = section.offsetHeight;
 
@@ -199,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         tabs.forEach(tab => {
+
             tab.classList.remove("active");
 
             if (tab.getAttribute("data-target") === current) {
@@ -207,22 +203,41 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    window.addEventListener("scroll", () => {
-
-        if ( @json($page != 'STORE') && @json($page != 'AUTH' ) && @json($page != 'SERVICE') && @json($page != 'CUSTOMER') ) {
-            updateActiveTab();
-        }
-    });
+    /* ==========================================================================
+       Mobile Menu
+    ========================================================================== */
 
     if (menuToggle && navMenu) {
+
         menuToggle.addEventListener("click", () => {
             navMenu.classList.toggle("active");
         });
+
     }
 
-    // Home tab active by default
-    if (@json( $page == "APP" )){
-        tabs[0].classList.add('active');
+    /* ==========================================================================
+       Scroll Events
+    ========================================================================== */
+
+    window.addEventListener("scroll", () => {
+
+        if (
+            @json($page != 'STORE') &&
+            @json($page != 'AUTH') &&
+            @json($page != 'SERVICE') &&
+            @json($page != 'CUSTOMER')
+        ) {
+            updateActiveTab();
+        }
+
+    });
+
+    /* ==========================================================================
+       Initial State
+    ========================================================================== */
+
+    if (@json($page == "APP")) {
+        tabs[0].classList.add("active");
     }
 
 });

@@ -18,7 +18,7 @@
 
         <div class="body">
 
-            <form method="POST" action="{{ route('admin.requests.updateInfo', $request->id) }}" class="form">
+            <form method="POST" action="{{ route('admin.store_requests.updateInfo', $request->id) }}" class="form">
                 @csrf
                 @method('PUT')
 
@@ -113,7 +113,7 @@
 
         <div class="body">
 
-            <form method="POST" action="{{ route('admin.requests.update', $request->id) }}" class="form">
+            <form method="POST" action="{{ route('admin.store_requests.update', $request->id) }}" class="form">
                 @csrf
 
                 <div class="form-group">

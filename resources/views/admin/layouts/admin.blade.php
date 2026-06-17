@@ -37,7 +37,8 @@
 
             <div class="nav-group-title">Utilisateurs</div>
 
-            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') 
+                || request()->routeIs('admin.users.edit') ? 'active' : '' }}">
                 <i class="fas fa-users"></i>
                 Tous les utilisateurs
             </a>
@@ -97,7 +98,8 @@
 
             <div class="nav-group-title">Store</div>
 
-            <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') 
+                    || request()->routeIs('admin.store_subs.edit')  ? 'active' : '' }}">
                 <i class="fa-solid fa-box-open"></i>
                 Abonnements
             </a>
@@ -107,13 +109,14 @@
                 Ajouter un abonnement
             </a>
 
-            <a href="{{ route('admin.requests.index') }}" class="{{ request()->routeIs('admin.requests.index') ? 'active' : '' }}">
+            <a href="{{ route('admin.store_requests.index') }}" class="{{ request()->routeIs('admin.store_requests.index')
+                    || request()->routeIs('admin.store_requests.show') ? 'active' : '' }}">
                 <i class="fa-solid fa-cart-shopping"></i>
                 Toutes les demandes
             </a>
 
-            <a href="{{ route('admin.requests.create') }}"
-            class="{{ request()->routeIs('admin.requests.create') ? 'active' : '' }}">
+            <a href="{{ route('admin.store_requests.create') }}"
+            class="{{ request()->routeIs('admin.store_requests.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Nouvelle demande
             </a>
@@ -127,7 +130,7 @@
 
             <div class="nav-group-title">Hero</div>
 
-            <a href="{{ route('admin.public_hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.public_hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.public_hero.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-flag"></i>
                 Modifier le hero
             </a>

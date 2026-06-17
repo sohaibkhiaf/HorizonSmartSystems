@@ -53,27 +53,30 @@
                 <div class="demo-list">
                     @forelse($demos as $demo)
                         <div class="demo-card">
-                            @if($demo->image)
-                                <div class="demo-card-image">
-                                    <img src="{{ asset('uploads/' . $demo->image) }}" alt="{{ $demo->name }}">
-                                </div>
-                            @else
-                                <div class="demo-card-image demo-card-placeholder">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            @endif
 
-                            <div class="demo-content">
-                                <h3>{{ $demo->name }}</h3>
-                                <p>{{ __('customer_portal.demo_available') }}</p>
-
-                                @if($demo->admin_note)
-                                    <div class="demo-note">
-                                        <strong>{{ __('customer_portal.admin_note') }}</strong>
-                                        <p>{{ $demo->admin_note }}</p>
+                            <div class="demo-main">
+                                @if($demo->image)
+                                    <div class="demo-card-image">
+                                        <img src="{{ asset('uploads/' . $demo->image) }}" alt="{{ $demo->name }}">
+                                    </div>
+                                @else
+                                    <div class="demo-card-image demo-card-placeholder">
+                                        <i class="fas fa-image"></i>
                                     </div>
                                 @endif
+
+                                <div class="demo-content">
+                                    <h3>{{ $demo->name }}</h3>
+                                    <p>{{ __('customer_portal.demo_available') }}</p>
+                                </div>
                             </div>
+
+                            @if($demo->admin_note)
+                                <div class="demo-note">
+                                    <strong>{{ __('customer_portal.admin_note') }}</strong>
+                                    <p>{{ $demo->admin_note }}</p>
+                                </div>
+                            @endif
 
                             <a href="{{ $demo->demo_link }}" target="_blank" class="demo-link">
                                 <i class="fas fa-up-right-from-square"></i>
@@ -221,45 +224,27 @@
 </section>
 
 <script>
-// AUTO SCROLL CHAT TO LAST MESSAGES ////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const chatBox = document.getElementById('chatBox');
-
-    if (chatBox) {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-});
-
-// REFRESH BUTTON ////////////////////////////////////////////
-
 document.addEventListener('DOMContentLoaded', function () {
     const chatBox = document.getElementById('chatBox');
     const refreshNotice = document.getElementById('refreshNotice');
 
-    // Scroll to bottom initially
     if (chatBox) {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
-    // Show after 10s
     setTimeout(() => {
-        if (refreshNotice) {
+        if (refreshNotice && chatBox) {
             refreshNotice.style.display = 'block';
-
-            // Scroll again so user sees it
             chatBox.scrollTop = chatBox.scrollHeight;
         }
     }, 12000);
 
-    // Click = refresh
     if (refreshNotice) {
         refreshNotice.addEventListener('click', () => {
             location.reload();
         });
     }
 });
-
 </script>
-
 
 @endsection

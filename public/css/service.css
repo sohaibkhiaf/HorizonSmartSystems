@@ -14,6 +14,9 @@
     --shadow-blue: 0 12px 26px rgba(37, 99, 235, 0.13);
     --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
     --container-x: 8%;
+    --section-padding-y: 76px;
+    --section-padding-y-tablet: 58px;
+    --section-padding-y-mobile: 46px;
     --transition: 0.25s ease;
 }
 
@@ -31,7 +34,7 @@ a {
 
 .service-hero {
     position: relative;
-    min-height: 680px;
+    min-height: 560px;
     padding: 0;
     background: var(--body-color);
     overflow: hidden;
@@ -42,9 +45,9 @@ a {
 .service-hero-container {
     width: 100%;
     max-width: none;
-    min-height: 680px;
+    min-height: 560px;
     margin: 0;
-    padding: 180px var(--container-x) 100px;
+    padding: 135px var(--container-x) 70px;
     position: relative;
     display: flex;
     align-items: center;
@@ -186,7 +189,7 @@ a {
    ========================================================= */
 
 .service-details {
-    padding: 20px var(--container-x) 80px;
+    padding: var(--section-padding-y) var(--container-x);
     background: #ffffff;
 }
 
@@ -294,8 +297,8 @@ a {
    ========================================================= */
 
 .contact-section {
-    margin: 0 0 var(--section-gap);
-    padding: 58px var(--container-x);
+    margin: 0;
+    padding: var(--section-padding-y) var(--container-x);
 }
 
 .contact-heading {
@@ -581,7 +584,7 @@ a {
 
 @media (max-width: 900px) {
     .contact-section {
-        padding: 20px;
+        padding: var(--section-padding-y-tablet) 20px;
     }
 
     .contact-heading {
@@ -605,7 +608,7 @@ a {
 
 @media (max-width: 600px) {
     .contact-section {
-        padding: 18px;
+        padding: var(--section-padding-y-mobile) 18px;
     }
 
     .contact-heading {
@@ -866,16 +869,25 @@ a {
 @media (max-width: 900px) {
     .service-hero,
     .service-hero-container {
-        min-height: 620px;
+        min-height: 500px;
     }
 
     .service-hero-container {
-        padding: 135px 6% 70px;
-        align-items: flex-end;
+        padding: 90px 18px 40px;
+        align-items: center;      /* Vertical centering */
+        justify-content: center;  /* Horizontal centering */
+    }
+
+    .service-details,
+    .contact-section {
+        padding-top: var(--section-padding-y-tablet);
+        padding-bottom: var(--section-padding-y-tablet);
     }
 
     .service-hero-content {
         max-width: 100%;
+        margin: 0 auto;
+        text-align: center;
     }
 
     .service-hero h1 {
@@ -884,6 +896,8 @@ a {
 
     .service-hero p {
         font-size: 16px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .service-details-container {
@@ -893,16 +907,26 @@ a {
     .service-side-card {
         position: static;
     }
+
+    .service-actions {
+        justify-content: center;
+        align-items: center;
+    }
+
+    [dir="rtl"] .service-hero-content {
+        margin: 0 auto;
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
     .service-hero,
     .service-hero-container {
-        min-height: 590px;
+        min-height: 500px;
     }
 
     .service-hero-container {
-        padding: 125px 18px 55px;
+        padding: 105px 18px 48px;
     }
 
     .service-hero-image::after {
@@ -933,8 +957,9 @@ a {
         width: 100%;
     }
 
-    .service-details {
-        padding: 10px 18px 45px;
+    .service-details,
+    .contact-section {
+        padding: var(--section-padding-y-mobile) 18px;
     }
 
     .service-main-card {
@@ -974,12 +999,12 @@ a {
 
     .service-hero,
     .service-hero-container {
-        min-height: 730px;
+        min-height: 620px;
     }
 
     .service-hero-container {
-        padding-top: 205px;
-        padding-bottom: 125px;
+        padding-top: 150px;
+        padding-bottom: 80px;
     }
 
     .service-hero h1 {
@@ -1026,12 +1051,12 @@ a {
 
     .service-hero,
     .service-hero-container {
-        min-height: 780px;
+        min-height: 680px;
     }
 
     .service-hero-container {
-        padding-top: 220px;
-        padding-bottom: 140px;
+        padding-top: 165px;
+        padding-bottom: 95px;
     }
 
     .service-hero h1 {
@@ -1043,8 +1068,10 @@ a {
         font-size: 20px;
     }
 
-    .service-details {
-        padding-bottom: 105px;
+    .service-details,
+    .contact-section {
+        padding-top: 92px;
+        padding-bottom: 92px;
     }
 
     .service-details-container {
@@ -1086,10 +1113,11 @@ a {
 
     .service-hero,
     .service-hero-container {
-        min-height: 840px;
+        min-height: 720px;
     }
 
     .service-hero h1 {
         font-size: 64px;
     }
 }
+

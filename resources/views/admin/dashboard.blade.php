@@ -193,7 +193,7 @@
         <p>Gérer les abonnements, clés, comptes et invitations.</p>
     </a>
 
-    <a href="{{ route('admin.requests.index') }}" class="tab-card">
+    <a href="{{ route('admin.store_requests.index') }}" class="tab-card">
         <i class="fas fa-cart-shopping"></i>
         <h3>Demandes boutique</h3>
         <p>Suivre les commandes reçues depuis la boutique.</p>

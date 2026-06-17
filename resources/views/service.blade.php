@@ -317,7 +317,7 @@
 <!-- Floating Navigation Buttons -->
 <div class="float-nav">
     <button id="btnScrollTop" class="float-btn is-hidden">
-        <i class="fas fa-home"></i>
+        <i class="fas fa-arrow-up"></i>
     </button>
 
     <button id="btnScrollNext" class="float-btn float-btn-down">
@@ -359,97 +359,90 @@
 </div>
 
 <script>
-function scrollToSection(sectionId) {
-    const element = document.getElementById(sectionId);
-
-    if (!element) return;
-
-    const offset = 80;
-    const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-    });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const btnTop = document.getElementById("btnScrollTop");
-    const btnNext = document.getElementById("btnScrollNext");
-    const sections = document.querySelectorAll("[data-section]");
-    const footer = document.querySelector("footer");
-
     const HEADER_OFFSET = 80;
 
-    // ===== GET CURRENT SECTION INDEX =====
-    function getCurrentSectionIndex() {
-        let index = 0;
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
 
-        sections.forEach((section, i) => {
-            const rect = section.getBoundingClientRect();
+        if (!element) return;
 
-            if (rect.top <= HEADER_OFFSET + 10) {
-                index = i;
-            }
+        window.scrollTo({
+            top: element.offsetTop - HEADER_OFFSET,
+            behavior: "smooth"
         });
-
-        return index;
     }
 
-    // ===== SCROLL EVENTS =====
-    window.addEventListener("scroll", () => {
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnTop = document.getElementById("btnScrollTop");
+        const btnNext = document.getElementById("btnScrollNext");
+        const sections = Array.from(document.querySelectorAll("[data-section]"));
+        const footer = document.querySelector("footer");
 
-        // Show / hide top button
-        if (window.scrollY < window.innerHeight * 0.8) {
-            btnTop.classList.add("is-hidden");
-        } else {
-            btnTop.classList.remove("is-hidden");
+        if (!btnTop || !btnNext || sections.length === 0) return;
+
+        function getCurrentSectionIndex() {
+            let currentIndex = 0;
+
+            sections.forEach((section, index) => {
+                if (window.scrollY >= section.offsetTop - HEADER_OFFSET - 20) {
+                    currentIndex = index;
+                }
+            });
+
+            return currentIndex;
         }
 
-        // Hide down button at footer
-        if (footer) {
-            const footerTop = footer.offsetTop;
-            const scrollBottom = window.scrollY + window.innerHeight;
+        function isFooterVisible() {
+            if (!footer) return false;
 
-            if (scrollBottom >= footerTop) {
+            return window.scrollY + window.innerHeight >= footer.offsetTop - 20;
+        }
+
+        function updateFloatingButtons() {
+            const currentIndex = getCurrentSectionIndex();
+
+            if (currentIndex > 0 || window.scrollY > 120) {
+                btnTop.classList.remove("is-hidden");
+            } else {
+                btnTop.classList.add("is-hidden");
+            }
+
+            if (isFooterVisible()) {
                 btnNext.classList.add("is-hidden");
             } else {
                 btnNext.classList.remove("is-hidden");
             }
         }
-    });
 
-    // ===== SCROLL TO TOP =====
-    btnTop.addEventListener("click", () => {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+        btnTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         });
+
+        btnNext.addEventListener("click", () => {
+            const currentIndex = getCurrentSectionIndex();
+            const nextSection = sections[currentIndex + 1];
+
+            if (nextSection) {
+                window.scrollTo({
+                    top: nextSection.offsetTop - HEADER_OFFSET,
+                    behavior: "smooth"
+                });
+            } else {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+            }
+        });
+
+        window.addEventListener("scroll", updateFloatingButtons);
+        window.addEventListener("resize", updateFloatingButtons);
+
+        updateFloatingButtons();
     });
-
-    // ===== SCROLL TO NEXT SECTION (FIXED) =====
-    btnNext.addEventListener("click", () => {
-
-        const currentIndex = getCurrentSectionIndex();
-        const nextIndex = currentIndex + 1;
-
-        if (sections[nextIndex]) {
-            window.scrollTo({
-                top: sections[nextIndex].offsetTop - HEADER_OFFSET ,
-                behavior: "smooth"
-            });
-        } else {
-            // No next section → go bottom
-            window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: "smooth"
-            });
-        }
-
-    });
-
-});
 </script>
 
 @endsection

@@ -12,7 +12,7 @@
 <div class="container">
     <div class="body">
 
-        <form method="POST" action="{{ route('admin.requests.store') }}" class="form">
+        <form method="POST" action="{{ route('admin.store_requests.store') }}" class="form">
             @csrf
 
             <div class="form-group">
@@ -94,7 +94,7 @@
                     Créer la demande
                 </button>
 
-                <a href="{{ route('admin.requests.index') }}" class="btn-secondary">
+                <a href="{{ route('admin.store_requests.index') }}" class="btn-secondary">
                     Annuler
                 </a>
             </div>

@@ -10,7 +10,7 @@
 @section('content')
 
 <div class="filter-container">
-    <form method="GET" action="{{ route('admin.requests.index') }}" class="filter-form">
+    <form method="GET" action="{{ route('admin.store_requests.index') }}" class="filter-form">
 
         <input type="text"
                 name="search"
@@ -47,7 +47,7 @@
                 Filtrer
             </button>
 
-            <a href="{{ route('admin.requests.index') }}" class="reset-filter">
+            <a href="{{ route('admin.store_requests.index') }}" class="reset-filter">
                 <i class="fa-solid fa-arrow-rotate-right"></i>
                 Réinitialiser
             </a>
@@ -110,13 +110,13 @@
 
                     <td>
                         <div class="table-actions">
-                            <a href="{{ route('admin.requests.show', $request->id) }}"
+                            <a href="{{ route('admin.store_requests.show', $request->id) }}"
                                class="action-btn edit">
                                 <i class="fas fa-eye"></i>
                                 Voir
                             </a>
 
-                            <form action="{{ route('admin.requests.destroy', $request->id) }}"
+                            <form action="{{ route('admin.store_requests.destroy', $request->id) }}"
                                   method="POST">
                                 @csrf
                                 @method('DELETE')

@@ -88,12 +88,13 @@
 
 .form-group input::file-selector-button {
     margin-right: 12px;
-    background: #2563eb;
-    color: #ffffff;
+    background: #eff6ff;
+    color: #2563eb;
     border: none;
-    padding: 7px 12px;
+    padding: 6px 12px;
     border-radius: 8px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 /* HELP TEXT */

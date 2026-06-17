@@ -102,16 +102,6 @@
             @forelse($demos as $demo)
                 <div class="demo-wrapper">
 
-                    @if($demo->image)
-                        <div class="demo-preview">
-                            <img src="{{ asset('uploads/' . $demo->image) }}" alt="{{ $demo->name }}">
-                        </div>
-                    @else
-                        <div class="demo-preview empty-preview">
-                            <i class="fas fa-image"></i>
-                        </div>
-                    @endif
-
                     <form method="POST"
                         action="{{ route('admin.customer_portals.demos.update', $demo->id) }}"
                         class="demo-form"
@@ -131,7 +121,20 @@
 
                         <div class="form-group demo-full-row">
                             <label>Image / capture</label>
-                            <input type="file" name="image" accept="image/*">
+
+                            <div class="demo-image-row">
+                                <input type="file" name="image" accept="image/*">
+
+                                @if($demo->image)
+                                    <div class="demo-preview">
+                                        <img src="{{ asset('uploads/' . $demo->image) }}" alt="{{ $demo->name }}">
+                                    </div>
+                                @else
+                                    <div class="demo-preview empty-preview">
+                                        <i class="fas fa-image"></i>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
 
                         <div class="form-group demo-full-row">

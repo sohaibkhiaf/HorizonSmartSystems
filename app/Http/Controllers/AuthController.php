@@ -17,7 +17,7 @@ class AuthController extends Controller
         if (auth()->check() && auth()->user()->role == "ADMIN") {
             return redirect()->route('admin.dashboard.index');
         } else if (auth()->check() && auth()->user()->role == "OPERATOR") {
-            return redirect()->route('admin.requests.index');
+            return redirect()->route('admin.store_requests.index');
         } else if (auth()->check() && auth()->user()->role == "CUSTOMER") {
             return redirect()->route('customer.portal.index');
         }
@@ -65,7 +65,7 @@ class AuthController extends Controller
                 'model_type' => User::class,
                 'model_id'   => auth()->user()->id,
             ]);
-            return redirect()->route('admin.requests.index');
+            return redirect()->route('admin.store_requests.index');
         }else if (auth()->user()->isCustomer() ) {
             ActivityLog::create([
                 'user_id'    => auth()->id(),
