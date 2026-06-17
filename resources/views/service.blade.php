@@ -359,7 +359,7 @@
 </div>
 
 <script>
-    const HEADER_OFFSET = 80;
+    const HEADER_OFFSET = 40;
 
     function scrollToSection(sectionId) {
         const element = document.getElementById(sectionId);

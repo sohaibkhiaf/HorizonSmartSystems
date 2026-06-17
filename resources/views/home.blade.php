@@ -648,7 +648,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("[data-section]");
     const footer = document.querySelector("footer");
 
-    const HEADER_OFFSET = 80;
+    const HEADER_OFFSET = 40;
 
     function getCurrentSectionIndex() {
         let index = 0;
