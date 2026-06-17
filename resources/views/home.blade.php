@@ -548,7 +548,7 @@
 
 function scrollToSection(sectionId) {
     const element = document.getElementById(sectionId);
-    const offset = 80; // space for fixed navbar
+    const offset = 40; // space for fixed navbar
 
     const y = element.getBoundingClientRect().top + window.pageYOffset - offset;
 
@@ -626,12 +626,17 @@ const section = params.get("section");
 
 if (section) {
     const target = document.querySelector(`[data-section="${section}"]`);
+    const offset = 40; // space for fixed navbar
+
+    const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
     if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+        window.scrollTo({
+            top: y,
+            behavior: "smooth"
+        });
     }
 }
-
 
 /* ==========================================================================
    Floating Scroll Buttons
