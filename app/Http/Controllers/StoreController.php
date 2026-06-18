@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\StoreRequest;
 use App\Models\StoreSubscription;
@@ -36,6 +37,7 @@ class StoreController extends Controller
 
         // services
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
         // view
         return view('/store/index', [
@@ -43,6 +45,7 @@ class StoreController extends Controller
             'search'=> $search,
             'category' => $category, 
             'services' => $services, 
+            'hero' => $hero 
         ]);
     }
 
@@ -50,11 +53,13 @@ class StoreController extends Controller
 
         // services
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
         // view
         return view('/store/order', [
             'subscription'=> $subscription, 
             'services' => $services, 
+            'hero' => $hero 
         ]);
     }
 
@@ -90,11 +95,13 @@ class StoreController extends Controller
 
         // services
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
         // view
         return view('/store/confirmed', [
             'request'=> $request, 
             'services' => $services, 
+            'hero' => $hero 
         ]);
     }
 

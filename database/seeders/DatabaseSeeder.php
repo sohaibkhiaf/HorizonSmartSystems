@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'sohaibkhiaf@gmail.com'],
             [
                 'name' => 'Sohaib KHIAF',
-                'role' => 'ADMIN',
+                'role' => 'admin',
                 'password' => Hash::make('password'),
             ]
         );
@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             ['email' => 'salemamine@gmail.com'],
             [
                 'name' => 'Mohamed Amine SALEM',
-                'role' => 'OPERATOR',
+                'role' => 'operator',
                 'password' => Hash::make('password'),
             ]
         );
@@ -39,10 +39,10 @@ class DatabaseSeeder extends Seeder
         $customer = User::updateOrCreate(
             ['email' => 'customer@hss.dz'],
             [
-                'name' => 'Nadia Benali',
-                'phone' => '0550 12 34 56',
+                'name' => 'Salah Benali',
+                'phone' => '0550123456',
                 'company' => 'Benali Consulting',
-                'role' => 'CUSTOMER',
+                'role' => 'customer',
                 'password' => Hash::make('password'),
             ]
         );

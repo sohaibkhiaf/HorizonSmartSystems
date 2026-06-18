@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CustomerChatMessage;
+use App\Models\PublicHero;
 use App\Models\PublicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,8 +26,9 @@ class CustomerPortalController extends Controller
             ->get();
 
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
-        return view('customer.portal.index', compact('user', 'demos', 'messages', 'services'));
+        return view('customer.portal.index', compact('user', 'demos', 'messages', 'services', 'hero'));
     }
 
     public function updateProfile(Request $request)

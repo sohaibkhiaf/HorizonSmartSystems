@@ -31,11 +31,11 @@
 
             @foreach($roles as $role)
                 <option value="{{ $role }}" @selected(request('role') === $role)>
-                    @if($role === 'ADMIN')
+                    @if($role === 'admin')
                         Administrateur
-                    @elseif($role === 'OPERATOR')
+                    @elseif($role === 'operator')
                         Opérateur
-                    @elseif($role === 'CUSTOMER')
+                    @elseif($role === 'customer')
                         Client
                     @else
                         Utilisateur
@@ -98,11 +98,11 @@
 
                             <td>
                                 <span class="role-badge role-{{ strtolower($user->role) }}">
-                                    @if($user->role === 'ADMIN')
+                                    @if($user->role === 'admin')
                                         Administrateur
-                                    @elseif($user->role === 'OPERATOR')
+                                    @elseif($user->role === 'operator')
                                         Opérateur
-                                    @elseif($user->role === 'CUSTOMER')
+                                    @elseif($user->role === 'customer')
                                         Client
                                     @else
                                         Utilisateur
@@ -114,17 +114,17 @@
                                 <div class="table-actions">
 
                                     {{-- Edit --}}
-                                    @if($user->role !== 'ADMIN' || auth()->id() === $user->id)
+                                    @if($user->role !== 'admin' || auth()->id() === $user->id)
                                         <a href="{{ route('admin.users.edit', $user) }}" class="action-btn edit">
                                             <i class="fas fa-pen"></i>
                                             Modifier
                                         </a>
                                     @endif
 
-                                    {{-- Delete : ADMIN only, cannot delete self, cannot delete another admin --}}
+                                    {{-- Delete : admin only, cannot delete self, cannot delete another admin --}}
                                     @if(
-                                        auth()->user()->role === 'ADMIN'
-                                        && $user->role !== 'ADMIN'
+                                        auth()->user()->role === 'admin'
+                                        && $user->role !== 'admin'
                                         && auth()->id() !== $user->id
                                     )
                                         <form method="POST" action="{{ route('admin.users.destroy', $user) }}">

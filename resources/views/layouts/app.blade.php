@@ -37,7 +37,7 @@
     </main>
 
     {{-- Footer --}}
-    <x-footer page="APP" :services="$services" />
+    <x-footer page="APP" :services="$services" :hero="$hero" />
 
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
+use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,18 +15,19 @@ class AuthController extends Controller
     public function loginPage()
     {
         // forward
-        if (auth()->check() && auth()->user()->role == "ADMIN") {
+        if (auth()->check() && auth()->user()->role == "admin") {
             return redirect()->route('admin.dashboard.index');
-        } else if (auth()->check() && auth()->user()->role == "OPERATOR") {
+        } else if (auth()->check() && auth()->user()->role == "operator") {
             return redirect()->route('admin.store_requests.index');
-        } else if (auth()->check() && auth()->user()->role == "CUSTOMER") {
+        } else if (auth()->check() && auth()->user()->role == "customer") {
             return redirect()->route('customer.portal.index');
         }
 
         $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
 
         // view
-        return view('auth/login', compact('services'));
+        return view('auth/login', compact('services', 'hero'));
     }
 
     public function login(Request $request)

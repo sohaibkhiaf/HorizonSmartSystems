@@ -19,7 +19,7 @@ class Operator
             return redirect()->route('login.page');
         }
 
-        if (auth()->user()->role != 'OPERATOR' && auth()->user()->role != 'ADMIN') {
+        if (auth()->user()->role != 'operator' && auth()->user()->role != 'admin') {
             abort(403, 'Access denied.');
         }
 

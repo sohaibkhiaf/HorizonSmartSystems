@@ -37,15 +37,39 @@
 
             <div class="nav-group-title">Utilisateurs</div>
 
-            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') 
-                || request()->routeIs('admin.users.edit') ? 'active' : '' }}">
+            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') || request()->routeIs('admin.users.edit') ? 'active' : '' }}">
                 <i class="fas fa-users"></i>
                 Tous les utilisateurs
             </a>
-
             <a href="{{ route('admin.users.create') }}" class="{{ request()->routeIs('admin.users.create') ? 'active' : '' }}">
                 <i class="fas fa-user-plus"></i>
                 Ajouter un utilisateur
+            </a>
+
+            <div class="nav-group-title">Store</div>
+
+            <a href="{{ route('admin.store_requests.index') }}" class="{{ request()->routeIs('admin.store_requests.index') || request()->routeIs('admin.store_requests.show') ? 'active' : '' }}">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Toutes les demandes
+            </a>
+            <a href="{{ route('admin.store_requests.create') }}" class="{{ request()->routeIs('admin.store_requests.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Nouvelle demande
+            </a>
+            <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') || request()->routeIs('admin.store_subs.edit') ? 'active' : '' }}">
+                <i class="fa-solid fa-box-open"></i>
+                Abonnements
+            </a>
+            <a href="{{ route('admin.store_subs.create') }}" class="{{ request()->routeIs('admin.store_subs.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Ajouter un abonnement
+            </a>
+
+            <div class="nav-group-title">Espace client</div>
+
+            <a href="{{ route('admin.customer_portals.index') }}" class="{{ request()->routeIs('admin.customer_portals.*') ? 'active' : '' }}">
+                <i class="fas fa-user-shield"></i>
+                Portails clients
             </a>
 
             <div class="nav-group-title">Messages</div>
@@ -54,85 +78,40 @@
                 <i class="fas fa-clock"></i>
                 Messages en attente
             </a>
-
             <a href="{{ route('admin.public_messages.seen') }}" class="{{ request()->routeIs('admin.public_messages.seen') ? 'active' : '' }}">
                 <i class="fas fa-check-circle"></i>
                 Messages consultés
             </a>
 
-            <div class="nav-group-title">Services</div>
+            <div class="nav-group-title">Contenu du site</div>
 
+            <a href="{{ route('admin.public_hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.public_hero.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-flag"></i>
+                Hero
+            </a>
             <a href="{{ route('admin.public_services.index') }}" class="{{ request()->routeIs('admin.public_services.index') || request()->routeIs('admin.public_services.edit') ? 'active' : '' }}">
                 <i class="fa-solid fa-bell-concierge"></i>
-                Nos services
+                Services
             </a>
-
             <a href="{{ route('admin.public_services.create') }}" class="{{ request()->routeIs('admin.public_services.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer un service
             </a>
-
-            <div class="nav-group-title">Logiciels</div>
-
             <a href="{{ route('admin.public_software.index') }}" class="{{ request()->routeIs('admin.public_software.index') || request()->routeIs('admin.public_software.edit') ? 'active' : '' }}">
                 <i class="fa-brands fa-accusoft"></i>
-                Nos logiciels
+                Logiciels
             </a>
-
             <a href="{{ route('admin.public_software.create') }}" class="{{ request()->routeIs('admin.public_software.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer un logiciel
             </a>
-
-            <div class="nav-group-title">Réalisations</div>
-
             <a href="{{ route('admin.achievements.index') }}" class="{{ request()->routeIs('admin.achievements.index') || request()->routeIs('admin.achievements.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>
-                Nos réalisations
+                Réalisations
             </a>
-
             <a href="{{ route('admin.achievements.create') }}" class="{{ request()->routeIs('admin.achievements.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer une réalisation
-            </a>
-
-            <div class="nav-group-title">Store</div>
-
-            <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') 
-                    || request()->routeIs('admin.store_subs.edit')  ? 'active' : '' }}">
-                <i class="fa-solid fa-box-open"></i>
-                Abonnements
-            </a>
-
-            <a href="{{ route('admin.store_subs.create') }}" class="{{ request()->routeIs('admin.store_subs.create') ? 'active' : '' }}">
-                <i class="fas fa-plus"></i>
-                Ajouter un abonnement
-            </a>
-
-            <a href="{{ route('admin.store_requests.index') }}" class="{{ request()->routeIs('admin.store_requests.index')
-                    || request()->routeIs('admin.store_requests.show') ? 'active' : '' }}">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Toutes les demandes
-            </a>
-
-            <a href="{{ route('admin.store_requests.create') }}"
-            class="{{ request()->routeIs('admin.store_requests.create') ? 'active' : '' }}">
-                <i class="fas fa-plus"></i>
-                Nouvelle demande
-            </a>
-
-            <div class="nav-group-title">Espace client</div>
-
-            <a href="{{ route('admin.customer_portals.index') }}" class="{{ request()->routeIs('admin.customer_portals.*') ? 'active' : '' }}">
-                <i class="fas fa-users"></i>
-                Portails clients
-            </a>
-
-            <div class="nav-group-title">Hero</div>
-
-            <a href="{{ route('admin.public_hero.show', ['hero' => 1]) }}" class="{{ request()->routeIs('admin.public_hero.*') ? 'active' : '' }}">
-                <i class="fa-solid fa-flag"></i>
-                Modifier le hero
             </a>
 
             @if(auth()->user()->isAdmin())
@@ -145,7 +124,7 @@
             @endif
 
         </nav>
-
+        
         <form method="POST" action="{{ route('logout') }}" class="logout-form">
             @csrf
             <button type="submit">

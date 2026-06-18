@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    private array $roles = ['USER', 'ADMIN', 'OPERATOR', 'CUSTOMER'];
+    private array $roles = ['user', 'admin', 'operator', 'customer'];
 
     private function authUser()
     {
@@ -19,7 +19,7 @@ class UserController extends Controller
 
     private function canManageUsers(): bool
     {
-        return in_array($this->authUser()->role, ['ADMIN', 'OPERATOR']);
+        return in_array($this->authUser()->role, ['admin', 'operator']);
     }
 
     private function isSelf(User $user): bool
@@ -34,18 +34,18 @@ class UserController extends Controller
         }
 
         // Admin can edit himself, but role is locked in update()
-        if ($this->isSelf($user) && $this->authUser()->role === 'ADMIN') {
+        if ($this->isSelf($user) && $this->authUser()->role === 'admin') {
             return true;
         }
 
         // Nobody can edit another admin
-        return $user->role !== 'ADMIN';
+        return $user->role !== 'admin';
     }
 
     private function canDeleteUser(User $user): bool
     {
-        // Only ADMIN can delete users
-        if ($this->authUser()->role !== 'ADMIN') {
+        // Only admin can delete users
+        if ($this->authUser()->role !== 'admin') {
             return false;
         }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
         }
 
         // Admins cannot delete other admins
-        if ($user->role === 'ADMIN') {
+        if ($user->role === 'admin') {
             return false;
         }
 
@@ -64,12 +64,12 @@ class UserController extends Controller
 
     private function canUseRole(string $role): bool
     {
-        if ($this->authUser()->role === 'ADMIN') {
+        if ($this->authUser()->role === 'admin') {
             return in_array($role, $this->roles);
         }
 
-        if ($this->authUser()->role === 'OPERATOR') {
-            return in_array($role, ['USER', 'OPERATOR', 'CUSTOMER']);
+        if ($this->authUser()->role === 'operator') {
+            return in_array($role, ['user', 'operator', 'customer']);
         }
 
         return false;
@@ -109,9 +109,9 @@ class UserController extends Controller
             abort(403);
         }
 
-        $roles = $this->authUser()->role === 'ADMIN'
+        $roles = $this->authUser()->role === 'admin'
             ? $this->roles
-            : ['USER', 'OPERATOR', 'CUSTOMER'];
+            : ['user', 'operator', 'customer'];
 
         return view('admin.users.create', compact('roles'));
     }
@@ -128,7 +128,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'phone' => 'nullable|string',
             'company' => 'nullable|string',
-            'role' => 'required|in:USER,ADMIN,OPERATOR,CUSTOMER',
+            'role' => 'required|in:user,admin,operator,customer',
         ]);
 
         if (! $this->canUseRole($request->role)) {
@@ -163,9 +163,9 @@ class UserController extends Controller
             abort(403);
         }
 
-        $roles = $this->authUser()->role === 'ADMIN'
+        $roles = $this->authUser()->role === 'admin'
             ? $this->roles
-            : ['USER', 'OPERATOR', 'CUSTOMER'];
+            : ['user', 'operator', 'customer'];
 
         return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -182,7 +182,7 @@ class UserController extends Controller
             'phone' => 'nullable|string',
             'company' => 'nullable|string',
             'password' => 'nullable|min:6',
-            'role' => 'nullable|in:USER,ADMIN,OPERATOR,CUSTOMER',
+            'role' => 'nullable|in:user,admin,operator,customer',
         ]);
 
         $data = $request->only([
@@ -193,7 +193,7 @@ class UserController extends Controller
         ]);
 
         // Admin editing himself: role cannot be changed
-        if (! ($this->isSelf($user) && $user->role === 'ADMIN')) {
+        if (! ($this->isSelf($user) && $user->role === 'admin')) {
             if (! $request->filled('role')) {
                 return back()
                     ->withInput()

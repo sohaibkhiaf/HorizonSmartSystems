@@ -14,7 +14,7 @@ class AdminCustomerPortalController extends Controller
     public function index(Request $request)
     {
         $customers = User::query()
-            ->where('role', 'CUSTOMER')
+            ->where('role', 'customer')
             ->when($request->filled('search'), function ($query) use ($request) {
                 $search = $request->search;
 
@@ -38,7 +38,7 @@ class AdminCustomerPortalController extends Controller
     }
     public function show(User $user)
     {
-        abort_if($user->role !== 'CUSTOMER', 404);
+        abort_if($user->role !== 'customer', 404);
 
         $demos = $user->demos()->latest()->get();
 
@@ -56,7 +56,7 @@ class AdminCustomerPortalController extends Controller
 
     public function storeDemo(Request $request, User $user)
     {
-        abort_if($user->role !== 'CUSTOMER', 404);
+        abort_if($user->role !== 'customer', 404);
 
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -116,7 +116,7 @@ class AdminCustomerPortalController extends Controller
 
     public function sendMessage(Request $request, User $user)
     {
-        abort_if($user->role !== 'CUSTOMER', 404);
+        abort_if($user->role !== 'customer', 404);
 
         $data = $request->validate([
             'message' => ['nullable', 'string', 'max:2000'],

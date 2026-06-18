@@ -15,6 +15,7 @@ class Footer extends Component
     public function __construct(
         public string $page, 
         public Collection $services, 
+        public Object $hero,
     )
     {
         //

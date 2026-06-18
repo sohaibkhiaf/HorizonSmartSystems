@@ -19,7 +19,7 @@ class Customer
             return redirect()->route('login.page');
         }
 
-        if (auth()->user()->role != 'CUSTOMER') {
+        if (auth()->user()->role != 'customer') {
             abort(403, 'Access denied.');
         }
         

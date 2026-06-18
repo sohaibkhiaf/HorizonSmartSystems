@@ -19,7 +19,7 @@ class Admin
             return redirect()->route('login.page');
         }
 
-        if (auth()->user()->role != 'ADMIN') {
+        if (auth()->user()->role != 'admin') {
             abort(403, 'Access denied.');
         }
 

@@ -65,7 +65,6 @@ Route::prefix('admin')
     Route::delete('/logs', [ActivityLogController::class, 'delete'])
         ->name('logs.destroy');
 });
-    
 
 
 // ADMIN / OPERATOR //////////////////////////////////////////////////////////////

@@ -10,16 +10,37 @@
             </p>
 
             <div class="footer-socials" aria-label="Social media">
+                <!-- Facebook -->
+                @if ($hero->facebook_url)
                 <a class="footer-social-icon" target="_blank"
-                    href="https://www.facebook.com/HORIZON.INFORMATIQUE.BISKRA">
+                    href="{{ $hero->facebook_url }}">
                     <i class="fa-brands fa-facebook"></i>
                 </a>
+                @endif
 
-                <a class="footer-social-icon" target="_blank" 
-                    href="https://wa.me/+213561655100">
-                    <i class="fa-brands fa-whatsapp"></i>    
+                <!-- Instagram -->
+                @if ($hero->instagram_url)
+                <a class="footer-social-icon" target="_blank"
+                    href="{{ $hero->instagram_url }}">
+                    <i class="fa-brands fa-square-instagram"></i>
                 </a>
+                @endif
 
+                <!-- WhatsApp -->
+                @if ($hero->whatsapp_url)
+                <a class="footer-social-icon" target="_blank"
+                    href="{{ $hero->whatsapp_url }}">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                @endif
+
+                <!-- Linkedin -->
+                @if ($hero->linked_in_url)
+                <a class="footer-social-icon" target="_blank"
+                    href="{{ $hero->linked_in_url }}">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                @endif
             </div>
         </div>
 

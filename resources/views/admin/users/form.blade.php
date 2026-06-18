@@ -9,7 +9,7 @@
 
         @php
             $isEditing = isset($user);
-            $isSelfAdmin = $isEditing && auth()->id() === $user->id && $user->role === 'ADMIN';
+            $isSelfAdmin = $isEditing && auth()->id() === $user->id && $user->role === 'admin';
         @endphp
 
         <div class="form-grid">
@@ -92,7 +92,7 @@
                 @if($isSelfAdmin)
                     <input type="text" value="Administrateur" readonly>
 
-                    <input type="hidden" name="role" value="ADMIN">
+                    <input type="hidden" name="role" value="admin">
 
                     <small class="field-help">
                         Vous pouvez modifier vos informations, mais pas votre rôle.
@@ -103,30 +103,30 @@
                             Sélectionner un rôle
                         </option>
 
-                        @if(auth()->user()->role === 'ADMIN')
-                            <option value="ADMIN"
-                                {{ old('role', $user->role ?? '') === 'ADMIN' ? 'selected' : '' }}>
+                        @if(auth()->user()->role === 'admin')
+                            <option value="admin"
+                                {{ old('role', $user->role ?? '') === 'admin' ? 'selected' : '' }}>
                                 Administrateur
                             </option>
                         @endif
 
-                        <option value="OPERATOR"
-                            {{ old('role', $user->role ?? '') === 'OPERATOR' ? 'selected' : '' }}>
+                        <option value="operator"
+                            {{ old('role', $user->role ?? '') === 'operator' ? 'selected' : '' }}>
                             Opérateur
                         </option>
 
-                        <option value="CUSTOMER"
-                            {{ old('role', $user->role ?? '') === 'CUSTOMER' ? 'selected' : '' }}>
+                        <option value="customer"
+                            {{ old('role', $user->role ?? '') === 'customer' ? 'selected' : '' }}>
                             Client
                         </option>
 
-                        <option value="USER"
-                            {{ old('role', $user->role ?? '') === 'USER' ? 'selected' : '' }}>
+                        <option value="user"
+                            {{ old('role', $user->role ?? '') === 'user' ? 'selected' : '' }}>
                             Utilisateur
                         </option>
                     </select>
 
-                    @if(auth()->user()->role === 'OPERATOR')
+                    @if(auth()->user()->role === 'operator')
                         <small class="field-help">
                             Les opérateurs ne peuvent pas créer ou attribuer le rôle Administrateur.
                         </small>

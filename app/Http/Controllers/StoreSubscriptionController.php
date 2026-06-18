@@ -20,7 +20,6 @@ class StoreSubscriptionController extends Controller
             ->when($request->filled('type'), function ($query) use ($request) {
                 $query->where('type', $request->type);
             })
-            ->latest()
             ->paginate(10)
             ->withQueryString();
 
