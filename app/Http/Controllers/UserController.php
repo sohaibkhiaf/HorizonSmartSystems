@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -136,13 +137,20 @@ class UserController extends Controller
                 ->with('error', 'Vous n’avez pas le droit de créer ce type d’utilisateur.');
         }
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'company' => $request->company,
             'password' => Hash::make($request->password),
             'role' => $request->role,
+        ]);
+
+        ActivityLog::create([
+            'user_id'    => auth()->id(),
+            'action'     => 'created',
+            'model_type' => User::class,
+            'model_id'   => $user->id,
         ]);
 
         return redirect()->route('admin.users.index')
@@ -207,6 +215,13 @@ class UserController extends Controller
 
         $user->update($data);
 
+        ActivityLog::create([
+            'user_id'    => auth()->id(),
+            'action'     => 'updated',
+            'model_type' => User::class,
+            'model_id'   => $user->id,
+        ]);
+
         return redirect()->route('admin.users.index')
             ->with('success', 'Utilisateur mis à jour');
     }
@@ -218,6 +233,13 @@ class UserController extends Controller
         }
 
         $user->delete();
+
+        ActivityLog::create([
+            'user_id'    => auth()->id(),
+            'action'     => 'deleted',
+            'model_type' => User::class,
+            'model_id'   => $user->id,
+        ]);
 
         return back()->with('success', 'Utilisateur supprimé');
     }

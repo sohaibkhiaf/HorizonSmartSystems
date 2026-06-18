@@ -58,8 +58,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // OBSERVER /////////////////////
-        User::observe(UserObserver::class);
-
         PublicMessage::observe(PublicMessageObserver::class);
         PublicAchievement::observe(PublicAchievementObserver::class);
         PublicService::observe(PublicServiceObserver::class);

@@ -277,11 +277,21 @@
     border-bottom-right-radius: 5px;
 }
 
+[dir="rtl"] .chat-message.customer .message-content  {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 16px;
+}
+
 .chat-message.admin .message-content {
     background: #ffffff;
     color: #0f172a;
     border: 1px solid #e5e7eb;
     border-bottom-left-radius: 5px;
+}
+
+[dir="rtl"] .chat-message.admin .message-content {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 16px;
 }
 
 .message-content p {
