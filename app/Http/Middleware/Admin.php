@@ -20,7 +20,7 @@ class Admin
         }
 
         if (auth()->user()->role != 'admin') {
-            abort(403, 'Access denied.');
+            abort(404);
         }
 
 

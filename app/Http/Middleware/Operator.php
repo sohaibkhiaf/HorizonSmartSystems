@@ -20,7 +20,7 @@ class Operator
         }
 
         if (auth()->user()->role != 'operator' && auth()->user()->role != 'admin') {
-            abort(403, 'Access denied.');
+            abort(404);
         }
 
         return $next($request);
