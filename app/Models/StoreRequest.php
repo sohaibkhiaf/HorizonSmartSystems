@@ -21,8 +21,9 @@ class StoreRequest extends Model
         'customer_address',
 
         'quantity', 
+        'unit_price',
+
         'status',
-        
         'admin_note',
     ];
 

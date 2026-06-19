@@ -60,13 +60,14 @@
                     <label>Abonnement <span class="required">*</span></label>
                     <select name="store_subscription_id" id="subscriptionSelect" required>
                         <option value="">-- Sélectionner --</option>
-
                         @foreach($subscriptions as $subscription)
                             <option value="{{ $subscription->id }}"
                                     data-type="{{ $subscription->type }}"
                                     data-price="{{ $subscription->price }}"
+                                    data-discount="{{ $subscription->discount ?? 0 }}"
                                     {{ old('store_subscription_id', $request->store_subscription_id) == $subscription->id ? 'selected' : '' }}>
-                                {{ $subscription->name }} - {{ $subscription->price }} DA
+                                {{ $subscription->name }} | {{ $subscription->price }} DA 
+                                {{!empty($subscription->discount) && $subscription->discount >0 ? ' | REMISE '. $subscription->discount. ' DA' : '' }}
                             </option>
                         @endforeach
                     </select>
@@ -74,12 +75,27 @@
 
                 <div class="form-group">
                     <label>Type</label>
-                    <input type="text" id="subscriptionType" value="" placeholder="Type d'abonnement" readonly>
+                    @php
+                        $types = [
+                            'key'        => 'Clé',
+                            'account'    => 'Compte',
+                            'invitation' => 'Invitation',
+                        ];
+                    @endphp
+                    <input type="text"
+                        id="subscriptionType"
+                        value="{{ $types[$subscription->type] ?? 'N/A' }}"
+                        placeholder="Type d'abonnement"
+                        readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Prix unitaire</label>
-                    <input type="text" id="subscriptionPrice" value="" placeholder="Prix unitaire" readonly>
+                    <input type="text" 
+                        name="unit_price" 
+                        id="subscriptionPrice" 
+                        value="{{ old('unit_price', $request->unit_price) }}" 
+                        placeholder="Prix unitaire">
                 </div>
 
                 <div class="form-group">
@@ -95,7 +111,11 @@
 
                 <div class="form-group">
                     <label>Total</label>
-                    <input type="text" id="totalPrice" value="" placeholder="Total calculé" readonly>
+                    <input type="text" 
+                        id="totalPrice" 
+                        value="{{ old('quantity', $request->quantity * $request->unit_price) }} DA" 
+                        placeholder="Total calculé" 
+                        readonly>
                 </div>
 
                 <button type="submit" class="btn-primary">
@@ -147,10 +167,10 @@
 
 <script>
     const subscriptionSelect = document.getElementById('subscriptionSelect');
-    const subscriptionType = document.getElementById('subscriptionType');
-    const subscriptionPrice = document.getElementById('subscriptionPrice');
-    const quantity = document.getElementById('quantity');
-    const totalPrice = document.getElementById('totalPrice');
+    const subscriptionType   = document.getElementById('subscriptionType');
+    const subscriptionPrice  = document.getElementById('subscriptionPrice');
+    const quantity           = document.getElementById('quantity');
+    const totalPrice         = document.getElementById('totalPrice');
 
     const types = {
         key: 'Clé',
@@ -158,21 +178,30 @@
         invitation: 'Invitation'
     };
 
+    function recalcTotal() {
+        const price = parseFloat(subscriptionPrice.value.replace(/,/g, '')) || 0;
+        const qty   = parseInt(quantity.value) || 1;
+        totalPrice.value = price ? (price * qty) + ' DA' : 'N/A';
+    }
+
     function updateSubscriptionInfo() {
         const selected = subscriptionSelect.options[subscriptionSelect.selectedIndex];
-        const type = selected.dataset.type || '';
-        const price = Number(selected.dataset.price || 0);
-        const qty = Number(quantity.value || 1);
+        const type     = selected.dataset.type     || '';
+        const price    = parseFloat(selected.dataset.price    || 0);
+        const discount = parseFloat(selected.dataset.discount || 0);
 
-        subscriptionType.value = types[type] || 'N/A';
-        subscriptionPrice.value = price ? `${price} DA` : 'N/A';
-        totalPrice.value = price ? `${price * qty} DA` : 'N/A';
+        const unitPrice = (discount > 0) ? discount : price;
+
+        subscriptionType.value  = types[type] || 'N/A';
+        subscriptionPrice.value = unitPrice ? unitPrice : '';
+
+        recalcTotal();
     }
 
     subscriptionSelect.addEventListener('change', updateSubscriptionInfo);
-    quantity.addEventListener('input', updateSubscriptionInfo);
+    quantity.addEventListener('input', recalcTotal);
+    subscriptionPrice.addEventListener('input', recalcTotal);
 
-    updateSubscriptionInfo();
 </script>
 
 @endsection

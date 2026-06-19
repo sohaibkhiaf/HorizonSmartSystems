@@ -75,6 +75,10 @@ class StoreController extends Controller
             'quantity' => ['required', 'integer'], 
         ]);
 
+        $subscription = StoreSubscription::findOrFail($data['subscription_id']);
+        $hasDiscount = !empty($subscription->discount) && $subscription->discount > 0;
+        $unitPrice =  $hasDiscount ? $subscription->discount : $subscription->price;
+
         // create
         $request = StoreRequest::create([
             'store_subscription_id'=> $data['subscription_id'], 
@@ -83,6 +87,7 @@ class StoreController extends Controller
             'customer_email'=> $data['email'], 
             'customer_address'=> $data['address'], 
             'quantity' => $data['quantity'],
+            'unit_price' => $unitPrice, 
         ]);
 
         // reditect

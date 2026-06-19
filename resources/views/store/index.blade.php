@@ -122,6 +122,18 @@
                                     <i class="fa-solid fa-box-open"></i>
                                 </div>
                             @endif
+
+                            @php 
+                                $discountAmount = $subscription->price - $subscription->discount;
+                                $discountPercentage = $discountAmount * 100 / $subscription->price;
+                                $discountPercentage = round($discountPercentage, 2);
+                            @endphp
+
+                            @if(!empty($subscription->discount) && $subscription->discount > 0)
+                                <span class="discount-badge" dir="ltr">
+                                    -{{ $discountPercentage }}%
+                                </span>
+                            @endif
                         </div>
 
                         <div class="subscription-content">
@@ -129,9 +141,26 @@
                             <div class="subscription-header">
                                 <h3>{{ $subscription->name }}</h3>
 
-                                <span class="subscription-price">
-                                    {{ $subscription->price }} {{ __('store.da') }}
-                                </span>
+                                @php
+                                    $hasDiscount = !empty($subscription->discount) && $subscription->discount > 0;
+                                    $finalPrice = $hasDiscount
+                                        ? $subscription->discount
+                                        : $subscription->price;
+                                @endphp
+
+                                <div class="subscription-price-wrapper">
+
+                                    @if($hasDiscount)
+                                        <span class="old-price">
+                                            {{ $subscription->price }} {{ __('store.da') }}
+                                        </span>
+                                    @endif
+
+                                    <span class="subscription-price">
+                                        {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                                    </span>
+
+                                </div>
                             </div>
 
                             <div class="subscription-meta">

@@ -9,7 +9,7 @@
 
         <div class="form-grid">
 
-            <div class="form-group">
+            <div class="form-group full">
                 <label>Nom de l’abonnement <span class="required">*</span></label>
                 <input type="text"
                        name="name"
@@ -24,9 +24,19 @@
                        name="price"
                        value="{{ old('price', $subscription->price ?? '') }}"
                        placeholder="Entrez le prix"
-                       step="0.01"
+                       step="1"
                        min="0"
                        required>
+            </div>
+
+            <div class="form-group">
+                <label>Remise</label>
+                <input type="number"
+                       name="discount"
+                       value="{{ old('discount', $subscription->discount ?? '') }}"
+                       placeholder="Entrez la remise"
+                       step="1"
+                       min="0">
             </div>
 
             <div class="form-group">

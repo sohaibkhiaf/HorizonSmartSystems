@@ -28,5 +28,7 @@ return [
     'total' => 'Total',
 
     'place_order' => 'Passer la commande',
+
+    'off' => 'de réduction',
 ];
 

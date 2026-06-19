@@ -22,8 +22,12 @@
                     <option value="">-- Sélectionnez un abonnement --</option>
 
                     @foreach($subscriptions as $subscription)
-                        <option value="{{ $subscription->id }}">
-                            {{ $subscription->name }} - {{ $subscription->price }} DA
+                        <option value="{{ $subscription->id }}"
+                                data-price="{{ $subscription->price }}"
+                                data-discount="{{ $subscription->discount ?? 0 }}"
+                                {{ old('subscription_id') }}>
+                            {{ $subscription->name }} | {{ $subscription->price }} DA
+                            {{!empty($subscription->discount) && $subscription->discount >0 ? ' | REMISE '. $subscription->discount. ' DA' : '' }}
                         </option>
                     @endforeach
                 </select>
@@ -35,12 +39,41 @@
                 <input
                     type="number"
                     name="quantity"
+                    id="quantity"
                     class="form-control"
                     value="{{ old('quantity', 1) }}"
                     min="1"
                     step="1"
                     placeholder="Entrez la quantité"
                     required>
+            </div>
+
+            <div class="form-group">
+                <label>Prix unitaire <span class="required">*</span></label>
+
+                <input
+                    type="number"
+                    name="unit_price"
+                    id="unit_price"
+                    class="form-control"
+                    value="{{ old('unit_price') }}"
+                    min="1"
+                    step="1"
+                    placeholder="Entrez le prix unitaire"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label>Total</label>
+
+                <input
+                    type="number"
+                    name="total"
+                    id="total" 
+                    class="form-control"
+                    value="{{ old('total') }}"
+                    placeholder="Total calculé"
+                    readonly>
             </div>
 
             <div class="form-group">
@@ -103,5 +136,31 @@
 
     </div>
 </div>
+
+<script>
+    const subscriptionSelect = document.querySelector('select[name="subscription_id"]');
+    const unitPriceInput     = document.getElementById('unit_price');
+    const quantityInput      = document.getElementById('quantity');
+    const totalInput         = document.getElementById('total');
+
+    function recalcTotal() {
+        const price = parseFloat(unitPriceInput.value) || 0;
+        const qty   = parseInt(quantityInput.value)    || 1;
+        totalInput.value = price ? price * qty : '';
+    }
+
+    function onSubscriptionChange() {
+        const selected = subscriptionSelect.options[subscriptionSelect.selectedIndex];
+        const price    = parseFloat(selected.dataset.price    || 0);
+        const discount = parseFloat(selected.dataset.discount || 0);
+
+        unitPriceInput.value = (discount > 0) ? discount : (price || '');
+        recalcTotal();
+    }
+
+    subscriptionSelect.addEventListener('change', onSubscriptionChange);
+    unitPriceInput.addEventListener('input', recalcTotal);
+    quantityInput.addEventListener('input', recalcTotal);
+</script>
 
 @endsection

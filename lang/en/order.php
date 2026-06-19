@@ -28,5 +28,7 @@ return [
     'total' => 'Total',
 
     'place_order' => 'Place order',
+
+    'off' => 'off',
 ];
 

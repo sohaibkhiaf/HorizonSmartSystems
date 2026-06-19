@@ -34,6 +34,16 @@ class StoreSubscriptionController extends Controller
 
     public function store(Request $req) {
 
+        $req->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'required|integer|min:0',
+            'discount'    => 'nullable|integer|min:0',
+            'image'       => 'nullable',
+            'type'        => 'required|in:key,account,invitation',
+            'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
+        ]);
+
         // image
         $image_url = null;
         if ($req->hasFile('image')) {
@@ -45,6 +55,7 @@ class StoreSubscriptionController extends Controller
             'name' => $req->name,
             'description' => $req->description,
             'price' => $req->price, 
+            'discount' => $req->discount, 
             'image' => $image_url,
             'type' => $req->type,
             'category' => $req->category,
@@ -64,6 +75,17 @@ class StoreSubscriptionController extends Controller
     }
 
     public function update(Request $req, $id) {
+
+        $req->validate([
+            'name'        => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price'       => 'required|integer|min:0',
+            'discount'    => 'nullable|integer|min:0',
+            'image'       => 'nullable',
+            'type'        => 'required|in:key,account,invitation',
+            'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
+        ]);
+
         // find
         $subscription = StoreSubscription::findOrFail($id);
 
@@ -82,6 +104,7 @@ class StoreSubscriptionController extends Controller
             'name' => $req->name,
             'description' => $req->description,
             'price' => $req->price,
+            'discount' => $req->discount,
             'image' => $image_url,
             'type' => $req->type, 
             'category' => $req->category,

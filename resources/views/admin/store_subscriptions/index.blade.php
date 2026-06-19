@@ -91,6 +91,7 @@
                 <th>Catégorie</th>
                 <th>Type</th>
                 <th>Prix</th>
+                <th>Remise</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -133,6 +134,8 @@
                     </td>
 
                     <td>{{ $subscription->price }} DA</td>
+
+                    <td>{{ !empty($subscription->discount) ? $subscription->discount.' DA': '—' }}</td>
 
                     <td>
                         <div class="table-actions">

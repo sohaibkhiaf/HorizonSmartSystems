@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('store_subscriptions', function (Blueprint $table) {
             $table->id();
+            
             $table->string('name');
             $table->text('description')->nullable();
+
             $table->integer('price');
+            $table->integer('discount')->nullable();
+
             $table->string('image')->nullable();
 
             $table->enum('type', [

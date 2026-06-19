@@ -176,7 +176,19 @@
 
             <div class="summary-row">
                 <span>{{ __('order.unit_price') }}</span>
-                <strong>{{ $subscription->price }} {{ __('store.da') }}</strong>
+                @php
+                    $hasDiscount = !empty($subscription->discount) && $subscription->discount > 0;
+                    $finalPrice  = $hasDiscount ? $subscription->discount : $subscription->price;
+                    $discountPct = $hasDiscount
+                        ? round(($subscription->price - $subscription->discount) * 100 / $subscription->price, 2)
+                        : 0;
+                @endphp
+                <strong>
+                    {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                    @if($hasDiscount)
+                        ({{ $discountPct }}% {{ __('order.off') }})
+                    @endif
+                </strong>
             </div>
 
             <div class="summary-row">
@@ -197,7 +209,9 @@
 
             <div class="total-box">
                 <span>{{ __('order.total') }}</span>
-                <strong id="total">{{ $subscription->price }} {{ __('store.da') }}</strong>
+                <strong id="total">
+                    {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                </strong>
             </div>
 
             <button type="submit" class="place-order-btn">
@@ -211,22 +225,21 @@
 </main>
 
 <script>
-    const subscriptionPrice = {{ (int) $subscription->price }};
+    const unitPrice    = {{ $finalPrice }};
+    const currencyLabel = '{{ __('store.da') }}';
 
-    function changeQty(value) {
-        const quantityInput = document.getElementById('quantity');
-        const hiddenQuantityInput = document.getElementById('hidden_quantity');
-        const total = document.getElementById('total');
+    function changeQty(delta) {
+        const qtyInput    = document.getElementById('quantity');
+        const hiddenQty   = document.getElementById('hidden_quantity');
+        const totalEl     = document.getElementById('total');
 
-        let quantity = parseInt(quantityInput.value) + value;
+        const qty = Math.max(1, parseInt(qtyInput.value) + delta);
 
-        if (quantity < 1) {
-            quantity = 1;
-        }
+        qtyInput.value  = qty;
+        hiddenQty.value = qty;
 
-        quantityInput.value = quantity;
-        hiddenQuantityInput.value = quantity;
-        total.textContent = (subscriptionPrice * quantity) + ' {{ __('store.da') }}';
+        const total = unitPrice * qty;
+        totalEl.textContent = total.toLocaleString('en-US') + ' ' + currencyLabel;
     }
 </script>
 

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('customer_contact');
 
             $table->string('quantity');
+            $table->integer('unit_price');
 
             $table->enum('status', [
                 'pending', // En attente

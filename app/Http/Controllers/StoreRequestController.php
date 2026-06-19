@@ -64,6 +64,7 @@ class StoreRequestController extends Controller
         $data = $req->validate([
             'store_subscription_id' => ['required', 'exists:store_subscriptions,id'],
             'quantity' => ['required', 'integer', 'min:1'],
+            'unit_price' => ['required', 'integer', 'min:1'],
             'customer_full_name' => ['required', 'string', 'max:255'],
             'customer_contact' => ['required', 'string', 'max:50'],
             'customer_email' => ['nullable', 'email', 'max:255'],
@@ -93,6 +94,7 @@ class StoreRequestController extends Controller
             'customer_email'        => 'nullable|email|max:255',
             'customer_address'      => 'nullable|string|max:500',
             'quantity'            => 'required|integer|min:1',
+            'unit_price'            => 'required|integer|min:1',
         ]);
 
         // create
@@ -103,6 +105,7 @@ class StoreRequestController extends Controller
             'customer_email' => $req->customer_email, 
             'customer_address' => $req->customer_address, 
             'quantity' => $req->quantity, 
+            'unit_price' => $req->unit_price, 
         ]);
 
         // redirect

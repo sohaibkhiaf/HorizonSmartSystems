@@ -16,6 +16,7 @@ class StoreSubscription extends Model
         'name', 
         'description', 
         'price', 
+        'discount',
         'image', 
         'type', 
         'category',
