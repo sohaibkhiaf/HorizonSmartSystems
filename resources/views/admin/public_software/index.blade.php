@@ -70,29 +70,6 @@
                     {{ Str::limit($software->fr_short_description, 140) }}
                 </p>
 
-
-                <div class="meta-grid">
-                    <div>
-                        <span>Image</span>
-                        <strong>{{ $software->image ? 'Disponible' : 'Manquante' }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Icône</span>
-                        <strong>{{ $software->icon ? 'Disponible' : 'Manquante' }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Créé le</span>
-                        <strong>{{ $software->created_at?->format('Y-m-d') }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Mis à jour</span>
-                        <strong>{{ $software->updated_at?->format('Y-m-d') }}</strong>
-                    </div>
-                </div>
-
                 <div class="card-actions">
                     <a href="{{ route('admin.public_software.edit', $software) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>

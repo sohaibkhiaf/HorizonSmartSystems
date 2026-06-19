@@ -143,34 +143,6 @@
     line-height: 1.6;
 }
 
-/* META */
-.meta-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-top: 12px;
-}
-
-.meta-grid div {
-    background: #f9fafb;
-    border-radius: 10px;
-    padding: 9px 10px;
-    border: 1px solid #f3f4f6;
-}
-
-.meta-grid span {
-    display: block;
-    margin-bottom: 4px;
-    color: #6b7280;
-    font-size: 11px;
-}
-
-.meta-grid strong {
-    color: #374151;
-    font-size: 12px;
-    font-weight: 600;
-}
-
 /* ACTIONS */
 .card-actions {
     display: flex;

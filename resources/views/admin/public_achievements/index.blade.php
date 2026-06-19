@@ -73,28 +73,6 @@
                     {{ Str::limit($achievement->fr_short_description, 140) }}
                 </p>
 
-                <div class="meta-grid">
-                    <div>
-                        <span>Type</span>
-                        <strong>{{ Str::limit($achievement->fr_type, 28) }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Image</span>
-                        <strong>{{ $achievement->image ? 'Disponible' : 'Manquante' }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Créé le</span>
-                        <strong>{{ $achievement->created_at?->format('Y-m-d') }}</strong>
-                    </div>
-
-                    <div>
-                        <span>Mis à jour</span>
-                        <strong>{{ $achievement->updated_at?->format('Y-m-d') }}</strong>
-                    </div>
-                </div>
-
                 <div class="card-actions">
                     <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
                         <i class="fas fa-pen"></i>
