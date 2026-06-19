@@ -84,7 +84,7 @@
                     @endphp
                     <input type="text"
                         id="subscriptionType"
-                        value="{{ $types[$subscription->type] ?? 'N/A' }}"
+                        value="{{ $request->storeSubscription != null ? $types[$request->storeSubscription->type] : 'N/A' }}"
                         placeholder="Type d'abonnement"
                         readonly>
                 </div>
