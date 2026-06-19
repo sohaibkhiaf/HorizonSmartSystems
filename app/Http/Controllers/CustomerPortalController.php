@@ -7,8 +7,6 @@ use App\Models\PublicHero;
 use App\Models\PublicService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 class CustomerPortalController extends Controller
 {
@@ -36,9 +34,9 @@ class CustomerPortalController extends Controller
         $user = auth()->user();
 
         $data = $request->validate([
-            'phone' => ['nullable', 'string', 'max:50'],
-            'company' => ['nullable', 'string', 'max:255'],
-            'password' => ['nullable', 'confirmed', Password::defaults()],
+            'phone' => ['nullable', 'string', 'size:10'],
+            'company' => ['nullable', 'string', 'max:50'],
+            'password' => ['nullable', 'confirmed', 'min:8'],
         ]);
 
         $user->phone = $data['phone'] ?? null;

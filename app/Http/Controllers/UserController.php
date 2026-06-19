@@ -123,11 +123,11 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'phone' => 'nullable|string',
-            'company' => 'nullable|string',
+            'password' => 'required|min:8',
+            'phone' => 'nullable|string|size:10',
+            'company' => 'nullable|string|max:50',
             'role' => 'required|in:user,admin,operator,customer',
         ]);
 
@@ -177,11 +177,11 @@ class UserController extends Controller
         }
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'phone' => 'nullable|string',
-            'company' => 'nullable|string',
-            'password' => 'nullable|min:6',
+            'phone' => 'nullable|string|size:10',
+            'company' => 'nullable|string|max:50',
+            'password' => 'nullable|min:8',
             'role' => 'nullable|in:user,admin,operator,customer',
         ]);
 
