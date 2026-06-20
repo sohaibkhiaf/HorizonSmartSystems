@@ -512,3 +512,140 @@
     }
 }
 
+/* =========================================================
+   Responsive Typography
+   Add at the END of order.css
+   ========================================================= */
+
+.back-link,
+.back-link i {
+    font-size: clamp(14px, 0.75vw, 17px);
+}
+
+.section-head h1,
+.summary-card h2 {
+    font-size: clamp(20px, 1.15vw, 30px);
+}
+
+.section-head p,
+.form-group label,
+.form-group input,
+.subscription-info p {
+    font-size: clamp(14px, 0.8vw, 18px);
+}
+
+.form-group small {
+    font-size: clamp(12px, 0.65vw, 15px);
+}
+
+.section-icon {
+    font-size: clamp(18px, 0.9vw, 22px);
+}
+
+.subscription-info h3 {
+    font-size: clamp(16px, 0.95vw, 23px);
+}
+
+.badge {
+    font-size: clamp(12px, 0.65vw, 15px);
+}
+
+.summary-row span,
+.total-box span,
+.summary-row strong,
+.quantity-control input {
+    font-size: clamp(14px, 0.75vw, 17px);
+}
+
+.total-box strong {
+    font-size: clamp(20px, 1.2vw, 32px);
+}
+
+.place-order-btn {
+    font-size: clamp(15px, 0.9vw, 20px);
+}
+
+.place-order-btn i {
+    font-size: clamp(15px, 0.85vw, 18px);
+}
+
+
+/* =========================================================
+   Large Screen Control Scaling
+   ========================================================= */
+
+@media (min-width: 1440px) {
+    .back-link {
+        min-height: 44px;
+        padding: 0 18px;
+    }
+
+    .form-group input {
+        height: 50px;
+        padding: 0 16px;
+    }
+
+    .place-order-btn {
+        height: 52px;
+    }
+
+    .summary-image {
+        width: 104px;
+        height: 104px;
+    }
+}
+
+@media (min-width: 1700px) {
+    .section-icon {
+        width: 54px;
+        height: 54px;
+    }
+
+    .form-group input {
+        height: 54px;
+        border-radius: 14px;
+    }
+
+    .place-order-btn {
+        height: 56px;
+        border-radius: 14px;
+    }
+
+    .summary-image {
+        width: 112px;
+        height: 112px;
+    }
+
+    .quantity-control button,
+    .quantity-control input {
+        width: 42px;
+        height: 42px;
+    }
+
+    .badge {
+        min-height: 26px;
+        padding: 4px 10px;
+    }
+}
+
+@media (min-width: 2000px) {
+    .order-card,
+    .summary-card {
+        padding: 32px;
+    }
+
+    .section-head {
+        gap: 18px;
+        margin-bottom: 28px;
+    }
+
+    .form-grid {
+        gap: 22px;
+    }
+
+    .summary-row,
+    .total-box {
+        padding: 18px 0;
+    }
+}
+
