@@ -17,90 +17,99 @@
     </a>
 </div>
 
-<div class="services-grid">
+<div class="container">
 
-    @forelse($public_services as $service)
-        <div class="service-card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Service</th>
+                <th>Type</th>
+                <th>Statut</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-            <div class="service-image">
-                @if($service->image)
-                    <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->fr_name }}">
-                @else
-                    <div class="image-placeholder">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                @endif
-            </div>
+        <tbody>
+            @forelse($public_services as $service)
+                <tr>
+                    <td>#{{ $service->id }}</td>
 
-            <div class="service-content">
-
-                <div class="card-top">
-                    <div>
-                        <h3>{{ $service->fr_name }}</h3>
-
-                        <div class="card-badges">
-                            @if($service->is_published)
-                                <span class="badge success">
-                                    <i class="fas fa-eye"></i>
-                                    Publié
-                                </span>
+                    <td>
+                        <div class="service-thumb">
+                            @if($service->image)
+                                <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->fr_name }}">
                             @else
-                                <span class="badge muted">
-                                    <i class="fas fa-eye-slash"></i>
-                                    Masqué
-                                </span>
+                                <div class="thumb-placeholder">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
                             @endif
-
-                            <span class="badge type">
-                                @if($service->type === 'main')
-                                    Service principal
-                                @else
-                                    Service secondaire
-                                @endif
-                            </span>
                         </div>
-                    </div>
-                </div>
+                    </td>
 
-                <p class="description">
-                    {{ Str::limit($service->fr_short_description, 140) }}
-                </p>
+                    <td>
+                        <strong>{{ $service->fr_name }}</strong>
+                    </td>
 
-                <div class="card-actions">
-                    <a href="{{ route('admin.public_services.edit', $service) }}" class="action-btn edit">
-                        <i class="fas fa-pen"></i>
-                        Modifier
-                    </a>
+                    <td>
+                        @if($service->type === 'main')
+                            <span class="badge type">Service principal</span>
+                        @else
+                            <span class="badge muted">Service secondaire</span>
+                        @endif
+                    </td>
 
-                    <form method="POST" action="{{ route('admin.public_services.destroy', $service) }}" onsubmit="return confirm('Supprimer ce service ?')">
-                        @csrf
-                        @method('DELETE')
+                    <td>
+                        @if($service->is_published)
+                            <span class="badge success">
+                                <i class="fas fa-eye"></i>
+                                Publié
+                            </span>
+                        @else
+                            <span class="badge muted">
+                                <i class="fas fa-eye-slash"></i>
+                                Masqué
+                            </span>
+                        @endif
+                    </td>
 
-                        <button type="submit" class="action-btn delete">
-                            <i class="fas fa-trash"></i>
-                            Supprimer
-                        </button>
-                    </form>
-                </div>
+                    <td class="description-cell">
+                        {{ Str::limit($service->fr_short_description, 80) }}
+                    </td>
 
-            </div>
+                    <td>
+                        <div class="table-actions">
+                            <a href="{{ route('admin.public_services.edit', $service) }}" class="action-btn edit">
+                                <i class="fas fa-pen"></i>
+                                Modifier
+                            </a>
 
-        </div>
-    @empty
-        <div class="empty-state">
-            <div class="empty-icon">
-                <i class="fas fa-layer-group"></i>
-            </div>
+                            <form method="POST"
+                                  action="{{ route('admin.public_services.destroy', $service) }}">
+                                @csrf
+                                @method('DELETE')
 
-            <h3>Aucun service trouvé</h3>
-            <p>Vous n’avez pas encore ajouté de service sur le site.</p>
-
-            <a href="{{ route('admin.public_services.create') }}" class="empty-link">
-                <i class="fas fa-plus"></i>
-                Créer un service
-            </a>
-        </div>
-    @endforelse
+                                <button type="submit"
+                                        class="action-btn delete"
+                                        onclick="return confirm('Supprimer ce service ?')">
+                                    <i class="fas fa-trash"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="7" class="empty">
+                        Aucun service trouvé
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 
 </div>
 
@@ -135,3 +144,4 @@
 @endif
 
 @endsection
+

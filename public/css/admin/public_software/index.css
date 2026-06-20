@@ -2,7 +2,7 @@
 .header {
     display: flex;
     gap: 12px;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .btn-main {
@@ -17,120 +17,125 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .btn-main:hover {
     background: #1d4ed8;
 }
 
-/* GRID */
-.software-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 20px;
-}
-
-/* CARD */
-.software-card {
+/* CONTAINER */
+.container {
     background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
     border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
 }
 
-.software-card:hover {
-    border-color: #dbeafe;
-    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.08);
-}
-
-/* IMAGE */
-.software-image {
-    position: relative;
-    height: 165px;
-    background: #eff6ff;
-}
-
-.software-image > img,
-.image-placeholder {
+/* TABLE */
+.table {
     width: 100%;
-    height: 100%;
+    border-collapse: collapse;
 }
 
-.software-image > img {
-    object-fit: cover;
+.table thead {
+    background: #f9fafb;
 }
 
-.image-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2563eb;
-    font-size: 28px;
+.table th,
+.table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
-.software-icon {
-    position: absolute;
-    left: 16px;
-    bottom: -22px;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: #ffffff;
-    color: #2563eb;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.software-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* CONTENT */
-.software-content {
-    padding: 30px 16px 16px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-.card-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.card-top h3 {
-    margin: 0 0 9px;
-    color: #111827;
-    font-size: 16px;
+.table th {
+    font-size: 13px;
+    color: #6b7280;
     font-weight: 600;
-    line-height: 1.4;
+}
+
+.table tbody tr {
+    border-top: 1px solid #e5e7eb;
+    transition: 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.table td:first-child {
+    font-weight: 600;
+    color: #6b7280;
+}
+
+.description-cell {
+    max-width: 280px;
+    color: #6b7280;
+    white-space: normal;
+    line-height: 1.5;
+}
+
+/* IMAGES */
+.software-thumb {
+    width: 58px;
+    height: 58px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eff6ff;
+    border: 1px solid #e5e7eb;
+}
+
+.software-thumb img,
+.thumb-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+.software-thumb img {
+    object-fit: cover;
+}
+
+.thumb-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 20px;
+}
+
+.software-icon-thumb {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.software-icon-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* BADGES */
-.card-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-}
-
 .badge {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    border-radius: 999px;
-    font-size: 11px;
-    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    padding: 5px 10px;
 }
 
 .badge.success {
@@ -153,20 +158,15 @@
     color: #2563eb;
 }
 
-/* DESCRIPTION */
-.description {
-    margin: 14px 0;
-    color: #6b7280;
-    font-size: 13px;
-    line-height: 1.6;
+/* ACTION BUTTONS */
+.table-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
-/* ACTIONS */
-.card-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 14px;
+.table-actions form {
+    margin: 0;
 }
 
 .action-btn {
@@ -178,7 +178,10 @@
     display: inline-flex;
     gap: 6px;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .action-btn.edit {
@@ -186,73 +189,24 @@
     color: #2563eb;
 }
 
+.action-btn.edit:hover {
+    background: #dbeafe;
+}
+
 .action-btn.delete {
     background: #fef2f2;
     color: #dc2626;
 }
 
-.action-btn.success {
-    background: #ecfdf5;
-    color: #166534;
+.action-btn.delete:hover {
+    background: #fee2e2;
 }
 
-.action-btn.warning {
-    background: #fff7ed;
-    color: #ea580c;
-}
-
-/* EMPTY STATE */
-.empty-state {
-    grid-column: 1 / -1;
-    background: #ffffff;
-    border: 1px dashed #d1d5db;
-    border-radius: 16px;
-    padding: 42px 20px;
+/* EMPTY */
+.empty {
+    padding: 30px;
     text-align: center;
     color: #6b7280;
-}
-
-.empty-icon {
-    width: 54px;
-    height: 54px;
-    margin: 0 auto 14px;
-    border-radius: 16px;
-    background: #eff6ff;
-    color: #2563eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-}
-
-.empty-state h3 {
-    margin: 0 0 8px;
-    color: #111827;
-    font-size: 17px;
-    font-weight: 600;
-}
-
-.empty-state p {
-    margin: 0;
-    font-size: 13px;
-    line-height: 1.5;
-}
-
-.empty-link {
-    margin-top: 16px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
-    border-radius: 10px;
-    background: #eff6ff;
-    color: #2563eb;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.empty-link:hover {
-    background: #dbeafe;
 }
 
 /* NAVIGATOR */
@@ -298,28 +252,25 @@
     font-size: 14px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1100px) {
-    .software-grid {
-        grid-template-columns: repeat(2, 1fr);
+/* MEDIA QUERIES */
+@media (max-width: 1000px) {
+    .table {
+        min-width: 1050px;
     }
 }
 
-@media (max-width: 800px) {
-    .software-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 480px) {
-    .card-actions,
+@media (max-width: 600px) {
     .header {
         flex-direction: column;
     }
 
-    .btn-main,
-    .action-btn {
+    .btn-main {
         width: 100%;
         justify-content: center;
     }
+
+    .table {
+        min-width: 1100px;
+    }
 }
+

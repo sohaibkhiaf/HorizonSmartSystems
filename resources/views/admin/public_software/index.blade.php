@@ -17,94 +17,106 @@
     </a>
 </div>
 
-<div class="software-grid">
+<div class="container">
 
-    @forelse($public_software as $software)
-        <div class="software-card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Icône</th>
+                <th>Logiciel</th>
+                <th>Type</th>
+                <th>Statut</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-            <div class="software-image">
-                @if($software->image)
-                    <img src="{{ asset('uploads/' . $software->image) }}" alt="{{ $software->fr_name }}">
-                @else
-                    <div class="image-placeholder">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                @endif
+        <tbody>
+            @forelse($public_software as $software)
+                <tr>
+                    <td>#{{ $software->id }}</td>
 
-                <div class="software-icon">
-                    @if($software->icon)
-                        <img src="{{ asset('uploads/' . $software->icon) }}" alt="Icône {{ $software->fr_name }}">
-                    @else
-                        <i class="fas fa-code"></i>
-                    @endif
-                </div>
-            </div>
-
-            <div class="software-content">
-
-                <div class="card-top">
-                    <div>
-                        <h3>{{ $software->fr_name }}</h3>
-
-                        <div class="card-badges">
-                            @if($software->is_published)
-                                <span class="badge success">
-                                    <i class="fas fa-eye"></i>
-                                    Publié
-                                </span>
+                    <td>
+                        <div class="software-thumb">
+                            @if($software->image)
+                                <img src="{{ asset('uploads/' . $software->image) }}" alt="{{ $software->fr_name }}">
                             @else
-                                <span class="badge muted">
-                                    <i class="fas fa-eye-slash"></i>
-                                    Masqué
-                                </span>
+                                <div class="thumb-placeholder">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
                             @endif
-
-                            <span class="badge type">
-                                Logiciel
-                            </span>
                         </div>
-                    </div>
-                </div>
+                    </td>
 
-                <p class="description">
-                    {{ Str::limit($software->fr_short_description, 140) }}
-                </p>
+                    <td>
+                        <div class="software-icon-thumb">
+                            @if($software->icon)
+                                <img src="{{ asset('uploads/' . $software->icon) }}" alt="Icône {{ $software->fr_name }}">
+                            @else
+                                <i class="fas fa-code"></i>
+                            @endif
+                        </div>
+                    </td>
 
-                <div class="card-actions">
-                    <a href="{{ route('admin.public_software.edit', $software) }}" class="action-btn edit">
-                        <i class="fas fa-pen"></i>
-                        Modifier
-                    </a>
+                    <td>
+                        <strong>{{ $software->fr_name }}</strong>
+                    </td>
 
-                    <form method="POST" action="{{ route('admin.public_software.destroy', $software) }}" onsubmit="return confirm('Supprimer ce logiciel ?')">
-                        @csrf
-                        @method('DELETE')
+                    <td>
+                        <span class="badge type">Logiciel</span>
+                    </td>
 
-                        <button type="submit" class="action-btn delete">
-                            <i class="fas fa-trash"></i>
-                            Supprimer
-                        </button>
-                    </form>
-                </div>
+                    <td>
+                        @if($software->is_published)
+                            <span class="badge success">
+                                <i class="fas fa-eye"></i>
+                                Publié
+                            </span>
+                        @else
+                            <span class="badge muted">
+                                <i class="fas fa-eye-slash"></i>
+                                Masqué
+                            </span>
+                        @endif
+                    </td>
 
-            </div>
+                    <td class="description-cell">
+                        {{ Str::limit($software->fr_short_description, 80) }}
+                    </td>
 
-        </div>
-    @empty
-        <div class="empty-state">
-            <div class="empty-icon">
-                <i class="fas fa-laptop-code"></i>
-            </div>
+                    <td>
+                        <div class="table-actions">
+                            <a href="{{ route('admin.public_software.edit', $software) }}" class="action-btn edit">
+                                <i class="fas fa-pen"></i>
+                                Modifier
+                            </a>
 
-            <h3>Aucun logiciel trouvé</h3>
-            <p>Vous n’avez pas encore ajouté de logiciel sur le site.</p>
+                            <form method="POST"
+                                  action="{{ route('admin.public_software.destroy', $software) }}">
+                                @csrf
+                                @method('DELETE')
 
-            <a href="{{ route('admin.public_software.create') }}" class="empty-link">
-                <i class="fas fa-plus"></i>
-                Créer un logiciel
-            </a>
-        </div>
-    @endforelse
+                                <button type="submit"
+                                        class="action-btn delete"
+                                        onclick="return confirm('Supprimer ce logiciel ?')">
+                                    <i class="fas fa-trash"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="empty">
+                        Aucun logiciel trouvé
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 
 </div>
 
@@ -139,3 +151,4 @@
 @endif
 
 @endsection
+

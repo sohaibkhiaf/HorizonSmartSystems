@@ -470,7 +470,7 @@
                 </div>
 
                 <div class="form-check">
-                    <input type="checkbox" id="consent">
+                    <input type="checkbox" id="consent" checked>
                     <label for="consent">
                         {{ __('home.form_consent') }}
                     </label>

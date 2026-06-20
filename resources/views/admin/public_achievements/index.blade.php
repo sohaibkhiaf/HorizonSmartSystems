@@ -17,97 +17,111 @@
     </a>
 </div>
 
-<div class="achievements-grid">
+<div class="container">
 
-    @forelse($achievements as $achievement)
-        <div class="achievement-card">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Réalisation</th>
+                <th>Type</th>
+                <th>Statut</th>
+                <th>Lien</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
-            <div class="achievement-image">
-                @if($achievement->image)
-                    <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->fr_title }}">
-                @else
-                    <div class="image-placeholder">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                @endif
-            </div>
+        <tbody>
+            @forelse($achievements as $achievement)
+                <tr>
+                    <td>#{{ $achievement->id }}</td>
 
-            <div class="achievement-content">
-
-                <div class="card-top">
-                    <div>
-                        <h3>{{ $achievement->fr_title }}</h3>
-
-                        <div class="card-badges">
-                            @if($achievement->is_published)
-                                <span class="badge success">
-                                    <i class="fas fa-eye"></i>
-                                    Publié
-                                </span>
+                    <td>
+                        <div class="achievement-thumb">
+                            @if($achievement->image)
+                                <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->fr_title }}">
                             @else
-                                <span class="badge muted">
-                                    <i class="fas fa-eye-slash"></i>
-                                    Masqué
-                                </span>
-                            @endif
-
-                            <span class="badge type">
-                                {{ $achievement->fr_type }}
-                            </span>
-
-                            @if($achievement->project_url)
-                                <a href="{{ $achievement->project_url }}" target="_blank" class="badge link">
-                                    <i class="fas fa-arrow-up-right-from-square"></i>
-                                    Lien
-                                </a>
-                            @else
-                                <span class="badge muted">
-                                    Sans lien
-                                </span>
+                                <div class="thumb-placeholder">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
                             @endif
                         </div>
-                    </div>
-                </div>
+                    </td>
 
-                <p class="description">
-                    {{ Str::limit($achievement->fr_short_description, 140) }}
-                </p>
+                    <td>
+                        <strong>{{ $achievement->fr_title }}</strong>
+                    </td>
 
-                <div class="card-actions">
-                    <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
-                        <i class="fas fa-pen"></i>
-                        Modifier
-                    </a>
+                    <td>
+                        <span class="badge type">
+                            {{ $achievement->fr_type }}
+                        </span>
+                    </td>
 
-                    <form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm('Supprimer cette réalisation ?')">
-                        @csrf
-                        @method('DELETE')
+                    <td>
+                        @if($achievement->is_published)
+                            <span class="badge success">
+                                <i class="fas fa-eye"></i>
+                                Publié
+                            </span>
+                        @else
+                            <span class="badge muted">
+                                <i class="fas fa-eye-slash"></i>
+                                Masqué
+                            </span>
+                        @endif
+                    </td>
 
-                        <button type="submit" class="action-btn delete">
-                            <i class="fas fa-trash"></i>
-                            Supprimer
-                        </button>
-                    </form>
-                </div>
+                    <td>
+                        @if($achievement->project_url)
+                            <a href="{{ $achievement->project_url }}" target="_blank" class="badge link">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                                Lien
+                            </a>
+                        @else
+                            <span class="badge muted">
+                                Sans lien
+                            </span>
+                        @endif
+                    </td>
 
-            </div>
+                    <td class="description-cell">
+                        {{ Str::limit($achievement->fr_short_description, 80) }}
+                    </td>
 
-        </div>
-    @empty
-        <div class="empty-state">
-            <div class="empty-icon">
-                <i class="fas fa-briefcase"></i>
-            </div>
+                    <td>
+                        <div class="table-actions">
+                            <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
+                                <i class="fas fa-pen"></i>
+                                Modifier
+                            </a>
 
-            <h3>Aucune réalisation trouvée</h3>
-            <p>Vous n’avez pas encore ajouté de projet à afficher sur le site.</p>
+                            <form method="POST"
+                                  action="{{ route('admin.achievements.destroy', $achievement) }}">
+                                @csrf
+                                @method('DELETE')
 
-            <a href="{{ route('admin.achievements.create') }}" class="empty-link">
-                <i class="fas fa-plus"></i>
-                Créer une réalisation
-            </a>
-        </div>
-    @endforelse
+                                <button type="submit"
+                                        class="action-btn delete"
+                                        onclick="return confirm('Supprimer cette réalisation ?')">
+                                    <i class="fas fa-trash"></i>
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" class="empty">
+                        Aucune réalisation trouvée
+                    </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
 
 </div>
 
@@ -142,3 +156,4 @@
 @endif
 
 @endsection
+

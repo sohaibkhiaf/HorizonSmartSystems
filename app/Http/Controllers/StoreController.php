@@ -32,7 +32,7 @@ class StoreController extends Controller
         }
 
         // paginate
-        $subscriptions = $query->latest()->paginate(12)
+        $subscriptions = $query->latest()->paginate(16)
             ->withQueryString();
 
         // services

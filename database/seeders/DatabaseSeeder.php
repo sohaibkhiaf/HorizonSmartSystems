@@ -28,21 +28,10 @@ class DatabaseSeeder extends Seeder
         );
 
         User::updateOrCreate(
-            ['email' => 'salemamine@gmail.com'],
+            ['email' => 'aminesalem45670@gmail.com'],
             [
                 'name' => 'Mohamed Amine SALEM',
-                'role' => 'operator',
-                'password' => Hash::make('password'),
-            ]
-        );
-
-        $customer = User::updateOrCreate(
-            ['email' => 'customer@hss.dz'],
-            [
-                'name' => 'Salah Benali',
-                'phone' => '0550123456',
-                'company' => 'Benali Consulting',
-                'role' => 'customer',
+                'role' => 'admin',
                 'password' => Hash::make('password'),
             ]
         );
