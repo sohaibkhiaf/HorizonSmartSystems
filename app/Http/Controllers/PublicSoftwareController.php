@@ -11,8 +11,7 @@ class PublicSoftwareController extends Controller
     public function index()
     {
         // fetch
-        $public_software = PublicSoftware::latest()
-            ->paginate(9)
+        $public_software = PublicSoftware::paginate(9)
             ->withQueryString();
 
         // view

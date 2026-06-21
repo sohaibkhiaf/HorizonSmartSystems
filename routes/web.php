@@ -30,6 +30,9 @@ Route::get('/', [HomeController::class, 'home'])
 Route::get('/services/{service}', [HomeController::class, 'show'])
     ->name('services.show');
 
+Route::get('/software/{software}', [HomeController::class, 'software'])
+    ->name('software.show');
+
 // STORE /////////////////////////////////////////////////////////////////////////////
 Route::get('/store', [StoreController::class, 'index'])
     ->name('store.index');

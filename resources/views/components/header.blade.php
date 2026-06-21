@@ -82,7 +82,7 @@
         </div>
 
         {{-- Software --}}
-        <a class="nav-tab"
+        <a class="nav-tab {{ $page == "SOFTWARE" ? 'active' : '' }}"
             @if ($page == 'APP')
                 onclick="scrollToSection('software_section')"
             @else
@@ -103,7 +103,7 @@
         </a>
 
         <a class="nav-tab"
-            @if ($page == 'APP' || $page == 'SERVICE')
+            @if ($page == 'APP' || $page == 'SERVICE' || $page == 'SOFTWARE' )
                 onclick="scrollToSection('contact_section')"
             @else
                 href="/?section=contact"
@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
             @json($page != 'STORE') &&
             @json($page != 'AUTH') &&
             @json($page != 'SERVICE') &&
+            @json($page != 'SOFTWARE') &&
             @json($page != 'CUSTOMER')
         ) {
             updateActiveTab();

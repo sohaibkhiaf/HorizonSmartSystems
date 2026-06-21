@@ -11,8 +11,7 @@ class PublicServiceController extends Controller
     public function index()
     {
         // fetch
-        $public_services = PublicService::latest()
-            ->paginate(9)
+        $public_services = PublicService::paginate(9)
             ->withQueryString();
 
         // view

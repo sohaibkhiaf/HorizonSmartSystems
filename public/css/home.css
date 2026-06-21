@@ -85,6 +85,7 @@ a {
    ========================================================= */
 .btn,
 .software-link,
+.software-orange-link,
 .btn-submit,
 .plus-link,
 .view-link,
@@ -114,6 +115,7 @@ a {
 
 .btn:hover,
 .software-link:hover,
+.software-orange-link:hover,
 .btn-submit:hover,
 .service-card:hover,
 .about-card:hover,
@@ -577,10 +579,17 @@ a {
     color: var(--color-dark);
     font-size: 17px;
     line-height: 1.7;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 15; /* number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .software-link, 
-.software-link-mobile {
+.software-orange-link, 
+.software-link-mobile,
+.software-orange-link-mobile {
     width: fit-content;
     min-height: 44px;
     padding: 12px 18px;
@@ -597,16 +606,43 @@ a {
     transition: var(--transition);
 }
 
-.software-link-mobile {
+.software-orange-link,
+.software-orange-link-mobile {
+    background: var(--color-danger);
+    box-shadow: var(--shadow-danger);
+}
+
+.software-link,
+.software-orange-link {
+    margin-right: 10px;
+    margin-left: 0;
+}
+[dir="rtl"] .software-link,
+[dir="rtl"] .software-orange-link {
+    margin-left: 10px;
+    margin-right: 0;
+}
+
+.software-link-mobile,
+.software-orange-link-mobile {
     display: none;
     width: 100%;
     margin-top: 20px;
     text-align: center;
 }
 
+.software-orange-link-mobile {
+    margin-top: 5px;
+}
+
 .software-link:hover,
 .software-link-mobile:hover {
     background: var(--color-primary-dark);
+}
+
+.software-orange-link:hover,
+.software-orange-link-mobile:hover {
+    background: var(--color-danger-dark);
 }
 
 .software-image {
@@ -1454,12 +1490,14 @@ a {
         font-size: 21px;
     }
 
-    .software-link {
+    .software-link,
+    .software-orange-link {
         width: 100%;
         display: none;
     }
 
-    .software-link-mobile {
+    .software-link-mobile, 
+    .software-orange-link-mobile {
         display: block;
     }
 

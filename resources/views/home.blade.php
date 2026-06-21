@@ -205,16 +205,21 @@
 
                     <p>
                         @if (app()->getLocale() == 'ar')
-                            {{ $s->ar_description }}
+                            {!! nl2br(e($s->ar_description)) !!}
                         @elseif(app()->getLocale() == 'fr')
-                            {{ $s->fr_description }}
+                            {!! nl2br(e($s->fr_description)) !!}
                         @else
-                            {{ $s->en_description }}
+                            {!! nl2br(e($s->en_description)) !!}
                         @endif
                     </p>
 
                     <a onclick="scrollToSection('contact_section')" class="software-link">
                         {{ __('home.software_cta') }}
+                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                    </a>
+
+                    <a href="{{ route('software.show', $s) }}" class="software-orange-link">
+                        {{ __('home.learn_more')  }}
                         <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                     </a>
                 </div>
@@ -231,6 +236,11 @@
 
                 <a onclick="scrollToSection('contact_section')" class="software-link-mobile">
                     {{ __('home.software_cta') }}
+                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                </a>
+
+                <a href="{{ route('software.show', $s) }}" class="software-orange-link-mobile">
+                    {{ __('home.learn_more')  }}
                     <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                 </a>
 

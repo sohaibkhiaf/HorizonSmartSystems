@@ -46,4 +46,26 @@ class HomeController extends Controller
 
         return view('service', compact('service', 'services' , 'otherServices', 'hero'));
     }
+
+    public function software(PublicSoftware $software)
+    {
+        abort_if(! $software->is_published, 404);
+
+        $otherSoftware = PublicSoftware::where('is_published', true)
+            ->where('id', '!=', $software->id)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
+
+        return view('software', compact(
+            'software',
+            'services',
+            'otherSoftware',
+            'hero'
+        ));
+    }
+    
 }
