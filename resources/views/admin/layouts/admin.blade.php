@@ -26,6 +26,7 @@
             <div>
                 <h2>HSS Admin</h2>
                 <p>Gestionnaire du site</p>
+                <p>{{ auth()->user()->name }}</p>
             </div>
         </div>
         
@@ -33,6 +34,13 @@
             <a href="{{ route('admin.dashboard.index') }}" class="{{ request()->routeIs('admin.dashboard.index') ? 'active' : '' }}">
                 <i class="fas fa-chart-line"></i>
                 Tableau de bord
+            </a>
+
+            <div class="nav-group-title">Chat box</div>
+
+            <a href="{{ route('admin.chats.index')  }}" class="{{ request()->routeIs('admin.chats.*') ? 'active' : '' }}">
+                <i class="fas fa-comments"></i>
+                Messagerie
             </a>
 
             <div class="nav-group-title">Utilisateurs</div>

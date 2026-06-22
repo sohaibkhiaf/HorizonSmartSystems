@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\AdminChatController;
 use App\Http\Controllers\AdminCustomerPortalController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
@@ -220,3 +221,34 @@ Route::middleware(['auth' , 'customer'])
         ->middleware('throttle:chat')
         ->name('portal_chat.send');
 });
+
+
+
+
+
+
+
+
+
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'admin_or_operator'])
+    ->group(function () {
+
+        Route::get('/chats', [AdminChatController::class, 'index'])
+            ->name('chats.index');
+
+        Route::post('/chats/messages', [AdminChatController::class, 'sendMessage'])
+            ->name('chats.messages.store');
+
+        Route::post('/chats/groups', [AdminChatController::class, 'storeGroup'])
+            ->name('chats.groups.store');
+
+        Route::put('/chats/groups/{customerGroup}', [AdminChatController::class, 'updateGroup'])
+            ->name('chats.groups.update');
+
+        Route::delete('/chats/groups/{customerGroup}', [AdminChatController::class, 'destroyGroup'])
+            ->name('chats.groups.destroy');
+    });
+
+

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\AdminOrOperator;
 use App\Http\Middleware\Client;
 use App\Http\Middleware\Customer;
 use App\Http\Middleware\Operator;
@@ -24,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => Admin::class,
             'customer' => Customer::class,
             'operator' => Operator::class,
+            'admin_or_operator' => AdminOrOperator::class,
         ]);
 
         $middleware->redirectGuestsTo(fn () => route('login.page'));

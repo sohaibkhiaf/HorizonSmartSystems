@@ -119,7 +119,13 @@
                                     </a>
                                 @endif
 
-                                <span>{{ $message->created_at->format('d/m/Y H:i') }}</span>
+                                <span>
+                                    {{ $message->sender_display_name }}
+                                    →
+                                    {{ $message->receiver_display_name }}
+                                    ·
+                                    {{ $message->created_at->format('d/m/Y H:i') }}
+                                </span>
                             </div>
                         </div>
                     @empty

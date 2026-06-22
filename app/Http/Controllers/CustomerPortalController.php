@@ -20,6 +20,7 @@ class CustomerPortalController extends Controller
             ->get();
 
         $messages = $user->chatMessages()
+            ->with(['sender', 'receiver', 'customerGroup'])
             ->oldest()
             ->get();
 
@@ -73,10 +74,18 @@ class CustomerPortalController extends Controller
 
         CustomerChatMessage::create([
             'user_id' => auth()->id(),
+
             'sender_type' => 'customer',
+            'sender_id' => auth()->id(),
+            'receiver_id' => null,
+
+            'sender_name' => auth()->user()->name,
+            'receiver_name' => 'Administration',
+
             'message' => $data['message'] ?? '',
             'link' => $data['link'] ?? null,
             'image' => $imagePath,
+
             'is_seen' => false,
         ]);
 

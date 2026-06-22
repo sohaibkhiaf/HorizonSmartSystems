@@ -212,7 +212,9 @@
                         @endif
 
                         <span>
-                            {{ $message->sender_type === 'admin' ? 'Admin' : $user->name }}
+                            {{ $message->sender_display_name }}
+                            →
+                            {{ $message->receiver_display_name }}
                             ·
                             {{ $message->created_at->format('d/m/Y H:i') }}
                         </span>

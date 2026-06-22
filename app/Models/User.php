@@ -66,6 +66,7 @@ class User extends Authenticatable
         return $this->role === 'customer';
     }
 
+
     public function demos()
     {
         return $this->hasMany(CustomerDemo::class);
@@ -76,5 +77,25 @@ class User extends Authenticatable
         return $this->hasMany(CustomerChatMessage::class);
     }
 
+    public function sentChatMessages()
+    {
+        return $this->hasMany(CustomerChatMessage::class, 'sender_id');
+    }
+
+    public function receivedChatMessages()
+    {
+        return $this->hasMany(CustomerChatMessage::class, 'receiver_id');
+    }
+
+    public function customerGroups()
+    {
+        return $this->belongsToMany(CustomerGroup::class, 'customer_group_user')
+            ->withTimestamps();
+    }
+
+    public function createdCustomerGroups()
+    {
+        return $this->hasMany(CustomerGroup::class, 'created_by');
+    }
 
 }

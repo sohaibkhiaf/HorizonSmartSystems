@@ -42,7 +42,9 @@ class AdminCustomerPortalController extends Controller
 
         $demos = $user->demos()->latest()->get();
 
+
         $messages = $user->chatMessages()
+            ->with(['sender', 'receiver', 'customerGroup'])
             ->oldest()
             ->get();
 
@@ -138,12 +140,25 @@ class AdminCustomerPortalController extends Controller
 
         CustomerChatMessage::create([
             'user_id' => $user->id,
+
             'sender_type' => 'admin',
+            'sender_id' => auth()->id(),
+            'receiver_id' => $user->id,
+
+            'sender_name' => auth()->user()->name,
+            'receiver_name' => $user->name,
+
             'message' => $data['message'] ?? '',
             'link' => $data['link'] ?? null,
             'image' => $imagePath,
+
             'is_seen' => true,
         ]);
+
+        $user->chatMessages()
+            ->where('sender_type', 'customer')
+            ->where('is_seen', false)
+            ->update(['is_seen' => true]);
 
         return back()->with('success', 'Message envoyé avec succès.');
     }
