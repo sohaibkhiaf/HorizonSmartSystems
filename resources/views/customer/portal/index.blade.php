@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
             refreshNotice.style.display = 'block';
             chatBox.scrollTop = chatBox.scrollHeight;
         }
-    }, 12000);
+    }, 5000);
 
     if (refreshNotice) {
         refreshNotice.addEventListener('click', () => {

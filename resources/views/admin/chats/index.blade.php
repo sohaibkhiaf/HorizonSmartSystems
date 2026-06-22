@@ -9,18 +9,6 @@
 
 @section('content')
 
-@if(session('success'))
-    <div class="flash-success">
-        {{ session('success') }}
-    </div>
-@endif
-
-@if($errors->any())
-    <div class="flash-error">
-        {{ $errors->first() }}
-    </div>
-@endif
-
 <div class="chat-page">
 
     <div class="container filter-container">
@@ -73,7 +61,7 @@
                 </select>
 
                 <select name="participant_one_id">
-                    <option value="">Participant 1</option>
+                    <option value="">Participant 1 (expéditeur)</option>
 
                     <optgroup label="Admins / Opérateurs">
                         @foreach($participants->whereIn('role', ['admin', 'operator']) as $participant)
@@ -95,7 +83,7 @@
                 </select>
 
                 <select name="participant_two_id">
-                    <option value="">Participant 2</option>
+                    <option value="">Participant 2 (destinataire)</option>
 
                     <optgroup label="Admins / Opérateurs">
                         @foreach($participants->whereIn('role', ['admin', 'operator']) as $participant)
@@ -128,6 +116,7 @@
                     Réinitialiser
                 </a>
             </form>
+
         </div>
     </div>
 
@@ -178,7 +167,7 @@
                         <div class="form-group recipient-field" data-recipient="admin">
                             <label>Admin / Opérateur</label>
                             <select name="admin_id">
-                                <option value="">Sélectionner une personne</option>
+                                <option value="">Tous les admins / opérateurs</option>
                                 @foreach($admins as $admin)
                                     @if($admin->id !== auth()->id())
                                         <option value="{{ $admin->id }}" @selected(old('admin_id') == $admin->id)>
@@ -187,6 +176,7 @@
                                     @endif
                                 @endforeach
                             </select>
+                            <small>Laissez vide pour envoyer un message interne avec destinataire inconnu.</small>
                         </div>
 
                         <div class="form-group recipient-field" data-recipient="group">
@@ -374,6 +364,90 @@
 
                 <div class="body">
 
+                    <div class="messages-list" id="adminMessagesList">
+                        @forelse($messages as $message)
+                            @php
+                                $bubbleClass = $message->sender_type === 'customer' ? 'customer' : 'admin';
+
+                                $messageTypeClass = 'message-customer-admin';
+
+                                if ($message->customer_group_id) {
+                                    $messageTypeClass = 'message-broadcast';
+                                } elseif ($message->sender_type === 'admin' && !$message->user_id) {
+                                    $messageTypeClass = 'message-internal';
+                                } elseif ($message->sender_type === 'admin') {
+                                    $messageTypeClass = 'message-admin-customer';
+                                }
+
+
+                                $typeLabel = 'Client vers administration';
+
+                                if ($message->customer_group_id) {
+                                    $typeLabel = 'Diffusion groupe';
+                                } elseif ($message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
+                                    $typeLabel = 'Interne';
+                                } elseif ($message->sender_type === 'admin') {
+                                    $typeLabel = 'Administration vers client';
+                                }
+
+                                $receiverName = $message->receiver_display_name;
+
+                                if (!$message->receiver_id && $message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
+                                    $receiverName = 'Tous les admins / opérateurs';
+                                }
+
+                                if (!$message->receiver_id && $message->sender_type === 'customer') {
+                                    $receiverName = 'Tous les admins / opérateurs';
+                                }
+
+                                $messageImageUrl = null;
+
+                                if ($message->image) {
+                                    $messageImageUrl =asset('uploads/' . $message->image);
+                                }
+                            @endphp
+
+                            <div class="message-card {{ $bubbleClass }} {{ $messageTypeClass }}">
+                                <div class="message-content">
+
+                                    @if($message->message)
+                                        <p class="message-text">{{ $message->message }}</p>
+                                    @endif
+
+                                    @if($message->link)
+                                        <a href="{{ $message->link }}" target="_blank" class="message-link">
+                                            {{ $message->link }}
+                                        </a>
+                                    @endif
+
+                                    @if($messageImageUrl)
+                                        <a href="{{ $messageImageUrl }}" target="_blank">
+                                            <img src="{{ $messageImageUrl }}"
+                                                 alt="Image message"
+                                                 class="message-image">
+                                        </a>
+                                    @endif
+
+                                    <span class="message-meta">
+                                        
+                                    </span>
+                                    <span class="message-meta">
+                                        {{ $message->sender_display_name }}
+                                        {{ ' → ' . $receiverName }}
+                                        {{ ' · ' . $message->created_at->format('d/m/Y H:i') }}
+                                        <br>
+                                        {{ $typeLabel }} 
+                                        {{ $message->customerGroup != null ? ' · '. $message->customerGroup->name : '' }} 
+                                        {{ $message->sender_type === 'customer' && !$message->is_seen ? ' · '.'Non répondu' : '' }} 
+                                        {{ $message->user ? ' · Client concerné : '.$message->user->name : '' }}
+                                    </span>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="empty">Aucun message trouvé.</p>
+                        @endforelse
+                    </div>
+
                     <div class="refresh-notice" id="adminRefreshNotice">
                         <div>
                             <i class="fa-solid fa-arrow-rotate-right"></i>
@@ -385,78 +459,36 @@
                         </a>
                     </div>
 
-                    <div class="messages-list">
-                        @forelse($messages as $message)
+                    @if ($messages->hasPages())
+                        <div class="navigator-container">
+                            @if ($messages->currentPage() > 1)
+                                <a href="{{ $messages->previousPageUrl() }}">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                            @else
+                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                            @endif
 
-                            @php
-                                $typeClass = $message->customer_group_id
-                                    ? 'broadcast'
-                                    : ($message->user_id ? 'customer-message' : 'internal-message');
-                            @endphp
+                            @for ($i = 1; $i <= $messages->lastPage(); $i++)
+                                <a href="{{ $messages->url($i) }}"
+                                   class="{{ $messages->currentPage() == $i ? 'active' : '' }}">
+                                    {{ $i }}
+                                </a>
+                            @endfor
 
-                            <div class="message-card {{ $typeClass }}">
-                                <div class="message-top">
-                                    <div class="message-route">
-                                        <strong>{{ $message->sender_display_name }}</strong>
-                                        <i class="fas fa-arrow-right"></i>
-                                        <strong>{{ $message->receiver_display_name }}</strong>
-                                    </div>
-
-                                    <span class="message-date">
-                                        {{ $message->sender_display_name }}
-                                        →
-                                        {{ $message->receiver_display_name }}
-                                        ·
-                                        {{ $message->created_at->format('d/m/Y H:i') }}
-                                    </span>
-                                </div>
-
-                                <div class="message-badges">
-                                    @if($message->customer_group_id)
-                                        <span class="badge broadcast-badge">Diffusion groupe</span>
-                                    @elseif($message->user_id)
-                                        <span class="badge customer-badge">Client</span>
-                                    @else
-                                        <span class="badge internal-badge">Interne</span>
-                                    @endif
-
-                                    @if($message->sender_type === 'customer' && !$message->is_seen)
-                                        <span class="badge unread-badge">Non lu</span>
-                                    @endif
-
-                                    @if($message->user)
-                                        <span class="badge neutral-badge">
-                                            Client: {{ $message->user->name }}
-                                        </span>
-                                    @endif
-                                </div>
-
-                                @if($message->message)
-                                    <p class="message-text">{{ $message->message }}</p>
-                                @endif
-
-                                @if($message->link)
-                                    <a href="{{ $message->link }}" target="_blank" class="message-link">
-                                        {{ $message->link }}
-                                    </a>
-                                @endif
-
-                                @if($message->image)
-                                    <a href="{{ asset('uploads/' . $message->image) }}" target="_blank">
-                                        <img src="{{ asset('uploads/' . $message->image) }}"
-                                             alt="Image message"
-                                             class="message-image">
-                                    </a>
-                                @endif
-                            </div>
-                        @empty
-                            <p class="empty">Aucun message trouvé.</p>
-                        @endforelse
-                    </div>
-
-                    <div class="pagination-wrapper">
-                        {{ $messages->links() }}
-                    </div>
+                            @if ($messages->currentPage() < $messages->lastPage())
+                                <a href="{{ $messages->nextPageUrl() }}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -469,8 +501,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     const sendTo = document.getElementById('sendTo');
     const fields = document.querySelectorAll('.recipient-field');
+    const refreshNotice = document.getElementById('adminRefreshNotice');
+    const messagesList = document.getElementById('adminMessagesList');
 
     function updateRecipientFields() {
+        if (!sendTo) return;
+
         const value = sendTo.value;
 
         fields.forEach(field => {
@@ -478,24 +514,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    updateRecipientFields();
+
     if (sendTo) {
-        updateRecipientFields();
         sendTo.addEventListener('change', updateRecipientFields);
     }
-});
 
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    const refreshNotice = document.getElementById('adminRefreshNotice');
+    if (messagesList) {
+        messagesList.scrollTop = messagesList.scrollHeight;
+    }
 
     setTimeout(function () {
         if (refreshNotice) {
             refreshNotice.classList.add('is-visible');
         }
-    }, 12000);
+    }, 5000);
 });
 </script>
 
 @endsection
-

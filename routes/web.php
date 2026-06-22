@@ -74,7 +74,7 @@ Route::prefix('admin')
 // ADMIN / OPERATOR //////////////////////////////////////////////////////////////
 Route::prefix('admin')
     ->name('admin.')
-    ->middleware(['auth', 'operator'])
+    ->middleware(['auth', 'admin_or_operator'])
     ->group(function () {
 
     // ADMIN DASHBOARD //////////////////////////////////////////////////////////
@@ -94,6 +94,18 @@ Route::prefix('admin')
         ->name('users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])
         ->name('users.destroy');
+
+    // CHATS ///////////////////////////////////////////////////////////////////////////
+    Route::get('/chats', [AdminChatController::class, 'index'])
+        ->name('chats.index');
+    Route::post('/chats/messages', [AdminChatController::class, 'sendMessage'])
+        ->name('chats.messages.store');
+    Route::post('/chats/groups', [AdminChatController::class, 'storeGroup'])
+        ->name('chats.groups.store');
+    Route::put('/chats/groups/{customerGroup}', [AdminChatController::class, 'updateGroup'])
+        ->name('chats.groups.update');
+    Route::delete('/chats/groups/{customerGroup}', [AdminChatController::class, 'destroyGroup'])
+        ->name('chats.groups.destroy');
 
     //  PUBLIC ACHIEVEMENTS /////////////////////////////////////////////////////////////
     Route::get('achievements', [PublicAchievementController::class, 'index'])
@@ -228,27 +240,5 @@ Route::middleware(['auth' , 'customer'])
 
 
 
-
-
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware(['auth', 'admin_or_operator'])
-    ->group(function () {
-
-        Route::get('/chats', [AdminChatController::class, 'index'])
-            ->name('chats.index');
-
-        Route::post('/chats/messages', [AdminChatController::class, 'sendMessage'])
-            ->name('chats.messages.store');
-
-        Route::post('/chats/groups', [AdminChatController::class, 'storeGroup'])
-            ->name('chats.groups.store');
-
-        Route::put('/chats/groups/{customerGroup}', [AdminChatController::class, 'updateGroup'])
-            ->name('chats.groups.update');
-
-        Route::delete('/chats/groups/{customerGroup}', [AdminChatController::class, 'destroyGroup'])
-            ->name('chats.groups.destroy');
-    });
 
 

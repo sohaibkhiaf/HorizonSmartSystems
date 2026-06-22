@@ -10,44 +10,116 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-    public function index() {
-        // query
-        $query = StoreSubscription::query();
+public function index()
+{
+    $allowedCategories = [
+        'games',
+        'gift_cards',
+        'software',
+        'subscriptions',
+        'in_game_currency',
+        'other',
+    ];
 
-        // search
+    $query = StoreSubscription::query();
+
+    // Search
+    $search = trim((string) request('search', ''));
+
+    if ($search !== '') {
+        $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', "%{$search}%");
+        });
+    } else {
         $search = null;
-        if (request()->filled('search')) {
-            $search = request()->search;
-
-            $query->where(function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%");
-            });
-        }
-
-        // category
-        $category = null;
-        if (request()->filled('category') && request()->category !== 'all') {
-            $category = request()->category;
-            $query->where('category', $category);
-        }
-
-        // paginate
-        $subscriptions = $query->latest()->paginate(16)
-            ->withQueryString();
-
-        // services
-        $services = PublicService::all();
-        $hero = PublicHero::findOrFail(1);
-
-        // view
-        return view('/store/index', [
-            'subscriptions'=> $subscriptions, 
-            'search'=> $search,
-            'category' => $category, 
-            'services' => $services, 
-            'hero' => $hero 
-        ]);
     }
+
+    // Category
+    $category = request('category', 'all');
+
+    if (!in_array($category, array_merge(['all'], $allowedCategories), true)) {
+        $category = 'all';
+    }
+
+    if ($category !== 'all') {
+        $query->where('category', $category);
+    }
+
+    // Products
+    $subscriptions = $query->latest()
+        ->paginate(16)
+        ->withQueryString();
+
+    // Details / Counts
+    $totalSubscriptions = StoreSubscription::count();
+
+    $discountedCount = StoreSubscription::whereNotNull('discount')
+        ->where('discount', '>', 0)
+        ->count();
+
+    $categoryCounts = StoreSubscription::select('category')
+        ->selectRaw('COUNT(*) as total')
+        ->groupBy('category')
+        ->pluck('total', 'category');
+
+    // Bestsellers: hidden when search is active
+    $bestSellers = collect();
+
+    if (empty($search)) {
+        $bestSellerIds = StoreRequest::select('store_subscription_id')
+            ->selectRaw('SUM(quantity) as total_quantity')
+            ->whereNotNull('store_subscription_id')
+            ->groupBy('store_subscription_id')
+            ->orderByDesc('total_quantity')
+            ->limit(10)
+            ->pluck('store_subscription_id')
+            ->filter()
+            ->values();
+
+        $bestSellers = StoreSubscription::whereIn('id', $bestSellerIds)
+            ->get()
+            ->sortBy(fn ($item) => $bestSellerIds->search($item->id))
+            ->values();
+
+        // Fallback: discounted products
+        if ($bestSellers->count() < 10) {
+            $extraDiscounted = StoreSubscription::whereNotIn('id', $bestSellers->pluck('id'))
+                ->whereNotNull('discount')
+                ->where('discount', '>', 0)
+                ->latest()
+                ->limit(10 - $bestSellers->count())
+                ->get();
+
+            $bestSellers = $bestSellers->concat($extraDiscounted)->values();
+        }
+
+        // Final fallback: latest products
+        if ($bestSellers->count() < 10) {
+            $extraLatest = StoreSubscription::whereNotIn('id', $bestSellers->pluck('id'))
+                ->latest()
+                ->limit(10 - $bestSellers->count())
+                ->get();
+
+            $bestSellers = $bestSellers->concat($extraLatest)->values();
+        }
+    }
+
+    // Services
+    $services = PublicService::all();
+    $hero = PublicHero::findOrFail(1);
+
+    return view('/store/index', [
+        'subscriptions' => $subscriptions,
+        'search' => $search,
+        'category' => $category,
+        'services' => $services,
+        'hero' => $hero,
+        'bestSellers' => $bestSellers,
+        'categoryCounts' => $categoryCounts,
+        'totalSubscriptions' => $totalSubscriptions,
+        'discountedCount' => $discountedCount,
+    ]);
+}
 
     public function order(StoreSubscription $subscription) {
 
