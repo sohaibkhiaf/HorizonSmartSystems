@@ -45,12 +45,41 @@
                     <p class="value">{{ $user->company ?? 'N/A' }}</p>
                 </div>
             </div>
+
+            <form method="POST"
+                  action="{{ route('admin.customer_portals.demo_link.update', $user->id) }}"
+                  class="customer-demo-link-form">
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label>Lien général de la démo</label>
+                    <input type="url"
+                           name="customer_demo_link"
+                           value="{{ old('customer_demo_link', $user->demo_link) }}"
+                           placeholder="https://demo.example.com">
+                </div>
+
+                <div class="customer-demo-link-actions">
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-save"></i>
+                        Enregistrer le lien
+                    </button>
+
+                    @if($user->demo_link)
+                        <a href="{{ $user->demo_link }}" target="_blank" class="action-btn edit">
+                            <i class="fas fa-up-right-from-square"></i>
+                            Ouvrir le lien actuel
+                        </a>
+                    @endif
+                </div>
+            </form>
         </div>
     </div>
 
     <div class="container">
         <div class="header">
-            <h4>Ajouter une démo</h4>
+            <h4>Ajouter une offre</h4>
         </div>
 
         <div class="body">
@@ -59,13 +88,13 @@
                 @csrf
 
                 <div class="form-group">
-                    <label>Nom de la démo <span class="required">*</span></label>
-                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Ex: Wili Management System" required>
+                    <label>Nom de l'offre <span class="required">*</span></label>
+                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Ex: Offre Wili Management System" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Lien de la démo</label>
-                    <input type="url" name="demo_link" value="{{ old('demo_link') }}" placeholder="https://demo.example.com">
+                    <label>Lien de l'offre</label>
+                    <input type="url" name="demo_link" value="{{ old('demo_link') }}" placeholder="https://offre.example.com">
                 </div>
 
                 <div class="form-group">
@@ -80,11 +109,11 @@
 
                 <label class="checkbox-line">
                     <input type="checkbox" name="is_active" value="1" checked>
-                    Démo active
+                    Offre active
                 </label>
 
                 <button type="submit" class="btn-primary">
-                    Ajouter la démo
+                    Ajouter l'offre
                 </button>
             </form>
         </div>
@@ -94,7 +123,7 @@
 
 <div class="container demos-container">
     <div class="header">
-        <h4>Démos du client</h4>
+        <h4>Offres du client</h4>
     </div>
 
     <div class="body">
@@ -145,7 +174,7 @@
 
                         <label class="checkbox-line demo-full-row">
                             <input type="checkbox" name="is_active" value="1" {{ $demo->is_active ? 'checked' : '' }}>
-                            Active
+                            Offre active
                         </label>
                     </form>
 
@@ -172,7 +201,7 @@
 
                             <button type="submit"
                                     class="action-btn delete"
-                                    onclick="return confirm('Supprimer cette démo ?')">
+                                    onclick="return confirm('Supprimer cette offre ?')">
                                 <i class="fas fa-trash"></i>
                                 Supprimer
                             </button>
@@ -181,7 +210,7 @@
 
                 </div>
             @empty
-                <p class="empty">Aucune démo ajoutée pour ce client.</p>
+                <p class="empty">Aucune offre ajoutée pour ce client.</p>
             @endforelse
         </div>
 
@@ -262,3 +291,4 @@
 </script>
 
 @endsection
+

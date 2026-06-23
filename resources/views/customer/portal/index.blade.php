@@ -11,7 +11,7 @@
 <section class="portal-section">
 
     @php
-        $customerDemoUrl = 'https://your-demo-url.com';
+        $customerDemoUrl = auth()->user()->demo_link;
     @endphp
 
     <div class="portal-header">

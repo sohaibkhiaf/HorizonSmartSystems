@@ -82,7 +82,7 @@ class AdminCustomerPortalController extends Controller
             'is_active' => $request->boolean('is_active'),
         ]);
 
-        return back()->with('success', 'Démo ajoutée avec succès.');
+        return back()->with('success', 'Offre ajoutée avec succès.');
     }
 
     public function updateDemo(Request $request, CustomerDemo $demo)
@@ -113,7 +113,7 @@ class AdminCustomerPortalController extends Controller
             'is_active' => $request->boolean('is_active'),
         ]);
 
-        return back()->with('success', 'Démo mise à jour avec succès.');
+        return back()->with('success', 'Offre mise à jour avec succès.');
     }
 
     public function sendMessage(Request $request, User $user)
@@ -171,7 +171,21 @@ class AdminCustomerPortalController extends Controller
 
         $demo->delete();
 
-        return back()->with('success', 'Démo supprimée avec succès.');
+        return back()->with('success', 'Offre supprimée avec succès.');
+    }
+
+    public function updateCustomerDemoLink(Request $request, User $user)
+    {
+        abort_if($user->role !== 'customer', 404);
+
+        $data = $request->validate([
+            'customer_demo_link' => ['nullable', 'url', 'max:2000'],
+        ]);
+
+        $user->demo_link = $data['customer_demo_link'] ?? null;
+        $user->save();
+
+        return back()->with('success', "Lien de la démo mis à jour avec succès.");
     }
 
 }

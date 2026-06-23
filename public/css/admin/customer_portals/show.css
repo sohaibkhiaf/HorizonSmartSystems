@@ -489,3 +489,33 @@
         height: 64px;
     }
 }
+
+
+.customer-demo-link-form {
+    margin-top: 18px;
+    padding-top: 18px;
+}
+
+.customer-demo-link-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.customer-demo-link-actions .btn-primary {
+    width: auto;
+}
+
+@media (max-width: 600px) {
+    .customer-demo-link-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .customer-demo-link-actions .btn-primary,
+    .customer-demo-link-actions .action-btn {
+        width: 100%;
+    }
+}
+
