@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
-@section('page_title', 'Modifier abonnement')
-@section('page_subtitle', 'Mettre à jour un abonnement')
+@section('page_title', 'Modifier produit')
+@section('page_subtitle', 'Mettre à jour un produit')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/form.css') }}">

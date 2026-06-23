@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'المتجر',
+    'title' => 'المتجر — HSS',
     'search_placeholder' => 'ابحث عن منتج',
     'da' => 'دج',
     'na' => 'غير متوفر',

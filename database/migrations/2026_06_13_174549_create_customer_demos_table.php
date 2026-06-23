@@ -19,7 +19,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->string('name');
-            $table->string('demo_link');
+            $table->string('demo_link')->nullable();
 
             $table->boolean('is_active')->default(true);
 

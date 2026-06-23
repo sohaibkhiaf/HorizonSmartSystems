@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Espace client — Horizon Smart Systems',
+    'title' => 'Espace client — HSS',
 
     'welcome_label' => 'Espace client',
     'hello' => 'Bonjour, :name',
@@ -44,4 +44,16 @@ return [
     'message_image_alt' => 'Image message',
 
     'refresh_messages' => 'Actualisez la page pour voir les derniers messages de l\'administration', 
+
+
+    'my_offers' => 'Mes offres',
+    'offer_badge' => 'Offre spéciale',
+    'special_offer' => 'Offre disponible pour votre compte',
+    'offer_details' => 'Détails de l\'offre',
+    'no_offers' => 'Aucune offre disponible pour le moment',
+
+    'customer_demo' => 'Démo',
+    'customer_demo_subtitle' => 'Consultez la démo directement depuis votre espace client.',
+    'open_demo_new_tab' => 'Ouvrir dans un nouvel onglet',
+    'demo_iframe_title' => 'Aperçu de la démo',
 ];

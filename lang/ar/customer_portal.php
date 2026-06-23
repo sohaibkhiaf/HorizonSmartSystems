@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'فضاء العميل — Horizon Smart Systems',
+    'title' => 'فضاء العميل — HSS',
 
     'welcome_label' => 'فضاء العميل',
     'hello' => 'مرحباً، :name',
@@ -44,4 +44,15 @@ return [
     'message_image_alt' => 'صورة الرسالة',
 
     'refresh_messages' => 'قم بتحديث الصفحة لرؤية أحدث الرسائل من الإدارة', 
+
+    'my_offers' => 'عروضي',
+    'offer_badge' => 'عرض خاص',
+    'special_offer' => 'يوجد عرض متاح لحسابك',
+    'offer_details' => 'تفاصيل العرض',
+    'no_offers' => 'لا توجد عروض متاحة حالياً',
+
+    'customer_demo' => 'الديمو',
+    'customer_demo_subtitle' => 'يمكنك معاينة الديمو مباشرة من فضاء العميل.',
+    'open_demo_new_tab' => 'فتح في نافذة جديدة',
+    'demo_iframe_title' => 'معاينة الديمو',
 ];

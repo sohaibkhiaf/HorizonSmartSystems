@@ -66,11 +66,11 @@
             </a>
             <a href="{{ route('admin.store_subs.index') }}" class="{{ request()->routeIs('admin.store_subs.index') || request()->routeIs('admin.store_subs.edit') ? 'active' : '' }}">
                 <i class="fa-solid fa-box-open"></i>
-                Abonnements
+                Produits
             </a>
             <a href="{{ route('admin.store_subs.create') }}" class="{{ request()->routeIs('admin.store_subs.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
-                Ajouter un abonnement
+                Ajouter un produit
             </a>
 
             <div class="nav-group-title">Espace client</div>

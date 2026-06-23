@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Place order — Horizon Smart Systems',
+    'title' => 'Place order — HSS',
 
     'back_to_catalog' => 'Back to catalog',
 

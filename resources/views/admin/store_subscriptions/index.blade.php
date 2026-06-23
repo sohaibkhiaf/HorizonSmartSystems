@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
-@section('page_title', 'Abonnements')
-@section('page_subtitle', 'Gestion des abonnements de store')
+@section('page_title', 'Produits')
+@section('page_subtitle', 'Gestion des produits de store')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/index.css') }}">
@@ -12,7 +12,7 @@
 <div class="header">
     <a href="{{ route('admin.store_subs.create') }}" class="header-btn">
         <i class="fas fa-plus"></i>
-        Ajouter un abonnement
+        Ajouter un produit
     </a>
 </div>
 

@@ -10,6 +10,10 @@
 
 <section class="portal-section">
 
+    @php
+        $customerDemoUrl = 'https://your-demo-url.com';
+    @endphp
+
     <div class="portal-header">
         <div>
             <span class="welcome-label">
@@ -47,12 +51,20 @@
     <div class="main-grid">
 
         <div class="left-column">
-            <div class="portal-card">
-                <h2>{{ __('customer_portal.my_demos') }}</h2>
+            <div class="portal-card offers-card">
+                <h2>{{ __('customer_portal.my_offers') }}</h2>
 
                 <div class="demo-list">
                     @forelse($demos as $demo)
-                        <div class="demo-card">
+
+                        @if(!empty($demo->demo_link))
+                            <a href="{{ $demo->demo_link }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="demo-card demo-card-clickable">
+                        @else
+                            <div class="demo-card">
+                        @endif
 
                             <div class="demo-main">
                                 @if($demo->image)
@@ -66,26 +78,30 @@
                                 @endif
 
                                 <div class="demo-content">
+                                    <span class="offer-badge">
+                                        {{ __('customer_portal.offer_badge') }}
+                                    </span>
+
                                     <h3>{{ $demo->name }}</h3>
-                                    <p>{{ __('customer_portal.demo_available') }}</p>
                                 </div>
                             </div>
 
                             @if($demo->admin_note)
                                 <div class="demo-note">
-                                    <strong>{{ __('customer_portal.admin_note') }}</strong>
+                                    <strong>{{ __('customer_portal.offer_details') }}</strong>
                                     <p>{{ $demo->admin_note }}</p>
                                 </div>
                             @endif
 
-                            <a href="{{ $demo->demo_link }}" target="_blank" class="demo-link">
-                                <i class="fas fa-up-right-from-square"></i>
-                                {{ __('customer_portal.open_demo') }}
+                        @if(!empty($demo->demo_link))
                             </a>
-                        </div>
+                        @else
+                            </div>
+                        @endif
+
                     @empty
                         <p class="empty-text">
-                            {{ __('customer_portal.no_demo') }}
+                            {{ __('customer_portal.no_offers') }}
                         </p>
                     @endforelse
                 </div>
@@ -168,6 +184,35 @@
         </div>
 
     </div>
+
+    @if(!empty($customerDemoUrl))
+        <div class="portal-card iframe-demo-card">
+            <div class="iframe-demo-header">
+                <div>
+                    <h2>{{ __('customer_portal.customer_demo') }}</h2>
+                    <p>{{ __('customer_portal.customer_demo_subtitle') }}</p>
+                </div>
+
+                <a href="{{ $customerDemoUrl }}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="iframe-open-link">
+                    <i class="fa-solid fa-up-right-from-square"></i>
+                    {{ __('customer_portal.open_demo_new_tab') }}
+                </a>
+            </div>
+
+            <div class="demo-iframe-wrapper">
+                <iframe
+                    src="{{ $customerDemoUrl }}"
+                    title="{{ __('customer_portal.demo_iframe_title') }}"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    @endif
 
     <div class="portal-card profile-card">
         <h2>{{ __('customer_portal.my_info') }}</h2>
@@ -254,3 +299,4 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 @endsection
+

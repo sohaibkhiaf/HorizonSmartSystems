@@ -2,11 +2,11 @@
 
 @section('title')
     @if(app()->getLocale() == 'ar')
-        {{ $service->ar_name }} — Horizon Smart Systems
+        {{ $service->ar_name }} — HSS
     @elseif(app()->getLocale() == 'fr')
-        {{ $service->fr_name }} — Horizon Smart Systems
+        {{ $service->fr_name }} — HSS
     @else
-        {{ $service->en_name }} — Horizon Smart Systems
+        {{ $service->en_name }} — HSS
     @endif
 @endsection
 

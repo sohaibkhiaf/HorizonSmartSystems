@@ -89,7 +89,7 @@ class AdminCustomerPortalController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'demo_link' => ['required', 'url', 'max:500'],
+            'demo_link' => ['nullable', 'url', 'max:500'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
             'admin_note' => ['nullable', 'string', 'max:3000'],
             'is_active' => ['nullable', 'boolean'],

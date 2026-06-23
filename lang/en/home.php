@@ -3,7 +3,7 @@
 return [
 
     // Meta /////////////////////////////////////////////////////////////
-    'page_title' => 'Home — Horizon Smart Systems',
+    'page_title' => 'Home — HSS',
 
     // Hero /////////////////////////////////////////////////////////////
     'hero_agency_label'   => 'Software & Web Development Agency',

@@ -64,8 +64,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Lien de la démo <span class="required">*</span></label>
-                    <input type="url" name="demo_link" value="{{ old('demo_link') }}" placeholder="https://demo.example.com" required>
+                    <label>Lien de la démo</label>
+                    <input type="url" name="demo_link" value="{{ old('demo_link') }}" placeholder="https://demo.example.com">
                 </div>
 
                 <div class="form-group">
@@ -103,6 +103,7 @@
                 <div class="demo-wrapper">
 
                     <form method="POST"
+                        id="demo-update-form-{{ $demo->id }}"
                         action="{{ route('admin.customer_portals.demos.update', $demo->id) }}"
                         class="demo-form"
                         enctype="multipart/form-data">
@@ -116,7 +117,7 @@
 
                         <div class="form-group">
                             <label>Lien</label>
-                            <input type="url" name="demo_link" value="{{ $demo->demo_link }}" required>
+                            <input type="url" name="demo_link" value="{{ $demo->demo_link }}">
                         </div>
 
                         <div class="form-group demo-full-row">
@@ -146,33 +147,37 @@
                             <input type="checkbox" name="is_active" value="1" {{ $demo->is_active ? 'checked' : '' }}>
                             Active
                         </label>
+                    </form>
 
-                        <div class="demo-actions demo-full-row">
+                    <div class="demo-actions">
+                        @if($demo->demo_link)
                             <a href="{{ $demo->demo_link }}" target="_blank" class="action-btn edit">
                                 <i class="fas fa-up-right-from-square"></i>
                                 Ouvrir
                             </a>
-
-                            <button type="submit" class="action-btn success">
-                                <i class="fas fa-save"></i>
-                                Enregistrer
-                            </button>
-                        </div>
-                    </form>
-
-                    <form method="POST"
-                        action="{{ route('admin.customer_portals.demos.destroy', $demo->id) }}"
-                        class="delete-form">
-                        @csrf
-                        @method('DELETE')
+                        @endif
 
                         <button type="submit"
-                                class="action-btn delete"
-                                onclick="return confirm('Supprimer cette démo ?')">
-                            <i class="fas fa-trash"></i>
-                            Supprimer
+                                form="demo-update-form-{{ $demo->id }}"
+                                class="action-btn success">
+                            <i class="fas fa-save"></i>
+                            Enregistrer
                         </button>
-                    </form>
+
+                        <form method="POST"
+                            action="{{ route('admin.customer_portals.demos.destroy', $demo->id) }}"
+                            class="delete-form">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit"
+                                    class="action-btn delete"
+                                    onclick="return confirm('Supprimer cette démo ?')">
+                                <i class="fas fa-trash"></i>
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
 
                 </div>
             @empty

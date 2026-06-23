@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Passer commande — Horizon Smart Systems',
+    'title' => 'Passer commande — HSS',
 
     'back_to_catalog' => 'Retour au catalogue',
 

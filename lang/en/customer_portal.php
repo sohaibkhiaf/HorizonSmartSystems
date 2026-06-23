@@ -2,7 +2,7 @@
 
 return [
 
-    'title' => 'Customer Portal — Horizon Smart Systems',
+    'title' => 'Customer Portal — HSS',
 
     'welcome_label' => 'Customer Portal',
     'hello' => 'Hello, :name',
@@ -44,4 +44,15 @@ return [
     'message_image_alt' => 'Message image',
 
     'refresh_messages' => 'Refresh the page to see the latest messages from the administration', 
+
+    'my_offers' => 'My Offers',
+    'offer_badge' => 'Special Offer',
+    'special_offer' => 'An offer is available for your account',
+    'offer_details' => 'Offer Details',
+    'no_offers' => 'No offers available at the moment',
+
+    'customer_demo' => 'Demo',
+    'customer_demo_subtitle' => 'View the demo directly from your customer portal.',
+    'open_demo_new_tab' => 'Open in a new tab',
+    'demo_iframe_title' => 'Demo preview',
 ];
