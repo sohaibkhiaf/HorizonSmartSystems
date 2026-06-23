@@ -174,18 +174,4 @@ class AdminCustomerPortalController extends Controller
         return back()->with('success', 'Offre supprimée avec succès.');
     }
 
-    public function updateCustomerDemoLink(Request $request, User $user)
-    {
-        abort_if($user->role !== 'customer', 404);
-
-        $data = $request->validate([
-            'customer_demo_link' => ['nullable', 'url', 'max:2000'],
-        ]);
-
-        $user->demo_link = $data['customer_demo_link'] ?? null;
-        $user->save();
-
-        return back()->with('success', "Lien de la démo mis à jour avec succès.");
-    }
-
 }

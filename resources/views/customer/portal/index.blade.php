@@ -8,11 +8,7 @@
 
 @section('content')
 
-<section class="portal-section">
-
-    @php
-        $customerDemoUrl = auth()->user()->demo_link;
-    @endphp
+<section class="portal-section {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
 
     <div class="portal-header">
         <div>
@@ -94,6 +90,10 @@
                             @endif
 
                         @if(!empty($demo->demo_link))
+                                <span class="demo-link">
+                                    {{ __('customer_portal.demo_show') }}
+                                    <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+                                </span>
                             </a>
                         @else
                             </div>
@@ -184,35 +184,6 @@
         </div>
 
     </div>
-
-    @if(!empty($customerDemoUrl))
-        <div class="portal-card iframe-demo-card">
-            <div class="iframe-demo-header">
-                <div>
-                    <h2>{{ __('customer_portal.customer_demo') }}</h2>
-                    <p>{{ __('customer_portal.customer_demo_subtitle') }}</p>
-                </div>
-
-                <a href="{{ $customerDemoUrl }}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="iframe-open-link">
-                    <i class="fa-solid fa-up-right-from-square"></i>
-                    {{ __('customer_portal.open_demo_new_tab') }}
-                </a>
-            </div>
-
-            <div class="demo-iframe-wrapper">
-                <iframe
-                    src="{{ $customerDemoUrl }}"
-                    title="{{ __('customer_portal.demo_iframe_title') }}"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-    @endif
 
     <div class="portal-card profile-card">
         <h2>{{ __('customer_portal.my_info') }}</h2>

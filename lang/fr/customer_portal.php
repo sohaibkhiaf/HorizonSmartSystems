@@ -55,5 +55,5 @@ return [
     'customer_demo' => 'Démo',
     'customer_demo_subtitle' => 'Consultez la démo directement depuis votre espace client.',
     'open_demo_new_tab' => 'Ouvrir dans un nouvel onglet',
-    'demo_iframe_title' => 'Aperçu de la démo',
+    'demo_show' => 'Voir la démo',
 ];

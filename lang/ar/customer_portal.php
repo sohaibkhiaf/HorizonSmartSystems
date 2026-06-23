@@ -54,5 +54,5 @@ return [
     'customer_demo' => 'الديمو',
     'customer_demo_subtitle' => 'يمكنك معاينة الديمو مباشرة من فضاء العميل.',
     'open_demo_new_tab' => 'فتح في نافذة جديدة',
-    'demo_iframe_title' => 'معاينة الديمو',
+    'demo_show' =>  'عرض النسخة التجريبية',
 ];

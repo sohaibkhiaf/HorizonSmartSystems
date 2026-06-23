@@ -54,5 +54,5 @@ return [
     'customer_demo' => 'Demo',
     'customer_demo_subtitle' => 'View the demo directly from your customer portal.',
     'open_demo_new_tab' => 'Open in a new tab',
-    'demo_iframe_title' => 'Demo preview',
+    'demo_show' => 'View Demo',
 ];

@@ -46,34 +46,6 @@
                 </div>
             </div>
 
-            <form method="POST"
-                  action="{{ route('admin.customer_portals.demo_link.update', $user->id) }}"
-                  class="customer-demo-link-form">
-                @csrf
-                @method('PUT')
-
-                <div class="form-group">
-                    <label>Lien général de la démo</label>
-                    <input type="url"
-                           name="customer_demo_link"
-                           value="{{ old('customer_demo_link', $user->demo_link) }}"
-                           placeholder="https://demo.example.com">
-                </div>
-
-                <div class="customer-demo-link-actions">
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-save"></i>
-                        Enregistrer le lien
-                    </button>
-
-                    @if($user->demo_link)
-                        <a href="{{ $user->demo_link }}" target="_blank" class="action-btn edit">
-                            <i class="fas fa-up-right-from-square"></i>
-                            Ouvrir le lien actuel
-                        </a>
-                    @endif
-                </div>
-            </form>
         </div>
     </div>
 

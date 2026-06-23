@@ -208,7 +208,7 @@
 }
 
 .demo-note {
-    margin: 0 12px 12px;
+    margin: 0 12px 5px;
     padding: 10px;
     background: #f8fafc;
     border: 1px solid #e5e7eb;
@@ -230,6 +230,30 @@
     line-height: 1.55;
     white-space: pre-line;
 }
+
+
+.demo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 12px 12px;
+    color: #0f7cff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.demo-link i {
+    transition: transform 0.22s ease;
+}
+
+.demo-card:hover .demo-link i {
+    transform: translateX(2px);
+}
+
+.portal-section.is-rtl .demo-card:hover .demo-link i {
+    transform: translateX(-2px);
+}
+
 
 /* Chat */
 

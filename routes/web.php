@@ -208,9 +208,6 @@ Route::prefix('admin')
         ->name('customer_portals.demos.destroy');
     Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
         ->name('customer_portals.messages.send');
-    Route::put('/customer-portals/{user}/demo-link', [AdminCustomerPortalController::class, 'updateCustomerDemoLink'])
-        ->name('customer_portals.demo_link.update');
-
 
     // PUBLIC HERO  ///////////////////////////////////////////////////////////
     Route::get('/hero/{hero}', [PublicHeroController::class, 'show'])
