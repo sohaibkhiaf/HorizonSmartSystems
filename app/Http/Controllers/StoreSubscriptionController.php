@@ -40,7 +40,7 @@ class StoreSubscriptionController extends Controller
             'price'       => 'required|integer|min:0',
             'discount'    => 'nullable|integer|min:0',
             'image'       => 'nullable',
-            'type'        => 'required|in:key,account,invitation',
+            'type'        => 'nullable|in:key,account,invitation',
             'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 
@@ -82,7 +82,7 @@ class StoreSubscriptionController extends Controller
             'price'       => 'required|integer|min:0',
             'discount'    => 'nullable|integer|min:0',
             'image'       => 'nullable',
-            'type'        => 'required|in:key,account,invitation',
+            'type'        => 'nullable|in:key,account,invitation',
             'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 

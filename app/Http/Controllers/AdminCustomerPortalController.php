@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerChatMessage;
+use App\Models\ChatMessage;
 use App\Models\CustomerDemo;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -138,7 +138,7 @@ class AdminCustomerPortalController extends Controller
             $imagePath = $request->file('image')->store('customer_chat', 'public');
         }
 
-        CustomerChatMessage::create([
+        ChatMessage::create([
             'user_id' => $user->id,
 
             'sender_type' => 'admin',

@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CustomerChatMessage extends Model
+class ChatMessage extends Model
 {
-    /** @use HasFactory<\Database\Factories\CustomerChatMessageFactory> */
     use HasFactory, SoftDeletes;
-
+    
     protected $fillable = [
         'user_id',
         'sender_type',
@@ -29,7 +28,7 @@ class CustomerChatMessage extends Model
         'is_seen' => 'boolean',
     ];
 
-    // Customer conversation owner
+    // conversation owner
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -49,22 +48,6 @@ class CustomerChatMessage extends Model
     {
         return $this->belongsTo(CustomerGroup::class);
     }
-
-    // public function getSenderDisplayNameAttribute(): string
-    // {
-    //     return $this->sender_name
-    //         ?: ($this->sender?->name ?: ($this->sender_type === 'customer' ? 'Client' : 'Admin'));
-    // }
-
-    // public function getReceiverDisplayNameAttribute(): string
-    // {
-    //     if ($this->customer_group_id && $this->customerGroup) {
-    //         return 'Groupe : ' . $this->customerGroup->name;
-    //     }
-
-    //     return $this->receiver_name
-    //         ?: ($this->receiver?->name ?: 'Tous les admins / opérateurs');
-    // }
 
     public function getSenderDisplayNameAttribute(): string
     {

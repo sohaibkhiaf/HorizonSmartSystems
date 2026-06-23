@@ -40,8 +40,8 @@
             </div>
 
             <div class="form-group">
-                <label>Type <span class="required">*</span></label>
-                <select name="type" required>
+                <label>Type</label>
+                <select name="type">
                     <option value="">-- Sélectionner --</option>
                     <option value="key" {{ $subscription && $subscription->type == 'key' ? 'selected' : '' }}>Clé</option>
                     <option value="account" {{ $subscription && $subscription->type == 'account' ? 'selected' : '' }}>Compte</option>

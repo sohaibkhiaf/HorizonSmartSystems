@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\CustomerChatMessage;
+use App\Models\ChatMessage;
 use App\Models\CustomerDemo;
 use App\Models\PublicAchievement;
 use App\Models\PublicMessage;
@@ -10,8 +10,7 @@ use App\Models\PublicService;
 use App\Models\PublicSoftware;
 use App\Models\StoreRequest;
 use App\Models\StoreSubscription;
-use App\Models\User;
-use App\Observers\CustomerChatMessageObserver;
+use App\Observers\ChatMessageObserver;
 use App\Observers\CustomerDemoObserver;
 use App\Observers\PublicAchievementObserver;
 use App\Observers\PublicMessageObserver;
@@ -19,7 +18,6 @@ use App\Observers\PublicServiceObserver;
 use App\Observers\PublicSoftwareObserver;
 use App\Observers\StoreRequestObserver;
 use App\Observers\StoreSubscriptionObserver;
-use App\Observers\UserObserver;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -67,6 +65,6 @@ class AppServiceProvider extends ServiceProvider
         StoreRequest::observe(StoreRequestObserver::class);
 
         CustomerDemo::observe(CustomerDemoObserver::class);
-        CustomerChatMessage::observe(CustomerChatMessageObserver::class);
+        ChatMessage::observe(ChatMessageObserver::class);
     }
 }

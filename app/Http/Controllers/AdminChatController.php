@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomerChatMessage;
+use App\Models\ChatMessage;
 use App\Models\CustomerGroup;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +39,7 @@ class AdminChatController extends Controller
             ->latest()
             ->get();
 
-        $messagesQuery = CustomerChatMessage::query()
+        $messagesQuery = ChatMessage::query()
             ->with([
                 'user:id,name,email,role',
                 'sender:id,name,email,role',
@@ -206,7 +206,7 @@ class AdminChatController extends Controller
                 ->where('role', 'customer')
                 ->findOrFail($data['customer_id']);
 
-            CustomerChatMessage::create([
+            ChatMessage::create([
                 'user_id' => $customer->id,
                 'sender_type' => 'admin',
                 'sender_id' => $sender->id,
@@ -220,7 +220,7 @@ class AdminChatController extends Controller
                 'is_seen' => true,
             ]);
 
-            CustomerChatMessage::query()
+            ChatMessage::query()
                 ->where('user_id', $customer->id)
                 ->where('sender_type', 'customer')
                 ->where('is_seen', false)
@@ -244,7 +244,7 @@ class AdminChatController extends Controller
                 }
             }
 
-            CustomerChatMessage::create([
+            ChatMessage::create([
                 'user_id' => null,
                 'sender_type' => 'admin',
                 'sender_id' => $sender->id,
@@ -276,7 +276,7 @@ class AdminChatController extends Controller
 
         DB::transaction(function () use ($group, $sender, $messageText, $data, $imagePath) {
             foreach ($group->customers as $customer) {
-                CustomerChatMessage::create([
+                ChatMessage::create([
                     'user_id' => $customer->id,
                     'sender_type' => 'admin',
                     'sender_id' => $sender->id,
@@ -541,7 +541,7 @@ class AdminChatController extends Controller
             return;
         }
 
-        CustomerChatMessage::query()
+        ChatMessage::query()
             ->whereIn('user_id', $customerIds)
             ->where('sender_type', 'customer')
             ->where('is_seen', false)

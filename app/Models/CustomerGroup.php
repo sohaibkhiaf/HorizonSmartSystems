@@ -28,6 +28,6 @@ class CustomerGroup extends Model
 
     public function messages()
     {
-        return $this->hasMany(CustomerChatMessage::class);
+        return $this->hasMany(ChatMessage::class);
     }
 }

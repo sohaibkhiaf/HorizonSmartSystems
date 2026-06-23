@@ -24,7 +24,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => Admin::class,
             'customer' => Customer::class,
-            'operator' => Operator::class,
             'admin_or_operator' => AdminOrOperator::class,
         ]);
 

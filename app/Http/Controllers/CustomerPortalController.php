@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerChatMessage;
+use App\Models\ChatMessage;
 use App\Models\PublicHero;
 use App\Models\PublicService;
 use Illuminate\Http\Request;
@@ -72,7 +72,7 @@ class CustomerPortalController extends Controller
             $imagePath = $request->file('image')->store('customer_chat', 'public');
         }
 
-        CustomerChatMessage::create([
+        ChatMessage::create([
             'user_id' => auth()->id(),
 
             'sender_type' => 'customer',

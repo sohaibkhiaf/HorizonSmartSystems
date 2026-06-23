@@ -24,9 +24,9 @@ return new class extends Migration
 
             $table->enum('type', [
                 'key', // Clé
-                'account', // Compte
+                'account',  // Compte
                 'invitation', // Invitation
-            ])->default('key'); 
+            ])->nullable()->default(null);
 
             $table->enum('category', [
                 'games', // Jeux

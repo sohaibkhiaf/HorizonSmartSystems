@@ -3,6 +3,7 @@
 @section('title', __('store.title'))
 
 @section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{ asset('css/store/index.css') }}">
 @endsection
 
@@ -11,94 +12,6 @@
 @php
     $currentCategory = request('category', $category ?? 'all');
     $currentSearch = request('search', $search ?? '');
-
-    $locale = app()->getLocale();
-
-    $ui = [
-        'fr' => [
-            'kicker' => 'Boutique Horizon PC',
-            'intro' => 'Trouvez rapidement vos jeux, cartes cadeaux, logiciels et abonnements avec une commande simple et rapide.',
-            'products' => 'Produits',
-            'categories' => 'Catégories',
-            'offers' => 'Offres',
-            'quick_categories' => 'Catégories rapides',
-            'bestsellers_title' => 'Meilleures ventes',
-            'bestsellers_text' => 'Les produits les plus demandés par nos clients.',
-            'products_title' => 'Tous les produits',
-            'search_title' => 'Résultats de recherche',
-            'category_title' => 'Produits de la catégorie',
-            'all_text' => 'Parcourez tous les produits disponibles dans la boutique.',
-            'search_text' => 'Produits correspondant à votre recherche.',
-            'category_text' => 'Produits filtrés selon la catégorie sélectionnée.',
-            'result' => 'produit(s)',
-            'fast_order' => 'Commande rapide',
-            'trusted' => 'Boutique Horizon',
-            'view_product' => 'Voir le produit',
-            'best' => 'Best seller',
-        ],
-        'ar' => [
-            'kicker' => 'متجر Horizon PC',
-            'intro' => 'اختر الألعاب، بطاقات الهدايا، البرامج والاشتراكات واطلبها بسرعة وسهولة.',
-            'products' => 'منتجات',
-            'categories' => 'أقسام',
-            'offers' => 'عروض',
-            'quick_categories' => 'الأقسام',
-            'bestsellers_title' => 'الأكثر طلبا',
-            'bestsellers_text' => 'المنتجات التي يطلبها العملاء بكثرة.',
-            'products_title' => 'كل المنتجات',
-            'search_title' => 'نتائج البحث',
-            'category_title' => 'منتجات القسم',
-            'all_text' => 'تصفح جميع المنتجات المتوفرة في المتجر.',
-            'search_text' => 'منتجات مطابقة لبحثك.',
-            'category_text' => 'منتجات حسب القسم المحدد.',
-            'result' => 'منتج',
-            'fast_order' => 'طلب سريع',
-            'trusted' => 'متجر Horizon',
-            'view_product' => 'عرض المنتج',
-            'best' => 'الأكثر طلبا',
-        ],
-        'en' => [
-            'kicker' => 'Horizon PC Store',
-            'intro' => 'Find games, gift cards, software and subscriptions with a simple and fast order process.',
-            'products' => 'Products',
-            'categories' => 'Categories',
-            'offers' => 'Offers',
-            'quick_categories' => 'Quick categories',
-            'bestsellers_title' => 'Bestsellers',
-            'bestsellers_text' => 'The products most requested by our customers.',
-            'products_title' => 'All products',
-            'search_title' => 'Search results',
-            'category_title' => 'Category products',
-            'all_text' => 'Browse all available products in the store.',
-            'search_text' => 'Products matching your search.',
-            'category_text' => 'Products filtered by the selected category.',
-            'result' => 'product(s)',
-            'fast_order' => 'Fast order',
-            'trusted' => 'Horizon Store',
-            'view_product' => 'View product',
-            'best' => 'Best seller',
-        ],
-    ][$locale] ?? [
-        'kicker' => 'Horizon PC Store',
-        'intro' => 'Find games, gift cards, software and subscriptions with a simple and fast order process.',
-        'products' => 'Products',
-        'categories' => 'Categories',
-        'offers' => 'Offers',
-        'quick_categories' => 'Quick categories',
-        'bestsellers_title' => 'Bestsellers',
-        'bestsellers_text' => 'The products most requested by our customers.',
-        'products_title' => 'All products',
-        'search_title' => 'Search results',
-        'category_title' => 'Category products',
-        'all_text' => 'Browse all available products in the store.',
-        'search_text' => 'Products matching your search.',
-        'category_text' => 'Products filtered by the selected category.',
-        'result' => 'product(s)',
-        'fast_order' => 'Fast order',
-        'trusted' => 'Horizon Store',
-        'view_product' => 'View product',
-        'best' => 'Best seller',
-    ];
 
     $categories = [
         'all' => [
@@ -140,21 +53,23 @@
     $hasSearch = !empty($currentSearch);
 
     if ($hasSearch) {
-        $sectionTitle = $ui['search_title'];
-        $sectionText = $ui['search_text'];
+        $sectionTitle = __('store.index.search_title');
+        $sectionText = __('store.index.search_text');
     } elseif ($currentCategory !== 'all') {
-        $sectionTitle = $ui['category_title'] . ' : ' . ($categories[$currentCategory]['label'] ?? '');
-        $sectionText = $ui['category_text'];
+        $sectionTitle = __('store.index.category_title', [
+            'category' => $categories[$currentCategory]['label'] ?? '',
+        ]);
+        $sectionText = __('store.index.category_text');
     } else {
-        $sectionTitle = $ui['products_title'];
-        $sectionText = $ui['all_text'];
+        $sectionTitle = __('store.index.products_title');
+        $sectionText = __('store.index.all_text');
     }
 @endphp
 
 <main class="store-page {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
 
     @php
-        $heroImage = asset('images/subscriptions.png');
+        $heroImage = asset('images/store_hero.png');
     @endphp
 
     <!-- Store Hero -->
@@ -162,25 +77,23 @@
         class="store-hero-section"
         style="--store-hero-image: url('{{ $heroImage }}');">
 
-        <div class="store-hero-overlay"></div>
-
         <div class="store-hero-inner">
 
             <div class="store-hero-content">
                 <span class="store-kicker">
                     <i class="fa-solid fa-store"></i>
-                    {{ $ui['kicker'] }}
+                    {{ __('store.index.kicker') }}
                 </span>
 
                 <h1>{{ __('store.title') }}</h1>
 
                 <p>
-                    {{ $ui['intro'] }}
+                    {{ __('store.index.intro') }}
                 </p>
 
                 <div class="store-hero-actions">
                     <a href="#products_section" class="hero-btn hero-btn-primary">
-                        {{ $ui['products'] }}
+                        {{ __('store.index.products') }}
                         <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
                     </a>
 
@@ -195,19 +108,19 @@
                 <div class="store-highlight">
                     <i class="fa-solid fa-box"></i>
                     <strong>{{ $totalSubscriptions ?? 0 }}</strong>
-                    <span>{{ $ui['products'] }}</span>
+                    <span>{{ __('store.index.products') }}</span>
                 </div>
 
                 <div class="store-highlight">
                     <i class="fa-solid fa-layer-group"></i>
                     <strong>{{ count($categories) - 1 }}</strong>
-                    <span>{{ $ui['categories'] }}</span>
+                    <span>{{ __('store.index.categories') }}</span>
                 </div>
 
                 <div class="store-highlight">
                     <i class="fa-solid fa-tag"></i>
                     <strong>{{ $discountedCount ?? 0 }}</strong>
-                    <span>{{ $ui['offers'] }}</span>
+                    <span>{{ __('store.index.offers') }}</span>
                 </div>
             </div>
 
@@ -218,7 +131,7 @@
     <section class="category-pills-section">
         <div class="section-top">
             <div>
-                <span>{{ $ui['quick_categories'] }}</span>
+                <span><i class="fa-solid fa-layer-group"></i>{{ __('store.index.quick_categories') }}</span>
             </div>
         </div>
 
@@ -242,7 +155,7 @@
     </section>
 
     <!-- Search + Categories Combined -->
-    <section class="store-search-section"  id="search_section">
+    <section class="store-search-section" id="search_section">
         <form method="GET" action="{{ route('store.index') }}" class="search-form">
 
             <div class="search-input-box">
@@ -270,12 +183,12 @@
 
             <div class="search-actions">
                 @if (!empty($currentSearch) || $currentCategory !== 'all')
-                    <a href="{{ route('store.index') }}" class="btn-reset">
+                    <a href="{{ route('store.index') }}" class="btn-reset" aria-label="{{ __('store.reset') }}">
                         <i class="fa-solid fa-rotate"></i>
                     </a>
                 @endif
 
-                <button type="submit" class="btn-search">
+                <button type="submit" class="btn-search" aria-label="{{ __('store.search_placeholder') }}">
                     <i class="fa-solid fa-search"></i>
                 </button>
             </div>
@@ -285,88 +198,92 @@
 
     <!-- Bestsellers: hidden when search is active -->
     @if(!$hasSearch && isset($bestSellers) && $bestSellers->isNotEmpty())
-        <section class="bestsellers-section" data-slider>
+        <section class="bestsellers-section">
             <div class="section-top">
                 <div>
                     <span>
                         <i class="fa-solid fa-fire"></i>
-                        {{ $ui['best'] }}
+                        {{ __('store.index.best') }}
                     </span>
 
-                    <h2>{{ $ui['bestsellers_title'] }}</h2>
-                    <p>{{ $ui['bestsellers_text'] }}</p>
+                    <h2>{{ __('store.index.bestsellers_title') }}</h2>
+                    <p>{{ __('store.index.bestsellers_text') }}</p>
                 </div>
             </div>
 
             <div class="bestseller-slider-shell">
-                <button type="button" class="slider-btn" data-slider-prev>
-                    <i class="fa-solid fa-angle-left"></i>
+                <button type="button" class="bestseller-nav bestseller-prev" aria-label="{{ __('store.index.previous') }}">
+                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
                 </button>
 
-                <div class="bestseller-track" data-slider-track>
-                    @foreach($bestSellers as $item)
-                        @php
-                            $hasDiscount = !empty($item->discount) && $item->discount > 0;
-                            $finalPrice = $hasDiscount ? $item->discount : $item->price;
-                            $discountPercentage = null;
+                <div class="swiper bestseller-swiper" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                    <div class="swiper-wrapper">
+                        @foreach($bestSellers as $item)
+                            @php
+                                $hasDiscount = !empty($item->discount) && $item->discount > 0;
+                                $finalPrice = $hasDiscount ? $item->discount : $item->price;
+                                $discountPercentage = null;
 
-                            if ($hasDiscount && $item->price > 0) {
-                                $discountPercentage = round((($item->price - $item->discount) * 100) / $item->price, 2);
-                            }
-                        @endphp
+                                if ($hasDiscount && $item->price > 0) {
+                                    $discountPercentage = round((($item->price - $item->discount) * 100) / $item->price, 2);
+                                }
+                            @endphp
 
-                        <a class="bestseller-card" href="{{ route('store.order', ['subscription' => $item]) }}">
+                            <div class="swiper-slide">
+                                <a class="bestseller-card" href="{{ route('store.order', ['subscription' => $item]) }}">
 
-                            <div class="bestseller-image">
-                                @if($item->image)
-                                    <img
-                                        src="{{ asset('uploads/' . $item->image) }}"
-                                        alt="{{ $item->name }}"
-                                        loading="lazy">
-                                @else
-                                    <div class="image-placeholder">
-                                        <i class="fa-solid fa-box-open"></i>
+                                    <div class="bestseller-image">
+                                        @if($item->image)
+                                            <img
+                                                src="{{ asset('uploads/' . $item->image) }}"
+                                                alt="{{ $item->name }}"
+                                                loading="lazy">
+                                        @else
+                                            <div class="image-placeholder">
+                                                <i class="fa-solid fa-box-open"></i>
+                                            </div>
+                                        @endif
+
+                                        @if($discountPercentage)
+                                            <span class="discount-badge" dir="ltr">
+                                                -{{ $discountPercentage }}%
+                                            </span>
+                                        @endif
                                     </div>
-                                @endif
 
-                                @if($discountPercentage)
-                                    <span class="discount-badge" dir="ltr">
-                                        -{{ $discountPercentage }}%
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="bestseller-content">
-                                <span class="bestseller-category">
-                                    {{ $categories[$item->category]['label'] ?? __('store.na') }}
-                                </span>
-
-                                <h3>{{ $item->name }}</h3>
-
-                                <div class="subscription-price-wrapper">
-                                    @if($hasDiscount)
-                                        <span class="old-price">
-                                            {{ $item->price }} {{ __('store.da') }}
+                                    <div class="bestseller-content">
+                                        <span class="bestseller-category">
+                                            {{ $categories[$item->category]['label'] ?? __('store.na') }}
                                         </span>
-                                    @endif
 
-                                    <span class="subscription-price">
-                                        {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
-                                    </span>
-                                </div>
+                                        <h3>{{ $item->name }}</h3>
 
-                                <span class="bestseller-link">
-                                    {{ $ui['view_product'] }}
-                                    <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
-                                </span>
+                                        <div class="subscription-price-wrapper">
+                                            @if($hasDiscount)
+                                                <span class="old-price">
+                                                    {{ $item->price }} {{ __('store.da') }}
+                                                </span>
+                                            @endif
+
+                                            <span class="subscription-price">
+                                                {{ $finalPrice }} {{ __('store.da') }}
+                                            </span>
+                                        </div>
+
+                                        <span class="bestseller-link">
+                                            {{ __('store.index.view_product') }}
+                                            <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+                                        </span>
+                                    </div>
+
+                                </a>
                             </div>
-
-                        </a>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
 
-                <button type="button" class="slider-btn" data-slider-next>
-                    <i class="fa-solid fa-angle-right"></i>
+                <button type="button" class="bestseller-nav bestseller-next" aria-label="{{ __('store.index.next') }}">
+                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
                 </button>
             </div>
         </section>
@@ -377,13 +294,13 @@
 
         <div class="products-section-header">
             <div>
-                <span>{{ __('store.title') }}</span>
+                <span><i class="fa-solid fa-store"></i> {{ __('store.title') }}</span>
                 <h2>{{ $sectionTitle }}</h2>
                 <p>{{ $sectionText }}</p>
             </div>
 
             <strong>
-                {{ $subscriptions->total() }} {{ $ui['result'] }}
+                {{ $subscriptions->total() }} {{ __('store.index.result') }}
             </strong>
         </div>
 
@@ -440,7 +357,7 @@
                                     @endif
 
                                     <span class="subscription-price">
-                                        {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                                        {{ $finalPrice }} {{ __('store.da') }}
                                     </span>
                                 </div>
                             </div>
@@ -461,18 +378,6 @@
                                         {{ $types[$subscription->type] }}
                                     </span>
                                 @endif
-                            </div>
-
-                            <div class="subscription-details">
-                                <span>
-                                    <i class="fa-solid fa-bolt"></i>
-                                    {{ $ui['fast_order'] }}
-                                </span>
-
-                                <span>
-                                    <i class="fa-solid fa-shield-halved"></i>
-                                    {{ $ui['trusted'] }}
-                                </span>
                             </div>
 
                             <span class="order-btn">
@@ -531,30 +436,50 @@
 
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-slider]').forEach((slider) => {
-        const track = slider.querySelector('[data-slider-track]');
-        const prev = slider.querySelector('[data-slider-prev]');
-        const next = slider.querySelector('[data-slider-next]');
+    const bestsellerSlider = document.querySelector('.bestseller-swiper');
 
-        if (!track || !prev || !next) return;
+    if (!bestsellerSlider || typeof Swiper === 'undefined') return;
 
-        const getStep = () => Math.max(track.clientWidth * 0.75, 260);
-
-        prev.addEventListener('click', () => {
-            track.scrollBy({
-                left: -getStep(),
-                behavior: 'smooth'
-            });
-        });
-
-        next.addEventListener('click', () => {
-            track.scrollBy({
-                left: getStep(),
-                behavior: 'smooth'
-            });
-        });
+    new Swiper(bestsellerSlider, {
+        slidesPerView: 1.15,
+        spaceBetween: 14,
+        grabCursor: true,
+        watchOverflow: true,
+        centeredSlides: true,
+        navigation: {
+            nextEl: '.bestseller-next',
+            prevEl: '.bestseller-prev',
+        },
+        breakpoints: {
+            560: {
+                slidesPerView: 2,
+                spaceBetween: 16,
+                centeredSlides: false,
+            },
+            820: {
+                slidesPerView: 3,
+                spaceBetween: 16,
+                centeredSlides: false,
+            },
+            1100: {
+                slidesPerView: 4,
+                spaceBetween: 18,
+                centeredSlides: false,
+            },
+            1500: {
+                slidesPerView: 5,
+                spaceBetween: 18,
+                centeredSlides: false,
+            },
+            1900: {
+                slidesPerView: 6,
+                spaceBetween: 20,
+                centeredSlides: false,
+            },
+        },
     });
 });
 </script>

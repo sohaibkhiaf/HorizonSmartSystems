@@ -55,29 +55,42 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
-.swiper-button-next,
-.swiper-button-prev {
-    height: 42px;
-    width: 42px;
-    border-radius: 15px; /* more rounded */
-
-    display: flex;
+.home-swiper-shell {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
     align-items: center;
-    justify-content: center;
-
-    background: #2f2f2f;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-
-    color: #fff;
-    border: none;
-    transition: all 0.2s ease;
-    padding: 11px;
+    gap: 10px;
 }
 
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-    background: #1f1f1f;
+.home-swiper-nav {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.home-swiper-nav i {
+    font-size: 15px;
+}
+
+.home-swiper-nav:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary);
+    color: #ffffff;
     transform: translateY(-2px);
+}
+
+.home-swiper-nav.swiper-button-disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 /* =========================================================
@@ -434,6 +447,7 @@ a {
 .services-swiper,
 .achievements-swiper {
     width: 100%;
+    min-width: 0;
 }
 
 .services-group .swiper-wrapper,
@@ -581,7 +595,7 @@ a {
     line-height: 1.7;
 
     display: -webkit-box;
-    -webkit-line-clamp: 15; /* number of lines */
+    -webkit-line-clamp: 12; /* number of lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -1291,6 +1305,14 @@ a {
     /* Global / Layout */
     :root {
         --section-padding-y: 70px;
+    }
+
+    .home-swiper-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .home-swiper-nav {
+        display: none;
     }
 
     /* Hero Section */

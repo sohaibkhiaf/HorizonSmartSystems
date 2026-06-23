@@ -62,55 +62,61 @@
         <!-- Main Services -->
         <div class="services-group">
 
-            <div class="swiper services-swiper">
-                <div class="swiper-wrapper">
+            <div class="home-swiper-shell">
+                <button type="button" class="home-swiper-nav services-prev" aria-label="Previous">
+                    <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                </button>
 
-                    @foreach ($services as $service )
-                        @if ($service->type == 'main' && $service->is_published)
-                        <div class="swiper-slide">
-                            <div class="service-card">
-                                <div class="service-image">
-                                    @if($service->image)
-                                        <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->name }}">
-                                    @else
-                                        <div class="image-placeholder">
-                                            <i class="fa-solid fa-image"></i>
-                                        </div>
-                                    @endif
-                                </div>
-                                <h3>
-                                    @if (app()->getLocale() == 'ar')
-                                        {{ $service->ar_name }}
-                                    @elseif(app()->getLocale() == 'fr')
-                                        {{ $service->fr_name }}
-                                    @else
-                                        {{ $service->en_name }}
-                                    @endif
-                                </h3>
-                                <p>
-                                    @if (app()->getLocale() == 'ar')
-                                        {{ $service->ar_short_description }}
-                                    @elseif(app()->getLocale() == 'fr')
-                                        {{ $service->fr_short_description }}
-                                    @else
-                                        {{ $service->en_short_description }}
-                                    @endif
-                                </p>
-                                <a href="{{ route('services.show', $service) }}" class="plus-link">
-                                    {{ __('home.learn_more') }}
-                                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                                </a>
-                            </div>   
-                        </div>
+                <div class="swiper services-swiper">
+                    <div class="swiper-wrapper">
 
-                        @endif          
-                    @endforeach
+                        @foreach ($services as $service )
+                            @if ($service->type == 'main' && $service->is_published)
+                            <div class="swiper-slide">
+                                <div class="service-card">
+                                    <div class="service-image">
+                                        @if($service->image)
+                                            <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->name }}">
+                                        @else
+                                            <div class="image-placeholder">
+                                                <i class="fa-solid fa-image"></i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <h3>
+                                        @if (app()->getLocale() == 'ar')
+                                            {{ $service->ar_name }}
+                                        @elseif(app()->getLocale() == 'fr')
+                                            {{ $service->fr_name }}
+                                        @else
+                                            {{ $service->en_name }}
+                                        @endif
+                                    </h3>
+                                    <p>
+                                        @if (app()->getLocale() == 'ar')
+                                            {{ $service->ar_short_description }}
+                                        @elseif(app()->getLocale() == 'fr')
+                                            {{ $service->fr_short_description }}
+                                        @else
+                                            {{ $service->en_short_description }}
+                                        @endif
+                                    </p>
+                                    <a href="{{ route('services.show', $service) }}" class="plus-link">
+                                        {{ __('home.learn_more') }}
+                                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                                    </a>
+                                </div>   
+                            </div>
 
+                            @endif          
+                        @endforeach
+
+                    </div>
                 </div>
 
-                <!-- Navigation buttons -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+                <button type="button" class="home-swiper-nav services-next" aria-label="Next">
+                    <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                </button>
             </div>
         </div>
 
@@ -265,68 +271,74 @@
             </p>
         </div>
 
-        <div class="swiper achievements-swiper">
-            <div class="swiper-wrapper">
+        <div class="home-swiper-shell">
+            <button type="button" class="home-swiper-nav achievements-prev" aria-label="Previous">
+                <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+            </button>
 
-                @foreach($achievements as $achievement)
-                    <div class="swiper-slide">
-                        <div class="acheivement-card">
-                            <div class="acheivement-image">
-                                @if($achievement->image)
-                                    <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
-                                @else
-                                    <div class="image-placeholder">
-                                        <i class="fa-solid fa-image"></i>
-                                    </div>
-                                @endif
-                            </div>
-                            <div class="acheivement-content">
-                                <div class="acheivement-header">
-                                    <h3>
-                                        @if (app()->getLocale() == 'ar')
-                                            {{ $achievement->ar_title }}
-                                        @elseif(app()->getLocale() == 'fr')
-                                            {{ $achievement->fr_title }}
-                                        @else
-                                            {{ $achievement->en_title }}
-                                        @endif
-                                    </h3>
-                                    <span class="type">
-                                        @if (app()->getLocale() == 'ar')
-                                            {{ $achievement->ar_type }}
-                                        @elseif(app()->getLocale() == 'fr')
-                                            {{ $achievement->fr_type }}
-                                        @else
-                                            {{ $achievement->en_type }}
-                                        @endif
-                                    </span>
-                                </div>
-                                <p>
-                                    @if (app()->getLocale() == 'ar')
-                                        {{ $achievement->ar_short_description  }}
-                                    @elseif(app()->getLocale() == 'fr')
-                                        {{$achievement->fr_short_description  }}
+            <div class="swiper achievements-swiper">
+                <div class="swiper-wrapper">
+
+                    @foreach($achievements as $achievement)
+                        <div class="swiper-slide">
+                            <div class="acheivement-card">
+                                <div class="acheivement-image">
+                                    @if($achievement->image)
+                                        <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
                                     @else
-                                        {{ $achievement->en_short_description  }}
+                                        <div class="image-placeholder">
+                                            <i class="fa-solid fa-image"></i>
+                                        </div>
                                     @endif
-                                </p>
-                                @if($achievement->project_url)
-                                    <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
-                                        {{ __('home.view_project') }}
-                                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                                    </a>
-                                @endif
+                                </div>
+                                <div class="acheivement-content">
+                                    <div class="acheivement-header">
+                                        <h3>
+                                            @if (app()->getLocale() == 'ar')
+                                                {{ $achievement->ar_title }}
+                                            @elseif(app()->getLocale() == 'fr')
+                                                {{ $achievement->fr_title }}
+                                            @else
+                                                {{ $achievement->en_title }}
+                                            @endif
+                                        </h3>
+                                        <span class="type">
+                                            @if (app()->getLocale() == 'ar')
+                                                {{ $achievement->ar_type }}
+                                            @elseif(app()->getLocale() == 'fr')
+                                                {{ $achievement->fr_type }}
+                                            @else
+                                                {{ $achievement->en_type }}
+                                            @endif
+                                        </span>
+                                    </div>
+                                    <p>
+                                        @if (app()->getLocale() == 'ar')
+                                            {{ $achievement->ar_short_description  }}
+                                        @elseif(app()->getLocale() == 'fr')
+                                            {{$achievement->fr_short_description  }}
+                                        @else
+                                            {{ $achievement->en_short_description  }}
+                                        @endif
+                                    </p>
+                                    @if($achievement->project_url)
+                                        <a class="view-link" href="{{ $achievement->project_url }}" target="_blank" rel="noopener">
+                                            {{ __('home.view_project') }}
+                                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                @endforeach
+                    @endforeach
 
+                </div>
             </div>
 
-            <!-- Navigation buttons -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <button type="button" class="home-swiper-nav achievements-next" aria-label="Next">
+                <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+            </button>
         </div>
     </div>
 </section>
@@ -574,27 +586,30 @@ function scrollToSection(sectionId) {
 ========================================================================== */
 
 const swiper = new Swiper(".services-swiper", {
-    slidesPerView: 1,
+    slidesPerView: 1.15,
     spaceBetween: 10,
     grabCursor: true,
-
+    centeredSlides: true,
     navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: ".services-next",
+        prevEl: ".services-prev",
     },
 
     breakpoints: {
         480: {
             slidesPerView: 2,
             spaceBetween: 14,
+            centeredSlides: false,
         },
         768: {
             slidesPerView: 3,
             spaceBetween: 24,
+            centeredSlides: false,
         },
         1200: {
             slidesPerView: 4,
             spaceBetween: 28,
+            centeredSlides: false,
         },
     }
 });
@@ -605,23 +620,25 @@ const swiper = new Swiper(".services-swiper", {
 ========================================================================== */
 
 new Swiper(".achievements-swiper", {
-    slidesPerView: 1,
+    slidesPerView: 1.15,
     spaceBetween: 16,
     grabCursor: true,
-
+    centeredSlides: true,
     navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: ".achievements-next",
+        prevEl: ".achievements-prev",
     },
 
     breakpoints: {
         768: {
             slidesPerView: 2,
             spaceBetween: 24,
+            centeredSlides: false,
         },
         1024: {
             slidesPerView: 3,
             spaceBetween: 28,
+            centeredSlides: false,
         },
     }
 });
