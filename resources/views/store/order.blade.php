@@ -239,7 +239,7 @@
         hiddenQty.value = qty;
 
         const total = unitPrice * qty;
-        totalEl.textContent = total.toLocaleString('en-US') + ' ' + currencyLabel;
+        totalEl.textContent = total + ' ' + currencyLabel;
     }
 </script>
 
