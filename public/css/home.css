@@ -1451,7 +1451,7 @@ a {
         max-width: 420px;
         margin: 0 auto 24px;
         font-size: 28px;
-        line-height: 1.1;
+        line-height: 1.4;
         letter-spacing: -0.7px;
     }
 
@@ -1621,7 +1621,7 @@ a {
 
     /* Hero Section */
     .hero {
-        padding: 142px 5% 32px;
+        padding: 112px 5% 32px;
     }
 
     .hero-container {

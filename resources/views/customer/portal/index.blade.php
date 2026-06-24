@@ -54,10 +54,8 @@
                     @forelse($demos as $demo)
 
                         @if(!empty($demo->demo_link))
-                            <a href="{{ $demo->demo_link }}"
-                               target="_blank"
-                               rel="noopener noreferrer"
-                               class="demo-card demo-card-clickable">
+                            <a href="{{ route('customer.portal.demo.show', $demo->id) }}" target="_blank"
+                            class="demo-card demo-card-clickable">
                         @else
                             <div class="demo-card">
                         @endif

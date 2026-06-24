@@ -4,7 +4,7 @@ return [
 
 
 
-'title' => 'Store',
+    'title' => 'Store',
     'search_placeholder' => 'Search for a product',
     'da' => 'DA',
     'na' => 'N/A',

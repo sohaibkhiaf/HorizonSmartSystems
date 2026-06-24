@@ -92,4 +92,20 @@ class CustomerPortalController extends Controller
         return back()->with('success', 'Message envoyé avec succès.');
     }
 
+    public function demo($demo)
+    {
+        $user = auth()->user();
+
+        $demo = $user->demos()
+            ->where('is_active', true)
+            ->whereNotNull('demo_link')
+            ->where('demo_link', '!=', '')
+            ->findOrFail($demo);
+
+        $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
+
+        return view('customer.portal.demo', compact('user', 'demo', 'services', 'hero'));
+    }
+
 }

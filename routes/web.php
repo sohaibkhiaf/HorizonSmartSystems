@@ -231,6 +231,8 @@ Route::middleware(['auth' , 'customer'])
     Route::post('/portal/chat', [CustomerPortalController::class, 'sendMessage'])
         ->middleware('throttle:chat')
         ->name('portal_chat.send');
+    Route::get('/portal/offers/{demo}/demo', [CustomerPortalController::class, 'demo'])
+        ->name('portal.demo.show');
 });
 
 
