@@ -184,7 +184,7 @@
                         : 0;
                 @endphp
                 <strong>
-                    {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                    {{ $finalPrice }} {{ __('store.da') }}
                     @if($hasDiscount)
                         ({{ $discountPct }}% {{ __('order.off') }})
                     @endif
@@ -210,7 +210,7 @@
             <div class="total-box">
                 <span>{{ __('order.total') }}</span>
                 <strong id="total">
-                    {{ number_format($finalPrice, 0) }} {{ __('store.da') }}
+                    {{ $finalPrice }} {{ __('store.da') }}
                 </strong>
             </div>
 
