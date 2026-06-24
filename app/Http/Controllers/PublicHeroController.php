@@ -33,10 +33,10 @@ class PublicHeroController extends Controller
 
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
 
-            'facebook_url' => ['nullable', 'url', 'max:255'],
-            'instagram_url' => ['nullable', 'url', 'max:255'],
-            'whatsapp_url' => ['nullable', 'url', 'max:255'],
-            'linked_in_url' => ['nullable', 'url', 'max:255'], 
+            'facebook_url' => ['nullable', 'url', 'max:1000'],
+            'instagram_url' => ['nullable', 'url', 'max:1000'],
+            'whatsapp_url' => ['nullable', 'url', 'max:1000'],
+            'linked_in_url' => ['nullable', 'url', 'max:1000'], 
         ]);
 
         // image

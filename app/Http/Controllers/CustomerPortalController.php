@@ -56,7 +56,7 @@ class CustomerPortalController extends Controller
     {
         $data = $request->validate([
             'message' => ['nullable', 'string', 'max:2000'],
-            'link' => ['nullable', 'url', 'max:500'],
+            'link' => ['nullable', 'url', 'max:1000'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ]);
 

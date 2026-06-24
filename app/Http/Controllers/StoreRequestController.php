@@ -68,7 +68,7 @@ class StoreRequestController extends Controller
             'customer_full_name' => ['required', 'string', 'max:255'],
             'customer_contact' => ['required', 'string', 'max:50'],
             'customer_email' => ['nullable', 'email', 'max:255'],
-            'customer_address' => ['nullable', 'string', 'max:500'],
+            'customer_address' => ['nullable', 'string', 'max:255'],
         ]);
 
         $request = StoreRequest::findOrFail($id);
@@ -92,7 +92,7 @@ class StoreRequestController extends Controller
             'customer_full_name'    => 'required|string|max:255',
             'customer_contact'      => 'required|string|max:50',
             'customer_email'        => 'nullable|email|max:255',
-            'customer_address'      => 'nullable|string|max:500',
+            'customer_address'      => 'nullable|string|max:255',
             'quantity'            => 'required|integer|min:1',
             'unit_price'            => 'required|integer|min:1',
         ]);

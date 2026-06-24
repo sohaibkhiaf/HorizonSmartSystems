@@ -189,8 +189,8 @@
 
     <a href="{{ route('admin.store_subs.index') }}" class="tab-card">
         <i class="fas fa-box"></i>
-        <h3>Abonnements boutique</h3>
-        <p>Gérer les abonnements, clés, comptes et invitations.</p>
+        <h3>Produits boutique</h3>
+        <p>Gérer les produits, clés, comptes et invitations.</p>
     </a>
 
     <a href="{{ route('admin.store_requests.index') }}" class="tab-card">
