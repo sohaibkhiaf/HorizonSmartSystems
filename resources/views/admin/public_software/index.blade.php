@@ -28,7 +28,6 @@
                 <th>Logiciel</th>
                 <th>Type</th>
                 <th>Statut</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -80,10 +79,6 @@
                                 Masqué
                             </span>
                         @endif
-                    </td>
-
-                    <td class="description-cell">
-                        {{ Str::limit($software->fr_short_description, 80) }}
                     </td>
 
                     <td>

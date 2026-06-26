@@ -28,7 +28,6 @@
                 <th>Type</th>
                 <th>Statut</th>
                 <th>Lien</th>
-                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -86,11 +85,7 @@
                             </span>
                         @endif
                     </td>
-
-                    <td class="description-cell">
-                        {{ Str::limit($achievement->fr_short_description, 80) }}
-                    </td>
-
+                    
                     <td>
                         <div class="table-actions">
                             <a href="{{ route('admin.achievements.edit', $achievement) }}" class="action-btn edit">
