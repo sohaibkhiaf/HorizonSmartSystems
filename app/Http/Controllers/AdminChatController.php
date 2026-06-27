@@ -20,30 +20,30 @@ class AdminChatController extends Controller
         $customers = User::query()
             ->where('role', 'customer')
             ->orderBy('name')
-            ->get(['id', 'name', 'email', 'role']);
+            ->get(['id', 'name', 'username', 'role']);
 
         $admins = User::query()
             ->whereIn('role', $this->adminRoles)
             ->orderBy('name')
-            ->get(['id', 'name', 'email', 'role']);
+            ->get(['id', 'name', 'username', 'role']);
 
         $participants = User::query()
             ->whereIn('role', $this->participantRoles)
             ->orderBy('role')
             ->orderBy('name')
-            ->get(['id', 'name', 'email', 'role']);
+            ->get(['id', 'name', 'username', 'role']);
 
         $groups = CustomerGroup::query()
             ->withCount('customers')
-            ->with(['customers:id,name,email'])
+            ->with(['customers:id,name,username'])
             ->latest()
             ->get();
 
         $messagesQuery = ChatMessage::query()
             ->with([
-                'user:id,name,email,role',
-                'sender:id,name,email,role',
-                'receiver:id,name,email,role',
+                'user:id,name,username,role',
+                'sender:id,name,username,role',
+                'receiver:id,name,username,role',
                 'customerGroup:id,name',
             ])
             ->latest();
@@ -129,15 +129,15 @@ class AdminChatController extends Controller
                     ->orWhere('receiver_name', 'like', '%' . $search . '%')
                     ->orWhereHas('user', function ($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%')
-                            ->orWhere('email', 'like', '%' . $search . '%');
+                            ->orWhere('username', 'like', '%' . $search . '%');
                     })
                     ->orWhereHas('sender', function ($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%')
-                            ->orWhere('email', 'like', '%' . $search . '%');
+                            ->orWhere('username', 'like', '%' . $search . '%');
                     })
                     ->orWhereHas('receiver', function ($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%')
-                            ->orWhere('email', 'like', '%' . $search . '%');
+                            ->orWhere('username', 'like', '%' . $search . '%');
                     })
                     ->orWhereHas('customerGroup', function ($q) use ($search) {
                         $q->where('name', 'like', '%' . $search . '%');
@@ -183,20 +183,32 @@ class AdminChatController extends Controller
             'message' => ['nullable', 'string', 'max:2000'],
             'link' => ['nullable', 'url', 'max:500'],
             'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'voice_message' => ['nullable', 'file', 'mimes:mp3,wav,ogg,webm,m4a,aac,mp4', 'max:10240'],
         ]);
 
         $messageText = trim($data['message'] ?? '');
 
-        if ($messageText === '' && empty($data['link']) && !$request->hasFile('image')) {
+        if (
+            $messageText === '' &&
+            empty($data['link']) &&
+            !$request->hasFile('image') &&
+            !$request->hasFile('voice_message')
+        ) {
             return back()->withErrors([
-                'message' => 'Veuillez écrire un message, ajouter un lien ou joindre une image.',
+                'message' => 'Veuillez écrire un message, ajouter un lien, joindre une image ou ajouter un message vocal.',
             ])->withInput();
         }
 
         $imagePath = null;
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('customer_chat', 'public');
+            $imagePath = $request->file('image')->store('chat_files', 'public');
+        }
+
+        $voiceMessagePath = null;
+
+        if ($request->hasFile('voice_message')) {
+            $voiceMessagePath = $request->file('voice_message')->store('chat_files', 'public');
         }
 
         $sender = auth()->user();
@@ -217,6 +229,7 @@ class AdminChatController extends Controller
                 'message' => $messageText,
                 'link' => $data['link'] ?? null,
                 'image' => $imagePath,
+                'voice_message' => $voiceMessagePath,
                 'is_seen' => true,
             ]);
 
@@ -255,6 +268,7 @@ class AdminChatController extends Controller
                 'message' => $messageText,
                 'link' => $data['link'] ?? null,
                 'image' => $imagePath,
+                'voice_message' => $voiceMessagePath,
                 'is_seen' => true,
             ]);
 
@@ -274,7 +288,7 @@ class AdminChatController extends Controller
             ])->withInput();
         }
 
-        DB::transaction(function () use ($group, $sender, $messageText, $data, $imagePath) {
+        DB::transaction(function () use ($group, $sender, $messageText, $data, $imagePath, $voiceMessagePath) {
             foreach ($group->customers as $customer) {
                 ChatMessage::create([
                     'user_id' => $customer->id,
@@ -287,6 +301,7 @@ class AdminChatController extends Controller
                     'message' => $messageText,
                     'link' => $data['link'] ?? null,
                     'image' => $imagePath,
+                    'voice_message' => $voiceMessagePath,
                     'is_seen' => true,
                 ]);
             }

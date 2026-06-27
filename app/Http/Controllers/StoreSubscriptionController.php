@@ -20,77 +20,86 @@ class StoreSubscriptionController extends Controller
             ->when($request->filled('type'), function ($query) use ($request) {
                 $query->where('type', $request->type);
             })
+            ->when($request->has('is_published') && $request->is_published !== '', function ($query) use ($request) {
+                $query->where('is_published', (bool) $request->is_published);
+            })
+            ->orderByDesc('priority')
+            ->latest()
             ->paginate(10)
             ->withQueryString();
 
         return view('admin.store_subscriptions.index', compact('subscriptions'));
     }
-    
-    public function create() {
 
-        // view
+    public function create()
+    {
         return view('admin/store_subscriptions/create');
     }
 
-    public function store(Request $req) {
-
-        $req->validate([
-            'name'        => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price'       => 'required|integer|min:0',
-            'discount'    => 'nullable|integer|min:0',
-            'image'       => 'nullable',
-            'type'        => 'nullable|in:key,account,invitation',
-            'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
+    public function store(Request $req)
+    {
+        $validated = $req->validate([
+            'name'         => 'required|string|max:255',
+            'description'  => 'nullable|string',
+            'price'        => 'required|integer|min:0',
+            'discount'     => 'nullable|integer|min:0',
+            'priority'     => 'nullable|integer|min:0',
+            'is_published' => 'nullable|boolean',
+            'image'        => 'nullable',
+            'type'         => 'nullable|in:key,account,invitation',
+            'category'     => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 
-        // image
         $image_url = null;
+
         if ($req->hasFile('image')) {
             $image_url = $req->file('image')->store('subscriptions', 'public');
         }
+        
+        // is published
+        $validated['is_published'] = $req->boolean('is_published');
 
-        // create
         StoreSubscription::create([
-            'name' => $req->name,
-            'description' => $req->description,
-            'price' => $req->price, 
-            'discount' => $req->discount, 
-            'image' => $image_url,
-            'type' => $req->type,
-            'category' => $req->category,
+            'name'         => $validated['name'],
+            'description'  => $validated['description'] ?? null,
+            'price'        => $validated['price'],
+            'discount'     => $validated['discount'] ?? null,
+            'priority'     => $validated['priority'] ?? 0,
+            'is_published' => $validated['is_published'],
+            'image'        => $image_url,
+            'type'         => $validated['type'] ?? null,
+            'category'     => $validated['category'],
         ]);
 
-        // redirect
         return redirect()->route('admin.store_subs.index')
-            ->with('success', 'L’abonnement a été créé avec succès.');;
+            ->with('success', 'L’abonnement a été créé avec succès.');
     }
 
-    public function edit($id) {
-        // find
+    public function edit($id)
+    {
         $subscription = StoreSubscription::findOrFail($id);
 
-        // view
         return view('admin/store_subscriptions/edit', compact('subscription'));
     }
 
-    public function update(Request $req, $id) {
-
-        $req->validate([
-            'name'        => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price'       => 'required|integer|min:0',
-            'discount'    => 'nullable|integer|min:0',
-            'image'       => 'nullable',
-            'type'        => 'nullable|in:key,account,invitation',
-            'category'    => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
+    public function update(Request $req, $id)
+    {
+        $validated = $req->validate([
+            'name'         => 'required|string|max:255',
+            'description'  => 'nullable|string',
+            'price'        => 'required|integer|min:0',
+            'discount'     => 'nullable|integer|min:0',
+            'priority'     => 'nullable|integer|min:0',
+            'is_published' => 'nullable|boolean',
+            'image'        => 'nullable',
+            'type'         => 'nullable|in:key,account,invitation',
+            'category'     => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 
-        // find
         $subscription = StoreSubscription::findOrFail($id);
 
-        // image
         $image_url = $subscription->image;
+
         if ($req->hasFile('image')) {
             if ($subscription->image) {
                 Storage::disk('public')->delete($subscription->image);
@@ -99,27 +108,30 @@ class StoreSubscriptionController extends Controller
             $image_url = $req->file('image')->store('subscriptions', 'public');
         }
 
-        // update
+        // is published
+        $validated['is_published'] = $req->boolean('is_published');
+
         $subscription->update([
-            'name' => $req->name,
-            'description' => $req->description,
-            'price' => $req->price,
-            'discount' => $req->discount,
-            'image' => $image_url,
-            'type' => $req->type, 
-            'category' => $req->category,
+            'name'         => $validated['name'],
+            'description'  => $validated['description'] ?? null,
+            'price'        => $validated['price'],
+            'discount'     => $validated['discount'] ?? null,
+            'priority'     => $validated['priority'] ?? 0,
+            'is_published' => $validated['is_published'],
+            'image'        => $image_url,
+            'type'         => $validated['type'] ?? null,
+            'category'     => $validated['category'],
         ]);
 
-        // redirect
         return redirect()->route('admin.store_subs.index')
             ->with('success', 'L’abonnement a été mis à jour avec succès.');
     }
 
-    public function destroy($id) {
-        // destroy
+    public function destroy($id)
+    {
         StoreSubscription::destroy($id);
 
-        // back
-        return back()->with('success','L’abonnement a été supprimé avec succès.');
-    }   
+        return back()->with('success', 'L’abonnement a été supprimé avec succès.');
+    }
 }
+

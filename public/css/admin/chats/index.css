@@ -555,3 +555,98 @@
         width: 100%;
     }
 }
+
+
+/* Voice messages */
+
+.voice-message-group {
+    width: 100%;
+}
+
+.voice-recorder {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.voice-recorder button {
+    border: none;
+    border-radius: 9px;
+    padding: 9px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.voice-recorder button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.voice-record-btn {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.voice-record-btn:hover:not(:disabled) {
+    background: #dbeafe;
+}
+
+.voice-stop-btn {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.voice-stop-btn:hover:not(:disabled) {
+    background: #fee2e2;
+}
+
+.voice-clear-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.voice-clear-btn:hover:not(:disabled) {
+    background: #e5e7eb;
+}
+
+.voice-status {
+    grid-column: 1 / -1;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.voice-preview {
+    grid-column: 1 / -1;
+    display: none;
+    width: 100%;
+    max-width: 320px;
+    margin-top: 4px;
+}
+
+.message-audio {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+    .voice-recorder {
+        grid-template-columns: 1fr;
+    }
+
+    .voice-recorder button,
+    .voice-preview,
+    .message-audio {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+

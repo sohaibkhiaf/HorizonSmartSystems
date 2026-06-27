@@ -17,8 +17,8 @@ return [
     'login_title' => 'Login',
     'login_subtitle' => 'Enter your credentials to continue',
 
-    'email' => 'Email',
-    'email_placeholder' => 'Enter your email',
+    'username' => 'Username',
+    'username_placeholder' => 'Enter your username',
 
     'password' => 'Password',
     'password_placeholder' => 'Enter your password',

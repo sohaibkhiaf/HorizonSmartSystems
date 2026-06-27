@@ -26,7 +26,7 @@ return [
     'my_info' => 'My Information',
 
     'name' => 'Name',
-    'email' => 'Email',
+    'username' => 'Username',
     'phone' => 'Phone',
     'company' => 'Company',
 
@@ -55,4 +55,18 @@ return [
     'customer_demo_subtitle' => 'View the demo directly from your customer portal.',
     'open_demo_new_tab' => 'Open in a new tab',
     'demo_show' => 'View Demo',
+
+
+    'attach_image' => 'Image',
+'attach_voice_file' => 'Audio',
+'no_image_selected' => 'No image',
+'no_voice_selected' => 'No voice message',
+'record_voice' => 'Record',
+'stop_recording' => 'Stop',
+'clear_voice' => 'Remove',
+'voice_ready' => 'Voice message ready',
+'recording_in_progress' => 'Recording...',
+'voice_not_supported' => 'Recording is not supported. Upload an audio file instead.',
+'microphone_error' => 'Microphone unavailable or permission denied.',
+'audio_not_supported' => 'Your browser does not support audio playback.',
 ];

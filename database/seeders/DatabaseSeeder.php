@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
 
         // USERS //////////////////////////////////////
         $admin = User::updateOrCreate(
-            ['email' => 'sohaibkhiaf@gmail.com'],
+            ['username' => 'sohaibkhiaf'],
             [
                 'name' => 'Sohaib KHIAF',
                 'role' => 'admin',
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         );
 
         User::updateOrCreate(
-            ['email' => 'aminesalem45670@gmail.com'],
+            ['username' => 'aminesalem45670'],
             [
                 'name' => 'Mohamed Amine SALEM',
                 'role' => 'admin',

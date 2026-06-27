@@ -23,7 +23,7 @@
         <input
             type="text"
             name="search"
-            placeholder="Rechercher nom ou email..."
+            placeholder="Rechercher nom ou username..."
             value="{{ request('search') }}">
 
         <select name="role">
@@ -69,7 +69,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nom</th>
-                        <th>Email</th>
+                        <th>Username</th>
                         <th>Entreprise</th>
                         <th>Contact</th>
                         <th>Rôle</th>
@@ -86,7 +86,7 @@
                                 <strong>{{ $user->name }}</strong>
                             </td>
 
-                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->username }}</td>
 
                             <td>
                                 {{ $user->company ?: '—' }}

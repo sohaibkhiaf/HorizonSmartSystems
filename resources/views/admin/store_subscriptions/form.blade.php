@@ -1,3 +1,9 @@
+@php
+    $selectedType = old('type', $subscription->type ?? '');
+    $selectedCategory = old('category', $subscription->category ?? '');
+    $isPublished = old('is_published', $subscription->is_published ?? true);
+@endphp
+
 <div class="container">
 
     <form method="POST" action="{{ $action }}" enctype="multipart/form-data">
@@ -40,12 +46,24 @@
             </div>
 
             <div class="form-group">
+                <label>Priorité</label>
+                <input type="number"
+                       name="priority"
+                       value="{{ old('priority', $subscription->priority ?? 0) }}"
+                       placeholder="Ex: 0, 10, 50, 100"
+                       step="1"
+                       min="0">
+
+                <small>Plus la priorité est élevée, plus le produit apparaît en premier.</small>
+            </div>
+
+            <div class="form-group">
                 <label>Type</label>
                 <select name="type">
                     <option value="">-- Sélectionner --</option>
-                    <option value="key" {{ $subscription && $subscription->type == 'key' ? 'selected' : '' }}>Clé</option>
-                    <option value="account" {{ $subscription && $subscription->type == 'account' ? 'selected' : '' }}>Compte</option>
-                    <option value="invitation" {{ $subscription && $subscription->type == 'invitation' ? 'selected' : '' }}>Invitation</option>
+                    <option value="key" {{ $selectedType == 'key' ? 'selected' : '' }}>Clé</option>
+                    <option value="account" {{ $selectedType == 'account' ? 'selected' : '' }}>Compte</option>
+                    <option value="invitation" {{ $selectedType == 'invitation' ? 'selected' : '' }}>Invitation</option>
                 </select>
             </div>
 
@@ -53,12 +71,12 @@
                 <label>Catégorie <span class="required">*</span></label>
                 <select name="category" required>
                     <option value="">-- Sélectionner --</option>
-                    <option value="games" {{ $subscription && $subscription->category == 'games' ? 'selected' : '' }}>Jeux</option>
-                    <option value="gift_cards" {{ $subscription && $subscription->category == 'gift_cards' ? 'selected' : '' }}>Cartes cadeaux</option>
-                    <option value="software" {{ $subscription && $subscription->category == 'software' ? 'selected' : '' }}>Logiciel</option>
-                    <option value="subscriptions" {{ $subscription && $subscription->category == 'subscriptions' ? 'selected' : '' }}>Abonnements</option>
-                    <option value="in_game_currency" {{ $subscription && $subscription->category == 'in_game_currency' ? 'selected' : '' }}>Monnaie virtuelle</option>
-                    <option value="other" {{ $subscription && $subscription->category == 'other' ? 'selected' : '' }}>Autre</option>
+                    <option value="games" {{ $selectedCategory == 'games' ? 'selected' : '' }}>Jeux</option>
+                    <option value="gift_cards" {{ $selectedCategory == 'gift_cards' ? 'selected' : '' }}>Cartes cadeaux</option>
+                    <option value="software" {{ $selectedCategory == 'software' ? 'selected' : '' }}>Logiciel</option>
+                    <option value="subscriptions" {{ $selectedCategory == 'subscriptions' ? 'selected' : '' }}>Abonnements</option>
+                    <option value="in_game_currency" {{ $selectedCategory == 'in_game_currency' ? 'selected' : '' }}>Monnaie virtuelle</option>
+                    <option value="other" {{ $selectedCategory == 'other' ? 'selected' : '' }}>Autre</option>
                 </select>
             </div>
 
@@ -80,6 +98,14 @@
                     </div>
                 @endif
             </div>
+
+            <label class="checkbox-label">
+                <input type="checkbox"
+                        name="is_published"
+                        value="1"
+                        {{ (bool) $isPublished ? 'checked' : '' }}>
+                    Afficher ce produit dans le store
+            </label>
 
         </div>
 

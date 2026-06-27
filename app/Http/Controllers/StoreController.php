@@ -10,116 +10,126 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
-public function index()
-{
-    $allowedCategories = [
-        'games',
-        'gift_cards',
-        'software',
-        'subscriptions',
-        'in_game_currency',
-        'other',
-    ];
+    public function index()
+    {
+        $allowedCategories = [
+            'games',
+            'gift_cards',
+            'software',
+            'subscriptions',
+            'in_game_currency',
+            'other',
+        ];
 
-    $query = StoreSubscription::query();
+        $query = StoreSubscription::query()
+            ->where('is_published', true);
 
-    // Search
-    $search = trim((string) request('search', ''));
+        // Search
+        $search = trim((string) request('search', ''));
 
-    if ($search !== '') {
-        $query->where(function ($q) use ($search) {
-            $q->where('name', 'like', "%{$search}%");
-        });
-    } else {
-        $search = null;
-    }
-
-    // Category
-    $category = request('category', 'all');
-
-    if (!in_array($category, array_merge(['all'], $allowedCategories), true)) {
-        $category = 'all';
-    }
-
-    if ($category !== 'all') {
-        $query->where('category', $category);
-    }
-
-    // Products
-    $subscriptions = $query->latest()
-        ->paginate(16)
-        ->withQueryString();
-
-    // Details / Counts
-    $totalSubscriptions = StoreSubscription::count();
-
-    $discountedCount = StoreSubscription::whereNotNull('discount')
-        ->where('discount', '>', 0)
-        ->count();
-
-    $categoryCounts = StoreSubscription::select('category')
-        ->selectRaw('COUNT(*) as total')
-        ->groupBy('category')
-        ->pluck('total', 'category');
-
-    // Bestsellers: hidden when search is active
-    $bestSellers = collect();
-
-    if (empty($search)) {
-        $bestSellerIds = StoreRequest::select('store_subscription_id')
-            ->selectRaw('SUM(quantity) as total_quantity')
-            ->whereNotNull('store_subscription_id')
-            ->groupBy('store_subscription_id')
-            ->orderByDesc('total_quantity')
-            ->limit(10)
-            ->pluck('store_subscription_id')
-            ->filter()
-            ->values();
-
-        $bestSellers = StoreSubscription::whereIn('id', $bestSellerIds)
-            ->get()
-            ->sortBy(fn ($item) => $bestSellerIds->search($item->id))
-            ->values();
-
-        // Fallback: discounted products
-        if ($bestSellers->count() < 10) {
-            $extraDiscounted = StoreSubscription::whereNotIn('id', $bestSellers->pluck('id'))
-                ->whereNotNull('discount')
-                ->where('discount', '>', 0)
-                ->latest()
-                ->limit(10 - $bestSellers->count())
-                ->get();
-
-            $bestSellers = $bestSellers->concat($extraDiscounted)->values();
+        if ($search !== '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%");
+            });
+        } else {
+            $search = null;
         }
 
-        // Final fallback: latest products
-        if ($bestSellers->count() < 10) {
-            $extraLatest = StoreSubscription::whereNotIn('id', $bestSellers->pluck('id'))
-                ->latest()
-                ->limit(10 - $bestSellers->count())
-                ->get();
+        // Category
+        $category = request('category', 'all');
 
-            $bestSellers = $bestSellers->concat($extraLatest)->values();
+        if (!in_array($category, array_merge(['all'], $allowedCategories), true)) {
+            $category = 'all';
         }
+
+        if ($category !== 'all') {
+            $query->where('category', $category);
+        }
+
+        // Products
+        $subscriptions = $query
+            ->orderByDesc('priority')
+            ->latest()
+            ->paginate(16)
+            ->withQueryString();
+
+        // Details / Counts
+        $totalSubscriptions = StoreSubscription::where('is_published', true)->count();
+
+        $discountedCount = StoreSubscription::where('is_published', true)
+            ->whereNotNull('discount')
+            ->where('discount', '>', 0)
+            ->count();
+
+        $categoryCounts = StoreSubscription::where('is_published', true)
+            ->select('category')
+            ->selectRaw('COUNT(*) as total')
+            ->groupBy('category')
+            ->pluck('total', 'category');
+
+        // Bestsellers: hidden when search is active
+        $bestSellers = collect();
+
+        if (empty($search)) {
+            $bestSellerIds = StoreRequest::select('store_subscription_id')
+                ->selectRaw('SUM(quantity) as total_quantity')
+                ->whereNotNull('store_subscription_id')
+                ->groupBy('store_subscription_id')
+                ->orderByDesc('total_quantity')
+                ->limit(10)
+                ->pluck('store_subscription_id')
+                ->filter()
+                ->values();
+
+            $bestSellers = StoreSubscription::where('is_published', true)
+                ->whereIn('id', $bestSellerIds)
+                ->get()
+                ->sortBy(fn ($item) => $bestSellerIds->search($item->id))
+                ->values();
+
+            // Fallback: discounted products
+            if ($bestSellers->count() < 10) {
+                $extraDiscounted = StoreSubscription::where('is_published', true)
+                    ->whereNotIn('id', $bestSellers->pluck('id'))
+                    ->whereNotNull('discount')
+                    ->where('discount', '>', 0)
+                    ->orderByDesc('priority')
+                    ->latest()
+                    ->limit(10 - $bestSellers->count())
+                    ->get();
+
+                $bestSellers = $bestSellers->concat($extraDiscounted)->values();
+            }
+
+            // Final fallback: latest products
+            if ($bestSellers->count() < 10) {
+                $extraLatest = StoreSubscription::where('is_published', true)
+                    ->whereNotIn('id', $bestSellers->pluck('id'))
+                    ->orderByDesc('priority')
+                    ->latest()
+                    ->limit(10 - $bestSellers->count())
+                    ->get();
+
+                $bestSellers = $bestSellers->concat($extraLatest)->values();
+            }
+        }
+
+        // Services
+        $services = PublicService::all();
+        $hero = PublicHero::findOrFail(1);
+
+        return view('/store/index', [
+            'subscriptions' => $subscriptions,
+            'search' => $search,
+            'category' => $category,
+            'services' => $services,
+            'hero' => $hero,
+            'bestSellers' => $bestSellers,
+            'categoryCounts' => $categoryCounts,
+            'totalSubscriptions' => $totalSubscriptions,
+            'discountedCount' => $discountedCount,
+        ]);
     }
-
-    // Services
-    $services = PublicService::all();
-    $hero = PublicHero::findOrFail(1);
-
-    return view('/store/index', [
-        'subscriptions' => $subscriptions,
-        'search' => $search,
-        'category' => $category,
-        'services' => $services,
-        'hero' => $hero,
-        'bestSellers' => $bestSellers,
-        'categoryCounts' => $categoryCounts,
-        'totalSubscriptions' => $totalSubscriptions,
-        'discountedCount' => $discountedCount,
-    ]);
-}
 
     public function order(StoreSubscription $subscription) {
 

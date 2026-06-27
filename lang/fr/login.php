@@ -17,8 +17,8 @@ return [
     'login_title' => 'Connexion',
     'login_subtitle' => 'Entrez vos identifiants pour continuer',
 
-    'email' => 'E-mail',
-    'email_placeholder' => 'Entrez votre e-mail',
+    'username' => 'Username',
+    'username_placeholder' => 'Entrez votre username',
 
     'password' => 'Mot de passe',
     'password_placeholder' => 'Entrez votre mot de passe',

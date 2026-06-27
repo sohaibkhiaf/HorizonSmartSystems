@@ -19,6 +19,8 @@ class StoreSubscription extends Model
         'discount',
         'image', 
         'type', 
+        'priority',
+        'is_published', 
         'category',
     ];
 

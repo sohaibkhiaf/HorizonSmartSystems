@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -86,7 +87,7 @@ class UserController extends Controller
         if ($request->filled('search')) {
             $query->where(function ($q) use ($request) {
                 $q->where('name', 'like', '%' . $request->search . '%')
-                    ->orWhere('email', 'like', '%' . $request->search . '%');
+                    ->orWhere('username', 'like', '%' . $request->search . '%');
             });
         }
 
@@ -116,46 +117,68 @@ class UserController extends Controller
         return view('admin.users.create', compact('roles'));
     }
 
-    public function store(Request $request)
-    {
-        if (! $this->canManageUsers()) {
-            abort(403);
-        }
-
-        $request->validate([
-            'name' => 'required|max:50',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8',
-            'phone' => 'nullable|string|size:10',
-            'company' => 'nullable|string|max:50',
-            'role' => 'required|in:user,admin,operator,customer',
-        ]);
-
-        if (! $this->canUseRole($request->role)) {
-            return back()
-                ->withInput()
-                ->with('error', 'Vous n’avez pas le droit de créer ce type d’utilisateur.');
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'company' => $request->company,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-        ]);
-
-        ActivityLog::create([
-            'user_id'    => auth()->id(),
-            'action'     => 'created',
-            'model_type' => User::class,
-            'model_id'   => $user->id,
-        ]);
-
-        return redirect()->route('admin.users.index')
-            ->with('success', 'Utilisateur créé avec succès');
+public function store(Request $request)
+{
+    if (! $this->canManageUsers()) {
+        abort(403);
     }
+
+    $request->validate([
+        'name' => 'required|max:50',
+        'username' => 'required|string|unique:users,username',
+        'password' => 'required|min:8',
+        'phone' => 'nullable|string|size:10',
+        'company' => 'nullable|string|max:50',
+        'role' => 'required|in:user,admin,operator,customer',
+    ]);
+
+    // Check if username is already taken in second database
+    // In mysql_wili, username is stored in the "email" column
+    $usernameTakenInWili = DB::connection('mysql_wili')
+        ->table('users')
+        ->where('email', $request->username)
+        ->exists();
+
+    if ($usernameTakenInWili) {
+        return back()
+            ->withInput()
+            ->withErrors([
+                'username' => 'Ce nom d’utilisateur est déjà utilisé dans Wili.',
+            ]);
+    }
+
+    if (! $this->canUseRole($request->role)) {
+        return back()
+            ->withInput()
+            ->with('error', 'Vous n’avez pas le droit de créer ce type d’utilisateur.');
+    }
+
+    $user = User::create([
+        'name' => $request->name,
+        'username' => $request->username,
+        'phone' => $request->phone,
+        'company' => $request->company,
+        'password' => Hash::make($request->password),
+        'role' => $request->role,
+    ]);
+
+    DB::connection('mysql_wili')->table('users')->insert([
+        'name' => $request->name,
+        'email' => $request->username,
+        'password_hash' => Hash::make($request->password),
+        'created_at' => now(),
+    ]);
+
+    ActivityLog::create([
+        'user_id'    => auth()->id(),
+        'action'     => 'created',
+        'model_type' => User::class,
+        'model_id'   => $user->id,
+    ]);
+
+    return redirect()->route('admin.users.index')
+        ->with('success', 'Utilisateur créé avec succès');
+}
 
     public function edit(User $user)
     {
@@ -178,7 +201,7 @@ class UserController extends Controller
 
         $request->validate([
             'name' => 'required|max:50',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'username' => 'required|string|unique:users,username,' . $user->id,
             'phone' => 'nullable|string|size:10',
             'company' => 'nullable|string|max:50',
             'password' => 'nullable|min:8',
@@ -187,7 +210,7 @@ class UserController extends Controller
 
         $data = $request->only([
             'name',
-            'email',
+            'username',
             'phone',
             'company',
         ]);

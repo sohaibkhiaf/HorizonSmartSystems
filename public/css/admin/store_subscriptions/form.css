@@ -78,6 +78,15 @@
     font-size: 12px;
 }
 
+/* CHECKBOX LABEL */
+.checkbox-label {
+    color: #111827;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+
 /* CURRENT IMAGE */
 .current-image {
     margin-top: 12px;

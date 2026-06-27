@@ -17,8 +17,8 @@ return [
     'login_title' => 'تسجيل الدخول',
     'login_subtitle' => 'أدخل بيانات الدخول الخاصة بك للمتابعة',
 
-    'email' => 'البريد الإلكتروني',
-    'email_placeholder' => 'أدخل بريدك الإلكتروني',
+    'username' => 'اسم المستخدم',
+    'username_placeholder' => 'أدخل اسم المستخدم',
 
     'password' => 'كلمة المرور',
     'password_placeholder' => 'أدخل كلمة المرور',

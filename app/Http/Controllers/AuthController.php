@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
         // validate
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'username' => ['required', 'string'],
             'password' => ['required'],
         ]);
 
@@ -44,8 +44,8 @@ class AuthController extends Controller
         // attempt
         if (!Auth::attempt($credentials, $remember)) {
             return back()
-                ->withErrors(['email' => 'E-mail ou mot de passe invalide.'])
-                ->onlyInput('email');
+                ->withErrors(['username' => 'Username ou mot de passe invalide.'])
+                ->onlyInput('username');
         }
 
         // session
@@ -80,7 +80,7 @@ class AuthController extends Controller
             Auth::logout();
 
             return back()->withErrors([
-                'email' => 'Votre compte n’est pas autorisé à accéder à l’espace client.',
+                'username' => 'Votre compte n’est pas autorisé à accéder à l’espace client.',
             ]);
         }
 

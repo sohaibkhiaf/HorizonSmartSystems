@@ -318,16 +318,16 @@
 
 .message-content p {
     margin: 0 0 8px;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 15px;
+    line-height: 1.65;
     white-space: pre-line;
 }
 
 .message-content span {
     display: block;
     margin-top: 7px;
-    font-size: 11px;
-    opacity: 0.7;
+    font-size: 12px;
+    opacity: 0.75;
 }
 
 .message-link {
@@ -441,7 +441,7 @@
     resize: vertical;
 }
 
-.chat-form button {
+.chat-form > .btn-main {
     grid-column: 1 / -1;
 }
 
@@ -484,16 +484,10 @@
     cursor: not-allowed;
 }
 
-.chat-form input::file-selector-button {
-    margin-right: 12px;
-    background: #eff6ff;
-    color: #2563eb;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+.chat-link-input {
+    grid-column: 1 / -1;
 }
+
 
 /* Profile */
 
@@ -695,3 +689,217 @@
     }
 }
 
+/* Voice messages */
+/* Compact attachments */
+
+.chat-attachments {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.file-picker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1 1 210px;
+}
+
+.file-picker-input {
+    position: absolute;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.file-picker-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex: 0 0 auto;
+    padding: 11px 14px;
+    border: 1px solid #bfdbfe;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 11px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    transition: 0.2s ease;
+}
+
+.file-picker-btn:hover {
+    background: #dbeafe;
+    transform: translateY(-1px);
+}
+
+.file-picker-name {
+    min-width: 0;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Voice messages */
+
+.voice-message-group {
+    grid-column: 1 / -1;
+    width: 100%;
+}
+
+.voice-recorder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: -2px;
+    padding: 8px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+}
+
+.voice-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.voice-recorder button {
+    width: auto;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    line-height: 1;
+    transition: 0.2s ease;
+}
+
+.voice-recorder button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.voice-record-btn {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.voice-record-btn:hover:not(:disabled) {
+    background: #dbeafe;
+}
+
+.voice-stop-btn {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.voice-stop-btn:hover:not(:disabled) {
+    background: #fee2e2;
+}
+
+.voice-clear-btn {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.voice-clear-btn:hover:not(:disabled) {
+    background: #e5e7eb;
+}
+
+.voice-status {
+    min-width: 0;
+    flex: 1 1 150px;
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.voice-preview {
+    display: none;
+    width: 100%;
+    max-width: 260px;
+    height: 34px;
+}
+
+.message-audio {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+}
+
+.chat-message.customer .message-audio {
+    filter: none;
+}
+
+
+/* Desktop / tablet only */
+@media (min-width: 651px) {
+    .message-audio {
+        min-width: 360px;
+        max-width: 520px;
+        height: 42px;
+    }
+
+    .chat-message:has(.message-audio) .message-content {
+        width: fit-content;
+        max-width: 92%;
+    }
+}
+
+@media (max-width: 650px) {
+    .chat-attachments {
+        gap: 7px;
+    }
+
+    .file-picker {
+        flex: 1 1 100%;
+    }
+
+    .voice-recorder {
+        align-items: stretch;
+    }
+
+    .voice-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .voice-recorder button {
+        width: 100%;
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    .voice-status,
+    .voice-preview,
+    .message-audio {
+        width: 100%;
+        max-width: 100%;
+    }
+}

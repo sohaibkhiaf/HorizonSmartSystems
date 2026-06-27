@@ -26,7 +26,7 @@ return [
     'my_info' => 'Mes informations',
 
     'name' => 'Nom',
-    'email' => 'E-mail',
+    'username' => 'Username',
     'phone' => 'Téléphone',
     'company' => 'Entreprise',
 
@@ -56,4 +56,17 @@ return [
     'customer_demo_subtitle' => 'Consultez la démo directement depuis votre espace client.',
     'open_demo_new_tab' => 'Ouvrir dans un nouvel onglet',
     'demo_show' => 'Voir la démo',
+
+    'attach_image' => 'Image',
+'attach_voice_file' => 'Audio',
+'no_image_selected' => 'Aucune image',
+'no_voice_selected' => 'Aucun vocal',
+'record_voice' => 'Enregistrer',
+'stop_recording' => 'Arrêter',
+'clear_voice' => 'Supprimer',
+'voice_ready' => 'Message vocal prêt',
+'recording_in_progress' => 'Enregistrement...',
+'voice_not_supported' => 'Enregistrement non supporté. Importez un fichier audio.',
+'microphone_error' => 'Micro non disponible ou permission refusée.',
+'audio_not_supported' => 'Votre navigateur ne supporte pas la lecture audio.',
 ];

@@ -17,7 +17,7 @@
                 type="text"
                 name="search"
                 value="{{ request('search') }}"
-                placeholder="Rechercher par nom ou email...">
+                placeholder="Rechercher par nom ou username...">
         </div>
 
         <div class="filter-actions">
@@ -57,7 +57,7 @@
 
                     <td>
                         <strong>{{ $customer->name }}</strong><br>
-                        <small>{{ $customer->email }}</small>
+                        <small>{{ $customer->username }}</small>
                     </td>
 
                     <td>{{ $customer->phone ?? 'N/A' }}</td>

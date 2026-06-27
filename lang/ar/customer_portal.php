@@ -26,7 +26,7 @@ return [
     'my_info' => 'معلوماتي',
 
     'name' => 'الاسم',
-    'email' => 'البريد الإلكتروني',
+    'username' => 'اسم المستخدم',
     'phone' => 'رقم الهاتف',
     'company' => 'الشركة',
 
@@ -55,4 +55,18 @@ return [
     'customer_demo_subtitle' => 'يمكنك معاينة الديمو مباشرة من فضاء العميل.',
     'open_demo_new_tab' => 'فتح في نافذة جديدة',
     'demo_show' =>  'عرض النسخة التجريبية',
+
+
+'attach_image' => 'صورة',
+'attach_voice_file' => 'ملف صوتي',
+'no_image_selected' => 'لا توجد صورة',
+'no_voice_selected' => 'لا يوجد تسجيل صوتي',
+'record_voice' => 'تسجيل',
+'stop_recording' => 'إيقاف',
+'clear_voice' => 'حذف',
+'voice_ready' => 'التسجيل الصوتي جاهز',
+'recording_in_progress' => 'جاري التسجيل...',
+'voice_not_supported' => 'التسجيل غير مدعوم. يمكنك رفع ملف صوتي.',
+'microphone_error' => 'الميكروفون غير متاح أو تم رفض الإذن.',
+'audio_not_supported' => 'متصفحك لا يدعم تشغيل الصوت.',
 ];

@@ -54,7 +54,7 @@
                     @forelse($demos as $demo)
 
                         @if(!empty($demo->demo_link))
-                            <a href="{{ route('customer.portal.demo.show', $demo->id) }}" target="_blank"
+                            <a href="{{ $demo->demo_link }}" target="_blank"
                             class="demo-card demo-card-clickable">
                         @else
                             <div class="demo-card">
@@ -72,20 +72,9 @@
                                 @endif
 
                                 <div class="demo-content">
-                                    <span class="offer-badge">
-                                        {{ __('customer_portal.offer_badge') }}
-                                    </span>
-
                                     <h3>{{ $demo->name }}</h3>
                                 </div>
                             </div>
-
-                            @if($demo->admin_note)
-                                <div class="demo-note">
-                                    <strong>{{ __('customer_portal.offer_details') }}</strong>
-                                    <p>{{ $demo->admin_note }}</p>
-                                </div>
-                            @endif
 
                         @if(!empty($demo->demo_link))
                                 <span class="demo-link">
@@ -133,6 +122,13 @@
                                     </a>
                                 @endif
 
+                                @if($message->voice_message)
+                                    <audio controls preload="metadata" class="message-audio">
+                                        <source src="{{ asset('uploads/' . $message->voice_message) }}">
+                                        {{ __('customer_portal.audio_not_supported') }}
+                                    </audio>
+                                @endif
+
                                 <span>
                                     {{ $message->sender_display_name }}
                                     →
@@ -168,10 +164,82 @@
                     <input
                         type="url"
                         name="link"
+                        class="chat-link-input"
                         placeholder="{{ __('customer_portal.optional_link') }}"
                         value="{{ old('link') }}">
 
-                    <input type="file" name="image" accept="image/*">
+                    <div class="chat-attachments">
+                        <div class="file-picker" data-file-picker>
+                            <input
+                                type="file"
+                                name="image"
+                                id="customerMessageImage"
+                                accept="image/*"
+                                class="file-picker-input">
+
+                            <label for="customerMessageImage" class="file-picker-btn">
+                                <i class="fa-solid fa-image"></i>
+                                {{ __('customer_portal.attach_image') }}
+                            </label>
+
+                            <span class="file-picker-name" data-default="{{ __('customer_portal.no_image_selected') }}">
+                                {{ __('customer_portal.no_image_selected') }}
+                            </span>
+                        </div>
+
+                        <div class="file-picker" data-file-picker>
+                            <input
+                                type="file"
+                                name="voice_message"
+                                id="customerVoiceMessage"
+                                accept="audio/*,.webm,.ogg,.mp3,.wav,.m4a,.aac,.mp4"
+                                class="file-picker-input">
+
+                            <label for="customerVoiceMessage" class="file-picker-btn">
+                                <i class="fa-solid fa-file-audio"></i>
+                                {{ __('customer_portal.attach_voice_file') }}
+                            </label>
+
+                            <span class="file-picker-name" data-default="{{ __('customer_portal.no_voice_selected') }}">
+                                {{ __('customer_portal.no_voice_selected') }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="voice-message-group">
+                        <div
+                            class="voice-recorder"
+                            data-target="customerVoiceMessage"
+                            data-empty-label="{{ __('customer_portal.no_voice_selected') }}"
+                            data-ready-label="{{ __('customer_portal.voice_ready') }}"
+                            data-recording-label="{{ __('customer_portal.recording_in_progress') }}"
+                            data-not-supported-label="{{ __('customer_portal.voice_not_supported') }}"
+                            data-microphone-error-label="{{ __('customer_portal.microphone_error') }}">
+
+                            <div class="voice-actions">
+                                <button type="button" class="voice-record-btn" data-action="record">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <span>{{ __('customer_portal.record_voice') }}</span>
+                                </button>
+
+                                <button type="button" class="voice-stop-btn" data-action="stop" disabled>
+                                    <i class="fa-solid fa-stop"></i>
+                                    <span>{{ __('customer_portal.stop_recording') }}</span>
+                                </button>
+
+                                <button type="button" class="voice-clear-btn" data-action="clear" disabled>
+                                    <i class="fa-solid fa-trash"></i>
+                                    <span>{{ __('customer_portal.clear_voice') }}</span>
+                                </button>
+                            </div>
+
+                            <span class="voice-status">
+                                {{ __('customer_portal.no_voice_selected') }}
+                            </span>
+
+                            <audio controls class="voice-preview"></audio>
+                        </div>
+                    </div>
 
                     <button type="submit" class="btn-main">
                         <i class="fa-solid fa-paper-plane"></i>
@@ -196,8 +264,8 @@
             </div>
 
             <div class="form-group">
-                <label>{{ __('customer_portal.email') }}</label>
-                <input type="email" value="{{ $user->email }}" readonly>
+                <label>{{ __('customer_portal.username') }}</label>
+                <input type="text" value="{{ $user->username }}" readonly>
             </div>
 
             <div class="form-group">
@@ -252,6 +320,9 @@ document.addEventListener('DOMContentLoaded', function () {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 
+    setupFilePickers();
+    setupVoiceRecorders();
+
     setTimeout(() => {
         if (refreshNotice && chatBox) {
             refreshNotice.style.display = 'block';
@@ -265,6 +336,202 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function setupFilePickers() {
+    const fileInputs = document.querySelectorAll('.file-picker-input');
+
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function () {
+            updateFilePickerName(input, input.files[0] ?? null);
+        });
+    });
+}
+
+function updateFilePickerName(input, file) {
+    const picker = input.closest('[data-file-picker]');
+
+    if (!picker) return;
+
+    const name = picker.querySelector('.file-picker-name');
+
+    if (!name) return;
+
+    name.textContent = file ? file.name : (name.dataset.default || '');
+}
+
+function setupVoiceRecorders() {
+    const recorders = document.querySelectorAll('.voice-recorder');
+
+    recorders.forEach(wrapper => {
+        const inputId = wrapper.dataset.target;
+        const fileInput = document.getElementById(inputId);
+
+        if (!fileInput) return;
+
+        const recordBtn = wrapper.querySelector('[data-action="record"]');
+        const stopBtn = wrapper.querySelector('[data-action="stop"]');
+        const clearBtn = wrapper.querySelector('[data-action="clear"]');
+        const status = wrapper.querySelector('.voice-status');
+        const preview = wrapper.querySelector('.voice-preview');
+
+        const labels = {
+            empty: wrapper.dataset.emptyLabel || 'No voice message',
+            ready: wrapper.dataset.readyLabel || 'Voice message ready',
+            recording: wrapper.dataset.recordingLabel || 'Recording...',
+            notSupported: wrapper.dataset.notSupportedLabel || 'Recording is not supported. Upload an audio file instead.',
+            microphoneError: wrapper.dataset.microphoneErrorLabel || 'Microphone unavailable or permission denied.',
+        };
+
+        let mediaRecorder = null;
+        let chunks = [];
+        let stream = null;
+        let previewUrl = null;
+
+        function getRecordingMimeType() {
+            if (!window.MediaRecorder) {
+                return '';
+            }
+
+            const types = [
+                'audio/webm;codecs=opus',
+                'audio/webm',
+                'audio/ogg;codecs=opus',
+                'audio/ogg',
+                'audio/mp4'
+            ];
+
+            return types.find(type => MediaRecorder.isTypeSupported(type)) || '';
+        }
+
+        function getExtension(mimeType) {
+            if (mimeType.includes('ogg')) return 'ogg';
+            if (mimeType.includes('mp4')) return 'm4a';
+
+            return 'webm';
+        }
+
+        function stopStream() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+            }
+        }
+
+        function resetPreviewUrl() {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                previewUrl = null;
+            }
+        }
+
+        function setPreviewFromFile(file, ready = false) {
+            resetPreviewUrl();
+
+            if (!file) {
+                preview.removeAttribute('src');
+                preview.style.display = 'none';
+                status.textContent = labels.empty;
+                clearBtn.disabled = true;
+                updateFilePickerName(fileInput, null);
+
+                return;
+            }
+
+            previewUrl = URL.createObjectURL(file);
+            preview.src = previewUrl;
+            preview.style.display = 'block';
+            status.textContent = ready ? labels.ready : file.name;
+            clearBtn.disabled = false;
+            updateFilePickerName(fileInput, file);
+        }
+
+        function clearVoice() {
+            fileInput.value = '';
+            setPreviewFromFile(null);
+        }
+
+        fileInput.addEventListener('change', function () {
+            setPreviewFromFile(fileInput.files[0] ?? null);
+        });
+
+        clearBtn.addEventListener('click', clearVoice);
+
+        if (!navigator.mediaDevices || !window.MediaRecorder) {
+            recordBtn.disabled = true;
+            status.textContent = labels.notSupported;
+            return;
+        }
+
+        recordBtn.addEventListener('click', async function () {
+            try {
+                clearVoice();
+
+                stream = await navigator.mediaDevices.getUserMedia({
+                    audio: true
+                });
+
+                chunks = [];
+
+                const mimeType = getRecordingMimeType();
+
+                mediaRecorder = mimeType
+                    ? new MediaRecorder(stream, { mimeType })
+                    : new MediaRecorder(stream);
+
+                mediaRecorder.addEventListener('dataavailable', function (event) {
+                    if (event.data && event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                });
+
+                mediaRecorder.addEventListener('stop', function () {
+                    const finalMimeType = mimeType || 'audio/webm';
+                    const extension = getExtension(finalMimeType);
+
+                    const blob = new Blob(chunks, {
+                        type: finalMimeType
+                    });
+
+                    const file = new File(
+                        [blob],
+                        'voice-message-' + Date.now() + '.' + extension,
+                        { type: finalMimeType }
+                    );
+
+                    const transfer = new DataTransfer();
+                    transfer.items.add(file);
+                    fileInput.files = transfer.files;
+
+                    setPreviewFromFile(file, true);
+                    stopStream();
+
+                    recordBtn.disabled = false;
+                    stopBtn.disabled = true;
+                });
+
+                mediaRecorder.start();
+
+                recordBtn.disabled = true;
+                stopBtn.disabled = false;
+                clearBtn.disabled = true;
+                status.textContent = labels.recording;
+
+            } catch (error) {
+                stopStream();
+
+                recordBtn.disabled = false;
+                stopBtn.disabled = true;
+                status.textContent = labels.microphoneError;
+            }
+        });
+
+        stopBtn.addEventListener('click', function () {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+        });
+    });
+}
 </script>
 
 @endsection

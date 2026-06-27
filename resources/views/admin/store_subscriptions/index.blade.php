@@ -66,6 +66,18 @@
             </select>
         </div>
 
+        <div class="filter-group">
+            <select name="is_published">
+                <option value="">Toutes les visibilités</option>
+                <option value="1" {{ request('is_published') === '1' ? 'selected' : '' }}>
+                    Publié
+                </option>
+                <option value="0" {{ request('is_published') === '0' ? 'selected' : '' }}>
+                    Masqué
+                </option>
+            </select>
+        </div>
+
         <div class="filter-actions">
             <button type="submit" class="filter-btn">
                 <i class="fas fa-filter"></i>
@@ -92,6 +104,8 @@
                 <th>Type</th>
                 <th>Prix</th>
                 <th>Remise</th>
+                <th>Priorité</th>
+                <th>Visibilité</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -135,7 +149,17 @@
 
                     <td>{{ $subscription->price }} DA</td>
 
-                    <td>{{ !empty($subscription->discount) ? $subscription->discount.' DA': '—' }}</td>
+                    <td>{{ !empty($subscription->discount) ? $subscription->discount.' DA' : '—' }}</td>
+
+                    <td>{{ $subscription->priority ?? 0 }}</td>
+
+                    <td>
+                        @if ($subscription->is_published)
+                            <span class="status-badge published">Publié</span>
+                        @else
+                            <span class="status-badge hidden">Masqué</span>
+                        @endif
+                    </td>
 
                     <td>
                         <div class="table-actions">
@@ -164,7 +188,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="empty">
+                    <td colspan="9" class="empty">
                         Aucun abonnement trouvé
                     </td>
                 </tr>

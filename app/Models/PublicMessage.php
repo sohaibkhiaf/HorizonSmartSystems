@@ -14,7 +14,7 @@ class PublicMessage extends Model
 
     protected $fillable = [
         'full_name',
-        'email',
+        'username',
         'phone',
         'subject',
         'message',

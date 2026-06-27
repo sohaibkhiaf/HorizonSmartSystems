@@ -119,7 +119,7 @@
                     <td>
                         @if($log->user)
                             <strong>{{ $log->user->name }}</strong><br>
-                            <span>{{ $log->user->email }}</span>
+                            <span>{{ $log->user->username }}</span>
                         @else
                             <span>Utilisateur supprimé</span>
                         @endif

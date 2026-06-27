@@ -1,0 +1,2000 @@
+﻿<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: file:; font-src 'self' data:; connect-src 'self'; frame-src 'self' data: blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WILI Local</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./css/ui-components.css">
+  <link rel="stylesheet" href="./css/pos-image-layouts.css">
+  <link rel="stylesheet" href="./css/finance-layouts.css">
+  <link rel="stylesheet" href="./css/workspace-demo.css">
+</head>
+<body>
+  <div id="gateRoot" class="gate-root">
+    <div class="gate-wrap">
+      <aside class="gate-hero">
+        <div class="hero-mark">WILI M</div>
+        <div class="app-version-badge">V1.0.0</div>
+        <h1 data-i18n="gate_title">WILI Local</h1>
+        <p data-i18n="gate_desc">Demo WILI prete a l'emploi selon votre secteur.</p>
+        <ul>
+          <li data-i18n="gate_li1">Aucun code d'activation requis</li>
+          <li data-i18n="gate_li2">Chaque compte garde sa demo separee</li>
+          <li data-i18n="gate_li3">Ventes, achats, stock, finance et rapports</li>
+        </ul>
+      </aside>
+
+      <section id="stepActivate" class="gate-card hidden">
+        <h2 data-i18n="activate_title">Activation</h2>
+        <p data-i18n="activate_desc">Entrez le code d'activation initial.</p>
+        <form id="activateForm" class="stack">
+          <input id="codeInput" type="text" data-i18n-ph="ph_activation_code" placeholder="Code activation" required>
+          <button type="submit" class="btn" data-i18n="btn_activate">Activer</button>
+        </form>
+        <div id="activateMsg" class="msg"></div>
+      </section>
+
+      <section id="stepBootstrap" class="gate-card hidden">
+        <h2 data-i18n="bootstrap_title">Premier Compte Admin</h2>
+        <p data-i18n="bootstrap_desc">Creez le premier compte administrateur local.</p>
+        <form id="bootstrapForm" class="stack">
+          <input id="bootUsername" type="text" data-i18n-ph="ph_username" placeholder="Nom utilisateur" required>
+          <input id="bootDisplay" type="text" data-i18n-ph="ph_display_name" placeholder="Nom affichage" required>
+          <input id="bootPin" type="password" data-i18n-ph="ph_pin" placeholder="PIN (4+)" required>
+          <input id="bootPinConfirm" type="password" data-i18n-ph="ph_pin_confirm" placeholder="Confirmer PIN" required>
+          <label class="row-check">
+            <input id="bootShowPin" type="checkbox">
+            <span data-i18n="toggle_pin_visibility">Afficher le PIN</span>
+          </label>
+          <button type="submit" class="btn" data-i18n="btn_create_first_admin">Creer le compte</button>
+        </form>
+        <div id="bootstrapMsg" class="msg"></div>
+      </section>
+
+      <section id="stepLogin" class="gate-card hidden">
+        <h2 data-i18n="login_title">Connexion</h2>
+        <p data-i18n="login_desc">Connectez-vous pour acceder au tableau de bord.</p>
+        <form id="loginForm" class="stack">
+          <input id="loginUsername" type="text" data-i18n-ph="ph_username" placeholder="Nom utilisateur" required>
+          <input id="loginPin" type="password" data-i18n-ph="ph_pin" placeholder="PIN" required>
+          <label class="row-check">
+            <input id="loginShowPin" type="checkbox">
+            <span data-i18n="toggle_pin_visibility">Afficher le PIN</span>
+          </label>
+          <button type="submit" class="btn" data-i18n="btn_login">Entrer</button>
+        </form>
+        <div id="loginMsg" class="msg"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <div id="appRoot" class="app-root hidden">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand-block"><div class="logo">Wili M</div><span class="app-version-badge compact">V1.0.0</span></div>
+        <div class="nav-stack">
+          <nav class="topnav domain-nav">
+            <button class="nav-btn domain-btn active" data-domain="comptoir"><span>Ventes</span><span class="hot">F1</span></button>
+            <button class="nav-btn domain-btn" data-domain="stock"><span>Stock</span><span class="hot">F2</span></button>
+            <button class="nav-btn domain-btn" data-domain="customers"><span>Clients</span><span class="hot">F3</span></button>
+            <button class="nav-btn domain-btn" data-domain="suppliers"><span>Fournisseurs</span><span class="hot">F4</span></button>
+            <button class="nav-btn domain-btn" data-domain="settings"><span>Parametres</span><span class="hot">F5</span></button>
+          </nav>
+          <div class="subnav-wrap">
+            <nav id="subnav" class="subnav"></nav>
+          </div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button id="notifBtn" class="notif-btn" type="button" title="Alertes">
+          <span>Alertes</span>
+          <span id="notifBadge" class="notif-badge hidden">0</span>
+        </button>
+        <button id="updateBtn" class="notif-btn update-btn" type="button" title="Mise a jour"><span data-i18n="btn_update_check">Mise a jour</span></button>
+        <span id="userBadge" class="userbox">-</span>
+      </div>
+    </header>
+
+    <div class="main-shell">
+      <header class="app-header">
+        <div>
+          <h1 id="headerTitle">Tableau de bord</h1>
+          <p id="headerSub">Suivi global de votre activite locale</p>
+        </div>
+      </header>
+
+      <section id="alertsPanel" class="alerts-panel hidden"></section>
+
+      <main class="content">
+        <section id="view-dashboard" class="panel view active">
+          <div class="view-head">
+            <h2>Tableau de bord</h2>
+            <p>Vue rapide des ventes, achats et tresorerie</p>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><span data-i18n="kpi_sales_today">Ventes du jour</span><strong id="kpiSales">0.00</strong></article>
+            <article class="stat-card"><span data-i18n="kpi_purchases_today">Achats du jour</span><strong id="kpiPurchases">0.00</strong></article>
+            <article class="stat-card"><span data-i18n="kpi_profit_est">Profit estime</span><strong id="kpiProfit">0.00</strong></article>
+            <article class="stat-card"><span data-i18n="kpi_cash_delta">Delta caisse</span><strong id="kpiCash">0.00</strong></article>
+          </div>
+          <div class="two-col">
+            <div class="panel-lite">
+              <h3 data-i18n="dash_quick_activity">Activite rapide</h3>
+              <div id="dashSummary"></div>
+            </div>
+            <div class="panel-lite">
+              <h3 data-i18n="dash_recent_finance">Finance recente</h3>
+              <div id="dashFinance"></div>
+            </div>
+          </div>
+          <div class="panel-lite dashboard-caisse-card">
+            <div class="caisse-card-head">
+              <div>
+                <h3 data-i18n="caisse_title">Caisse</h3>
+                <p class="small" data-i18n="caisse_dashboard_desc">Ouverture et fin de jour</p>
+              </div>
+              <button id="dashCaisseOpenBtn" type="button" class="btn btn-soft" data-i18n="caisse_btn_open">Ouvrir</button>
+            </div>
+            <div id="dashCaisseStatus" class="caisse-dashboard-status"></div>
+            <div class="form-inline caisse-dashboard-actions">
+              <button id="dashCaisseCloseBtn" type="button" class="btn" data-i18n="caisse_btn_close_day">Fin de jour</button>
+            </div>
+          </div>
+          <div id="dashboardCharts" class="charts-grid"></div>
+        </section>
+
+        <section id="view-alerts" class="panel view">
+          <div class="view-head">
+            <h2>Alertes</h2>
+            <p>Liste complete des alertes operationnelles</p>
+          </div>
+          <div class="form-inline">
+            <button id="alertsRefreshBtn" type="button" class="btn btn-soft">Actualiser</button>
+          </div>
+          <div class="table-wrap fixed-list-height">
+            <table id="alertsTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Niveau</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="alertsList"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-products" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="products_title">Produits</h2>
+            <p>Catalogue, prix et disponibilite</p>
+          </div>
+          <div class="products-toolbar">
+            <div class="products-toolbar-search">
+              <input id="productGridSearch" type="text" data-i18n-ph="ph_product_grid_search" placeholder="Recherche produit / code barre / reference">
+            </div>
+            <div class="products-toolbar-right">
+              <div id="productGridMeta" class="product-grid-meta">produit : 0 | Stock : 0</div>
+              <button id="productAddBtn" type="button" class="btn">Ajouter produit</button>
+            </div>
+          </div>
+          <div class="list">
+            <table id="productsTable" class="table-lite data-grid" tabindex="0">
+              <thead>
+                <tr>
+                  <th data-sort="name">Nom</th>
+                  <th data-sort="barcode">Code barre</th>
+                  <th data-sort="reference">Reference</th>
+                  <th data-sort="stock_qty">Stock</th>
+                  <th data-sort="cost_cents">Achat</th>
+                  <th data-sort="wholesale_price_cents">Gros</th>
+                  <th data-sort="retail_price_cents">Detail</th>
+                  <th data-sort="assisted_price_cents">Remise</th>
+                  <th data-sort="expiry_date">Expiration</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody"></tbody>
+            </table>
+          </div>
+          <div class="form-inline">
+            <button id="productsPagePrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <div id="productsPageInfo" class="small">Page 1/1</div>
+            <button id="productsPageNextBtn" type="button" class="btn btn-soft">Suivant</button>
+          </div>
+        </section>
+
+        <section id="view-history" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="history_product_title">Historique produit</h2>
+            <p>Mouvements stock et lignes ventes/achats</p>
+          </div>
+          <div class="history-shell">
+            <div class="settings-tabbar history-tabbar">
+              <button type="button" class="settings-tab-btn history-tab-btn active" data-history-tab="stats">Statistiques</button>
+              <button type="button" class="settings-tab-btn history-tab-btn" data-history-tab="archive">Archive</button>
+            </div>
+            <form id="historyForm" class="history-product-bar">
+              <label class="form-field history-product-field">
+                <span class="auto-field-label">Produit</span>
+                <input id="historyProductSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Produit / barcode / reference">
+                <div id="historyProductSuggest" class="purchase-product-suggest history-product-suggest hidden" role="listbox"></div>
+                <select id="historyProduct" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+              <button type="submit" class="btn btn-soft">Charger historique</button>
+            </form>
+            <div class="history-pane active" data-history-pane="stats">
+              <div class="finance-card history-stats-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3>Statistiques produit</h3>
+                    <p>Ventes, achats, profit estime et comparaison par periode.</p>
+                  </div>
+                </div>
+                <form id="historyStatsForm" class="history-stats-filter-bar">
+                  <input id="historyStatsFrom" type="date" placeholder="Du">
+                  <input id="historyStatsTo" type="date" placeholder="Au">
+                  <select id="historyStatsCompare">
+                    <option value="month">Comparer par mois</option>
+                    <option value="year">Comparer par annee</option>
+                  </select>
+                  <button id="historyStatsBtn" type="submit" class="btn btn-soft">Analyser</button>
+                </form>
+                <div id="historyBox" class="history-metrics-panel"></div>
+                <div id="historyCharts" class="charts-grid history-chart-panel"></div>
+              </div>
+            </div>
+            <div class="history-pane" data-history-pane="archive">
+              <div class="finance-card history-archive-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3>Archive mouvements</h3>
+                    <p>Historique detaille des mouvements, ventes, achats et retours.</p>
+                  </div>
+                </div>
+                <form id="historyFilterForm" class="form-inline">
+                  <select id="historyType">
+                    <option value="">Type: Tous</option>
+                    <option value="sale">Vente</option>
+                    <option value="purchase">Achat</option>
+                    <option value="sale_return">Retour client</option>
+                    <option value="purchase_return">Retour fournisseur</option>
+                    <option value="stock_loss">Perte stock</option>
+                    <option value="manual">Ajustement</option>
+                  </select>
+                  <input id="historyFrom" type="date" placeholder="Du">
+                  <input id="historyTo" type="date" placeholder="Au">
+                  <input id="historyRef" type="text" placeholder="Facture / Ref">
+                  <input id="historyUser" type="text" placeholder="Utilisateur">
+                  <button id="historyFilterBtn" type="submit" class="btn btn-soft">Filtrer</button>
+                </form>
+                <div class="table-wrap fixed-list-height">
+                  <table class="table-lite data-grid">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Produit</th>
+                        <th>Qte</th>
+                        <th>Prix unit</th>
+                        <th>Total</th>
+                        <th>Ref</th>
+                        <th>Utilisateur</th>
+                        <th>Note</th>
+                      </tr>
+                    </thead>
+                    <tbody id="historyTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-losses" class="panel view">
+          <div class="view-head">
+            <h2 id="lossTitle">Pertes stock</h2>
+            <p id="lossSubtitle">Declarer un produit casse, perime ou perdu a son cout d'achat</p>
+          </div>
+          <div class="loss-shell">
+            <div class="settings-tabbar loss-tabbar">
+              <button type="button" class="settings-tab-btn loss-tab-btn active" data-loss-tab="entry">Pertes</button>
+              <button type="button" class="settings-tab-btn loss-tab-btn" data-loss-tab="archive">Archive pertes</button>
+            </div>
+            <div class="loss-pane active" data-loss-pane="entry">
+              <div class="finance-card loss-entry-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3 id="lossEntryTitle">Declarer une perte</h3>
+                    <p id="lossEntrySubtitle">Produit casse, perdu ou perime avec mise a jour automatique du stock.</p>
+                  </div>
+                </div>
+                <form id="stockLossForm" class="loss-entry-bar">
+                  <label class="form-field loss-product-field">
+                    <span id="lossProductLabel" class="auto-field-label">Produit</span>
+                    <input id="lossProductSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Produit / barcode / reference" required>
+                    <div id="lossProductSuggest" class="purchase-product-suggest loss-product-suggest hidden" role="listbox"></div>
+                    <select id="lossProduct" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+                  </label>
+                  <label class="form-field loss-qty-field">
+                    <span id="lossQtyLabel" class="auto-field-label">Quantite</span>
+                    <input id="lossQty" type="number" min="0.01" step="0.01" value="1" placeholder="Qte" required>
+                  </label>
+                  <label class="form-field loss-reason-field">
+                    <span id="lossReasonLabel" class="auto-field-label">Motif</span>
+                    <select id="lossReason">
+                      <option value="damaged">Casse</option>
+                      <option value="expired">Perime</option>
+                      <option value="lost">Perdu</option>
+                      <option value="other">Autre</option>
+                    </select>
+                  </label>
+                  <label class="form-field loss-note-field">
+                    <span id="lossNoteLabel" class="auto-field-label">Note</span>
+                    <input id="lossNote" type="text" maxlength="255" placeholder="Note optionnelle">
+                  </label>
+                  <button id="lossSubmitBtn" type="submit" class="btn">Enregistrer la perte</button>
+                </form>
+              </div>
+            </div>
+            <div class="loss-pane" data-loss-pane="archive">
+              <div class="finance-card loss-archive-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3 id="lossArchiveTitle">Archive pertes</h3>
+                    <p id="lossArchiveSubtitle">Filtrer l'historique et suivre la quantite et le cout reel perdu.</p>
+                  </div>
+                </div>
+                <div class="stats-grid">
+                  <article class="stat-card"><span id="lossCountLabel">Operations</span><strong id="lossCount">0</strong></article>
+                  <article class="stat-card"><span id="lossUnitsLabel">Quantite perdue</span><strong id="lossUnits">0</strong></article>
+                  <article class="stat-card"><span id="lossCostLabel">Cout total perdu</span><strong id="lossTotalCost">0.00</strong></article>
+                </div>
+                <div class="journal-filter-bar loss-filter-bar">
+                  <label class="journal-filter-search">
+                    <span id="lossFilterSearchLabel" class="auto-field-label">Recherche</span>
+                    <input id="lossFilterSearch" type="text" placeholder="Produit / code barre / reference / note">
+                  </label>
+                  <div class="journal-filter-actions">
+                    <label class="form-field">
+                      <span id="lossFilterReasonLabel" class="auto-field-label">Motif</span>
+                      <select id="lossFilterReason">
+                        <option value="">Tous motifs</option>
+                        <option value="damaged">Casse</option>
+                        <option value="expired">Perime</option>
+                        <option value="lost">Perdu</option>
+                        <option value="other">Autre</option>
+                      </select>
+                    </label>
+                    <label class="form-field">
+                      <span id="lossFilterFromLabel" class="auto-field-label">Du</span>
+                      <input id="lossFilterFrom" type="date">
+                    </label>
+                    <label class="form-field">
+                      <span id="lossFilterToLabel" class="auto-field-label">Au</span>
+                      <input id="lossFilterTo" type="date">
+                    </label>
+                    <button id="lossFilterClear" type="button" class="btn btn-soft">Reinitialiser</button>
+                  </div>
+                </div>
+                <div class="table-wrap fixed-list-height">
+                  <table id="lossTable" class="table-lite data-grid">
+                    <thead><tr><th data-sort="created_at">Date</th><th data-sort="product_name">Produit</th><th data-sort="qty">Qte</th><th data-sort="unit_cost_cents">Cout unit</th><th data-sort="total_cost_cents">Perte</th><th data-sort="note">Motif / note</th></tr></thead>
+                    <tbody id="lossTableBody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-customers" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="customers_title">Clients</h2>
+            <p>Gestion fiches clients et operations</p>
+          </div>
+          <div class="entity-toolbar">
+            <input id="customerGridSearch" type="text" data-i18n-ph="ph_customer_grid_search" placeholder="Recherche client / telephone">
+            <div class="entity-toolbar-right">
+              <div id="customerGridMeta" class="small">0</div>
+              <button id="customerAddBtn" type="button" class="btn btn-soft">Ajouter client</button>
+              <button id="customersPdfBtn" type="button" class="btn-square">Telecharger</button>
+            </div>
+          </div>
+          <div id="customersTableWrap" class="table-wrap fixed-list-height">
+            <table id="customersTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th data-sort="name">Nom</th>
+                  <th data-sort="phone">Telephone</th>
+                  <th data-sort="balance_cents">Solde/Avoir</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="customersTableBody"></tbody>
+            </table>
+          </div>
+          <div class="form-inline">
+            <button id="customersPagePrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <div id="customersPageInfo" class="small">Page 1/1</div>
+            <button id="customersPageNextBtn" type="button" class="btn btn-soft">Suivant</button>
+          </div>
+        </section>
+
+        <section id="view-customerJournal" class="panel view">
+          <div class="view-head">
+            <h2>Journal client</h2>
+            <p>Suivi detaille des operations client</p>
+          </div>
+          <form id="customerTraceForm" class="form-inline journal-filter-form">
+            <label class="form-field customer-trace-customer-field">
+              <span class="auto-field-label">Client</span>
+              <div class="search-suggest-anchor journal-suggest-anchor">
+                <input id="customerTraceCustomerSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Client / telephone / reference">
+                <div id="customerTraceCustomerSuggest" class="purchase-product-suggest customer-trace-customer-suggest hidden" role="listbox"></div>
+              </div>
+              <select id="customerTraceCustomer" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+            </label>
+            <input id="customerTraceFrom" type="date" placeholder="Du">
+            <input id="customerTraceTo" type="date" placeholder="Au">
+            <select id="customerTraceType">
+              <option value="">Type: Tous</option>
+              <option value="sale">Vente</option>
+              <option value="payment">Paiement</option>
+              <option value="sale_return">Retour client</option>
+            </select>
+            <button type="submit" class="btn btn-soft">Charger suivi client</button>
+          </form>
+          <div id="customerTraceDebt" class="debt-chip neutral">Solde/Avoir client: 0.00</div>
+          <div id="customerTraceBox" class="list"></div>
+        </section>
+
+        <section id="view-customerReturn" class="panel view">
+          <div class="view-head">
+            <div>
+              <h2 data-i18n="return_customer_title">Retour client</h2>
+              <p data-i18n="return_customer_subtitle">Retour lie a un BL ou retour general client.</p>
+            </div>
+          </div>
+          <form id="customerReturnForm" class="stack product-modal-form return-workspace">
+            <div class="grid-3">
+              <label class="form-field customer-return-customer-field"><span data-i18n="return_customer_label_client">Client</span>
+                <input id="customerReturnCustomerSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Client / telephone / reference">
+                <div id="customerReturnCustomerSuggest" class="purchase-product-suggest customer-return-customer-suggest hidden" role="listbox"></div>
+                <select id="customerReturnCustomer" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+              <label><span data-i18n="return_customer_label_source">BL source</span>
+                <select id="customerReturnSale"></select>
+              </label>
+              <label class="form-field customer-return-product-field"><span data-i18n="return_label_product">Produit</span>
+                <input id="customerReturnProductSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Produit / barcode / reference">
+                <div id="customerReturnProductSuggest" class="purchase-product-suggest customer-return-product-suggest hidden" role="listbox"></div>
+                <select id="customerReturnProduct" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+            </div>
+            <div class="grid-3">
+              <label><span data-i18n="return_label_qty">Quantite</span>
+                <input id="customerReturnQty" type="number" min="0.01" step="0.01" value="1" required>
+              </label>
+              <label><span data-i18n="return_customer_label_price">Prix vente</span>
+                <input id="customerReturnPrice" type="number" min="0" step="0.01" data-i18n-ph="return_customer_ph_price" placeholder="Prix detail">
+              </label>
+              <label><span data-i18n="return_label_note">Note</span>
+                <input id="customerReturnNote" type="text" data-i18n-ph="return_ph_note" placeholder="Note">
+              </label>
+            </div>
+            <div class="toolbar compact-toolbar">
+              <button id="customerReturnAddLineBtn" type="button" class="btn btn-soft" data-i18n="return_btn_add_line">Ajouter ligne</button>
+              <button id="customerReturnSubmitBtn" type="submit" class="btn btn-danger" data-i18n="return_customer_btn_save">Enregistrer retour client</button>
+              <button id="customerReturnClearBtn" type="button" class="btn btn-soft" data-i18n="btn_clear">Vider</button>
+            </div>
+          </form>
+          <div class="return-lines-card">
+            <div class="section-head compact-section-head">
+              <h3 data-i18n="return_customer_cart_title">Panier retour client</h3>
+              <span id="customerReturnTotal" class="debt-chip ok">0.00</span>
+            </div>
+            <div class="table-wrap return-lines-wrap">
+              <table class="table-lite data-grid">
+                <thead>
+                  <tr>
+                    <th data-i18n="th_product">Produit</th>
+                    <th data-i18n="th_qty">Qte</th>
+                    <th data-i18n="th_price">Prix</th>
+                    <th data-i18n="th_total">Total</th>
+                    <th data-i18n="th_actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="customerReturnLinesBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div id="customerReturnHint" class="server-status-line" data-i18n="return_customer_hint">Choisissez un client, puis un BL ou laissez Retour general.</div>
+        </section>
+
+        <section id="view-suppliers" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="suppliers_title">Fournisseurs</h2>
+            <p>Gestion fournisseurs et suivi achats</p>
+          </div>
+          <div class="entity-toolbar">
+            <input id="supplierGridSearch" type="text" data-i18n-ph="ph_supplier_grid_search" placeholder="Recherche fournisseur / telephone">
+            <div class="entity-toolbar-right">
+              <div id="supplierGridMeta" class="small">0</div>
+              <button id="supplierAddBtn" type="button" class="btn btn-soft">Ajouter fournisseur</button>
+              <button id="suppliersPdfBtn" type="button" class="btn-square">Telecharger</button>
+            </div>
+          </div>
+          <div id="suppliersTableWrap" class="table-wrap fixed-list-height">
+            <table id="suppliersTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th data-sort="name">Nom</th>
+                  <th data-sort="phone">Telephone</th>
+                  <th data-sort="balance_cents">Solde/Avoir</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="suppliersTableBody"></tbody>
+            </table>
+          </div>
+          <div class="form-inline">
+            <button id="suppliersPagePrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <div id="suppliersPageInfo" class="small">Page 1/1</div>
+            <button id="suppliersPageNextBtn" type="button" class="btn btn-soft">Suivant</button>
+          </div>
+        </section>
+
+        <section id="view-supplierJournal" class="panel view">
+          <div class="view-head">
+            <h2>Journal fournisseur</h2>
+            <p>Suivi detaille des operations fournisseur</p>
+          </div>
+          <form id="supplierTraceForm" class="form-inline journal-filter-form">
+            <label class="form-field supplier-trace-supplier-field">
+              <span class="auto-field-label">Fournisseur</span>
+              <div class="search-suggest-anchor journal-suggest-anchor">
+                <input id="supplierTraceSupplierSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Fournisseur / telephone / reference">
+                <div id="supplierTraceSupplierSuggest" class="purchase-product-suggest supplier-trace-supplier-suggest hidden" role="listbox"></div>
+              </div>
+              <select id="supplierTraceSupplier" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+            </label>
+            <input id="supplierTraceFrom" type="date" placeholder="Du">
+            <input id="supplierTraceTo" type="date" placeholder="Au">
+            <select id="supplierTraceType">
+              <option value="">Type: Tous</option>
+              <option value="purchase">Achat</option>
+              <option value="payment">Paiement</option>
+              <option value="purchase_return">Retour fournisseur</option>
+            </select>
+            <button type="submit" class="btn btn-soft">Charger suivi fournisseur</button>
+          </form>
+          <div id="supplierTraceDebt" class="debt-chip ok">Solde fournisseur: 0.00</div>
+          <div id="supplierTraceBox" class="list"></div>
+        </section>
+
+        <section id="view-supplierReturn" class="panel view">
+          <div class="view-head">
+            <div>
+              <h2 data-i18n="return_supplier_title">Retour fournisseur</h2>
+              <p data-i18n="return_supplier_subtitle">Retour lie a un BR ou retour general fournisseur.</p>
+            </div>
+          </div>
+          <form id="supplierReturnForm" class="stack product-modal-form return-workspace">
+            <div class="grid-3">
+              <label class="form-field supplier-return-supplier-field"><span data-i18n="return_supplier_label_supplier">Fournisseur</span>
+                <input id="supplierReturnSupplierSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Fournisseur / telephone / reference">
+                <div id="supplierReturnSupplierSuggest" class="purchase-product-suggest supplier-return-supplier-suggest hidden" role="listbox"></div>
+                <select id="supplierReturnSupplier" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+              <label><span data-i18n="return_supplier_label_source">BR source</span>
+                <select id="supplierReturnPurchase"></select>
+              </label>
+              <label class="form-field supplier-return-product-field"><span data-i18n="return_label_product">Produit</span>
+                <input id="supplierReturnProductSearch" data-no-auto-label="1" type="search" autocomplete="off" spellcheck="false" placeholder="Produit / barcode / reference">
+                <div id="supplierReturnProductSuggest" class="purchase-product-suggest supplier-return-product-suggest hidden" role="listbox"></div>
+                <select id="supplierReturnProduct" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+            </div>
+            <div class="grid-3">
+              <label><span data-i18n="return_label_qty">Quantite</span>
+                <input id="supplierReturnQty" type="number" min="0.01" step="0.01" value="1" required>
+              </label>
+              <label><span data-i18n="return_supplier_label_cost">Prix achat</span>
+                <input id="supplierReturnCost" type="number" min="0" step="0.01" data-i18n-ph="return_supplier_ph_cost" placeholder="Prix achat">
+              </label>
+              <label><span data-i18n="return_label_note">Note</span>
+                <input id="supplierReturnNote" type="text" data-i18n-ph="return_ph_note" placeholder="Note">
+              </label>
+            </div>
+            <div class="toolbar compact-toolbar">
+              <button id="supplierReturnAddLineBtn" type="button" class="btn btn-soft" data-i18n="return_btn_add_line">Ajouter ligne</button>
+              <button id="supplierReturnSubmitBtn" type="submit" class="btn btn-danger" data-i18n="return_supplier_btn_save">Enregistrer retour fournisseur</button>
+              <button id="supplierReturnClearBtn" type="button" class="btn btn-soft" data-i18n="btn_clear">Vider</button>
+            </div>
+          </form>
+          <div class="return-lines-card">
+            <div class="section-head compact-section-head">
+              <h3 data-i18n="return_supplier_cart_title">Panier retour fournisseur</h3>
+              <span id="supplierReturnTotal" class="debt-chip ok">0.00</span>
+            </div>
+            <div class="table-wrap return-lines-wrap">
+              <table class="table-lite data-grid">
+                <thead>
+                  <tr>
+                    <th data-i18n="th_product">Produit</th>
+                    <th data-i18n="th_qty">Qte</th>
+                    <th data-i18n="th_cost">Cout</th>
+                    <th data-i18n="th_total">Total</th>
+                    <th data-i18n="th_actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="supplierReturnLinesBody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div id="supplierReturnHint" class="server-status-line" data-i18n="return_supplier_hint">Choisissez un fournisseur, puis un BR ou laissez Retour general.</div>
+        </section>
+
+        <section id="view-sales" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="sales_title">Vente POS</h2>
+            <p>Vente comptoir rapide avec panier et validation</p>
+          </div>
+          <div id="salesRuntimeMsg" class="msg hidden"></div>
+          <div class="pos-live-board">
+            <div class="pos-live-left">
+              <div id="posLiveName" class="pos-live-name">-</div>
+              <div id="posLiveMeta" class="pos-live-meta">Qte: 0 | Stock: 0 | Exp: -</div>
+            </div>
+            <div id="posLiveTotal" class="pos-live-total">0.00</div>
+          </div>
+          <div class="pos-grid">
+            <div class="pos-left">
+              <h3 class="sub-head">Recherche produit</h3>
+              <form id="posSearchForm" class="form-inline">
+                <div class="shortcut-field pos-search-field">
+                  <input id="posSearchInput" type="text" data-i18n-ph="ph_search_product" placeholder="Rechercher produit / barcode / reference">
+                  <span class="hot shortcut-inline-hot" data-shortcut-hot="sales_focus_search">F6</span>
+                </div>
+                <div class="price-mode-group">
+                  <label class="radio-chip"><input type="radio" name="salePriceMode" value="retail" checked> Detail</label>
+                  <label class="radio-chip"><input type="radio" name="salePriceMode" value="wholesale"> Gros</label>
+                  <label class="radio-chip"><input type="radio" name="salePriceMode" value="assist"> Remise</label>
+                </div>
+                <button type="submit" class="btn btn-soft" data-i18n="btn_search">Rechercher</button>
+              </form>
+              <div id="posResults" class="list"></div>
+
+              <div class="pos-section-head">
+                <h3 class="sub-head">Panier courant</h3>
+                <button id="posPrintCartBtn" type="button" class="btn-mini shortcut-btn-label"><span data-i18n="btn_print_cart">Telecharger panier</span><span class="hot shortcut-inline-hot" data-shortcut-hot="sales_print_cart">F8</span></button>
+              </div>
+              <div class="list pos-cart-wrap">
+                <table id="posCartTable" class="table-lite">
+                  <thead>
+                    <tr>
+                      <th>Produit</th>
+                      <th>Qte</th>
+                      <th>Prix unit</th>
+                      <th>Mode</th>
+                      <th>Total</th>
+                      <th>Stock</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="posCartList"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="pos-right">
+              <h3 class="sub-head">Paiement</h3>
+              <div class="pos-total-box">
+                <div class="pos-total-head">
+                  <div class="small" data-i18n="pos_total_label">TOTAL</div>
+                  <button id="posClearBtn" type="button" class="pos-clear-inline shortcut-btn-label"><span data-i18n="btn_clear_cart">Vider panier</span><span class="hot shortcut-inline-hot" data-shortcut-hot="sales_clear_cart">F10</span></button>
+                </div>
+                <div id="posGrandTotal" class="pos-grand-total">0.00</div>
+              </div>
+
+              <div class="list">
+                <form id="saleCheckoutForm" class="stack">
+                  <label class="sale-customer-field">
+                    <span data-i18n="return_customer_label_client">Client</span>
+                    <input id="saleCustomerSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Client / telephone / reference">
+                    <div id="saleCustomerSuggest" class="purchase-product-suggest sale-customer-suggest hidden" role="listbox"></div>
+                    <select id="saleCustomer" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+                  </label>
+                  <div class="discount-block">
+                    <div id="saleDiscountLabel" class="discount-title">Remise total</div>
+                    <div class="discount-inline">
+                      <div class="form-field">
+                        <label id="saleDiscountTypeLabel" for="saleDiscountType">Montant</label>
+                        <select id="saleDiscountType">
+                          <option value="amount">Montant</option>
+                          <option value="percent">Pourcentage %</option>
+                        </select>
+                      </div>
+                      <div class="form-field">
+                        <input id="saleDiscountValue" type="number" min="0" step="0.01" placeholder="Remise">
+                      </div>
+                      <div class="form-field discount-btn-field">
+                        <label class="field-spacer" aria-hidden="true">&nbsp;</label>
+                        <button id="saleDiscountReset" type="button" class="btn-mini">Effacer</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="shortcut-field">
+                    <input id="salePaid" type="number" min="0" step="0.01" data-i18n-ph="ph_paid" placeholder="Montant paye">
+                    <span class="hot shortcut-inline-hot" data-shortcut-hot="sales_focus_paid">F12</span>
+                  </div>
+                  <div id="saleCustomerDebt" class="small debt-chip neutral">Solde/Avoir client: 0.00</div>
+
+                  <button id="posValidateBtn" type="submit" class="btn shortcut-btn-label"><span data-i18n="btn_validate_sale">Valider vente</span><span class="hot shortcut-inline-hot" data-shortcut-hot="sales_checkout">F9</span></button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-salesHistory" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="sales_history_title">Historique ventes</h2>
+            <p data-i18n="sales_history_sub">Filtrage, details, PDF et suivi paiements</p>
+          </div>
+          <div class="journal-filter-bar sales-history-toolbar">
+            <div class="journal-filter-search">
+              <input id="salesHistSearch" type="text" placeholder="Recherche: ID / client">
+            </div>
+            <div class="journal-filter-dates">
+              <input id="salesHistFrom" type="date" placeholder="Du">
+              <input id="salesHistTo" type="date" placeholder="Au">
+            </div>
+            <div class="journal-filter-actions">
+              <select id="salesHistSort">
+                <option value="date_desc">Date decroissante</option>
+                <option value="date_asc">Date croissante</option>
+                <option value="total_desc">Total decroissant</option>
+                <option value="customer_asc">Client A-Z</option>
+                <option value="due_desc">Reste decroissant</option>
+              </select>
+              <select id="salesHistPageSize">
+                <option value="10">10 / page</option>
+                <option value="20" selected>20 / page</option>
+                <option value="50">50 / page</option>
+              </select>
+              <button id="salesHistApplyBtn" type="button" class="btn btn-soft">Filtrer</button>
+            </div>
+          </div>
+          <h3 class="sub-head">Historique ventes</h3>
+          <div class="stats-grid stats-grid-3">
+            <article class="stat-card"><span>Nombre ventes</span><strong id="salesKpiCount">0</strong></article>
+            <article class="stat-card"><span>Total ventes</span><strong id="salesKpiTotal">0.00</strong></article>
+            <article class="stat-card"><span>Reste clients</span><strong id="salesKpiDue">0.00</strong></article>
+          </div>
+          <div id="salesHistStats" class="list hidden"></div>
+          <div class="sales-history-pager">
+            <button id="salesHistPrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <span id="salesHistPageInfo" class="small">Page 1/1</span>
+            <button id="salesHistNextBtn" type="button" class="btn btn-soft">Suivant</button>
+            <button id="salesHistPrintSelectedBtn" type="button" class="btn btn-soft">Telecharger selection</button>
+            <button id="salesHistPdfBtn" type="button" class="btn btn-soft">Telecharger historique</button>
+          </div>
+          <div class="table-wrap fixed-list-height">
+            <table id="salesHistoryTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th data-sort="public_ref">Ref</th>
+                  <th data-sort="created_at">Date</th>
+                  <th data-sort="customer_name">Client</th>
+                  <th data-sort="total_cents">Total</th>
+                  <th data-sort="paid_cents">Paye</th>
+                  <th data-sort="due_cents">Reste</th>
+                  <th data-sort="status">Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="salesHistoryTableBody"></tbody>
+            </table>
+          </div>
+          <div id="salesHistoryCharts" class="charts-grid"></div>
+          <div id="salesHistDetail" class="list hidden"></div>
+          <div id="salesList" class="list hidden"></div>
+        </section>
+
+        <section id="view-customerDebt" class="panel view">
+          <div class="view-head">
+            <h2>Solde/Avoir clients</h2>
+            <p>Afficher et regler uniquement les credit clients</p>
+          </div>
+          <div class="list">
+            <form id="saleDebtForm" class="form-inline">
+              <label class="form-field sale-debt-customer-field">
+                <input id="saleDebtCustomerSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Client / telephone / reference">
+                <div id="saleDebtCustomerSuggest" class="purchase-product-suggest sale-debt-customer-suggest hidden" role="listbox"></div>
+                <select id="saleDebtCustomer" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+              <select id="saleDebtInvoice"></select>
+              <input id="saleDebtAmount" type="number" min="0.01" step="0.01" placeholder="Montant reglement">
+              <input id="saleDebtNote" type="text" placeholder="Note reglement">
+              <button id="saleDebtPayBtn" type="submit" class="btn btn-soft">Valider reglement</button>
+            </form>
+            <div id="saleDebtMsg" class="msg hidden"></div>
+          </div>
+          <div class="table-wrap fixed-list-height">
+            <table id="saleDebtTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Date</th>
+                  <th>Client</th>
+                  <th>Total</th>
+                  <th>Paye</th>
+                  <th>Reste</th>
+                  <th>Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="saleDebtTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-purchases" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="purchases_title">Achats</h2>
+            <p>Saisie d'un nouvel achat fournisseur</p>
+          </div>
+          <div class="purchase-workspace">
+          <form id="purchaseForm" class="stack list purchase-entry-card" novalidate>
+            <div class="purchase-filter-bar purchase-filter-bar-top">
+              <div class="purchase-filter-supplier">
+                <input id="purchaseSupplierSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Fournisseur / telephone / reference">
+                <div id="purchaseSupplierSuggest" class="purchase-product-suggest purchase-supplier-suggest hidden" role="listbox"></div>
+                <select id="purchaseSupplier" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </div>
+            </div>
+            <div class="purchase-filter-bar purchase-filter-bar-main">
+              <div class="purchase-filter-product">
+                <input id="purchaseProductSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Produit / barcode / reference">
+                <datalist id="purchaseProductOptions"></datalist>
+                <div id="purchaseProductSuggest" class="purchase-product-suggest hidden" role="listbox"></div>
+                <input id="purchaseProduct" type="hidden">
+              </div>
+              <div class="purchase-filter-qty">
+                <input id="purchaseQty" type="number" min="0.01" step="0.01" data-i18n-ph="ph_qty" placeholder="Quantite">
+              </div>
+              <div class="purchase-filter-submit">
+                <button id="purchaseAddLineBtn" type="button" class="btn btn-soft">Ajouter produit</button>
+              </div>
+            </div>
+            <div class="purchase-filter-bar purchases-actions-row">
+              <button id="purchaseInlineToggleBtn" type="button" class="btn btn-soft">Nouveau produit rapide</button>
+              <div class="purchase-right-actions">
+                <button id="purchaseClearBtn" type="button" class="btn-compact">Vider panier</button>
+                <button id="purchasePdfFcBtn" type="button" class="btn-compact btn-compact-wide">Facture fournisseur (R)</button>
+              </div>
+            </div>
+          </form>
+          <div id="purchaseInlineCreate" class="list purchase-inline-card hidden">
+            <form id="purchaseInlineCreateForm" class="form-inline">
+              <input id="purchaseNewName" type="text" placeholder="Nom produit" required>
+              <input id="purchaseNewBarcode" type="text" placeholder="Barcode">
+              <input id="purchaseNewReference" type="text" placeholder="Reference">
+              <input id="purchaseNewCost" type="number" min="0" step="0.01" placeholder="Prix achat" required>
+              <input id="purchaseNewWholesale" type="number" min="0" step="0.01" placeholder="Prix gros">
+              <input id="purchaseNewRetail" type="number" min="0" step="0.01" placeholder="Prix detail">
+              <input id="purchaseNewAssist" type="number" min="0" step="0.01" placeholder="Prix remise">
+              <button id="purchaseInlineCreateBtn" type="submit" class="btn">Creer</button>
+            </form>
+          </div>
+          <div class="list purchase-cart-card">
+            <table id="purchaseCartTable" class="table-lite">
+              <thead>
+                <tr>
+                  <th>Produit</th>
+                  <th>Qte</th>
+                  <th>Cout unit</th>
+                  <th>Total</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="purchaseCartList"></tbody>
+            </table>
+          </div>
+          <div id="purchaseComputed" class="list purchase-checkout-bar purchase-summary-card">
+            <div class="purchase-total-chip">
+              <span id="purchaseTotalLabel">Total achat</span>
+              <strong id="purchaseGrandTotal">0.00</strong>
+            </div>
+            <div class="purchase-total-chip">
+              <span id="purchaseDueLabel">Reste</span>
+              <strong id="purchaseDueTotal">0.00</strong>
+            </div>
+            <div class="purchase-paid-control">
+              <input id="purchasePaid" form="purchaseForm" type="number" min="0" step="0.01" data-i18n-ph="ph_paid" placeholder="Montant paye">
+              <label class="purchase-paid-auto" title="Remplir avec le total">
+                <input id="purchasePaidAutoFull" type="checkbox">
+                <span data-i18n="purchase_paid_auto_full">Total auto</span>
+              </label>
+            </div>
+            <button id="purchaseSaveBtn" form="purchaseForm" type="submit" class="btn" data-i18n="btn_save_purchase">Enregistrer achat</button>
+          </div>
+          </div>
+        </section>
+
+        <section id="view-purchasesJournal" class="panel view">
+          <div class="view-head">
+            <h2>Journal Achats</h2>
+            <p>Historique achats fournisseurs, details et PDF</p>
+          </div>
+          <div class="journal-filter-bar sales-history-toolbar">
+            <div class="journal-filter-search">
+              <input id="purchasesHistSearch" type="text" placeholder="Recherche: Ref / fournisseur">
+            </div>
+            <div class="journal-filter-dates">
+              <input id="purchasesHistFrom" type="date" placeholder="Du">
+              <input id="purchasesHistTo" type="date" placeholder="Au">
+            </div>
+            <div class="journal-filter-actions">
+              <select id="purchasesHistSort">
+                <option value="date_desc">Date decroissante</option>
+                <option value="date_asc">Date croissante</option>
+                <option value="total_desc">Total decroissant</option>
+                <option value="supplier_asc">Fournisseur A-Z</option>
+                <option value="due_desc">Reste decroissant</option>
+              </select>
+              <select id="purchasesHistPageSize">
+                <option value="10">10 / page</option>
+                <option value="20" selected>20 / page</option>
+                <option value="50">50 / page</option>
+              </select>
+              <button id="purchasesHistApplyBtn" type="button" class="btn btn-soft">Filtrer</button>
+            </div>
+          </div>
+          <h3 class="sub-head">Journal achats</h3>
+          <div class="stats-grid stats-grid-3">
+            <article class="stat-card"><span>Nombre achats</span><strong id="purchaseKpiCount">0</strong></article>
+            <article class="stat-card"><span>Total achats</span><strong id="purchaseKpiTotal">0.00</strong></article>
+            <article class="stat-card"><span>Reste fournisseurs</span><strong id="purchaseKpiDue">0.00</strong></article>
+          </div>
+          <div class="sales-history-pager">
+            <button id="purchasesHistPrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <span id="purchasesHistPageInfo" class="small">Page 1/1</span>
+            <button id="purchasesHistNextBtn" type="button" class="btn btn-soft">Suivant</button>
+            <button id="purchasesHistPrintSelectedBtn" type="button" class="btn btn-soft">Telecharger selection</button>
+            <button id="purchasesHistPdfBtn" type="button" class="btn btn-soft">Telecharger historique</button>
+          </div>
+          <div class="table-wrap fixed-list-height">
+            <table id="purchasesJournalTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th data-sort="public_ref">Ref</th>
+                  <th data-sort="created_at">Date</th>
+                  <th data-sort="supplier_name">Fournisseur</th>
+                  <th data-sort="total_cents">Total</th>
+                  <th data-sort="paid_cents">Paye</th>
+                  <th data-sort="due_cents">Reste</th>
+                  <th data-sort="status">Statut</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="purchasesJournalTableBody"></tbody>
+            </table>
+          </div>
+          <div id="purchasesCharts" class="charts-grid"></div>
+          <div id="purchaseDetailBox" class="list hidden"></div>
+          <div id="purchasesList" class="list hidden"></div>
+        </section>
+
+        <section id="view-supplierDebt" class="panel view">
+          <div class="view-head">
+            <h2>Solde/Avoir fournisseurs</h2>
+            <p>Afficher et regler uniquement les credit fournisseurs</p>
+          </div>
+          
+          <div class="list">
+            <form id="purchaseDebtForm" class="form-inline">
+              <label class="form-field purchase-debt-supplier-field">
+                <input id="purchaseDebtSupplierSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Fournisseur / telephone / reference">
+                <div id="purchaseDebtSupplierSuggest" class="purchase-product-suggest purchase-debt-supplier-suggest hidden" role="listbox"></div>
+                <select id="purchaseDebtSupplier" class="hidden internal-select" aria-hidden="true" tabindex="-1"></select>
+              </label>
+              <select id="purchaseDebtInvoice"></select>
+              <input id="purchaseDebtAmount" type="number" min="0.01" step="0.01" placeholder="Montant reglement">
+              <input id="purchaseDebtNote" type="text" placeholder="Note reglement">
+              <button id="purchaseDebtPayBtn" type="submit" class="btn btn-soft">Valider reglement</button>
+            </form>
+            <div id="purchaseDebtMsg" class="msg hidden"></div>
+          </div>
+          <br>
+          <div class="table-wrap fixed-list-height">
+            <table id="purchaseDebtTable" class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th>Ref</th>
+                  <th>Date</th>
+                  <th>Fournisseur</th>
+                  <th>Total</th>
+                  <th>Paye</th>
+                  <th>Reste</th>
+                  <th>Statut</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="purchaseDebtTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="view-caisse" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="caisse_title">Caisse</h2>
+            <p data-i18n="caisse_subtitle">Ouverture, controle et fin de jour</p>
+          </div>
+          <div class="caisse-layout">
+            <div class="panel-lite caisse-session-card">
+              <div class="caisse-card-head">
+                <div>
+                  <h3 data-i18n="caisse_session_title">Session caisse</h3>
+                  <p class="small" data-i18n="caisse_session_desc">Controle du cash attendu selon les mouvements financiers.</p>
+                </div>
+                <button id="caisseRefreshBtn" type="button" class="btn btn-soft" data-i18n="btn_refresh">Actualiser</button>
+              </div>
+              <div id="caisseStatusBox" class="caisse-status-box"></div>
+              <div id="caisseMetrics" class="caisse-metrics"></div>
+              <form id="caisseOpenForm" class="form-inline caisse-form">
+                <input id="caisseOpeningAmount" type="number" min="0" step="0.01" placeholder="Fond initial" data-i18n-ph="caisse_opening_amount_ph">
+                <input id="caisseOpenNote" type="text" placeholder="Note ouverture" data-i18n-ph="caisse_open_note_ph">
+                <button id="caisseOpenBtn" type="submit" class="btn" data-i18n="caisse_btn_open_day">Ouvrir journee</button>
+              </form>
+              <form id="caisseCloseForm" class="form-inline caisse-form hidden">
+                <input id="caisseCountedAmount" type="number" min="0" step="0.01" placeholder="Cash reel compte" data-i18n-ph="caisse_counted_amount_ph">
+                <input id="caisseCloseNote" type="text" placeholder="Note fin de jour" data-i18n-ph="caisse_close_note_ph">
+                <button id="caisseCloseBtn" type="submit" class="btn btn-danger" data-i18n="caisse_btn_close_day">Fin de jour</button>
+              </form>
+            </div>
+            <div class="panel-lite caisse-history-card">
+              <h3 data-i18n="caisse_history_title">Historique caisse</h3>
+              <div class="table-wrap fixed-list-height">
+                <table class="table-lite data-grid">
+                  <thead>
+                    <tr>
+                      <th data-i18n="caisse_th_opening">Ouverture</th>
+                      <th data-i18n="caisse_th_closing">Fermeture</th>
+                      <th data-i18n="caisse_th_status">Statut</th>
+                      <th data-i18n="caisse_th_fund">Fond</th>
+                      <th data-i18n="caisse_th_income">Entrees</th>
+                      <th data-i18n="caisse_th_expense">Sorties</th>
+                      <th data-i18n="caisse_th_expected">Attendu</th>
+                      <th data-i18n="caisse_th_counted">Compte</th>
+                      <th data-i18n="caisse_th_difference">Difference</th>
+                    </tr>
+                  </thead>
+                  <tbody id="caisseHistoryBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-finance" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="finance_title">Finance</h2>
+            <p data-i18n="finance_subtitle">Encaissement, decaissement et suivi caisse</p>
+          </div>
+          <div class="finance-shell">
+            <div class="settings-tabbar finance-tabbar">
+              <button type="button" class="settings-tab-btn finance-tab-btn active" data-finance-tab="treasury" data-i18n="finance_tab_treasury">Trésorerie</button>
+              <button type="button" class="settings-tab-btn finance-tab-btn" data-finance-tab="analytics" data-i18n="finance_tab_analysis">Analyse</button>
+              <button type="button" class="settings-tab-btn finance-tab-btn" data-finance-tab="archive" data-i18n="finance_tab_archive">Archive</button>
+            </div>
+            <div class="finance-pane active" data-finance-pane="treasury">
+              <div class="finance-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3 data-i18n="finance_treasury_title">Trésorerie</h3>
+                    <p data-i18n="finance_treasury_desc">Entrées, sorties et règlements liés aux clients ou fournisseurs.</p>
+                  </div>
+                </div>
+            <form id="financeForm" class="form-inline">
+              <select id="financeType">
+                <option value="income" data-i18n="opt_income">Entree</option>
+                <option value="expense" data-i18n="opt_expense">Sortie</option>
+              </select>
+              <input id="financeAmount" type="number" min="0.01" step="0.01" data-i18n-ph="ph_amount" placeholder="Montant" required>
+              <input id="financeNote" type="text" data-i18n-ph="ph_note" placeholder="Note">
+              <select id="financeEntryPartyMode" data-i18n-label="finance_entry_party_mode">
+                <option value="anonymous" data-i18n="finance_party_anonymous">ANONYM</option>
+                <option value="customer" data-i18n="finance_party_customer">Client</option>
+                <option value="supplier" data-i18n="finance_party_supplier">Fournisseur</option>
+              </select>
+              <select id="financeEntryParty" class="hidden" disabled>
+                <option value="" data-i18n="finance_party_choose">Choisir personne</option>
+              </select>
+              <button type="submit" class="btn" data-i18n="btn_add_entry">Ajouter ecriture</button>
+            </form>
+              </div>
+            </div>
+            <div class="finance-pane" data-finance-pane="analytics">
+              <div class="finance-card finance-filter-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3 data-i18n="finance_analysis_title">Analyse</h3>
+                    <p data-i18n="finance_analysis_desc">Filtrer la période, les tiers et suivre les indicateurs caisse.</p>
+                  </div>
+                </div>
+            <form id="financeAnalysisForm" class="form-inline">
+              <input id="financeAnalysisFrom" type="date" data-i18n-ph="finance_ph_from" placeholder="Du">
+              <input id="financeAnalysisTo" type="date" data-i18n-ph="finance_ph_to" placeholder="Au">
+              <button id="financeAnalysisApplyBtn" type="submit" class="btn btn-soft" data-i18n="btn_analyze">Analyser</button>
+            </form>
+            <div id="financeCharts" class="charts-grid"></div>
+            <div id="financeSummary" class="list"></div>
+              </div>
+            </div>
+            <div class="finance-pane" data-finance-pane="archive">
+              <div class="finance-card finance-archive-card">
+                <div class="finance-card-head">
+                  <div>
+                    <h3 data-i18n="finance_archive_title">Archive transactions</h3>
+                    <p data-i18n="finance_archive_desc">Historique paginé des ventes, achats, règlements et écritures caisse.</p>
+                  </div>
+                </div>
+            <form id="financeFilterForm" class="form-inline">
+              <select id="financeParty">
+                <option value="" data-i18n="finance_all_parties">Tous clients / fournisseurs</option>
+              </select>
+              <select id="financeDay">
+                <option value="" data-i18n="finance_all_days">Tous jours</option>
+              </select>
+              <input id="financeFrom" type="date" data-i18n-ph="finance_ph_from" placeholder="Du">
+              <input id="financeTo" type="date" data-i18n-ph="finance_ph_to" placeholder="Au">
+              <input id="financeSearch" type="text" data-i18n-ph="finance_search_ph" placeholder="Recherche: ref / tiers / produit">
+              <select id="financePageSize">
+                <option value="10" data-i18n="finance_page_size_10">10 / page</option>
+                <option value="20" selected data-i18n="finance_page_size_20">20 / page</option>
+                <option value="50" data-i18n="finance_page_size_50">50 / page</option>
+              </select>
+              <button id="financeApplyBtn" type="submit" class="btn btn-soft" data-i18n="btn_filter">Filtrer</button>
+            </form>
+            <div class="table-wrap fixed-list-height">
+              <table id="financeTable" class="table-lite data-grid">
+                <thead>
+                  <tr>
+                    <th data-sort="created_at" data-i18n="finance_th_date">Date</th>
+                    <th data-sort="source_label" data-i18n="finance_th_type">Type</th>
+                    <th data-sort="public_ref" data-i18n="finance_th_ref">Ref</th>
+                    <th data-sort="party_name" data-i18n="finance_th_party">Tiers</th>
+                    <th data-sort="products_text" data-i18n="finance_th_products">Produits</th>
+                    <th data-sort="qty_total" data-i18n="finance_th_qty">Qte</th>
+                    <th data-sort="amount_cents" data-i18n="finance_th_amount">Montant</th>
+                    <th data-sort="status_label" data-i18n="finance_th_status">Statut</th>
+                    <th data-i18n="finance_th_actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="financeTableBody"></tbody>
+              </table>
+            </div>
+            <div class="sales-history-pager finance-pager">
+              <button id="financePrevBtn" type="button" class="btn btn-soft" data-i18n="btn_prev">Precedent</button>
+              <span id="financePageInfo" class="small">Page 1/1</span>
+              <div id="financePageNums" class="pager-numbers"></div>
+              <button id="financeNextBtn" type="button" class="btn btn-soft" data-i18n="btn_next">Suivant</button>
+            </div>
+            <div id="financeList" class="list hidden"></div>
+              </div>
+            </div>
+          </div>
+          </section>
+
+        <section id="view-reports" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="reports_title">Rapports</h2>
+            <p>Analyse journaliere et export PDF</p>
+          </div>
+          <form id="reportForm" class="form-inline">
+            <input id="reportDate" type="date" required>
+            <button type="submit" class="btn" data-i18n="btn_load">Charger</button>
+            <button id="reportPdfBtn" type="button" class="btn btn-soft">Telecharger</button>
+          </form>
+          <div id="reportExportBox" class="list"></div>
+          <div id="reportBox" class="list"></div>
+          <h3 class="sub-head">Synthese credit</h3>
+          <div class="stats-grid stats-grid-3">
+            <article class="stat-card"><span>Solde/Avoir clients</span><strong id="debtKpiCustomers">0.00</strong></article>
+            <article class="stat-card"><span>Solde/Avoir fournisseurs</span><strong id="debtKpiSuppliers">0.00</strong></article>
+            <article class="stat-card"><span>Credit net</span><strong id="debtKpiNet">0.00</strong></article>
+          </div>
+          <div id="debtCharts" class="charts-grid"></div>
+          <div class="form-inline">
+            <button id="reportDebtCustomersPdfBtn" type="button" class="btn btn-soft">Telecharger credit clients</button>
+            <button id="reportDebtSuppliersPdfBtn" type="button" class="btn btn-soft">Telecharger credit fournisseurs</button>
+          </div>
+          <div id="debtSummaryBox" class="list"></div>
+        </section>
+
+        <section id="view-audit" class="panel view">
+          <div class="view-head">
+            <h2>Audit</h2>
+            <p>Journal local des operations</p>
+          </div>
+          <form id="auditForm" class="form-inline">
+            <input id="auditSearch" type="text" placeholder="Recherche action/payload">
+            <input id="auditAction" type="text" placeholder="Action ex: sales.create">
+            <input id="auditFrom" type="date">
+            <input id="auditTo" type="date">
+            <button id="auditLoadBtn" type="submit" class="btn btn-soft">Charger</button>
+            <button id="auditPdfBtn" type="button" class="btn btn-soft">Telecharger audit</button>
+          </form>
+          <div class="table-wrap fixed-list-height">
+            <table class="table-lite data-grid">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Action</th>
+                  <th>Payload</th>
+                </tr>
+              </thead>
+              <tbody id="auditList"></tbody>
+            </table>
+          </div>
+          <div class="pager-row">
+            <button id="auditPrevBtn" type="button" class="btn btn-soft">Precedent</button>
+            <span id="auditPageInfo" class="small">Page 1/1</span>
+            <div id="auditPageNums" class="pager-numbers"></div>
+            <button id="auditNextBtn" type="button" class="btn btn-soft">Suivant</button>
+          </div>
+        </section>
+
+        <section id="view-backups" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="backups_title">Sauvegardes</h2>
+            <p data-i18n="backups_subtitle">Sauvegarde locale et restauration</p>
+          </div>
+          <div class="backup-shell">
+            <div class="settings-tabbar backup-tabbar">
+              <button type="button" class="settings-tab-btn backup-tab-btn active" data-backup-tab="backup" data-i18n="backup_tab_create_import">Creer/Importer</button>
+              <button type="button" class="settings-tab-btn backup-tab-btn" data-backup-tab="xlsx" data-i18n="backup_tab_xlsx">Import XLSX</button>
+            </div>
+            <div class="backup-pane active" data-backup-pane="backup">
+              <div class="panel-lite settings-card">
+                <h3 data-i18n="backup_reset_title">Reinitialisation application</h3>
+                <p class="small" data-i18n="backup_reset_desc_scoped">Exporter une sauvegarde complete ou produits seulement, puis restaurer une sauvegarde existante.</p>
+                <div class="form-inline">
+                  <label id="backupScopeLbl" for="backupScope" data-i18n="backup_scope_label">Type sauvegarde</label>
+                  <select id="backupScope">
+                    <option value="all" data-i18n="backup_scope_all">Tout</option>
+                    <option value="products" data-i18n="backup_scope_products">Produits seulement</option>
+                  </select>
+                  <button id="backupCreateBtn" type="button" class="btn" data-i18n="btn_create_backup">Creer sauvegarde</button>
+                  <button id="backupImportBtn" type="button" class="btn btn-soft" data-i18n="btn_import_backup">Importer sauvegarde</button>
+                </div>
+                <div id="backupBox" class="list"></div>
+              </div>
+            </div>
+            <div class="backup-pane" data-backup-pane="xlsx">
+              <div class="panel-lite settings-card xlsx-import-card">
+                <h3 data-i18n="xlsx_import_title">Import XLSX general</h3>
+                <p class="small" data-i18n="xlsx_import_desc">Choisir un fichier Excel, selectionner la table cible, puis relier les colonnes du fichier aux champs WILI.</p>
+                <div class="form-inline">
+                  <button id="xlsxPickBtn" type="button" class="btn" data-i18n="xlsx_pick_file">Choisir fichier XLSX</button>
+                  <span id="xlsxFileName" class="small" data-i18n="xlsx_no_file">Aucun fichier</span>
+                </div>
+                <div class="xlsx-import-grid">
+                  <label class="form-field" for="xlsxSheetSelect"><span data-i18n="xlsx_sheet">Feuille</span>
+                    <select id="xlsxSheetSelect"></select>
+                  </label>
+                  <label class="form-field" for="xlsxTargetSelect"><span data-i18n="xlsx_target_table">Table cible</span>
+                    <select id="xlsxTargetSelect">
+                      <option value="products" data-i18n="xlsx_target_products">Products</option>
+                      <option value="customers" data-i18n="xlsx_target_customers">Clients</option>
+                      <option value="suppliers" data-i18n="xlsx_target_suppliers">Fournisseurs</option>
+                    </select>
+                  </label>
+                </div>
+                <div id="xlsxHeadersBox" class="list xlsx-headers-box"></div>
+                <div id="xlsxMappingBox" class="xlsx-mapping-grid"></div>
+                <div id="xlsxPreviewBox" class="list xlsx-preview-box"></div>
+                <div class="form-inline">
+                  <button id="xlsxImportBtn" type="button" class="btn" disabled data-i18n="xlsx_import_rows">Importer lignes</button>
+                </div>
+                <div id="xlsxResultBox" class="list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-priceDisplay" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="price_display_title">Affichage prix client</h2>
+            <p data-i18n="price_display_sub">Ouvrir un ou plusieurs ecrans de scan prix (sans mouvement stock)</p>
+          </div>
+          <div class="panel-lite settings-card settings-wide price-display-shell">
+            <form id="priceDisplayForm" class="price-display-form">
+              <div class="price-display-grid">
+                <div class="price-card">
+                  <h3 data-i18n="price_display_screen_card_title">Ecran client</h3>
+                  <div class="price-fields">
+                    <div class="price-field">
+                      <label for="priceDisplayMonitor" data-i18n="price_display_monitor">Ecran</label>
+                      <select id="priceDisplayMonitor"></select>
+                    </div>
+                    <div class="price-field">
+                      <label for="priceDisplayMode" data-i18n="price_display_mode">Mode prix</label>
+                      <select id="priceDisplayMode">
+                        <option value="detail" data-i18n="price_mode_detail">Detail</option>
+                        <option value="gros" data-i18n="price_mode_gros">Gros</option>
+                        <option value="remise" data-i18n="price_mode_remise">Remise</option>
+                      </select>
+                    </div>
+                    <div class="price-field price-field-sm">
+                      <label for="priceDisplayCount" data-i18n="price_display_count">Nombre fenetres</label>
+                      <input id="priceDisplayCount" type="number" min="1" max="4" step="1" value="1">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="price-card">
+                  <h3 data-i18n="price_display_detect_title">Detect scanners</h3>
+                  <p class="small price-detect-help" data-i18n="price_display_detect_help">
+                    Pour lier chaque scanner a une fenetre automatiquement, activez USB Virtual COM via la notice du scanner.
+                  </p>
+                  <div class="price-fields">
+                    <div class="price-field">
+                      <label for="priceDisplayScannerBaud" data-i18n="price_display_scanner_baud">Baud par defaut</label>
+                      <select id="priceDisplayScannerBaud">
+                        <option value="9600">9600</option>
+                        <option value="19200">19200</option>
+                        <option value="38400">38400</option>
+                        <option value="57600">57600</option>
+                        <option value="115200" selected>115200</option>
+                      </select>
+                    </div>
+                    <div class="price-field price-field-sm">
+                      <label>&nbsp;</label>
+                      <button id="priceDisplayScannerDetectBtn" type="button" class="btn btn-soft" data-i18n="price_display_scanner_detect_btn">Detecter appareils</button>
+                    </div>
+                  </div>
+                  <div class="table-wrap price-scanner-wrap">
+                    <table class="table-lite data-grid">
+                      <thead>
+                        <tr>
+                          <th data-i18n="price_display_scanner_col_device">Scanner</th>
+                          <th data-i18n="price_display_scanner_col_state">Etat</th>
+                          <th data-i18n="price_display_scanner_col_window">Fenetre liee</th>
+                          <th data-i18n="price_display_scanner_col_actions">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="priceDisplayScanners"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="price-main-actions">
+                <button id="priceDisplayOpenBtn" type="submit" class="btn" data-i18n="price_display_open_btn">Ouvrir fenetre(s)</button>
+                <button id="priceDisplayRefreshBtn" type="button" class="btn btn-soft" data-i18n="price_display_refresh_btn">Actualiser</button>
+                <button id="priceDisplayCloseAllBtn" type="button" class="btn btn-danger" data-i18n="price_display_close_all_btn">Fermer tout</button>
+              </div>
+            </form>
+            <div id="priceDisplaySerialStatus" class="small" data-i18n="price_display_scanner_status_empty">Scanners detectes: -</div>
+            <div id="priceDisplayMsg" class="msg hidden"></div>
+            <div class="table-wrap fixed-list-height">
+              <table class="table-lite data-grid">
+                <thead>
+                  <tr>
+                    <th data-i18n="price_display_col_id">#</th>
+                    <th data-i18n="price_display_col_screen">Ecran</th>
+                    <th data-i18n="price_display_col_mode">Mode</th>
+                    <th data-i18n="price_display_col_created">Ouvert le</th>
+                    <th data-i18n="price_display_col_actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="priceDisplayWindows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="view-settings" class="panel view">
+          <div class="view-head">
+            <h2 data-i18n="settings_title">Avancé</h2>
+            <p>Configuration systeme et utilisateurs</p>
+          </div>
+          <div class="settings-tabbar">
+            <button type="button" class="settings-tab-btn active" data-settings-tab="general" data-i18n="settings_general_title">General</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="printing" data-i18n="settings_printing_title">Impression</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="barcode" data-i18n="settings_barcode_title">Code barre</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="comptoir" data-i18n="settings_comptoir_title">Comptoir</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="shortcuts" data-i18n="settings_shortcuts_title">Raccourcis</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="users" data-i18n="users_title">Users</button>
+            <button type="button" class="settings-tab-btn" data-settings-tab="language" data-i18n="settings_lang_title">Langue</button>
+          </div>
+          <div class="settings-shell">
+            <div class="settings-pane active" data-settings-pane="general">
+              <div class="panel-lite settings-card settings-wide">
+                <h3 data-i18n="settings_general_title">General</h3>
+                <div class="small" data-i18n="settings_invoice_desc">Informations imprimees en haut des PDF</div>
+                <form id="settingsForm" class="settings-advanced-form">
+                  <div class="settings-block">
+                    <div class="settings-block-title">Systeme caisse</div>
+                    <div class="form-inline settings-block-grid">
+                      <select id="setAllowNegativeStock">
+                        <option value="false" data-i18n="opt_block_negative_stock">Bloquer stock negatif</option>
+                        <option value="true" data-i18n="opt_allow_negative_stock">Autoriser stock negatif</option>
+                      </select>
+                      <select id="setAutoSettleDocuments">
+                        <option value="true">Reglement automatique documents: Oui</option>
+                        <option value="false">Reglement automatique documents: Non</option>
+                      </select>
+                      <select id="setAutoPrintSaleCart" class="hidden" data-i18n-label="set_auto_print_sale_cart">
+                        <option value="true" data-i18n="opt_auto_print_sale_cart_yes">Impression directe ticket vente: Oui (PDF Panier)</option>
+                        <option value="false" data-i18n="opt_auto_print_sale_cart_no">Impression directe ticket vente: Non</option>
+                      </select>
+                      <input id="setCurrency" type="text" maxlength="8" data-i18n-ph="ph_currency" placeholder="Devise">
+                      <input id="setInvoiceTaxRate" type="number" min="0" max="100" step="0.01" data-i18n-label="set_invoice_tax_rate" placeholder="TVA facture (%)">
+                    </div>
+                  </div>
+                  <div class="settings-block">
+                    <div class="settings-block-title" data-i18n="settings_invoice_desc">Informations imprimees en haut des PDF</div>
+                    <div class="form-inline settings-block-grid">
+                      <input id="setStoreName" type="text" maxlength="120" data-i18n-ph="ph_store_name" placeholder="Nom commerce">
+                      <input id="setStoreActivity" type="text" maxlength="120" data-i18n-ph="ph_store_activity" placeholder="Activite">
+                      <input id="setStoreAddress" type="text" maxlength="180" data-i18n-ph="ph_store_address" placeholder="Adresse">
+                      <input id="setStorePhone" type="text" maxlength="40" data-i18n-ph="ph_store_phone" placeholder="Telephone">
+                      <input id="setStoreEmail" type="text" maxlength="120" data-i18n-ph="ph_store_email" placeholder="Email">
+                      <input id="setStoreNif" type="text" maxlength="40" data-i18n-ph="ph_store_nif" placeholder="NIF">
+                      <input id="setStoreNis" type="text" maxlength="40" data-i18n-ph="ph_store_nis" placeholder="NIS">
+                      <input id="setStoreRc" type="text" maxlength="40" data-i18n-ph="ph_store_rc" placeholder="RC">
+                      <input id="setStoreAi" type="text" maxlength="40" data-i18n-ph="ph_store_ai" placeholder="AI / ART">
+                    </div>
+                  </div>
+                  <div class="settings-save-row">
+                    <button type="submit" class="btn" data-i18n="btn_save_settings">Enregistrer</button>
+                  </div>
+                </form>
+                <div id="settingsSaveMsg" class="msg hidden"></div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="comptoir">
+              <div class="panel-lite settings-card settings-wide comptoir-settings-page">
+                <div class="settings-page-head">
+                  <div>
+                    <h3 data-i18n="settings_comptoir_title">Comptoir</h3>
+                    <p class="small" data-i18n="settings_comptoir_desc">Choisissez l'affichage caisse et le dossier local des images produits.</p>
+                  </div>
+                </div>
+                <div class="settings-block">
+                  <div class="settings-block-title" data-i18n="settings_product_images_title">Images produits</div>
+                  <div class="product-folder-control">
+                    <input id="setProductImagesDir" type="text" maxlength="260" readonly data-i18n-ph="ph_product_images_dir" placeholder="Dossier images produits">
+                    <button id="productImagesDirPickBtn" type="button" class="btn btn-soft" data-i18n="btn_choose_folder">Choisir dossier</button>
+                    <button id="productImagesDirDefaultBtn" type="button" class="btn btn-soft" data-i18n="btn_use_default_folder">Dossier par defaut</button>
+                  </div>
+                  <div id="productImagesDirHint" class="small product-folder-hint"></div>
+                </div>
+                <div class="settings-block comptoir-settings-block">
+                  <div class="settings-block-title" data-i18n="settings_comptoir_layout_title">Affichage Comptoir</div>
+                  <select id="setComptoirLayout" class="comptoir-layout-select">
+                    <option value="table" data-i18n="opt_comptoir_layout_table">Classique sans images</option>
+                    <option value="compact_images" data-i18n="opt_comptoir_layout_compact">Images petites</option>
+                    <option value="large_images" data-i18n="opt_comptoir_layout_large">Images grandes</option>
+                  </select>
+                  <div id="comptoirLayoutPreview" class="comptoir-layout-preview" aria-live="polite"></div>
+                </div>
+                <div class="settings-save-row">
+                  <button type="submit" form="settingsForm" class="btn" data-i18n="btn_save_settings">Enregistrer</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="printing">
+              <div class="panel-lite settings-card settings-wide print-settings-card">
+                <div class="print-settings-head">
+                  <div>
+                    <h3 data-i18n="settings_printing_heading">Profils d'impression</h3>
+                    <p class="small" data-i18n="settings_printing_desc">Attribuez chaque document a une ou plusieurs imprimantes avec mode direct ou apercu.</p>
+                  </div>
+                  <div class="print-settings-actions">
+                    <button id="printPrintersRefreshBtn" type="button" class="btn btn-soft" data-i18n="settings_printing_refresh">Actualiser imprimantes</button>
+                    <span id="printPrinterStatus" class="print-printer-status">-</span>
+                  </div>
+                </div>
+                <div id="printProfilesGrid" class="print-profiles-grid"></div>
+                <div class="print-settings-note" data-i18n="settings_printing_note">Ticket caisse remplace l'ancien parametre Impression directe ticket vente.</div>
+                <div class="settings-save-row">
+                  <button type="submit" form="settingsForm" class="btn" data-i18n="btn_save_settings">Enregistrer</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="barcode">
+              <div class="panel-lite settings-card settings-wide barcode-settings-card">
+                <div class="settings-page-head">
+                  <div>
+                    <h3 data-i18n="settings_barcode_heading">Etiquettes code barre</h3>
+                    <p class="small" data-i18n="settings_barcode_desc">Choisissez les informations imprimees autour du code barre produit.</p>
+                  </div>
+                </div>
+                <div class="settings-block barcode-options-grid">
+                  <label class="settings-check-card">
+                    <input id="setBarcodeShowName" type="checkbox">
+                    <span>
+                      <strong data-i18n="settings_barcode_show_name">Nom produit</strong>
+                      <small data-i18n="settings_barcode_show_name_desc">Afficher le nom en haut de l'etiquette.</small>
+                    </span>
+                  </label>
+                  <label class="settings-check-card">
+                    <input id="setBarcodeShowRef" type="checkbox">
+                    <span>
+                      <strong data-i18n="settings_barcode_show_ref">ID / Reference produit</strong>
+                      <small data-i18n="settings_barcode_show_ref_desc">Afficher la reference interne du produit.</small>
+                    </span>
+                  </label>
+                  <label class="settings-check-card">
+                    <input id="setBarcodeShowPrice" type="checkbox">
+                    <span>
+                      <strong data-i18n="settings_barcode_show_price">Prix detail</strong>
+                      <small data-i18n="settings_barcode_show_price_desc">Ajouter le prix detail sous le code barre.</small>
+                    </span>
+                  </label>
+                </div>
+                <div class="settings-save-row">
+                  <button type="submit" form="settingsForm" class="btn" data-i18n="btn_save_settings">Enregistrer</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="shortcuts">
+              <div class="panel-lite settings-card settings-wide shortcuts-card">
+                <div class="shortcut-head">
+                  <div>
+                    <h3 data-i18n="settings_shortcuts_heading">Raccourcis clavier</h3>
+                    <p class="small" data-i18n="settings_shortcuts_desc">Personnalisez les touches rapides de navigation et du Comptoir.</p>
+                  </div>
+                  <div class="shortcut-actions">
+                    <input id="shortcutSearch" type="search" data-i18n-ph="settings_shortcuts_filter" placeholder="Filtrer operation">
+                    <button id="shortcutResetBtn" type="button" class="btn btn-soft" data-i18n="settings_shortcuts_reset">Par defaut</button>
+                  </div>
+                </div>
+                <div class="table-wrap shortcuts-table-wrap">
+                  <table class="table-lite data-grid shortcuts-table">
+                    <thead>
+                      <tr>
+                        <th data-i18n="settings_shortcuts_col_group">Groupe</th>
+                        <th data-i18n="settings_shortcuts_col_action">Operation</th>
+                        <th data-i18n="settings_shortcuts_col_shortcut">Raccourci</th>
+                        <th data-i18n="settings_shortcuts_col_default">Defaut</th>
+                        <th data-i18n="settings_shortcuts_col_status">Etat</th>
+                        <th data-i18n="settings_shortcuts_col_actions">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody id="shortcutTableBody"></tbody>
+                  </table>
+                </div>
+                <div id="shortcutMsg" class="msg hidden"></div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="users">
+              <div class="panel-lite settings-card">
+                <h3 data-i18n="users_title">Users</h3>
+                <form id="userForm" class="form-inline">
+                  <input id="userName" type="text" data-i18n-ph="ph_username" placeholder="username" required>
+                  <input id="userDisplayName" type="text" data-i18n-ph="ph_display_name" placeholder="display name" required>
+                  <select id="userRole">
+                    <option value="seller" data-i18n="opt_seller">vendeur</option>
+                    <option value="admin" data-i18n="opt_admin">admin</option>
+                  </select>
+                  <input id="userPin" type="password" data-i18n-ph="ph_pin" placeholder="PIN (4+)" required>
+                  <button type="submit" class="btn" data-i18n="btn_add_user">Ajouter utilisateur</button>
+                </form>
+                <div id="userSaveMsg" class="msg hidden"></div>
+                <div id="usersList" class="list"></div>
+              </div>
+            </div>
+
+            <div class="settings-pane" data-settings-pane="language">
+              <div class="panel-lite settings-card">
+                <h3 data-i18n="settings_lang_title">Langue</h3>
+                <form id="langForm" class="form-inline">
+                  <select id="setLanguage">
+                    <option value="fr">Français</option>
+                    <option value="ar">العربية</option>
+                    <option value="dz">الدارجة الجزائرية</option>
+                  </select>
+                  <select id="setUiFontSize">
+                    <option value="small" data-i18n="opt_font_small">Petit</option>
+                    <option value="medium" data-i18n="opt_font_medium">Moyen</option>
+                    <option value="large" data-i18n="opt_font_large">Grand</option>
+                    <option value="xlarge" data-i18n="opt_font_xlarge">Tres grand</option>
+                  </select>
+                  <select id="setUiDisplayProfile">
+                    <option value="720">1280x720</option>
+                    <option value="768">1366x768</option>
+                    <option value="900">1600x900</option>
+                    <option value="1080">1920x1080</option>
+                  </select>
+                  <label class="row-check">
+                    <input id="setUiFontBold" type="checkbox">
+                    <span data-i18n="opt_font_bold">Texte en gras</span>
+                  </label>
+                  <button id="saveLangBtn" type="submit" class="btn" data-i18n="btn_save_language">Langue</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <footer class="status-bar">
+      <span id="sbUser">Utilisateur: -</span>
+      <span id="sbView">Vue: tableau</span>
+      <span id="sbClock">--:--:--</span>
+    </footer>
+  </div>
+
+  <div id="pdfPreviewModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card">
+      <div class="pdf-modal-head">
+        <strong id="pdfPreviewTitle">PDF Preview</strong>
+        <button id="pdfPreviewCloseBtn" type="button" class="btn btn-danger">Fermer</button>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe id="pdfPreviewFrame" title="PDF Preview"></iframe>
+      </div>
+      <div class="pdf-modal-foot">
+        <button id="pdfEditBtn" type="button" class="btn btn-accent">Modifier PDF</button>
+        <button id="pdfResetBtn" type="button" class="btn btn-soft hidden">Reinitialiser</button>
+        <button id="pdfPrintBtn" type="button" class="btn btn-soft">Imprimer</button>
+        <button id="pdfSaveAsBtn" type="button" class="btn">Telecharger (Choisir dossier)</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="journalDetailModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card">
+      <div class="pdf-modal-head">
+        <strong id="journalDetailTitle">Details</strong>
+        <div class="qty-actions">
+          <button id="journalDetailPdfBtn" type="button" class="btn btn-soft">Telecharger</button>
+          <button id="journalDetailCloseBtn" type="button" class="btn btn-danger">Fermer</button>
+        </div>
+      </div>
+      <div id="journalDetailBody" class="pdf-modal-body product-modal-body"></div>
+    </div>
+  </div>
+
+  <div id="productModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact">
+      <div class="pdf-modal-head">
+        <strong id="productModalTitle">Ajouter produit</strong>
+        <button id="productModalCloseBtn" type="button" class="btn btn-danger">Fermer</button>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <form id="productForm" class="stack product-modal-form">
+          <input id="productId" type="hidden">
+          <input id="productImagePath" type="hidden">
+          <div class="form-field">
+            <label id="productNameLbl" for="productName">Nom</label>
+            <input id="productName" type="text" data-i18n-ph="ph_name" placeholder="Nom" required>
+          </div>
+          <div class="form-field">
+            <label id="productTypeLbl" for="productType">Type</label>
+            <select id="productType">
+              <option value="product" data-i18n="product_type_product">Produit stock</option>
+              <option value="service" data-i18n="product_type_service">Service</option>
+            </select>
+          </div>
+          <div class="form-field product-image-field">
+            <label id="productImageLbl" for="productImagePickBtn">Image produit</label>
+            <div class="product-image-picker">
+              <div id="productImagePreview" class="product-image-preview" aria-hidden="true"></div>
+              <button id="productImagePickBtn" type="button" class="btn btn-soft" data-i18n="btn_choose_product_image">Choisir image</button>
+            </div>
+          </div>
+          <div class="form-field">
+            <label id="productBarcodeLbl" for="productBarcode">Code barre</label>
+            <div class="barcode-input-row">
+              <input id="productBarcode" type="text" data-i18n-ph="ph_barcode" placeholder="Code barre">
+              <button id="productBarcodeGenerateBtn" type="button" class="btn btn-soft btn-square-sm">Auto</button>
+            </div>
+          </div>
+          <div class="form-field">
+            <label id="productReferenceLbl" for="productReference">Reference</label>
+            <input id="productReference" type="text" placeholder="Reference">
+          </div>
+          <div class="form-field">
+            <label id="productCostLbl" for="productCost">Prix achat</label>
+            <input id="productCost" type="number" step="0.01" min="0" placeholder="Prix achat" required>
+            <div id="productCostMeta" class="product-cost-meta hidden"></div>
+          </div>
+          <div class="form-field">
+            <label id="productWholesaleLbl" for="productWholesale">Prix gros</label>
+            <input id="productWholesale" type="number" step="0.01" min="0" placeholder="Prix gros" required>
+          </div>
+          <div class="form-field">
+            <label id="productRetailLbl" for="productRetail">Prix detail</label>
+            <input id="productRetail" type="number" step="0.01" min="0" placeholder="Prix detail" required>
+          </div>
+          <div class="form-field">
+            <label id="productAssistLbl" for="productAssist">Prix remise</label>
+            <input id="productAssist" type="number" step="0.01" min="0" placeholder="Prix remise" required>
+          </div>
+          <div id="productMarginHint" class="product-margin-hint hidden"></div>
+          <div class="form-field">
+            <label id="productStockLbl" for="productStock">Stock</label>
+            <input id="productStock" type="number" step="0.01" min="0" data-i18n-ph="ph_stock" placeholder="Stock">
+          </div>
+          <div class="form-field">
+            <label id="productExpiryLbl" for="productExpiry">Date expiration</label>
+            <input id="productExpiry" type="date" placeholder="Date expiration">
+          </div>
+          <div class="pdf-modal-foot">
+            <button id="productSubmitBtn" type="submit" class="btn">Sauvegarder produit</button>
+            <button id="productCancelBtn" type="button" class="btn btn-soft hidden">Vider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="customerModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact">
+      <div class="pdf-modal-head">
+        <strong id="customerModalTitle">Ajouter client</strong>
+        <button id="customerModalCloseBtn" type="button" class="btn btn-danger">Fermer</button>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <form id="customerForm" class="stack product-modal-form">
+          <input id="customerId" type="hidden">
+          <div class="form-field">
+            <label for="customerName">Nom</label>
+            <input id="customerName" type="text" data-i18n-ph="ph_name" placeholder="Nom" required>
+          </div>
+          <div class="form-field">
+            <label for="customerPhone">Telephone</label>
+            <input id="customerPhone" type="text" data-i18n-ph="ph_phone" placeholder="Telephone">
+          </div>
+          <div class="grid-2">
+            <div class="form-field">
+              <label for="customerCommerceName">Nom commerce</label>
+              <input id="customerCommerceName" type="text" placeholder="Nom commerce">
+            </div>
+            <div class="form-field">
+              <label for="customerActivity">Activite</label>
+              <input id="customerActivity" type="text" placeholder="Activite">
+            </div>
+          </div>
+          <div class="grid-4">
+            <div class="form-field">
+              <label for="customerNif">NIF</label>
+              <input id="customerNif" type="text" placeholder="NIF">
+            </div>
+            <div class="form-field">
+              <label for="customerNis">NIS</label>
+              <input id="customerNis" type="text" placeholder="NIS">
+            </div>
+            <div class="form-field">
+              <label for="customerRc">RC</label>
+              <input id="customerRc" type="text" placeholder="RC">
+            </div>
+            <div class="form-field">
+              <label for="customerAi">AI</label>
+              <input id="customerAi" type="text" placeholder="AI">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="customerAddress">Adresse</label>
+            <input id="customerAddress" type="text" placeholder="Adresse">
+          </div>
+          <div class="pdf-modal-foot">
+            <button id="customerSubmitBtn" type="submit" class="btn" data-i18n="btn_add_customer">Ajouter client</button>
+            <button id="customerCancelBtn" type="button" class="btn btn-soft hidden">Vider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="supplierModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact">
+      <div class="pdf-modal-head">
+        <strong id="supplierModalTitle">Ajouter fournisseur</strong>
+        <button id="supplierModalCloseBtn" type="button" class="btn btn-danger">Fermer</button>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <form id="supplierForm" class="stack product-modal-form">
+          <input id="supplierId" type="hidden">
+          <div class="form-field">
+            <label id="supplierNameLbl" for="supplierName">Nom</label>
+            <input id="supplierName" type="text" data-i18n-ph="ph_name" placeholder="Nom" required>
+          </div>
+          <div class="form-field">
+            <label id="supplierPhoneLbl" for="supplierPhone">Telephone</label>
+            <input id="supplierPhone" type="text" data-i18n-ph="ph_phone" placeholder="Telephone">
+          </div>
+          <div class="grid-2">
+            <div class="form-field">
+              <label for="supplierCommerceName">Nom commerce</label>
+              <input id="supplierCommerceName" type="text" placeholder="Nom commerce">
+            </div>
+            <div class="form-field">
+              <label for="supplierActivity">Activite</label>
+              <input id="supplierActivity" type="text" placeholder="Activite">
+            </div>
+          </div>
+          <div class="grid-4">
+            <div class="form-field">
+              <label id="supplierNifLbl" for="supplierNif">NIF</label>
+              <input id="supplierNif" type="text" placeholder="NIF">
+            </div>
+            <div class="form-field">
+              <label id="supplierNisLbl" for="supplierNis">NIS</label>
+              <input id="supplierNis" type="text" placeholder="NIS">
+            </div>
+            <div class="form-field">
+              <label id="supplierRcLbl" for="supplierRc">RC</label>
+              <input id="supplierRc" type="text" placeholder="RC">
+            </div>
+            <div class="form-field">
+              <label for="supplierAi">AI</label>
+              <input id="supplierAi" type="text" placeholder="AI">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="supplierAddress">Adresse</label>
+            <input id="supplierAddress" type="text" placeholder="Adresse">
+          </div>
+          <div class="pdf-modal-foot">
+            <button id="supplierSubmitBtn" type="submit" class="btn" data-i18n="btn_add_supplier">Ajouter fournisseur</button>
+            <button id="supplierCancelBtn" type="button" class="btn btn-soft hidden">Vider</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact confirm-card">
+      <div class="pdf-modal-head">
+        <strong id="confirmTitle">Confirmation</strong>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <p id="confirmMessage" class="small">Confirmer action ?</p>
+      </div>
+      <div class="pdf-modal-foot">
+        <button id="confirmOkBtn" type="button" class="btn btn-danger">Confirmer</button>
+        <button id="confirmCancelBtn" type="button" class="btn btn-soft">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="returnModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact confirm-card">
+      <div class="pdf-modal-head">
+        <strong id="returnTitle">Retour</strong>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <div class="stack">
+          <div class="form-field">
+            <label for="returnQtyInput">Quantite</label>
+            <input id="returnQtyInput" type="number" min="0.01" step="0.01" value="1" placeholder="Quantite">
+          </div>
+          <div class="form-field">
+            <label for="returnNoteInput">Note</label>
+            <input id="returnNoteInput" type="text" placeholder="Note (optionnel)">
+          </div>
+        </div>
+      </div>
+      <div class="pdf-modal-foot">
+        <button id="returnOkBtn" type="button" class="btn btn-danger">Valider</button>
+        <button id="returnCancelBtn" type="button" class="btn btn-soft">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="userPinModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact confirm-card user-pin-card">
+      <div class="pdf-modal-head">
+        <strong id="userPinTitle">Modifier mot de passe</strong>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <div class="stack">
+          <div class="form-field">
+            <label for="userPinValue">Nouveau PIN</label>
+            <input id="userPinValue" type="password" minlength="4" placeholder="PIN (4+)">
+          </div>
+          <div class="form-field">
+            <label for="userPinConfirm">Confirmer PIN</label>
+            <input id="userPinConfirm" type="password" minlength="4" placeholder="Confirmer PIN">
+          </div>
+        </div>
+      </div>
+      <div class="pdf-modal-foot">
+        <button id="userPinOkBtn" type="button" class="btn">Enregistrer</button>
+        <button id="userPinCancelBtn" type="button" class="btn btn-soft">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="barcodeSizeModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact confirm-card">
+      <div class="pdf-modal-head">
+        <strong id="barcodeSizeTitle">Taille etiquette barcode</strong>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <p id="barcodeSizeMessage" class="small">Choisir la taille d'impression</p>
+      </div>
+      <div class="barcode-size-actions">
+        <button id="barcodeSizeSmallBtn" type="button" class="btn btn-soft">Small 40x20</button>
+        <button id="barcodeSizeMediumBtn" type="button" class="btn">Medium 50x30</button>
+        <button id="barcodeSizeLargeBtn" type="button" class="btn btn-soft">Large 60x40</button>
+        <button id="barcodeSizeCancelBtn" type="button" class="btn btn-danger">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="appToastStack" class="app-toast-stack" aria-live="polite" aria-atomic="false"></div>
+  <div id="updateModal" class="pdf-modal hidden">
+    <div class="pdf-modal-card compact confirm-card update-modal-card">
+      <div class="pdf-modal-head">
+        <strong id="updateTitle" data-i18n="updates_title">Mises a jour</strong>
+        <button id="updateCloseBtn" type="button" class="btn btn-soft" data-i18n="btn_close">Fermer</button>
+      </div>
+      <div class="pdf-modal-body product-modal-body">
+        <p id="updateStatusText" class="small" data-i18n="updates_ready">Pret a verifier les mises a jour.</p>
+        <div id="updateResultBox" class="server-status-box"></div>
+      </div>
+      <div class="row-actions">
+        <button id="updateCheckBtn" type="button" class="btn" data-i18n="btn_check_updates">Verifier les mises a jour</button>
+        <a id="updateDownloadBtn" class="btn btn-soft hidden" href="#" target="_blank" rel="noreferrer" data-i18n="btn_download_update">Telecharger la mise a jour</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/i18n/fr.js"></script>
+  <script src="./js/i18n/ar.js"></script>
+  <script src="./js/i18n/dz.js"></script>
+  <script src="./js/mysql-wilidb.js"></script>
+  <script src="./js/core/bootstrap.js"></script>
+  <script src="./js/core/ui-patterns.js"></script>
+  <script src="./js/core/print-profiles.js"></script>
+  <script src="./js/core/shortcuts.js"></script>
+  <script src="./js/core/settings-shortcuts.js"></script>
+  <script src="./js/core/navigation.js"></script>
+  <script src="./js/core/app-init-nav.js"></script>
+  <script src="./js/core/history-product-suggest.js"></script>
+  <script src="./js/core/loss-product-suggest.js"></script>
+  <script src="./js/core/customer-trace-suggest.js"></script>
+  <script src="./js/core/customer-return-suggest.js"></script>
+  <script src="./js/core/customer-return-product-suggest.js"></script>
+  <script src="./js/core/sale-debt-customer-suggest.js"></script>
+  <script src="./js/core/supplier-trace-suggest.js"></script>
+  <script src="./js/core/supplier-return-suggest.js"></script>
+  <script src="./js/core/supplier-return-product-suggest.js"></script>
+  <script src="./js/core/purchase-debt-supplier-suggest.js"></script>
+  <script src="./js/core/app-init-forms.js"></script>
+  <script src="./js/core/pos-cart-model.js"></script>
+  <script src="./js/core/pos-checkout-model.js"></script>
+  <script src="./js/core/pos-search-model.js"></script>
+  <script src="./js/core/pos-render-model.js"></script>
+  <script src="./js/pages/catalog.js"></script>
+  <script src="./js/pages/xlsx_import.js"></script>
+  <script src="./js/pages/caisse.js"></script>
+  <script src="./js/pages/sales.js"></script>
+  <script src="./js/pages/purchases_finance.js"></script>
+  <script src="./js/pages/price_display.js"></script>
+  <script src="./js/core/app-updates.js"></script>
+  <script src="./js/app-init.js"></script>
+</body>
+</html>
+

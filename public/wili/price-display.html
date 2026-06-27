@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WILI Prix</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --line: #1f2937;
+      --ink: #e5e7eb;
+      --muted: #9ca3af;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --bad: #dc2626;
+      --focus: #10b981;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 15% 10%, #1f2937 0%, #0f172a 45%, #020617 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+    }
+    .screen {
+      width: min(980px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(6px);
+      padding: 16px;
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+    }
+    .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .store {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 1.2;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .price-version {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5px;
+      padding: 3px 8px;
+      border: 1px solid rgba(134, 239, 172, 0.35);
+      border-radius: 999px;
+      color: #86efac;
+      background: rgba(22, 163, 74, 0.12);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .scan-form {
+      margin: 8px 0 14px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+    }
+    .scan-input {
+      width: 100%;
+      border: 1px solid #334155;
+      background: #0b1222;
+      color: #f8fafc;
+      font-size: 22px;
+      border-radius: 10px;
+      padding: 12px 14px;
+      outline: none;
+    }
+    .scan-input:focus {
+      border-color: var(--focus);
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.28);
+    }
+    .scan-btn {
+      border: 1px solid #14532d;
+      border-radius: 10px;
+      background: #166534;
+      color: #ecfdf5;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 0 16px;
+      cursor: pointer;
+    }
+    .result {
+      border: 1px solid #1e293b;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #0b1222 0%, #0a101d 100%);
+      padding: 16px;
+      min-height: 240px;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+    .name {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.2;
+      min-height: 46px;
+    }
+    .price {
+      font-size: clamp(42px, 8vw, 84px);
+      font-weight: 800;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: #86efac;
+      text-shadow: 0 6px 26px rgba(22, 163, 74, 0.25);
+    }
+    .status {
+      font-size: 16px;
+      color: var(--muted);
+      min-height: 24px;
+    }
+    .status.ok { color: #86efac; }
+    .status.warn { color: #fcd34d; }
+    .status.bad { color: #fca5a5; }
+    .hint {
+      margin-top: 10px;
+      color: #93c5fd;
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="screen">
+    <div class="head">
+      <div>
+        <div id="storeName" class="store">WILI</div>
+        <div id="modeInfo" class="meta">Affichage prix</div>
+      </div>
+      <div><div id="clockInfo" class="meta">--:--:--</div><div class="price-version">V1.0.0</div></div>
+    </div>
+
+    <form id="scanForm" class="scan-form" autocomplete="off">
+      <input id="scanInput" class="scan-input" type="text" placeholder="Scanner code barre puis Entrer" autofocus>
+      <button class="scan-btn" type="submit">Scanner</button>
+    </form>
+
+    <section class="result">
+      <div id="productName" class="name">Scannez un produit</div>
+      <div id="productPrice" class="price">0.00 DZD</div>
+      <div id="statusText" class="status">Aucune operation</div>
+    </section>
+    <div id="scanHint" class="hint">Cette fenetre affiche uniquement le prix, sans mouvement stock.</div>
+  </main>
+
+  <script>
+    (function () {
+      const byId = (id) => document.getElementById(id);
+      const ui = {
+        storeName: byId("storeName"),
+        modeInfo: byId("modeInfo"),
+        clockInfo: byId("clockInfo"),
+        scanForm: byId("scanForm"),
+        scanInput: byId("scanInput"),
+        productName: byId("productName"),
+        productPrice: byId("productPrice"),
+        statusText: byId("statusText"),
+        scanHint: byId("scanHint")
+      };
+      const state = {
+        language: "fr",
+        currency: "DZD",
+        mode: "detail",
+        storeName: "WILI"
+      };
+
+      const L = (fr, ar, dz) => {
+        if (state.language === "ar") return ar;
+        if (state.language === "dz") return dz || ar;
+        return fr;
+      };
+
+      const modeLabel = (mode) => {
+        const key = String(mode || "detail");
+        if (key === "gros") return L("Mode prix: Gros", "وضع السعر: جملة", "مود الثمن: جملة");
+        if (key === "remise") return L("Mode prix: Remise", "وضع السعر: تخفيض", "مود الثمن: روميز");
+        return L("Mode prix: Detail", "وضع السعر: تجزئة", "مود الثمن: ديتاي");
+      };
+
+      const money = (cents) => `${(Number(cents || 0) / 100).toFixed(2)} ${state.currency}`;
+
+      const setStatus = (text, kind) => {
+        ui.statusText.textContent = String(text || "");
+        ui.statusText.classList.remove("ok", "warn", "bad");
+        if (kind) ui.statusText.classList.add(kind);
+      };
+
+      let focusTimer = null;
+      const keepFocus = () => {
+        setTimeout(() => {
+          if (!ui.scanInput) return;
+          try { window.focus(); } catch (_e) {}
+          ui.scanInput.focus();
+          ui.scanInput.select();
+        }, 0);
+      };
+      const startFocusGuard = () => {
+        if (focusTimer) clearInterval(focusTimer);
+        focusTimer = setInterval(() => {
+          if (!ui.scanInput) return;
+          const active = document.activeElement;
+          const hasInputFocus = active === ui.scanInput;
+          if (!hasInputFocus) {
+            try { window.focus(); } catch (_e) {}
+            ui.scanInput.focus();
+          }
+        }, 450);
+      };
+
+      async function loadContext() {
+        const out = await window.wiliPriceDisplay.getContext();
+        if (!out || !out.ok || !out.data) {
+          setStatus("context_error", "bad");
+          return;
+        }
+        const d = out.data || {};
+        state.language = String(d.language || "fr");
+        state.currency = String(d.currency || "DZD");
+        state.mode = String(d.mode || "detail");
+        state.storeName = String(d.store_name || "WILI");
+        document.documentElement.lang = state.language === "fr" ? "fr" : "ar";
+        ui.storeName.textContent = state.storeName;
+        ui.modeInfo.textContent = modeLabel(state.mode);
+        ui.scanInput.placeholder = L("Scanner code barre puis Entrer", "امسح الباركود ثم Enter", "سكاني الباركود ومن بعد Enter");
+        ui.scanHint.textContent = L(
+          "Cette fenetre affiche uniquement le prix, sans mouvement stock.",
+          "هذه النافذة تعرض السعر فقط بدون أي حركة مخزون.",
+          "هاذ النافذة غير للثمن فقط بلا حتى حركة ستوك."
+        );
+        ui.productName.textContent = L("Scannez un produit", "امسح منتجاً", "سكانيي منتوج");
+        setStatus(L("Pret au scan", "جاهز للمسح", "واجد للسكان"), "ok");
+      }
+
+      async function scanAndShow() {
+        const raw = String(ui.scanInput.value || "").trim();
+        if (!raw) {
+          setStatus(L("Code vide", "الرمز فارغ", "الكود فارغ"), "warn");
+          keepFocus();
+          return;
+        }
+        const out = await window.wiliPriceDisplay.lookupPrice({ code: raw });
+        ui.scanInput.value = "";
+        if (!out || !out.ok || !out.data) {
+          setStatus(L("Erreur lecture prix", "خطأ في قراءة السعر", "غلط فالقراية"), "bad");
+          keepFocus();
+          return;
+        }
+        applyScanResult(out.data || {}, raw);
+      }
+
+      function applyScanResult(d, rawFallback = "") {
+        const raw = String(rawFallback || d.code || "").trim();
+        if (!d.found || !d.product) {
+          ui.productName.textContent = L("Produit introuvable", "المنتج غير موجود", "المنتوج ماكانش");
+          ui.productPrice.textContent = `0.00 ${state.currency}`;
+          setStatus(`${L("Code non trouve", "كود غير موجود", "كود ما تلقاش")}: ${raw}`, "bad");
+          keepFocus();
+          return;
+        }
+        const p = d.product || {};
+        ui.productName.textContent = String(p.name || "-");
+        ui.productPrice.textContent = money(p.price_cents || 0);
+        setStatus(`${L("Code", "الرمز", "الكود")}: ${String(p.barcode || d.code || raw)}`, "ok");
+        keepFocus();
+      }
+
+      ui.scanForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        await scanAndShow();
+      });
+      ui.scanInput.addEventListener("blur", keepFocus);
+      window.addEventListener("blur", keepFocus);
+      window.addEventListener("focus", keepFocus);
+      window.addEventListener("click", () => keepFocus());
+      window.addEventListener("mousedown", () => keepFocus());
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) keepFocus();
+      });
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          ui.scanInput.value = "";
+          setStatus(L("Pret au scan", "جاهز للمسح", "واجد للسكان"), "ok");
+          keepFocus();
+        }
+      });
+
+      setInterval(() => {
+        const now = new Date();
+        ui.clockInfo.textContent = now.toLocaleTimeString();
+      }, 1000);
+
+      loadContext().then(() => {
+        keepFocus();
+        startFocusGuard();
+        if (window.wiliPriceDisplay && typeof window.wiliPriceDisplay.onScan === "function") {
+          window.wiliPriceDisplay.onScan((payload) => {
+            if (!payload || typeof payload !== "object") return;
+            applyScanResult(payload, String(payload.code || ""));
+          });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

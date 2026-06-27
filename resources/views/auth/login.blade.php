@@ -35,17 +35,17 @@
             @csrf
 
             <div class="form-group">
-                <label for="email">{{ __('login.email') }}</label>
+                <label for="username">{{ __('login.username') }}</label>
 
                 <div class="input-wrapper">
                     <i class="fa-solid fa-envelope"></i>
 
                     <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        value="{{ old('email') }}"
-                        placeholder="{{ __('login.email_placeholder') }}"
+                        id="username"
+                        type="text"
+                        name="username"
+                        value="{{ old('username') }}"
+                        placeholder="{{ __('login.username_placeholder') }}"
                         required
                         autofocus>
                 </div>

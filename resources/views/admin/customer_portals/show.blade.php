@@ -32,7 +32,7 @@
 
                 <div class="info-block">
                     <p class="label">E-mail</p>
-                    <p class="value">{{ $user->email }}</p>
+                    <p class="value">{{ $user->username }}</p>
                 </div>
 
                 <div class="info-block">

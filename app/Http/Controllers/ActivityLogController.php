@@ -22,7 +22,7 @@ class ActivityLogController extends Controller
                     ->orWhere('model_id', 'like', "%{$search}%")
                     ->orWhereHas('user', function ($userQuery) use ($search) {
                         $userQuery->where('name', 'like', "%{$search}%")
-                            ->orWhere('email', 'like', "%{$search}%");
+                            ->orWhere('username', 'like', "%{$search}%");
                     });
             });
         }

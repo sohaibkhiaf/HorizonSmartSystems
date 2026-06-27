@@ -30,14 +30,14 @@
 
             <div class="form-group">
                 <label>
-                    Adresse email
+                    Username
                     <span class="required">*</span>
                 </label>
 
                 <input
-                    type="email"
-                    name="email"
-                    value="{{ old('email', $user->email ?? '') }}"
+                    type="text"
+                    name="username"
+                    value="{{ old('username', $user->username ?? '') }}"
                     placeholder="exemple@domaine.com"
                     required>
             </div>

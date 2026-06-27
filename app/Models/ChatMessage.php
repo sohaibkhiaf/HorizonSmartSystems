@@ -21,6 +21,7 @@ class ChatMessage extends Model
         'message',
         'is_seen',
         'link',
+        'voice_message',
         'image',
     ];
 
