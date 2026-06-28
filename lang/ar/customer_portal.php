@@ -69,4 +69,11 @@ return [
 'voice_not_supported' => 'التسجيل غير مدعوم. يمكنك رفع ملف صوتي.',
 'microphone_error' => 'الميكروفون غير متاح أو تم رفض الإذن.',
 'audio_not_supported' => 'متصفحك لا يدعم تشغيل الصوت.',
+
+'available_demos_label' => 'العروض التجريبية',
+'available_demos' => 'العروض التجريبية المتاحة',
+'available_demos_subtitle' => 'استكشف العروض التجريبية النشطة لجميع برامجنا.',
+'demo_not_available' => 'الرابط غير متوفر',
+'previous' => 'السابق',
+'next' => 'التالي',
 ];

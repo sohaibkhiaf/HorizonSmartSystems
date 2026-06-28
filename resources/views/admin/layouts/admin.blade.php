@@ -73,13 +73,6 @@
                 Ajouter un produit
             </a>
 
-            <div class="nav-group-title">Espace client</div>
-
-            <a href="{{ route('admin.customer_portals.index') }}" class="{{ request()->routeIs('admin.customer_portals.*') ? 'active' : '' }}">
-                <i class="fas fa-user-shield"></i>
-                Portails clients
-            </a>
-
             <div class="nav-group-title">Messages</div>
 
             <a href="{{ route('admin.public_messages.waiting') }}" class="{{ request()->routeIs('admin.public_messages.waiting') ? 'active' : '' }}">
@@ -109,9 +102,20 @@
                 <i class="fa-brands fa-accusoft"></i>
                 Logiciels
             </a>
+
             <a href="{{ route('admin.public_software.create') }}" class="{{ request()->routeIs('admin.public_software.create') ? 'active' : '' }}">
                 <i class="fas fa-plus"></i>
                 Créer un logiciel
+            </a>
+
+            <a href="{{ route('admin.software_demos.index') }}" class="{{ request()->routeIs('admin.software_demos.index') || request()->routeIs('admin.software_demos.edit') ? 'active' : '' }}">
+                <i class="fa-solid fa-display"></i>
+                Démos logiciels
+            </a>
+
+            <a href="{{ route('admin.software_demos.create') }}" class="{{ request()->routeIs('admin.software_demos.create') ? 'active' : '' }}">
+                <i class="fas fa-plus"></i>
+                Créer une démo
             </a>
             <a href="{{ route('admin.achievements.index') }}" class="{{ request()->routeIs('admin.achievements.index') || request()->routeIs('admin.achievements.edit') ? 'active' : '' }}">
                 <i class="fas fa-briefcase"></i>

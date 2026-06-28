@@ -67,6 +67,70 @@
                 {!! nl2br(e($softwareDescription)) !!}
             </p>
 
+            @php
+                $softwareDemos = $software->demos->where('is_active', true);
+            @endphp
+
+            @if($softwareDemos->count())
+                <div class="software-demo-section" id="software_demos_section" >
+                    <div class="software-demo-container">
+
+                        <div class="software-demo-slider-card">
+                            <div class="software-demo-slider-shell">
+
+                                <button type="button" class="software-demo-nav software-demo-prev" aria-label="{{ __('customer_portal.previous') }}">
+                                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                                </button>
+
+                                <div class="swiper software-demo-swiper" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                                    <div class="swiper-wrapper">
+
+                                        @foreach($softwareDemos as $demo)
+                                            <div class="swiper-slide">
+                                                <a href="#contact_section"
+                                                onclick="scrollToSection('contact_section'); return false;"
+                                                class="software-demo-card">
+
+                                                    <div class="software-demo-image">
+                                                        @if($demo->image)
+                                                            <img
+                                                                src="{{ asset('uploads/' . $demo->image) }}"
+                                                                alt="{{ $demo->name }}"
+                                                                loading="lazy">
+                                                        @else
+                                                            <div class="software-demo-placeholder">
+                                                                <i class="fa-solid fa-display"></i>
+                                                            </div>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="software-demo-content">
+                                                        <h3>{{ $demo->name }}</h3>
+
+                                                        <span class="software-demo-link">
+                                                            {{ __('software.software_cta') }}
+                                                            <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+                                                        </span>
+                                                    </div>
+
+                                                </a>
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                </div>
+
+                                <button type="button" class="software-demo-nav software-demo-next" aria-label="{{ __('customer_portal.next') }}">
+                                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+            @endif
+
             <a href="#contact_section" onclick="scrollToSection('contact_section'); return false;" class="software-cta">
                 {{ __('software.contact') }}
                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
@@ -139,7 +203,7 @@
 
                 <div>
                     <h4>{{ __('home.email_label') }}</h4>
-                    <p>contact@hss-agency.com</p>
+                    <p>horizonsmartsystems@gmail.com</p>
                 </div>
             </div>
 
@@ -416,6 +480,56 @@
 
         updateFloatingButtons();
     });
+</script>
+
+<script>
+function initSoftwareDemoSwiper() {
+    if (typeof Swiper === "undefined") return;
+
+    document.querySelectorAll(".software-demo-swiper").forEach((swiperElement) => {
+        if (swiperElement.classList.contains("swiper-initialized")) return;
+
+        const shell = swiperElement.closest(".software-demo-slider-shell");
+
+        if (!shell) return;
+
+        new Swiper(swiperElement, {
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            grabCursor: true,
+            centeredSlides: true,
+            navigation: {
+                nextEl: shell.querySelector(".demo-next"),
+                prevEl: shell.querySelector(".demo-prev"),
+            },
+            breakpoints: {
+                560: {
+                    slidesPerView: 3,
+                    spaceBetween: 14,
+                    centeredSlides: false,
+
+                },
+                900: {
+                    slidesPerView: 4,
+                    spaceBetween: 16,
+                    centeredSlides: false,
+                },
+                1100: {
+                    slidesPerView: 5,
+                    spaceBetween: 18,
+                    centeredSlides: false,
+                },
+                1300: {
+                    slidesPerView: 6,
+                    spaceBetween: 18,
+                    centeredSlides: false,
+                },
+            }
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initSoftwareDemoSwiper);
 </script>
 
 @endsection

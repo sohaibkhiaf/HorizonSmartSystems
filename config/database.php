@@ -63,7 +63,7 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_WILI_HOST', '127.0.0.1'),
             'port' => env('DB_WILI_PORT', '3306'),
-            'database' => env('DB_WILI_DATABASE', 'hss_wili_demo'),
+            'database' => env('DB_WILI_DATABASE', 'wchnqnhuwj_wili_demo'),
             'username' => env('DB_WILI_USERNAME', 'root'),
             'password' => env('DB_WILI_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),

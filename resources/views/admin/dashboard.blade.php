@@ -199,10 +199,10 @@
         <p>Suivre les commandes reçues depuis la boutique.</p>
     </a>
 
-    <a href="{{ route('admin.customer_portals.index') }}" class="tab-card">
-        <i class="fas fa-users"></i>
-        <h3>Portails clients</h3>
-        <p>Gérer les comptes clients et leurs informations.</p>
+    <a href="{{ route('admin.software_demos.index') }}" class="tab-card">
+        <i class="fa-solid fa-display"></i>
+        <h3>Démos logiciels</h3>
+        <p>Gérer les démos des logiciels.</p>
     </a>
 
 </div>

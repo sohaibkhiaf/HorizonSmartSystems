@@ -159,7 +159,7 @@
 
                 <div>
                     <h4>{{ __('home.email_label') }}</h4>
-                    <p>contact@hss-agency.com</p>
+                    <p>horizonsmartsystems@gmail.com</p>
                 </div>
             </div>
 

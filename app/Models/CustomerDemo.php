@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CustomerDemo extends Model
@@ -13,7 +14,7 @@ class CustomerDemo extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id',
+        'public_software_id',
         'name',
         'demo_link',
         'admin_note',
@@ -25,9 +26,9 @@ class CustomerDemo extends Model
         'is_active' => 'boolean',
     ];
 
-    public function user()
+    public function publicSoftware(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(PublicSoftware::class);
     }
 
 }

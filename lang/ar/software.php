@@ -9,4 +9,6 @@ return [
 
     'other_software' => 'برامج أخرى',
     'empty_other_software' => 'لا توجد برامج أخرى حاليا.',
+
+    'software_cta' => 'طلب تجربة',
 ];

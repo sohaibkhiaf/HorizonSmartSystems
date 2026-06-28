@@ -172,89 +172,138 @@
                 </p>
             </div>
 
-            @foreach ($software as $s )
-            @if ($s->is_published)
-            <div class="software-card">
-                <div class="software-information">
-                    <div class="software-card-header">
-                        <div class="software-icon">
-                            @if($s->icon)
-                                <img src="{{ asset('uploads/' . $s->icon) }}" alt="Wili Logo">
+            @foreach ($software as $s)
+                @if ($s->is_published)
+                    @php
+                        $locale = app()->getLocale();
+
+                        $softwareName = match ($locale) {
+                            'ar' => $s->ar_name,
+                            'en' => $s->en_name,
+                            default => $s->fr_name,
+                        };
+
+                        $softwareShort = match ($locale) {
+                            'ar' => $s->ar_short_description,
+                            'en' => $s->en_short_description,
+                            default => $s->fr_short_description,
+                        };
+
+                        $softwareDescription = match ($locale) {
+                            'ar' => $s->ar_description,
+                            'en' => $s->en_description,
+                            default => $s->fr_description,
+                        };
+
+                        $softwareDemos = $s->demos->where('is_active', true);
+                    @endphp
+
+                    <div class="software-card">
+                        <div class="software-information">
+                            <div class="software-card-header">
+                                <div class="software-icon">
+                                    @if($s->icon)
+                                        <img src="{{ asset('uploads/' . $s->icon) }}" alt="{{ $softwareName }}">
+                                    @else
+                                        <div class="image-placeholder image-placeholder-sm">
+                                            <i class="fa-solid fa-image"></i>
+                                        </div>
+                                    @endif
+                                </div>
+
+                                <div>
+                                    <h3>{{ $softwareName }}</h3>
+                                    <span>{{ $softwareShort }}</span>
+                                </div>
+                            </div>
+
+                            <p>
+                                {!! nl2br(e($softwareDescription)) !!}
+                            </p>
+
+                            <a onclick="scrollToSection('contact_section')" class="software-link">
+                                {{ __('home.software_cta') }}
+                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                            </a>
+
+                            <a href="{{ route('software.show', $s) }}" class="software-orange-link">
+                                {{ __('home.learn_more') }}
+                                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                            </a>
+                        </div>
+
+                        <div class="software-image">
+                            @if($s->image)
+                                <img src="{{ asset('uploads/' . $s->image) }}" alt="{{ $softwareName }}">
                             @else
-                                <div class="image-placeholder image-placeholder-sm">
+                                <div class="image-placeholder software-image-placeholder">
                                     <i class="fa-solid fa-image"></i>
                                 </div>
                             @endif
                         </div>
 
-                        <div>
-                            <h3>
-                                @if (app()->getLocale() == 'ar')
-                                    {{ $s->ar_name }}
-                                @elseif(app()->getLocale() == 'fr')
-                                    {{ $s->fr_name }}
-                                @else
-                                    {{ $s->en_name }}
-                                @endif
-                            </h3>
-                            <span>
-                                @if (app()->getLocale() == 'ar')
-                                    {{ $s->ar_short_description }}
-                                @elseif(app()->getLocale() == 'fr')
-                                    {{ $s->fr_short_description }}
-                                @else
-                                    {{ $s->en_short_description }}
-                                @endif
-                            </span>
-                        </div>
-                    </div>
+                        <a onclick="scrollToSection('contact_section')" class="software-link-mobile">
+                            {{ __('home.software_cta') }}
+                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                        </a>
 
-                    <p>
-                        @if (app()->getLocale() == 'ar')
-                            {!! nl2br(e($s->ar_description)) !!}
-                        @elseif(app()->getLocale() == 'fr')
-                            {!! nl2br(e($s->fr_description)) !!}
-                        @else
-                            {!! nl2br(e($s->en_description)) !!}
+                        <a href="{{ route('software.show', $s) }}" class="software-orange-link-mobile">
+                            {{ __('home.learn_more') }}
+                            <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+                        </a>
+
+                        @if($softwareDemos->count())
+                            <div class="demos-slider-card software-demos-slider-card">
+                                <div class="demo-slider-shell" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+                                    <button type="button" class="demo-nav demo-prev" aria-label="{{ __('customer_portal.previous') }}">
+                                        <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                                    </button>
+
+                                    <div class="swiper demos-swiper software-demos-swiper" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+                                        <div class="swiper-wrapper">
+                                            @foreach($softwareDemos as $demo)
+                                                <div class="swiper-slide">
+                                                    <a href="#contact_section"
+                                                       onclick="scrollToSection('contact_section'); return false;"
+                                                       class="portal-demo-card">
+
+                                                        <div class="portal-demo-image">
+                                                            @if($demo->image)
+                                                                <img
+                                                                    src="{{ asset('uploads/' . $demo->image) }}"
+                                                                    alt="{{ $demo->name }}"
+                                                                    loading="lazy">
+                                                            @else
+                                                                <div class="portal-demo-placeholder">
+                                                                    <i class="fa-solid fa-display"></i>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+                                                        <div class="portal-demo-content">
+                                                            <h3>{{ $demo->name }}</h3>
+
+                                                            <span class="portal-demo-link">
+                                                                {{ __('home.software_cta') }}
+                                                                <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+                                                            </span>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="demo-nav demo-next" aria-label="{{ __('customer_portal.next') }}">
+                                        <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                                    </button>
+                                </div>
+                            </div>
                         @endif
-                    </p>
 
-                    <a onclick="scrollToSection('contact_section')" class="software-link">
-                        {{ __('home.software_cta') }}
-                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                    </a>
-
-                    <a href="{{ route('software.show', $s) }}" class="software-orange-link">
-                        {{ __('home.learn_more')  }}
-                        <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                    </a>
-                </div>
-
-                <div class="software-image">
-                    @if($s->image)
-                        <img src="{{ asset('uploads/' . $s->image) }}" alt="Wili Stock Management System">
-                    @else
-                        <div class="image-placeholder software-image-placeholder">
-                            <i class="fa-solid fa-image"></i>
-                        </div>
-                    @endif
-                </div>
-
-                <a onclick="scrollToSection('contact_section')" class="software-link-mobile">
-                    {{ __('home.software_cta') }}
-                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
-
-                <a href="{{ route('software.show', $s) }}" class="software-orange-link-mobile">
-                    {{ __('home.learn_more')  }}
-                    <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
-                </a>
-
-            </div>
-            @endif
+                    </div>
+                @endif
             @endforeach
-
-            
 
         </div>
 
@@ -374,7 +423,7 @@
                 <i class="fas fa-envelope"></i>
                 <div>
                     <h4>{{ __('home.email_label') }}</h4>
-                    <p>contact@hss-agency.com</p>
+                    <p>horizonsmartsystems@gmail.com</p>
                 </div>
             </div>
 
@@ -734,6 +783,56 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+</script>
+
+
+<script>
+function initSoftwareDemosSwipers() {
+    if (typeof Swiper === "undefined") return;
+
+    document.querySelectorAll(".software-demos-swiper").forEach((swiperElement) => {
+        if (swiperElement.classList.contains("swiper-initialized")) return;
+
+        const shell = swiperElement.closest(".demo-slider-shell");
+
+        if (!shell) return;
+
+        new Swiper(swiperElement, {
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            centeredSlides: true,
+            grabCursor: true,
+            navigation: {
+                nextEl: shell.querySelector(".demo-next"),
+                prevEl: shell.querySelector(".demo-prev"),
+            },
+            breakpoints: {
+                560: {
+                    slidesPerView: 3,
+                    spaceBetween: 14,
+                    centeredSlides: false,
+                },
+                900: {
+                    slidesPerView: 4,
+                    spaceBetween: 16,
+                    centeredSlides: false,
+                },
+                1100: {
+                    slidesPerView: 5,
+                    spaceBetween: 18,
+                    centeredSlides: false,
+                },
+                1300: {
+                    slidesPerView: 6,
+                    spaceBetween: 18,
+                    centeredSlides: false,
+                },
+            }
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", initSoftwareDemosSwipers);
 </script>
 
 @endsection

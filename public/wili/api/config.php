@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 const WILI_DB_HOST = '127.0.0.1';
 const WILI_DB_PORT = 3306;
-const WILI_DB_NAME = 'hss_wili_demo';
+const WILI_DB_NAME = 'wchnqnhuwj_wili_demo';
 const WILI_DB_USER = 'root';
 const WILI_DB_PASS = '';
 

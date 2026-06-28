@@ -9,4 +9,6 @@ return [
 
     'other_software' => 'Autres logiciels',
     'empty_other_software' => 'Aucun autre logiciel pour le moment.',
+    
+    'software_cta' => 'Demander une démo',
 ];

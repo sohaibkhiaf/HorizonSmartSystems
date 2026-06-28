@@ -69,4 +69,12 @@ return [
 'voice_not_supported' => 'Enregistrement non supporté. Importez un fichier audio.',
 'microphone_error' => 'Micro non disponible ou permission refusée.',
 'audio_not_supported' => 'Votre navigateur ne supporte pas la lecture audio.',
+
+
+'available_demos_label' => 'Démos',
+'available_demos' => 'Démos disponibles',
+'available_demos_subtitle' => 'Découvrez les démos actives de tous nos logiciels.',
+'demo_not_available' => 'Lien non disponible',
+'previous' => 'Précédent',
+'next' => 'Suivant',
 ];

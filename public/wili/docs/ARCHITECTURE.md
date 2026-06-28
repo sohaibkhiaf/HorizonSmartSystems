@@ -85,7 +85,7 @@ api/config.php
 ```text
 host: 127.0.0.1
 port: 3306
-database: hss_wili_demo
+database: wchnqnhuwj_wili_demo
 user: root
 password:
 ```

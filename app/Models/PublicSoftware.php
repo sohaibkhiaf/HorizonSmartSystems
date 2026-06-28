@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PublicSoftware extends Model
@@ -30,4 +31,9 @@ class PublicSoftware extends Model
 
         'is_published', 
     ];
+
+    public function demos(): HasMany
+    {
+        return $this->hasMany(CustomerDemo::class);
+    }
 }

@@ -13,7 +13,7 @@ S:\xampp\htdocs\wili
 ما تم:
 
 - إنشاء API PHP داخل `api/`.
-- إنشاء قاعدة MySQL واحدة باسم `hss_wili_demo`.
+- إنشاء قاعدة MySQL واحدة باسم `wchnqnhuwj_wili_demo`.
 - إنشاء الجداول الأساسية: users, workspaces, settings, products, customers, suppliers, sales, purchases, finance, stock losses, audit.
 - إضافة user تجريبي:
   - username: `test`
@@ -65,7 +65,7 @@ S:\xampp\htdocs\wili
 اسم قاعدة البيانات المقترح:
 
 ```sql
-hss_wili_demo
+wchnqnhuwj_wili_demo
 ```
 
 لا نستخدم قواعد مثل:
@@ -79,7 +79,7 @@ wili_user_12
 بل نستخدم قاعدة واحدة:
 
 ```text
-hss_wili_demo
+wchnqnhuwj_wili_demo
 ```
 
 وكل جدول رئيسي يحتوي على:
@@ -676,7 +676,7 @@ CREATE INDEX idx_finance_workspace_date ON finance_entries(workspace_id, date);
 
 ### المرحلة 1: البنية الأساسية
 
-- إنشاء قاعدة `hss_wili_demo`.
+- إنشاء قاعدة `wchnqnhuwj_wili_demo`.
 - إنشاء الجداول الأساسية.
 - إنشاء `api/config.php`.
 - إنشاء `api/db.php`.

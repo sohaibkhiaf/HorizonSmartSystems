@@ -69,4 +69,11 @@ return [
 'voice_not_supported' => 'Recording is not supported. Upload an audio file instead.',
 'microphone_error' => 'Microphone unavailable or permission denied.',
 'audio_not_supported' => 'Your browser does not support audio playback.',
+
+'available_demos_label' => 'Demos',
+'available_demos' => 'Available demos',
+'available_demos_subtitle' => 'Explore active demos for all our software.',
+'demo_not_available' => 'Link not available',
+'previous' => 'Previous',
+'next' => 'Next',
 ];

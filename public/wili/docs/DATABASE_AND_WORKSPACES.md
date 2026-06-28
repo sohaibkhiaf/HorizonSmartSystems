@@ -5,7 +5,7 @@
 اسم قاعدة البيانات:
 
 ```text
-hss_wili_demo
+wchnqnhuwj_wili_demo
 ```
 
 يتم إنشاؤها من:

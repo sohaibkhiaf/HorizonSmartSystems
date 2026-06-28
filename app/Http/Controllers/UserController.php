@@ -126,7 +126,7 @@ public function store(Request $request)
     $request->validate([
         'name' => 'required|max:50',
         'username' => 'required|string|unique:users,username',
-        'password' => 'required|min:8',
+        'password' => 'required|min:4',
         'phone' => 'nullable|string|size:10',
         'company' => 'nullable|string|max:50',
         'role' => 'required|in:user,admin,operator,customer',
@@ -204,7 +204,7 @@ public function store(Request $request)
             'username' => 'required|string|unique:users,username,' . $user->id,
             'phone' => 'nullable|string|size:10',
             'company' => 'nullable|string|max:50',
-            'password' => 'nullable|min:8',
+            'password' => 'nullable|min:4',
             'role' => 'nullable|in:user,admin,operator,customer',
         ]);
 

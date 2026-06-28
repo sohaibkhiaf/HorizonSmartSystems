@@ -3,6 +3,7 @@
 @section('title', __('customer_portal.title'))
 
 @section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{ asset('css/customer/portal.css') }}">
 @endsection
 
@@ -44,57 +45,87 @@
         </div>
     @endif
 
-    <div class="main-grid">
+    <div class="demos-slider-card">
 
-        <div class="left-column">
-            <div class="portal-card offers-card">
-                <h2>{{ __('customer_portal.my_offers') }}</h2>
+        @if($demos->count())
+            <div class="demo-slider-shell">
+                <button type="button" class="demo-nav demo-prev" aria-label="{{ __('customer_portal.previous') }}">
+                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                </button>
 
-                <div class="demo-list">
-                    @forelse($demos as $demo)
+                <div class="swiper demos-swiper" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                    <div class="swiper-wrapper">
+                        @foreach($demos as $demo)
+                            @php
+                                $software = $demo->publicSoftware;
+                                $locale = app()->getLocale();
 
-                        @if(!empty($demo->demo_link))
-                            <a href="{{ $demo->demo_link }}" target="_blank"
-                            class="demo-card demo-card-clickable">
-                        @else
-                            <div class="demo-card">
-                        @endif
+                                $softwareName = match ($locale) {
+                                    'ar' => $software->ar_name ?? $software->fr_name ?? null,
+                                    'en' => $software->en_name ?? $software->fr_name ?? null,
+                                    default => $software->fr_name ?? null,
+                                };
+                            @endphp
 
-                            <div class="demo-main">
-                                @if($demo->image)
-                                    <div class="demo-card-image">
-                                        <img src="{{ asset('uploads/' . $demo->image) }}" alt="{{ $demo->name }}">
-                                    </div>
+                            <div class="swiper-slide">
+                                @if(!empty($demo->demo_link))
+                                    <a href="{{ $demo->demo_link . '&user='. auth()->user()->username }}" target="_blank" class="portal-demo-card">
                                 @else
-                                    <div class="demo-card-image demo-card-placeholder">
-                                        <i class="fas fa-image"></i>
-                                    </div>
+                                    <div class="portal-demo-card">
                                 @endif
 
-                                <div class="demo-content">
-                                    <h3>{{ $demo->name }}</h3>
-                                </div>
-                            </div>
+                                    <div class="portal-demo-image">
+                                        @if($demo->image)
+                                            <img
+                                                src="{{ asset('uploads/' . $demo->image) }}"
+                                                alt="{{ $demo->name }}"
+                                                loading="lazy">
+                                        @else
+                                            <div class="portal-demo-placeholder">
+                                                <i class="fa-solid fa-display"></i>
+                                            </div>
+                                        @endif
+                                    </div>
 
-                        @if(!empty($demo->demo_link))
-                                <span class="demo-link">
-                                    {{ __('customer_portal.demo_show') }}
-                                    <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
-                                </span>
-                            </a>
-                        @else
-                            </div>
-                        @endif
+                                    <div class="portal-demo-content">
 
-                    @empty
-                        <p class="empty-text">
-                            {{ __('customer_portal.no_offers') }}
-                        </p>
-                    @endforelse
+                                        <h3>{{ $demo->name }}</h3>
+
+                                        @if(!empty($demo->demo_link))
+                                            <span class="portal-demo-link">
+                                                {{ __('customer_portal.demo_show') }}
+                                                <i class="{{ app()->getLocale() == 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
+                                            </span>
+                                        @else
+                                            <span class="portal-demo-link muted">
+                                                {{ __('customer_portal.demo_not_available') }}
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                @if(!empty($demo->demo_link))
+                                    </a>
+                                @else
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+
+                    </div>
                 </div>
-            </div>
-        </div>
 
+                <button type="button" class="demo-nav demo-next" aria-label="{{ __('customer_portal.next') }}">
+                    <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                </button>
+            </div>
+        @else
+            <p class="empty-text">
+                {{ __('customer_portal.no_offers') }}
+            </p>
+        @endif
+    </div>
+
+    <div class="main-grid">
         <div class="right-column">
             <div class="portal-card chat-card">
                 <h2>{{ __('customer_portal.contact_admin') }}</h2>
@@ -246,9 +277,39 @@
                         {{ __('customer_portal.send') }}
                     </button>
                 </form>
+            
+                @if ($messages->hasPages())
+                    <div class="navigator-container">
+                        @if ($messages->currentPage() > 1)
+                            <a href="{{ $messages->previousPageUrl() }}">
+                                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                            </a>
+                        @else
+                            <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-right' : 'fa-solid fa-angle-left' }}"></i>
+                            </a>
+                        @endif
+
+                        @for ($i = 1; $i <= $messages->lastPage(); $i++)
+                            <a href="{{ $messages->url($i) }}"
+                                class="{{ $messages->currentPage() == $i ? 'active' : '' }}">
+                                {{ $i }}
+                            </a>
+                        @endfor
+
+                        @if ($messages->currentPage() < $messages->lastPage())
+                            <a href="{{ $messages->nextPageUrl() }}">
+                                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                            </a>
+                        @else
+                            <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-angle-left' : 'fa-solid fa-angle-right' }}"></i>
+                            </a>
+                        @endif
+                    </div>
+                @endif
             </div>
         </div>
-
     </div>
 
     <div class="portal-card profile-card">
@@ -311,10 +372,14 @@
 
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const chatBox = document.getElementById('chatBox');
     const refreshNotice = document.getElementById('refreshNotice');
+
+    initDemosSwiper();
 
     if (chatBox) {
         chatBox.scrollTop = chatBox.scrollHeight;
@@ -336,6 +401,50 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function initDemosSwiper() {
+    const swiperElement = document.querySelector('.demos-swiper');
+
+    if (!swiperElement || typeof Swiper === 'undefined') {
+        return;
+    }
+
+    const slidesCount = swiperElement.querySelectorAll('.swiper-slide').length;
+
+    new Swiper(swiperElement, {
+        slidesPerView: 1.05,
+        spaceBetween: 14,
+        speed: 650,
+        rewind: true,
+        autoplay: slidesCount > 1 ? {
+            delay: 1500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        } : false,
+        navigation: {
+            nextEl: '.demo-next',
+            prevEl: '.demo-prev',
+        },
+        breakpoints: {
+            560: {
+                slidesPerView: 3,
+                spaceBetween: 14,
+            },
+            900: {
+                slidesPerView: 4,
+                spaceBetween: 16,
+            },
+            1100: {
+                slidesPerView: 5,
+                spaceBetween: 18,
+            },
+            1300: {
+                slidesPerView: 6,
+                spaceBetween: 18,
+            },
+        },
+    });
+}
 
 function setupFilePickers() {
     const fileInputs = document.querySelectorAll('.file-picker-input');
@@ -535,4 +644,3 @@ function setupVoiceRecorders() {
 </script>
 
 @endsection
-

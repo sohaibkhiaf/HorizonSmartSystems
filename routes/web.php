@@ -3,7 +3,6 @@
 
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\AdminChatController;
-use App\Http\Controllers\AdminCustomerPortalController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerPortalController;
@@ -14,6 +13,7 @@ use App\Http\Controllers\PublicHeroController;
 use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\PublicSoftwareController;
+use App\Http\Controllers\SoftwareDemoController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\StoreSubscriptionController;
@@ -195,25 +195,16 @@ Route::prefix('admin')
     Route::put('/store/requests/{id}/info', [StoreRequestController::class, 'updateInfo'])
         ->name('store_requests.updateInfo');
 
-    //  CUSTOMER PORTAL ///////////////////////////////////////////////////////////
-    Route::get('/customer/portals', [AdminCustomerPortalController::class, 'index'])
-        ->name('customer_portals.index');
-    Route::get('/customer/portals/{user}', [AdminCustomerPortalController::class, 'show'])
-        ->name('customer_portals.show');
-    Route::post('/customer/portals/{user}/demos', [AdminCustomerPortalController::class, 'storeDemo'])
-        ->name('customer_portals.demos.store');
-    Route::put('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'updateDemo'])
-        ->name('customer_portals.demos.update');
-    Route::delete('/customer/portals/demos/{demo}', [AdminCustomerPortalController::class, 'destroyDemo'])
-        ->name('customer_portals.demos.destroy');
-    Route::post('/customer/portals/{user}/messages', [AdminCustomerPortalController::class, 'sendMessage'])
-        ->name('customer_portals.messages.send');
-
     // PUBLIC HERO  ///////////////////////////////////////////////////////////
     Route::get('/hero/{hero}', [PublicHeroController::class, 'show'])
         ->name('public_hero.show');
     Route::put('/hero/{hero}', [PublicHeroController::class, 'update'])
         ->name('public_hero.update');
+
+    // DEMO //////////////////////////////////////////////////////////////////////
+    Route::resource('demos', SoftwareDemoController::class)
+            ->except(['show'])
+            ->names('software_demos');
 
 });
 

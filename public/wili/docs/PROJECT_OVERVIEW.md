@@ -22,7 +22,7 @@ WILI Web Demo هو تحويل ويب لتجربة WILI POS / Gestion Stock. يع
 لأن الاستضافة قد تسمح بعدد محدود من قواعد البيانات. لذلك كل البيانات محفوظة في قاعدة واحدة:
 
 ```text
-hss_wili_demo
+wchnqnhuwj_wili_demo
 ```
 
 والعزل يتم بواسطة:

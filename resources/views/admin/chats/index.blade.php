@@ -122,131 +122,310 @@
 
     <div class="chat-grid">
 
-        <div class="left-column">
-
-            <div class="container">
-                <div class="header">
-                    <h4>Envoyer un message</h4>
+        <div class="messages-column">
+            <div class="container messages-container">
+                <div class="header chat-header">
+                    <div>
+                        <h4>Messages</h4>
+                    </div>
                 </div>
 
-                <div class="body">
-                    <form method="POST"
-                          action="{{ route('admin.chats.messages.store') }}"
-                          class="compose-form"
-                          enctype="multipart/form-data">
-                        @csrf
+                <div class="body chat-body">
 
-                        <div class="form-group">
-                            <label>Envoyer à <span class="required">*</span></label>
-                            <select name="send_to" id="sendTo" required>
-                                <option value="customer" @selected(old('send_to', 'customer') === 'customer')>
-                                    Client
-                                </option>
-                                <option value="admin" @selected(old('send_to') === 'admin')>
-                                    Admin / Opérateur
-                                </option>
-                                <option value="group" @selected(old('send_to') === 'group')>
-                                    Groupe de clients
-                                </option>
-                            </select>
-                        </div>
+                    <div class="messages-list" id="adminMessagesList">
+                        @forelse($messages as $message)
+                            @php
+                                $bubbleClass = $message->sender_type === 'customer' ? 'customer' : 'admin';
 
-                        <div class="form-group recipient-field" data-recipient="customer">
-                            <label>Client</label>
-                            <select name="customer_id">
-                                <option value="">Sélectionner un client</option>
-                                @foreach($customers as $customer)
-                                    <option value="{{ $customer->id }}"
-                                        @selected(old('customer_id', request('customer_id')) == $customer->id)>
-                                        {{ $customer->name }} — {{ $customer->username }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                                $messageTypeClass = 'message-customer-admin';
 
-                        <div class="form-group recipient-field" data-recipient="admin">
-                            <label>Admin / Opérateur</label>
-                            <select name="admin_id">
-                                <option value="">Tous les admins / opérateurs</option>
-                                @foreach($admins as $admin)
-                                    @if($admin->id !== auth()->id())
-                                        <option value="{{ $admin->id }}" @selected(old('admin_id') == $admin->id)>
-                                            {{ $admin->name }} — {{ ucfirst($admin->role) }}
-                                        </option>
+                                if ($message->customer_group_id) {
+                                    $messageTypeClass = 'message-broadcast';
+                                } elseif ($message->sender_type === 'admin' && !$message->user_id) {
+                                    $messageTypeClass = 'message-internal';
+                                } elseif ($message->sender_type === 'admin') {
+                                    $messageTypeClass = 'message-admin-customer';
+                                }
+
+                                $typeLabel = 'Client vers administration';
+
+                                if ($message->customer_group_id) {
+                                    $typeLabel = 'Diffusion groupe';
+                                } elseif ($message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
+                                    $typeLabel = 'Interne';
+                                } elseif ($message->sender_type === 'admin') {
+                                    $typeLabel = 'Administration vers client';
+                                }
+
+                                $receiverName = $message->receiver_display_name;
+
+                                if (!$message->receiver_id && $message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
+                                    $receiverName = 'Tous les admins / opérateurs';
+                                }
+
+                                if (!$message->receiver_id && $message->sender_type === 'customer') {
+                                    $receiverName = 'Tous les admins / opérateurs';
+                                }
+
+                                $messageImageUrl = null;
+
+                                if ($message->image) {
+                                    $messageImageUrl = asset('uploads/' . $message->image);
+                                }
+
+                                $messageVoiceUrl = null;
+
+                                if ($message->voice_message) {
+                                    $messageVoiceUrl = asset('uploads/' . $message->voice_message);
+                                }
+                            @endphp
+
+                            <div class="message-card {{ $bubbleClass }} {{ $messageTypeClass }}">
+                                <div class="message-content">
+
+                                    @if($message->message)
+                                        <p class="message-text">{{ $message->message }}</p>
                                     @endif
-                                @endforeach
-                            </select>
-                            <small>Laissez vide pour envoyer un message interne avec destinataire inconnu.</small>
+
+                                    @if($message->link)
+                                        <a href="{{ $message->link }}" target="_blank" class="message-link">
+                                            {{ $message->link }}
+                                        </a>
+                                    @endif
+
+                                    @if($messageImageUrl)
+                                        <a href="{{ $messageImageUrl }}" target="_blank">
+                                            <img src="{{ $messageImageUrl }}"
+                                                 alt="Image message"
+                                                 class="message-image">
+                                        </a>
+                                    @endif
+
+                                    @if($messageVoiceUrl)
+                                        <audio controls preload="metadata" class="message-audio" src="{{ $messageVoiceUrl }}">
+                                            Votre navigateur ne supporte pas la lecture audio.
+                                        </audio>
+                                    @endif
+
+                                    <span class="message-meta">
+                                        {{ $message->sender_display_name }}
+                                        {{ ' → ' . $receiverName }}
+                                        {{ ' · ' . $message->created_at->format('d/m/Y H:i') }}
+                                        <br>
+                                        {{ $typeLabel }}
+                                        {{ $message->customerGroup != null ? ' · '. $message->customerGroup->name : '' }}
+                                        {{ $message->sender_type === 'customer' && !$message->is_seen ? ' · '.'Non répondu' : '' }}
+                                        {{ $message->user ? ' · Client concerné : '.$message->user->name : '' }}
+                                    </span>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="empty">Aucun message trouvé.</p>
+                        @endforelse
+                    </div>
+
+                    <div class="refresh-notice" id="adminRefreshNotice">
+                        <div>
+                            <i class="fa-solid fa-arrow-rotate-right"></i>
+                            Actualisez la page pour voir les derniers messages.
                         </div>
 
-                        <div class="form-group recipient-field" data-recipient="group">
-                            <label>Groupe</label>
-                            <select name="customer_group_id">
-                                <option value="">Sélectionner un groupe</option>
-                                @foreach($groups as $group)
-                                    <option value="{{ $group->id }}" @selected(old('customer_group_id') == $group->id)>
-                                        {{ $group->name }} — {{ $group->customers_count }} client(s)
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <a href="{{ route('admin.chats.index', request()->except('page')) }}">
+                            Rafraîchir
+                        </a>
+                    </div>
 
-                        <div class="form-group">
-                            <label>Message</label>
-                            <textarea name="message" placeholder="Écrire un message...">{{ old('message') }}</textarea>
-                        </div>
+                    <div class="message-controls-card">
 
-                        <div class="form-group">
-                            <label>Lien optionnel</label>
-                            <input type="url" name="link" value="{{ old('link') }}" placeholder="https://example.com">
-                        </div>
+                        <form method="POST"
+                              action="{{ route('admin.chats.messages.store') }}"
+                              class="compose-form chat-form"
+                              enctype="multipart/form-data">
+                            @csrf
 
-                        <div class="form-group">
-                            <label>Image optionnelle</label>
-                            <input type="file" name="image" accept="image/*">
-                        </div>
+                            <div class="compose-recipients">
+                                <div class="form-group">
+                                    <label>Envoyer à <span class="required">*</span></label>
+                                    <select name="send_to" id="sendTo" required>
+                                        <option value="customer" @selected(old('send_to', 'customer') === 'customer')>
+                                            Client
+                                        </option>
+                                        <option value="admin" @selected(old('send_to') === 'admin')>
+                                            Admin / Opérateur
+                                        </option>
+                                        <option value="group" @selected(old('send_to') === 'group')>
+                                            Groupe de clients
+                                        </option>
+                                    </select>
+                                </div>
 
-                        <div class="form-group voice-message-group">
-                            <label>Message vocal optionnel</label>
+                                <div class="form-group recipient-field" data-recipient="customer">
+                                    <label>Client</label>
+                                    <select name="customer_id">
+                                        <option value="">Sélectionner un client</option>
+                                        @foreach($customers as $customer)
+                                            <option value="{{ $customer->id }}"
+                                                @selected(old('customer_id', request('customer_id')) == $customer->id)>
+                                                {{ $customer->name }} — {{ $customer->username }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <input
-                                type="file"
-                                name="voice_message"
-                                id="adminVoiceMessage"
-                                accept="audio/*,.webm,.ogg,.mp3,.wav,.m4a,.aac,.mp4">
+                                <div class="form-group recipient-field" data-recipient="admin">
+                                    <label>Admin / Opérateur</label>
+                                    <select name="admin_id">
+                                        <option value="">Tous les admins / opérateurs</option>
+                                        @foreach($admins as $admin)
+                                            @if($admin->id !== auth()->id())
+                                                <option value="{{ $admin->id }}" @selected(old('admin_id') == $admin->id)>
+                                                    {{ $admin->name }} — {{ ucfirst($admin->role) }}
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <small>Laissez vide pour envoyer un message interne avec destinataire inconnu.</small>
+                                </div>
 
-                            <div class="voice-recorder" data-target="adminVoiceMessage">
-                                <button type="button" class="voice-record-btn" data-action="record">
-                                    <i class="fa-solid fa-microphone"></i>
-                                    Enregistrer
-                                </button>
-
-                                <button type="button" class="voice-stop-btn" data-action="stop" disabled>
-                                    <i class="fa-solid fa-stop"></i>
-                                    Arrêter
-                                </button>
-
-                                <button type="button" class="voice-clear-btn" data-action="clear" disabled>
-                                    <i class="fa-solid fa-trash"></i>
-                                    Supprimer
-                                </button>
-
-                                <span class="voice-status">Aucun message vocal</span>
-
-                                <audio controls class="voice-preview"></audio>
+                                <div class="form-group recipient-field" data-recipient="group">
+                                    <label>Groupe</label>
+                                    <select name="customer_group_id">
+                                        <option value="">Sélectionner un groupe</option>
+                                        @foreach($groups as $group)
+                                            <option value="{{ $group->id }}" @selected(old('customer_group_id') == $group->id)>
+                                                {{ $group->name }} — {{ $group->customers_count }} client(s)
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
-                            <small>Vous pouvez importer un fichier audio ou enregistrer directement depuis le navigateur.</small>
-                        </div>
+                            <textarea
+                                name="message"
+                                placeholder="Écrire un message...">{{ old('message') }}</textarea>
 
-                        <button type="submit" class="btn-primary">
-                            <i class="fa-solid fa-paper-plane"></i>
-                            Envoyer
-                        </button>
-                    </form>
+                            <input
+                                type="url"
+                                name="link"
+                                class="chat-link-input"
+                                value="{{ old('link') }}"
+                                placeholder="Lien optionnel : https://example.com">
+
+                            <div class="chat-attachments">
+                                <div class="file-picker" data-file-picker>
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        id="adminMessageImage"
+                                        accept="image/*"
+                                        class="file-picker-input">
+
+                                    <label for="adminMessageImage" class="file-picker-btn">
+                                        <i class="fa-solid fa-image"></i>
+                                        Image
+                                    </label>
+
+                                    <span class="file-picker-name" data-default="Aucune image sélectionnée">
+                                        Aucune image sélectionnée
+                                    </span>
+                                </div>
+
+                                <div class="file-picker" data-file-picker>
+                                    <input
+                                        type="file"
+                                        name="voice_message"
+                                        id="adminVoiceMessage"
+                                        accept="audio/*,.webm,.ogg,.mp3,.wav,.m4a,.aac,.mp4"
+                                        class="file-picker-input">
+
+                                    <label for="adminVoiceMessage" class="file-picker-btn">
+                                        <i class="fa-solid fa-file-audio"></i>
+                                        Audio
+                                    </label>
+
+                                    <span class="file-picker-name" data-default="Aucun audio sélectionné">
+                                        Aucun audio sélectionné
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="voice-message-group">
+                                <div
+                                    class="voice-recorder"
+                                    data-target="adminVoiceMessage"
+                                    data-empty-label="Aucun message vocal"
+                                    data-ready-label="Message vocal prêt à envoyer"
+                                    data-recording-label="Enregistrement en cours..."
+                                    data-not-supported-label="Enregistrement non supporté. Importez un fichier audio."
+                                    data-microphone-error-label="Micro non disponible ou permission refusée.">
+
+                                    <div class="voice-actions">
+                                        <button type="button" class="voice-record-btn" data-action="record">
+                                            <i class="fa-solid fa-microphone"></i>
+                                            <span>Enregistrer</span>
+                                        </button>
+
+                                        <button type="button" class="voice-stop-btn" data-action="stop" disabled>
+                                            <i class="fa-solid fa-stop"></i>
+                                            <span>Arrêter</span>
+                                        </button>
+
+                                        <button type="button" class="voice-clear-btn" data-action="clear" disabled>
+                                            <i class="fa-solid fa-trash"></i>
+                                            <span>Supprimer</span>
+                                        </button>
+                                    </div>
+
+                                    <span class="voice-status">
+                                        Aucun message vocal
+                                    </span>
+
+                                    <audio controls class="voice-preview"></audio>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-main compose-submit">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Envoyer
+                            </button>
+                        </form>
+                    </div>
+
+                    @if ($messages->hasPages())
+                        <div class="navigator-container">
+                            @if ($messages->currentPage() > 1)
+                                <a href="{{ $messages->previousPageUrl() }}">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                            @else
+                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                    <i class="fa-solid fa-angle-left"></i>
+                                </a>
+                            @endif
+
+                            @for ($i = 1; $i <= $messages->lastPage(); $i++)
+                                <a href="{{ $messages->url($i) }}"
+                                   class="{{ $messages->currentPage() == $i ? 'active' : '' }}">
+                                    {{ $i }}
+                                </a>
+                            @endfor
+
+                            @if ($messages->currentPage() < $messages->lastPage())
+                                <a href="{{ $messages->nextPageUrl() }}">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
+                                    <i class="fa-solid fa-angle-right"></i>
+                                </a>
+                            @endif
+                        </div>
+                    @endif
                 </div>
             </div>
+        </div>
 
+        <div class="groups-column">
             <div class="container groups-container">
                 <div class="header">
                     <h4>Groupes de clients</h4>
@@ -386,156 +565,6 @@
 
                 </div>
             </div>
-
-        </div>
-
-        <div class="right-column">
-            <div class="container messages-container">
-                <div class="header">
-                    <h4>Messages</h4>
-                </div>
-
-                <div class="body">
-
-                    <div class="messages-list" id="adminMessagesList">
-                        @forelse($messages as $message)
-                            @php
-                                $bubbleClass = $message->sender_type === 'customer' ? 'customer' : 'admin';
-
-                                $messageTypeClass = 'message-customer-admin';
-
-                                if ($message->customer_group_id) {
-                                    $messageTypeClass = 'message-broadcast';
-                                } elseif ($message->sender_type === 'admin' && !$message->user_id) {
-                                    $messageTypeClass = 'message-internal';
-                                } elseif ($message->sender_type === 'admin') {
-                                    $messageTypeClass = 'message-admin-customer';
-                                }
-
-
-                                $typeLabel = 'Client vers administration';
-
-                                if ($message->customer_group_id) {
-                                    $typeLabel = 'Diffusion groupe';
-                                } elseif ($message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
-                                    $typeLabel = 'Interne';
-                                } elseif ($message->sender_type === 'admin') {
-                                    $typeLabel = 'Administration vers client';
-                                }
-
-                                $receiverName = $message->receiver_display_name;
-
-                                if (!$message->receiver_id && $message->sender_type === 'admin' && !$message->user_id && !$message->customer_group_id) {
-                                    $receiverName = 'Tous les admins / opérateurs';
-                                }
-
-                                if (!$message->receiver_id && $message->sender_type === 'customer') {
-                                    $receiverName = 'Tous les admins / opérateurs';
-                                }
-
-                                $messageImageUrl = null;
-
-                                if ($message->image) {
-                                    $messageImageUrl =asset('uploads/' . $message->image);
-                                }
-
-                                $messageVoiceUrl = null;
-
-                                if ($message->voice_message) {
-                                    $messageVoiceUrl = asset('uploads/' . $message->voice_message);
-                                }
-                            @endphp
-
-                            <div class="message-card {{ $bubbleClass }} {{ $messageTypeClass }}">
-                                <div class="message-content">
-
-                                    @if($message->message)
-                                        <p class="message-text">{{ $message->message }}</p>
-                                    @endif
-
-                                    @if($message->link)
-                                        <a href="{{ $message->link }}" target="_blank" class="message-link">
-                                            {{ $message->link }}
-                                        </a>
-                                    @endif
-
-                                    @if($messageImageUrl)
-                                        <a href="{{ $messageImageUrl }}" target="_blank">
-                                            <img src="{{ $messageImageUrl }}"
-                                                 alt="Image message"
-                                                 class="message-image">
-                                        </a>
-                                    @endif
-
-                                    @if($messageVoiceUrl)
-                                        <audio controls preload="metadata" class="message-audio" src="{{ $messageVoiceUrl }}">
-                                            Votre navigateur ne supporte pas la lecture audio.
-                                        </audio>
-                                    @endif
-
-                                    <span class="message-meta">
-                                        
-                                    </span>
-                                    <span class="message-meta">
-                                        {{ $message->sender_display_name }}
-                                        {{ ' → ' . $receiverName }}
-                                        {{ ' · ' . $message->created_at->format('d/m/Y H:i') }}
-                                        <br>
-                                        {{ $typeLabel }} 
-                                        {{ $message->customerGroup != null ? ' · '. $message->customerGroup->name : '' }} 
-                                        {{ $message->sender_type === 'customer' && !$message->is_seen ? ' · '.'Non répondu' : '' }} 
-                                        {{ $message->user ? ' · Client concerné : '.$message->user->name : '' }}
-                                    </span>
-                                </div>
-                            </div>
-                        @empty
-                            <p class="empty">Aucun message trouvé.</p>
-                        @endforelse
-                    </div>
-
-                    <div class="refresh-notice" id="adminRefreshNotice">
-                        <div>
-                            <i class="fa-solid fa-arrow-rotate-right"></i>
-                            Actualisez la page pour voir les derniers messages.
-                        </div>
-
-                        <a href="{{ route('admin.chats.index', request()->except('page')) }}">
-                            Rafraîchir
-                        </a>
-                    </div>
-
-                    @if ($messages->hasPages())
-                        <div class="navigator-container">
-                            @if ($messages->currentPage() > 1)
-                                <a href="{{ $messages->previousPageUrl() }}">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                </a>
-                            @else
-                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
-                                    <i class="fa-solid fa-angle-left"></i>
-                                </a>
-                            @endif
-
-                            @for ($i = 1; $i <= $messages->lastPage(); $i++)
-                                <a href="{{ $messages->url($i) }}"
-                                   class="{{ $messages->currentPage() == $i ? 'active' : '' }}">
-                                    {{ $i }}
-                                </a>
-                            @endfor
-
-                            @if ($messages->currentPage() < $messages->lastPage())
-                                <a href="{{ $messages->nextPageUrl() }}">
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </a>
-                            @else
-                                <a href="{{ $messages->url($messages->currentPage()) }}" class="disabled">
-                                    <i class="fa-solid fa-angle-right"></i>
-                                </a>
-                            @endif
-                        </div>
-                    @endif
-                </div>
-            </div>
         </div>
 
     </div>
@@ -569,41 +598,7 @@ document.addEventListener('DOMContentLoaded', function () {
         messagesList.scrollTop = messagesList.scrollHeight;
     }
 
-    setTimeout(function () {
-        if (refreshNotice) {
-            refreshNotice.classList.add('is-visible');
-        }
-    }, 5000);
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const sendTo = document.getElementById('sendTo');
-    const fields = document.querySelectorAll('.recipient-field');
-    const refreshNotice = document.getElementById('adminRefreshNotice');
-    const messagesList = document.getElementById('adminMessagesList');
-
-    function updateRecipientFields() {
-        if (!sendTo) return;
-
-        const value = sendTo.value;
-
-        fields.forEach(field => {
-            field.style.display = field.dataset.recipient === value ? 'block' : 'none';
-        });
-    }
-
-    updateRecipientFields();
-
-    if (sendTo) {
-        sendTo.addEventListener('change', updateRecipientFields);
-    }
-
-    if (messagesList) {
-        messagesList.scrollTop = messagesList.scrollHeight;
-    }
-
+    setupFilePickers();
     setupVoiceRecorders();
 
     setTimeout(function () {
@@ -612,6 +607,28 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }, 5000);
 });
+
+function setupFilePickers() {
+    const fileInputs = document.querySelectorAll('.file-picker-input');
+
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function () {
+            updateFilePickerName(input, input.files[0] ?? null);
+        });
+    });
+}
+
+function updateFilePickerName(input, file) {
+    const picker = input.closest('[data-file-picker]');
+
+    if (!picker) return;
+
+    const name = picker.querySelector('.file-picker-name');
+
+    if (!name) return;
+
+    name.textContent = file ? file.name : (name.dataset.default || '');
+}
 
 function setupVoiceRecorders() {
     const recorders = document.querySelectorAll('.voice-recorder');
@@ -628,9 +645,18 @@ function setupVoiceRecorders() {
         const status = wrapper.querySelector('.voice-status');
         const preview = wrapper.querySelector('.voice-preview');
 
+        const labels = {
+            empty: wrapper.dataset.emptyLabel || 'Aucun message vocal',
+            ready: wrapper.dataset.readyLabel || 'Message vocal prêt à envoyer',
+            recording: wrapper.dataset.recordingLabel || 'Enregistrement en cours...',
+            notSupported: wrapper.dataset.notSupportedLabel || 'Enregistrement non supporté. Importez un fichier audio.',
+            microphoneError: wrapper.dataset.microphoneErrorLabel || 'Micro non disponible ou permission refusée.',
+        };
+
         let mediaRecorder = null;
         let chunks = [];
         let stream = null;
+        let previewUrl = null;
 
         function getRecordingMimeType() {
             if (!window.MediaRecorder) {
@@ -651,6 +677,7 @@ function setupVoiceRecorders() {
         function getExtension(mimeType) {
             if (mimeType.includes('ogg')) return 'ogg';
             if (mimeType.includes('mp4')) return 'm4a';
+
             return 'webm';
         }
 
@@ -661,19 +688,32 @@ function setupVoiceRecorders() {
             }
         }
 
-        function setPreviewFromFile(file) {
+        function resetPreviewUrl() {
+            if (previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                previewUrl = null;
+            }
+        }
+
+        function setPreviewFromFile(file, ready = false) {
+            resetPreviewUrl();
+
             if (!file) {
                 preview.removeAttribute('src');
                 preview.style.display = 'none';
-                status.textContent = 'Aucun message vocal';
+                status.textContent = labels.empty;
                 clearBtn.disabled = true;
+                updateFilePickerName(fileInput, null);
+
                 return;
             }
 
-            preview.src = URL.createObjectURL(file);
+            previewUrl = URL.createObjectURL(file);
+            preview.src = previewUrl;
             preview.style.display = 'block';
-            status.textContent = file.name;
+            status.textContent = ready ? labels.ready : file.name;
             clearBtn.disabled = false;
+            updateFilePickerName(fileInput, file);
         }
 
         function clearVoice() {
@@ -689,7 +729,7 @@ function setupVoiceRecorders() {
 
         if (!navigator.mediaDevices || !window.MediaRecorder) {
             recordBtn.disabled = true;
-            status.textContent = 'Enregistrement non supporté. Importez un fichier audio.';
+            status.textContent = labels.notSupported;
             return;
         }
 
@@ -733,12 +773,11 @@ function setupVoiceRecorders() {
                     transfer.items.add(file);
                     fileInput.files = transfer.files;
 
-                    setPreviewFromFile(file);
+                    setPreviewFromFile(file, true);
                     stopStream();
 
                     recordBtn.disabled = false;
                     stopBtn.disabled = true;
-                    status.textContent = 'Message vocal prêt à envoyer';
                 });
 
                 mediaRecorder.start();
@@ -746,14 +785,14 @@ function setupVoiceRecorders() {
                 recordBtn.disabled = true;
                 stopBtn.disabled = false;
                 clearBtn.disabled = true;
-                status.textContent = 'Enregistrement en cours...';
+                status.textContent = labels.recording;
 
             } catch (error) {
                 stopStream();
 
                 recordBtn.disabled = false;
                 stopBtn.disabled = true;
-                status.textContent = 'Micro non disponible ou permission refusée.';
+                status.textContent = labels.microphoneError;
             }
         });
 

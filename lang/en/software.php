@@ -9,4 +9,6 @@ return [
 
     'other_software' => 'Other software',
     'empty_other_software' => 'No other software for now.',
+
+    'software_cta' => 'Request a demo',
 ];

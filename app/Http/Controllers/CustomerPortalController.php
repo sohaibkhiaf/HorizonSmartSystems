@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChatMessage;
+use App\Models\CustomerDemo;
 use App\Models\PublicHero;
 use App\Models\PublicService;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class CustomerPortalController extends Controller
     {
         $user = auth()->user();
 
-        $demos = $user->demos()
+        $demos = CustomerDemo::with('publicSoftware')
             ->where('is_active', true)
             ->latest()
             ->get();
@@ -22,7 +23,7 @@ class CustomerPortalController extends Controller
         $messages = $user->chatMessages()
             ->with(['sender', 'receiver', 'customerGroup'])
             ->oldest()
-            ->get();
+            ->paginate(99);
 
         $services = PublicService::all();
         $hero = PublicHero::findOrFail(1);
@@ -37,7 +38,7 @@ class CustomerPortalController extends Controller
         $data = $request->validate([
             'phone' => ['nullable', 'string', 'size:10'],
             'company' => ['nullable', 'string', 'max:50'],
-            'password' => ['nullable', 'confirmed', 'min:8'],
+            'password' => ['nullable', 'confirmed', 'min:4'],
         ]);
 
         $user->phone = $data['phone'] ?? null;

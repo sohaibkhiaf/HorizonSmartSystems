@@ -19,7 +19,13 @@ class HomeController extends Controller
 
         // fetch
         $services = PublicService::all();
-        $software = PublicSoftware::all();
+        $software = PublicSoftware::with([
+            'demos' => function ($query) {
+                $query->where('is_active', true)->latest();
+            }
+        ])
+        ->where('is_published', true)
+        ->get();
         $hero = PublicHero::findOrFail(1);
 
         // view
@@ -50,6 +56,12 @@ class HomeController extends Controller
     public function software(PublicSoftware $software)
     {
         abort_if(! $software->is_published, 404);
+
+        $software->load([
+            'demos' => function ($query) {
+                $query->where('is_active', true)->latest();
+            }
+        ]);
 
         $otherSoftware = PublicSoftware::where('is_published', true)
             ->where('id', '!=', $software->id)
