@@ -570,7 +570,6 @@
     </div>
 
 </div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const sendTo = document.getElementById('sendTo');
@@ -627,7 +626,16 @@ function updateFilePickerName(input, file) {
 
     if (!name) return;
 
-    name.textContent = file ? file.name : (name.dataset.default || '');
+    if (!file) {
+        name.textContent = name.dataset.default || '';
+        name.removeAttribute('title');
+        picker.classList.remove('has-file');
+        return;
+    }
+
+    name.textContent = file.name;
+    name.title = file.name;
+    picker.classList.add('has-file');
 }
 
 function setupVoiceRecorders() {
@@ -644,6 +652,8 @@ function setupVoiceRecorders() {
         const clearBtn = wrapper.querySelector('[data-action="clear"]');
         const status = wrapper.querySelector('.voice-status');
         const preview = wrapper.querySelector('.voice-preview');
+
+        if (!recordBtn || !stopBtn || !clearBtn || !status) return;
 
         const labels = {
             empty: wrapper.dataset.emptyLabel || 'Aucun message vocal',
@@ -695,12 +705,33 @@ function setupVoiceRecorders() {
             }
         }
 
+        function hidePreview() {
+            if (!preview) return;
+
+            preview.pause();
+            preview.removeAttribute('src');
+            preview.load();
+            preview.classList.remove('is-visible');
+        }
+
+        function showPreview(file) {
+            if (!preview || !file) return;
+
+            previewUrl = URL.createObjectURL(file);
+
+            preview.pause();
+            preview.src = previewUrl;
+            preview.preload = 'metadata';
+            preview.load();
+            preview.classList.add('is-visible');
+        }
+
         function setPreviewFromFile(file, ready = false) {
             resetPreviewUrl();
 
             if (!file) {
-                preview.removeAttribute('src');
-                preview.style.display = 'none';
+                hidePreview();
+
                 status.textContent = labels.empty;
                 clearBtn.disabled = true;
                 updateFilePickerName(fileInput, null);
@@ -708,9 +739,8 @@ function setupVoiceRecorders() {
                 return;
             }
 
-            previewUrl = URL.createObjectURL(file);
-            preview.src = previewUrl;
-            preview.style.display = 'block';
+            showPreview(file);
+
             status.textContent = ready ? labels.ready : file.name;
             clearBtn.disabled = false;
             updateFilePickerName(fileInput, file);
@@ -804,5 +834,4 @@ function setupVoiceRecorders() {
     });
 }
 </script>
-
 @endsection

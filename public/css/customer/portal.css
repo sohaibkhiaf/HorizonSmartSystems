@@ -6,6 +6,12 @@
         #f8fafc;
 }
 
+.portal-section *,
+.portal-section *::before,
+.portal-section *::after {
+    box-sizing: border-box;
+}
+
 .portal-header,
 .demos-slider-card,
 .main-grid,
@@ -269,7 +275,6 @@
     font-size: 19px;
     line-height: 1.4;
     font-weight: 700;
-    
 }
 
 .portal-demo-link {
@@ -487,8 +492,15 @@
 
 .chat-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.chat-form > * {
+    min-width: 0;
 }
 
 .chat-form textarea {
@@ -517,6 +529,7 @@
 .chat-form input,
 .chat-form textarea {
     width: 100%;
+    min-width: 0;
     border: 1px solid #cbd5e1;
     border-radius: 12px;
     padding: 12px 14px;
@@ -552,7 +565,7 @@
 
 .profile-form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
 }
 
@@ -589,8 +602,7 @@
     line-height: 1.6;
 }
 
-/* Voice messages */
-/* Compact attachments */
+/* Attachments + file name overflow fix */
 
 .chat-attachments {
     grid-column: 1 / -1;
@@ -598,14 +610,21 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .file-picker {
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 0;
     flex: 1 1 210px;
+    width: 0;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .file-picker-input {
@@ -627,6 +646,7 @@
     justify-content: center;
     gap: 8px;
     flex: 0 0 auto;
+    max-width: 100%;
     padding: 11px 14px;
     border: 1px solid #bfdbfe;
     background: #eff6ff;
@@ -636,6 +656,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 1;
+    white-space: nowrap;
     transition: 0.2s ease;
 }
 
@@ -645,7 +666,11 @@
 }
 
 .file-picker-name {
+    display: block;
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
+    max-width: 100%;
     color: #64748b;
     font-size: 13px;
     line-height: 1.4;
@@ -659,6 +684,8 @@
 .voice-message-group {
     grid-column: 1 / -1;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .voice-recorder {
@@ -666,11 +693,19 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     margin-top: -2px;
     padding: 8px;
     background: #f8fafc;
     border: 1px dashed #cbd5e1;
     border-radius: 12px;
+    overflow: hidden;
+}
+
+.voice-recorder > * {
+    min-width: 0;
 }
 
 .voice-actions {
@@ -678,6 +713,7 @@
     align-items: center;
     gap: 6px;
     flex-wrap: wrap;
+    min-width: 0;
 }
 
 .voice-recorder button {
@@ -739,11 +775,66 @@
     text-overflow: ellipsis;
 }
 
-.voice-preview {
+/* Voice preview wrapper: prevents native audio from expanding chat width */
+
+.voice-preview-wrap {
     display: none;
     width: 100%;
-    max-width: 260px;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    flex: 1 1 100%;
+    contain: inline-size;
+}
+
+.voice-preview-wrap.is-visible {
+    display: block;
+}
+
+.voice-preview {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     height: 34px;
+}
+
+.voice-preview:not(.is-visible) {
+    display: none;
+}
+
+.voice-preview.is-visible {
+    display: block;
+}
+
+.voice-preview-wrap.is-visible .voice-preview {
+    display: block;
+}
+
+.voice-preview::-webkit-media-controls-enclosure {
+    max-width: 100%;
+}
+
+/* Extra width protection for the chat section */
+
+.chat-card,
+.portal-card,
+.main-grid,
+.right-column,
+.chat-form,
+.chat-attachments,
+.voice-message-group,
+.voice-recorder,
+.voice-preview-wrap {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.chat-card,
+.portal-card,
+.chat-form,
+.voice-recorder {
+    overflow: hidden;
 }
 
 .message-audio {
@@ -756,7 +847,6 @@
 .chat-message.customer .message-audio {
     filter: none;
 }
-
 
 /* Navigator */
 
@@ -808,6 +898,7 @@
 }
 
 /* Desktop / tablet only */
+
 @media (min-width: 651px) {
     .message-audio {
         min-width: 360px;
@@ -869,7 +960,7 @@
 
     .profile-form,
     .chat-form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .message-content {
@@ -899,33 +990,82 @@
 
     .chat-attachments {
         gap: 7px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
     }
 
     .file-picker {
         flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .file-picker-btn {
+        max-width: 48%;
+        padding: 11px 10px;
+        font-size: 13px;
+    }
+
+    .file-picker-name {
+        flex: 1 1 0;
+        width: 0;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .voice-message-group,
+    .voice-recorder,
+    .voice-preview-wrap {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 
     .voice-recorder {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
         align-items: stretch;
+        overflow: hidden;
     }
 
     .voice-actions {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
     }
 
     .voice-recorder button {
         width: 100%;
+        min-width: 0;
         padding: 10px 8px;
         font-size: 12px;
     }
 
-    .voice-status,
+    .voice-status {
+        width: 100%;
+        min-width: 0;
+        font-size: 12px;
+    }
+
+    .voice-preview-wrap {
+        grid-column: 1 / -1;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
     .voice-preview,
     .message-audio {
         width: 100%;
         max-width: 100%;
+        min-width: 0;
     }
 }
 
@@ -992,3 +1132,4 @@
         height: 780px;
     }
 }
+

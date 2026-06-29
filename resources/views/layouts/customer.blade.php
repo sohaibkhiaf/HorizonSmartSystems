@@ -14,6 +14,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+        <script src="{{ asset('swiper/swiper-bundle.min.js') }}"></script>
     
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

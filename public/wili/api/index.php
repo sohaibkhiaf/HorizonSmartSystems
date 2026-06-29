@@ -155,6 +155,8 @@ try {
             ok(db_all("SELECT * FROM audit_events WHERE workspace_id=? ORDER BY created_at DESC LIMIT " . limit_sql((int)($data['limit'] ?? 500)), [workspace_id()]));
         case 'reports.daily':
             ok(daily_report());
+        case 'media.upload':
+            ok(upload_media($data));
 
         case 'pdf.saleCart':
             ok(document_payload('Ticket de caisse', cart_html($data), 'ticket.html', 'ticket'));
@@ -708,6 +710,56 @@ function product_trace(int $productId): array
     $rows = array_merge($sales, $purchases, $losses);
     usort($rows, fn($a, $b) => strcmp((string)$b['date'], (string)$a['date']));
     return $rows;
+}
+
+function upload_media(array $payload): array
+{
+    $dataUrl = trim((string)($payload['data_url'] ?? ''));
+    if ($dataUrl === '') fail('image_required');
+    if (!preg_match('/^data:(image\/(?:png|jpeg|webp|gif));base64,(.+)$/i', $dataUrl, $matches)) {
+        fail('image_type_not_supported');
+    }
+
+    $mime = strtolower((string)$matches[1]);
+    $raw = base64_decode((string)$matches[2], true);
+    if ($raw === false || $raw === '') fail('image_decode_failed');
+
+    $maxBytes = 5 * 1024 * 1024;
+    if (strlen($raw) > $maxBytes) fail('image_too_large_max_5mb');
+
+    $detected = '';
+    if (function_exists('finfo_buffer')) {
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $detected = strtolower((string)$finfo->buffer($raw));
+    }
+    if ($detected !== '' && $detected !== $mime && !($mime === 'image/jpeg' && $detected === 'image/pjpeg')) {
+        fail('image_type_not_supported');
+    }
+
+    $ext = match ($mime) {
+        'image/png' => 'png',
+        'image/jpeg' => 'jpg',
+        'image/webp' => 'webp',
+        'image/gif' => 'gif',
+        default => 'img',
+    };
+
+    $workspaceId = workspace_id();
+    $dir = rtrim(WILI_UPLOAD_DIR, "\\/") . DIRECTORY_SEPARATOR . $workspaceId;
+    if (!is_dir($dir) && !mkdir($dir, 0775, true) && !is_dir($dir)) {
+        fail('upload_dir_failed', 500);
+    }
+
+    $name = 'product-' . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.' . $ext;
+    $path = $dir . DIRECTORY_SEPARATOR . $name;
+    if (file_put_contents($path, $raw) === false) fail('image_save_failed', 500);
+
+    audit('media.upload', 'media', $name);
+    return [
+        'image_path' => 'uploads/' . $workspaceId . '/' . $name,
+        'mime_type' => $mime,
+        'size_bytes' => strlen($raw),
+    ];
 }
 
 function add_finance(string $type, string $source, string $ref, string $partyKey, string $partyName, int $amount, string $pdfKind = '', string $pdfId = '', string $note = ''): int

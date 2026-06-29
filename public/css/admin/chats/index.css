@@ -2,6 +2,12 @@
     display: block;
 }
 
+.chat-page *,
+.chat-page *::before,
+.chat-page *::after {
+    box-sizing: border-box;
+}
+
 .container,
 .flash-success,
 .flash-error {
@@ -80,6 +86,7 @@
 .chat-form select,
 .chat-form textarea {
     width: 100%;
+    min-width: 0;
     border: 1px solid #cbd5e1;
     border-radius: 12px;
     padding: 12px 14px;
@@ -266,28 +273,24 @@
     border-bottom-right-radius: 5px;
 }
 
-/* Class 1: Broadcast messages */
 .message-card.message-broadcast .message-content {
     background: #16a34a;
     color: #ffffff;
     border: 1px solid #16a34a;
 }
 
-/* Class 2: Internal messages */
 .message-card.message-internal .message-content {
     background: #7c3aed;
     color: #ffffff;
     border: 1px solid #7c3aed;
 }
 
-/* Class 3: Admin/operator => customer */
 .message-card.message-admin-customer .message-content {
     background: #2563eb;
     color: #ffffff;
     border: 1px solid #2563eb;
 }
 
-/* Class 4: Customer => administration */
 .message-card.message-customer-admin .message-content {
     background: #ffffff;
     color: #0f172a;
@@ -354,6 +357,9 @@
     border: 1px solid #e5e7eb;
     border-radius: 18px;
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.045);
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .message-controls-top {
@@ -362,6 +368,7 @@
     justify-content: space-between;
     gap: 14px;
     margin-bottom: 16px;
+    min-width: 0;
 }
 
 .controls-label {
@@ -393,8 +400,18 @@
 
 .chat-form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.chat-form > *,
+.compose-recipients > *,
+.chat-attachments > *,
+.voice-recorder > * {
+    min-width: 0;
 }
 
 .compose-recipients,
@@ -411,6 +428,8 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     align-items: start;
+    width: 100%;
+    min-width: 0;
 }
 
 .chat-form textarea {
@@ -421,19 +440,28 @@
     width: 100%;
 }
 
+/* File inputs */
+
 .chat-attachments {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .file-picker {
     display: flex;
     align-items: center;
     gap: 8px;
-    min-width: 0;
     flex: 1 1 220px;
+    width: 0;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .file-picker-input {
@@ -455,6 +483,7 @@
     justify-content: center;
     gap: 8px;
     flex: 0 0 auto;
+    max-width: 100%;
     padding: 11px 14px;
     border: 1px solid #bfdbfe;
     background: #eff6ff;
@@ -464,6 +493,7 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
+    white-space: nowrap;
     transition: 0.2s ease;
 }
 
@@ -473,7 +503,11 @@
 }
 
 .file-picker-name {
+    display: block;
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
+    max-width: 100%;
     color: #64748b;
     font-size: 13px;
     line-height: 1.4;
@@ -482,8 +516,13 @@
     text-overflow: ellipsis;
 }
 
+/* Voice recorder */
+
 .voice-message-group {
+    grid-column: 1 / -1;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
 }
 
 .voice-recorder {
@@ -491,11 +530,15 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     margin-top: -2px;
     padding: 8px;
     background: #f8fafc;
     border: 1px dashed #cbd5e1;
     border-radius: 12px;
+    overflow: hidden;
 }
 
 .voice-actions {
@@ -503,6 +546,7 @@
     align-items: center;
     gap: 6px;
     flex-wrap: wrap;
+    min-width: 0;
 }
 
 .voice-recorder button {
@@ -511,7 +555,7 @@
     border-radius: 10px;
     padding: 10px 13px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -567,8 +611,17 @@
 .voice-preview {
     display: none;
     width: 100%;
-    max-width: 260px;
+    max-width: 100%;
+    min-width: 0;
     height: 34px;
+}
+
+.voice-preview.is-visible {
+    display: block;
+}
+
+.voice-preview::-webkit-media-controls-enclosure {
+    max-width: 100%;
 }
 
 /* Refresh Notice */
@@ -765,6 +818,7 @@
 }
 
 /* Desktop / tablet audio */
+
 @media (min-width: 651px) {
     .message-audio {
         min-width: 360px;
@@ -810,7 +864,7 @@
 
     .compose-recipients,
     .chat-form {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -846,32 +900,81 @@
 
     .chat-attachments {
         gap: 7px;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
     }
 
     .file-picker {
         flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .file-picker-btn {
+        max-width: 48%;
+        padding: 11px 10px;
+        font-size: 13px;
+    }
+
+    .file-picker-name {
+        flex: 1 1 0;
+        width: 0;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .message-controls-card,
+    .chat-form,
+    .voice-message-group,
+    .voice-recorder {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
     }
 
     .voice-recorder {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
         align-items: stretch;
+        overflow: hidden;
     }
 
     .voice-actions {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
     }
 
     .voice-recorder button {
         width: 100%;
-        padding: 10px 8px;
+        min-width: 0;
+        padding: 10px 6px;
         font-size: 12px;
     }
 
-    .voice-status,
-    .voice-preview,
-    .message-audio {
+    .voice-status {
         width: 100%;
+        min-width: 0;
+        font-size: 12px;
+    }
+
+    .voice-preview {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .voice-preview.is-visible {
+        display: block;
+    }
+
+    .voice-preview::-webkit-media-controls-enclosure {
         max-width: 100%;
     }
 
@@ -900,7 +1003,20 @@
     }
 
     .voice-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .voice-recorder button span {
+        display: none;
+    }
+
+    .voice-recorder button {
+        padding: 11px 6px;
+    }
+
+    .voice-preview {
+        width: 100%;
+        max-width: 100%;
     }
 }
 
@@ -908,7 +1024,7 @@
 
 @media (min-width: 1440px) {
     .chat-grid {
-        grid-template-columns:  minmax(0, 1fr) 430px;
+        grid-template-columns: minmax(0, 1fr) 430px;
         gap: 24px;
     }
 
@@ -919,7 +1035,7 @@
 
 @media (min-width: 1700px) {
     .chat-grid {
-        grid-template-columns:  minmax(0, 1fr) 460px;
+        grid-template-columns: minmax(0, 1fr) 460px;
         gap: 28px;
     }
 

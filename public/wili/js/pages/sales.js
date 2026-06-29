@@ -214,7 +214,8 @@ function currentComptoirLayout() {
 function productImageSrc(pathValue) {
   const p = String(pathValue || "").trim();
   if (!p) return "";
-  if (/^(file|https?):\/\//i.test(p)) return p;
+  if (/^(file|https?|blob|data):/i.test(p)) return p;
+  if (p.startsWith("/") || p.startsWith("./") || p.startsWith("../") || p.startsWith("uploads/")) return p;
   return `file:///${p.replace(/\\/g, "/").replace(/^\/+/, "")}`;
 }
 

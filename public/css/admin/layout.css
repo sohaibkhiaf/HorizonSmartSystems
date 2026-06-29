@@ -7,6 +7,7 @@ body {
     font-family: Arial, sans-serif;
     background: hsl(0, 0%, 98%);
     color: #111827;
+    overflow-x: hidden;
 }
 
 a {
@@ -32,8 +33,9 @@ a {
     left: 0;
     height: 100vh;
 
-    overflow-y: auto; /* ✅ enables scroll */
+    overflow-y: auto;
 }
+
 .admin-sidebar::-webkit-scrollbar {
     width: 6px;
 }
@@ -47,6 +49,19 @@ a {
     background: #9ca3af;
 }
 
+/* MOBILE SIDEBAR BUTTONS */
+.mobile-sidebar-toggle,
+.sidebar-close-btn {
+    display: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* OVERLAY */
+.admin-sidebar-overlay {
+    display: none;
+}
+
 /* ADMIN LOGO */
 .admin-logo {
     display: flex;
@@ -54,6 +69,12 @@ a {
     align-items: center;
     margin-bottom: 28px;
 }
+
+.admin-logo-text {
+    flex: 1;
+    min-width: 0;
+}
+
 .admin-logo-icon {
     width: 42px;
     height: 42px;
@@ -64,10 +85,12 @@ a {
     align-items: center;
     justify-content: center;
 }
+
 .admin-logo h2 {
     font-size: 17px;
     margin: 0;
 }
+
 .admin-logo p {
     margin: 2px 0 0;
     font-size: 12px;
@@ -98,6 +121,7 @@ a {
     transition: 0.3s;
     text-align: left;
 }
+
 .admin-nav a:hover,
 .admin-nav a.active,
 .logout-form button:hover {
@@ -118,7 +142,8 @@ a {
 .logout-form {
     margin-top: auto;
 }
-.logout-form button{
+
+.logout-form button {
     margin-top: 20px;
 }
 
@@ -136,11 +161,22 @@ a {
     border-radius: 16px;
     padding: 22px;
     margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
+
+.admin-topbar > div {
+    min-width: 0;
+}
+
 .admin-topbar h1 {
     margin: 0 0 5px;
     font-size: 24px;
 }
+
 .admin-topbar p {
     margin: 0;
     color: #6b7280;
@@ -154,15 +190,18 @@ a {
     margin-bottom: 18px;
     font-size: 14px;
 }
+
 .alert ul {
     margin: 0;
     padding-left: 18px;
 }
+
 .alert.success {
     background: #ecfdf5;
     border: 1px solid #bbf7d0;
     color: #166534;
 }
+
 .alert.danger {
     background: #fef2f2;
     border: 1px solid #fecaca;
@@ -177,10 +216,105 @@ a {
     }
 
     .admin-sidebar {
-        position: static;
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #e5e7eb;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 290px;
+        max-width: 86%;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 1000;
+
+        border-right: 1px solid #e5e7eb;
+        border-bottom: none;
+
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    body.sidebar-open .admin-sidebar {
+        transform: translateX(0);
+    }
+
+    .admin-sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        z-index: 999;
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: 0.3s ease;
+    }
+
+    body.sidebar-open .admin-sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    body.sidebar-open {
+        overflow: hidden;
+    }
+.sidebar-close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+
+    padding: 0 !important;
+    margin-left: auto;
+    margin-bottom: 0;
+
+    flex: 0 0 38px;
+
+    background: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar-close-btn i {
+    width: auto;
+    height: auto;
+    line-height: 1;
+}
+    .sidebar-close-btn:hover {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    .mobile-sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 42px;
+        min-height: 42px;
+        height: 42px;
+
+        background: #eff6ff;
+        color: #2563eb;
+        border-radius: 12px;
+        font-size: 18px;
+        transition: 0.3s;
+    }
+
+    .mobile-sidebar-toggle:hover {
+        background: #dbeafe;
     }
 
     .admin-main {
@@ -189,6 +323,13 @@ a {
         padding: 18px;
     }
 
+    .admin-topbar h1 {
+        font-size: 21px;
+    }
+
+    .admin-topbar p {
+        font-size: 13px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -199,5 +340,12 @@ a {
     .admin-topbar {
         padding: 18px;
     }
-}
 
+    .admin-topbar h1 {
+        font-size: 19px;
+    }
+
+    .admin-topbar p {
+        font-size: 12px;
+    }
+}

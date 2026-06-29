@@ -372,8 +372,6 @@
 
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const chatBox = document.getElementById('chatBox');
@@ -465,7 +463,16 @@ function updateFilePickerName(input, file) {
 
     if (!name) return;
 
-    name.textContent = file ? file.name : (name.dataset.default || '');
+    if (!file) {
+        name.textContent = name.dataset.default || '';
+        name.removeAttribute('title');
+        picker.classList.remove('has-file');
+        return;
+    }
+
+    name.textContent = file.name;
+    name.title = file.name;
+    picker.classList.add('has-file');
 }
 
 function setupVoiceRecorders() {
@@ -481,7 +488,22 @@ function setupVoiceRecorders() {
         const stopBtn = wrapper.querySelector('[data-action="stop"]');
         const clearBtn = wrapper.querySelector('[data-action="clear"]');
         const status = wrapper.querySelector('.voice-status');
+
+        /*
+            Important:
+            For best layout protection, Blade should be:
+
+            <div class="voice-preview-wrap">
+                <audio controls class="voice-preview"></audio>
+            </div>
+
+            This JS also works if only .voice-preview exists,
+            but the wrapper is safer for phone width.
+        */
+        const previewWrap = wrapper.querySelector('.voice-preview-wrap');
         const preview = wrapper.querySelector('.voice-preview');
+
+        if (!recordBtn || !stopBtn || !clearBtn || !status) return;
 
         const labels = {
             empty: wrapper.dataset.emptyLabel || 'No voice message',
@@ -533,12 +555,42 @@ function setupVoiceRecorders() {
             }
         }
 
+        function hidePreview() {
+            if (preview) {
+                preview.pause();
+                preview.removeAttribute('src');
+                preview.load();
+                preview.classList.remove('is-visible');
+            }
+
+            if (previewWrap) {
+                previewWrap.classList.remove('is-visible');
+            }
+        }
+
+        function showPreview(file) {
+            if (!preview || !file) return;
+
+            previewUrl = URL.createObjectURL(file);
+
+            preview.pause();
+            preview.src = previewUrl;
+            preview.preload = 'metadata';
+            preview.load();
+
+            if (previewWrap) {
+                previewWrap.classList.add('is-visible');
+            }
+
+            preview.classList.add('is-visible');
+        }
+
         function setPreviewFromFile(file, ready = false) {
             resetPreviewUrl();
 
             if (!file) {
-                preview.removeAttribute('src');
-                preview.style.display = 'none';
+                hidePreview();
+
                 status.textContent = labels.empty;
                 clearBtn.disabled = true;
                 updateFilePickerName(fileInput, null);
@@ -546,9 +598,8 @@ function setupVoiceRecorders() {
                 return;
             }
 
-            previewUrl = URL.createObjectURL(file);
-            preview.src = previewUrl;
-            preview.style.display = 'block';
+            showPreview(file);
+
             status.textContent = ready ? labels.ready : file.name;
             clearBtn.disabled = false;
             updateFilePickerName(fileInput, file);
@@ -630,6 +681,7 @@ function setupVoiceRecorders() {
 
                 recordBtn.disabled = false;
                 stopBtn.disabled = true;
+                clearBtn.disabled = false;
                 status.textContent = labels.microphoneError;
             }
         });
@@ -642,5 +694,4 @@ function setupVoiceRecorders() {
     });
 }
 </script>
-
 @endsection

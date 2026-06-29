@@ -201,6 +201,62 @@
     return url;
   }
 
+  function pickBrowserFile(accept) {
+    return new Promise((resolve) => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = accept || "";
+      input.style.position = "fixed";
+      input.style.left = "-9999px";
+      input.style.top = "-9999px";
+      document.body.appendChild(input);
+      const cleanup = () => {
+        setTimeout(() => {
+          try { input.remove(); } catch (_err) {}
+        }, 0);
+      };
+      input.addEventListener("change", () => {
+        const file = input.files && input.files[0] ? input.files[0] : null;
+        cleanup();
+        resolve(file);
+      }, { once: true });
+      input.click();
+      setTimeout(() => {
+        if (!input.files || !input.files.length) {
+          cleanup();
+        }
+      }, 30000);
+    });
+  }
+
+  function readFileAsDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result || ""));
+      reader.onerror = () => reject(reader.error || new Error("file_read_failed"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function pickAndUploadProductImage() {
+    const file = await pickBrowserFile("image/png,image/jpeg,image/webp,image/gif");
+    if (!file) return { ok: false, canceled: true };
+    if (!/^image\/(png|jpeg|webp|gif)$/i.test(String(file.type || ""))) {
+      return { ok: false, error: "image_type_not_supported" };
+    }
+    const maxBytes = 5 * 1024 * 1024;
+    if (Number(file.size || 0) > maxBytes) {
+      return { ok: false, error: "image_too_large_max_5mb" };
+    }
+    const dataUrl = await readFileAsDataUrl(file);
+    return apiCall("media.upload", {
+      name: file.name || "product-image",
+      type: file.type || "",
+      size: file.size || 0,
+      data_url: dataUrl
+    });
+  }
+
   const api = {
     async getState() {
       const out = await apiCall("app.getState", {});
@@ -258,7 +314,7 @@
       return ok({ file_path: filePath });
     },
     saveEditedPdf: (html, suggestedName) => ok({ file_path: htmlDocumentUrl(html), editable_html: String(html || ""), suggested_name: suggestedName || "document.html" }),
-    pickProductImage: () => fail("browser_file_picker_not_available"),
+    pickProductImage: () => pickAndUploadProductImage(),
     pickProductImagesDir: () => fail("browser_directory_picker_not_available"),
     getProductImagesDefaultDir: () => ok(""),
     pickXlsxFile: () => fail("xlsx_import_uses_browser_upload_in_web_demo"),
