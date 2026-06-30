@@ -134,18 +134,18 @@ public function store(Request $request)
 
     // Check if username is already taken in second database
     // In mysql_wili, username is stored in the "email" column
-    $usernameTakenInWili = DB::connection('mysql_wili')
-        ->table('users')
-        ->where('email', $request->username)
-        ->exists();
+    // $usernameTakenInWili = DB::connection('mysql_wili')
+    //     ->table('users')
+    //     ->where('email', $request->username)
+    //     ->exists();
 
-    if ($usernameTakenInWili) {
-        return back()
-            ->withInput()
-            ->withErrors([
-                'username' => 'Ce nom d’utilisateur est déjà utilisé dans Wili.',
-            ]);
-    }
+    // if ($usernameTakenInWili) {
+    //     return back()
+    //         ->withInput()
+    //         ->withErrors([
+    //             'username' => 'Ce nom d’utilisateur est déjà utilisé dans Wili.',
+    //         ]);
+    // }
 
     if (! $this->canUseRole($request->role)) {
         return back()
@@ -162,12 +162,12 @@ public function store(Request $request)
         'role' => $request->role,
     ]);
 
-    DB::connection('mysql_wili')->table('users')->insert([
-        'name' => $request->name,
-        'email' => $request->username,
-        'password_hash' => Hash::make($request->password),
-        'created_at' => now(),
-    ]);
+    // DB::connection('mysql_wili')->table('users')->insert([
+    //     'name' => $request->name,
+    //     'email' => $request->username,
+    //     'password_hash' => Hash::make($request->password),
+    //     'created_at' => now(),
+    // ]);
 
     ActivityLog::create([
         'user_id'    => auth()->id(),
