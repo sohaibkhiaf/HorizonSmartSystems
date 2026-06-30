@@ -37,7 +37,7 @@ try {
             ok(['user' => current_user(), 'workspace' => current_workspace()]);
 
         case 'workspaces.templates':
-            ok(db_all("SELECT id, name, template_key FROM wili_workspaces WHERE type='template' AND status='active' AND template_key<>'blank' ORDER BY template_key"));
+            ok(db_all("SELECT id, name, template_key FROM wili_workspaces WHERE type='template' AND status='active' ORDER BY template_key"));
         case 'workspaces.mine':
             ok(my_workspaces());
         case 'workspaces.current':
@@ -45,7 +45,7 @@ try {
         case 'workspaces.switch':
             switch_workspace((int)($data['workspace_id'] ?? 0));
         case 'workspaces.createFromTemplate':
-            create_workspace_from_template((string)($data['template_key'] ?? 'electric'), (string)($data['name'] ?? 'Demo WILI'));
+            create_workspace_from_template((string)($data['template_key'] ?? first_template_key()), (string)($data['name'] ?? 'Demo WILI'));
         case 'workspaces.reset':
             reset_workspace();
 
@@ -216,13 +216,14 @@ function current_workspace(): array
 
 function my_workspaces(): array
 {
-    return db_all("SELECT id, name, template_key, type, status, created_at, updated_at FROM wili_workspaces WHERE owner_user_id=? AND type='user' AND status='active' AND template_key<>'blank' ORDER BY updated_at DESC", [(int)$_SESSION['user_id']]);
+    return db_all("SELECT id, name, template_key, type, status, created_at, updated_at FROM wili_workspaces WHERE owner_user_id=? AND type='user' AND status='active' ORDER BY updated_at DESC", [(int)$_SESSION['user_id']]);
 }
 
 function normalize_template_key(string $value): string
 {
-    $key = strtolower(trim($value));
-    $key = (string)preg_replace('/[\s_-]+/', '', $key);
+    $raw = trim($value);
+    if ($raw === '') return '';
+    $aliasKey = strtolower((string)preg_replace('/[\s_-]+/', '', $raw));
     $aliases = [
         'electric' => 'electric',
         'electrique' => 'electric',
@@ -234,7 +235,8 @@ function normalize_template_key(string $value): string
         'aliment' => 'alimentation',
         'grocery' => 'alimentation',
     ];
-    return $aliases[$key] ?? '';
+    if (isset($aliases[$aliasKey])) return $aliases[$aliasKey];
+    return (string)preg_replace('/[\x00-\x1F\x7F]/u', '', $raw);
 }
 
 function template_label(string $templateKey): string
@@ -245,6 +247,12 @@ function template_label(string $templateKey): string
         'alimentation' => 'Alimentation',
         default => ucfirst($templateKey),
     };
+}
+
+function first_template_key(): string
+{
+    $row = db_one("SELECT template_key FROM wili_workspaces WHERE type='template' AND status='active' ORDER BY id LIMIT 1");
+    return normalize_template_key((string)($row['template_key'] ?? ''));
 }
 
 function login(array $data): never
@@ -266,7 +274,9 @@ function login(array $data): never
     } else {
         $workspaces = my_workspaces();
         if (!$workspaces) {
-            $_SESSION['workspace_id'] = ensure_user_workspace_for_template($userId, 'electric');
+            $defaultTemplate = first_template_key();
+            if ($defaultTemplate === '') fail('template_not_found');
+            $_SESSION['workspace_id'] = ensure_user_workspace_for_template($userId, $defaultTemplate);
             $workspaces = my_workspaces();
         }
         $_SESSION['workspace_id'] = (int)($workspaces[0]['id'] ?? ($_SESSION['workspace_id'] ?? 0));
@@ -280,7 +290,7 @@ function demo_enter(array $data): never
     $email = substr($email, 0, 190);
     if ($email === '') fail('user_required');
 
-    $templateKey = normalize_template_key((string)($data['database'] ?? $data['db'] ?? $data['template_key'] ?? $data['template'] ?? 'electric'));
+    $templateKey = normalize_template_key((string)($data['database'] ?? $data['db'] ?? $data['template_key'] ?? $data['template'] ?? first_template_key()));
     if ($templateKey === '') fail('template_not_found');
 
     $user = db_one("SELECT id FROM users WHERE email=?", [$email]);
@@ -319,7 +329,9 @@ function bootstrap_first_admin(array $data): never
     if ($exists) fail('user_exists');
     $id = db_insert("INSERT INTO users (email, password_hash, name) VALUES (?, ?, ?)", [$email, password_hash((string)($data['pin'] ?? 'test'), PASSWORD_DEFAULT), (string)($data['display_name'] ?? $email)]);
     $_SESSION['user_id'] = $id;
-    create_workspace_from_template('electric', 'Demo Electric');
+    $defaultTemplate = first_template_key();
+    if ($defaultTemplate === '') fail('template_not_found');
+    create_workspace_from_template($defaultTemplate, 'Demo ' . template_label($defaultTemplate));
 }
 
 function switch_workspace(int $workspaceId): never
@@ -345,7 +357,7 @@ function create_workspace_from_template(string $templateKey, string $name): neve
 function reset_workspace(): never
 {
     $workspace = current_workspace();
-    $templateKey = normalize_template_key((string)($workspace['template_key'] ?? '')) ?: 'electric';
+    $templateKey = normalize_template_key((string)($workspace['template_key'] ?? '')) ?: first_template_key();
     $template = db_one("SELECT id FROM wili_workspaces WHERE type='template' AND status='active' AND template_key=? LIMIT 1", [$templateKey]);
     if (!$template) fail('template_not_found');
     clear_workspace((int)$workspace['id']);
@@ -356,7 +368,8 @@ function reset_workspace(): never
 function clone_workspace_api(int $templateId, int $ownerUserId, string $name): int
 {
     $tpl = db_one("SELECT template_key FROM wili_workspaces WHERE id=?", [$templateId]);
-    $templateKey = normalize_template_key((string)($tpl['template_key'] ?? '')) ?: 'electric';
+    $templateKey = trim((string)($tpl['template_key'] ?? ''));
+    if ($templateKey === '') fail('template_not_found');
     $newId = db_insert("INSERT INTO wili_workspaces (owner_user_id, name, template_key, type) VALUES (?, ?, ?, 'user')", [$ownerUserId, $name, $templateKey]);
     copy_workspace_data($templateId, $newId);
     return $newId;

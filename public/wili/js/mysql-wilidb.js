@@ -91,7 +91,9 @@
   }
 
   function normalizeTemplateKey(value) {
-    const key = String(value || "").trim().toLowerCase().replace(/[\s_-]+/g, "");
+    const raw = String(value || "").trim();
+    if (!raw) return "";
+    const key = raw.toLowerCase().replace(/[\s_-]+/g, "");
     const aliases = {
       alimentation: "alimentation",
       allimatation: "alimentation",
@@ -103,7 +105,8 @@
       pizzeria: "pizzeria",
       pizza: "pizzeria"
     };
-    return aliases[key] || "";
+    if (aliases[key]) return aliases[key];
+    return raw.replace(/[\u0000-\u001F\u007F]/g, "");
   }
 
   function directEntryParams() {
@@ -532,7 +535,8 @@
       if (!button) return;
       const action = button.getAttribute("data-action");
       if (action === "create") {
-        const templateKey = root.querySelector('[data-role="template"]')?.value || "electric";
+        const templateKey = root.querySelector('[data-role="template"]')?.value || "";
+        if (!templateKey) return alert("Aucun template disponible");
         const name = prompt("Nom de la nouvelle demo", `Demo ${templateKey}`);
         if (!name) return;
         const out = await dbApi.createWorkspaceFromTemplate(templateKey, name);

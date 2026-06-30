@@ -215,7 +215,7 @@
                                         {{ $typeLabel }}
                                         {{ $message->customerGroup != null ? ' · '. $message->customerGroup->name : '' }}
                                         {{ $message->sender_type === 'customer' && !$message->is_seen ? ' · '.'Non répondu' : '' }}
-                                        {{ $message->user ? ' · Client concerné : '.$message->user->name : '' }}
+                                        {{ $message->user ? ' · Client concerné : '.$message->user->username : '' }}
                                     </span>
                                 </div>
                             </div>
