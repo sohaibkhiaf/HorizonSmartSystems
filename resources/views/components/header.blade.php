@@ -114,7 +114,8 @@
 
         <a class="nav-tab {{ $page == "AUTH" || $page == "CUSTOMER" ? 'active' : '' }}" 
             href="/login">
-            {{ __('header.customer_portal') }} <i class="fa-solid fa-circle-user"></i>
+            <i class="fa-solid fa-circle-user"></i>
+            {{ __('header.customer_portal') }} 
         </a>
 
         @if ($page == "STORE")
