@@ -133,6 +133,40 @@
                 <div class="body chat-body">
 
                     <div class="messages-list" id="adminMessagesList">
+                        @php
+                            $linkifyMessage = function ($text) {
+                                $text = (string) $text;
+                                $pattern = '~(?<!@)\b((?:https?://|www\.)[^\s<]+|(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}(?:[/?#][^\s<]*)?)~iu';
+                                $result = '';
+                                $offset = 0;
+
+                                if (preg_match_all($pattern, $text, $matches, PREG_OFFSET_CAPTURE)) {
+                                    foreach ($matches[0] as $match) {
+                                        [$rawUrl, $position] = $match;
+
+                                        $result .= e(substr($text, $offset, $position - $offset));
+
+                                        $url = $rawUrl;
+                                        $trailing = '';
+
+                                        while ($url !== '' && in_array(substr($url, -1), ['.', ',', ';', ':', '!', '?', ')'], true)) {
+                                            $trailing = substr($url, -1) . $trailing;
+                                            $url = substr($url, 0, -1);
+                                        }
+
+                                        $href = preg_match('~^https?://~i', $url) ? $url : 'https://' . $url;
+
+                                        $result .= '<a href="' . e($href) . '" target="_blank" rel="noopener noreferrer" class="message-inline-link">' . e($url) . '</a>';
+                                        $result .= e($trailing);
+
+                                        $offset = $position + strlen($rawUrl);
+                                    }
+                                }
+
+                                return $result . e(substr($text, $offset));
+                            };
+                        @endphp
+
                         @forelse($messages as $message)
                             @php
                                 $bubbleClass = $message->sender_type === 'customer' ? 'customer' : 'admin';
@@ -184,7 +218,8 @@
                                 <div class="message-content">
 
                                     @if($message->message)
-                                        <p class="message-text">{{ $message->message }}</p>
+
+                                        <p class="message-text">{!! $linkifyMessage($message->message) !!}</p>
                                     @endif
 
                                     @if($message->link)
@@ -303,13 +338,6 @@
                             <textarea
                                 name="message"
                                 placeholder="Écrire un message...">{{ old('message') }}</textarea>
-
-                            <input
-                                type="url"
-                                name="link"
-                                class="chat-link-input"
-                                value="{{ old('link') }}"
-                                placeholder="Lien optionnel : https://example.com">
 
                             <div class="chat-attachments">
                                 <div class="file-picker" data-file-picker>

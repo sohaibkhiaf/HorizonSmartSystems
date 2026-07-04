@@ -19,7 +19,7 @@ return [
 
     'contact_admin' => 'Contact admin',
     'no_messages' => 'Aucun message pour le moment.',
-'write_message' => 'Contactez l\'administration: Écrivez votre demande ou votre message ici...',
+'write_message' => 'Écrivez votre demande ou votre message ici...',
     'optional_link' => 'Lien optionnel',
     'send' => 'Envoyer',
 

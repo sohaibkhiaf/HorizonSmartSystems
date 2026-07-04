@@ -3,7 +3,6 @@
 @section('title', __('customer_portal.title'))
 
 @section('style')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="{{ asset('css/customer/portal.css') }}">
 @endsection
 
@@ -129,88 +128,96 @@
                       enctype="multipart/form-data">
                     @csrf
 
-                    <textarea
-                        name="message"
-                        placeholder="{{ __('customer_portal.write_message') }}"
-                    >{{ old('message') }}</textarea>
+                    <div class="message-composer" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+                        <textarea
+                            name="message"
+                            class="message-composer-textarea"
+                            placeholder="{{ __('customer_portal.write_message') }}"
+                        >{{ old('message') }}</textarea>
 
-                    <input
-                        type="url"
-                        name="link"
-                        class="chat-link-input"
-                        placeholder="{{ __('customer_portal.optional_link') }}"
-                        value="{{ old('link') }}">
+                        <div class="composer-side-tools">
+                            <div class="file-picker composer-file-picker" data-file-picker>
+                                <input
+                                    type="file"
+                                    name="image"
+                                    id="customerMessageImage"
+                                    accept="image/*"
+                                    class="file-picker-input">
 
-                    <div class="chat-attachments">
-                        <div class="file-picker" data-file-picker>
-                            <input
-                                type="file"
-                                name="image"
-                                id="customerMessageImage"
-                                accept="image/*"
-                                class="file-picker-input">
+                                <label
+                                    for="customerMessageImage"
+                                    class="file-picker-btn composer-tool-btn"
+                                    title="{{ __('customer_portal.attach_image') }}"
+                                    aria-label="{{ __('customer_portal.attach_image') }}">
+                                    <i class="fa-solid fa-image"></i>
+                                    <span class="composer-tool-text">{{ __('customer_portal.attach_image') }}</span>
+                                </label>
 
-                            <label for="customerMessageImage" class="file-picker-btn">
-                                <i class="fa-solid fa-image"></i>
-                                {{ __('customer_portal.attach_image') }}
-                            </label>
-
-                            <span class="file-picker-name" data-default="{{ __('customer_portal.no_image_selected') }}">
-                                {{ __('customer_portal.no_image_selected') }}
-                            </span>
-                        </div>
-
-                        <div class="file-picker" data-file-picker>
-                            <input
-                                type="file"
-                                name="voice_message"
-                                id="customerVoiceMessage"
-                                accept="audio/*,.webm,.ogg,.mp3,.wav,.m4a,.aac,.mp4"
-                                class="file-picker-input">
-
-                            <label for="customerVoiceMessage" class="file-picker-btn">
-                                <i class="fa-solid fa-file-audio"></i>
-                                {{ __('customer_portal.attach_voice_file') }}
-                            </label>
-
-                            <span class="file-picker-name" data-default="{{ __('customer_portal.no_voice_selected') }}">
-                                {{ __('customer_portal.no_voice_selected') }}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="voice-message-group">
-                        <div
-                            class="voice-recorder"
-                            data-target="customerVoiceMessage"
-                            data-empty-label="{{ __('customer_portal.no_voice_selected') }}"
-                            data-ready-label="{{ __('customer_portal.voice_ready') }}"
-                            data-recording-label="{{ __('customer_portal.recording_in_progress') }}"
-                            data-not-supported-label="{{ __('customer_portal.voice_not_supported') }}"
-                            data-microphone-error-label="{{ __('customer_portal.microphone_error') }}">
-
-                            <div class="voice-actions">
-                                <button type="button" class="voice-record-btn" data-action="record">
-                                    <i class="fa-solid fa-microphone"></i>
-                                    <span>{{ __('customer_portal.record_voice') }}</span>
-                                </button>
-
-                                <button type="button" class="voice-stop-btn" data-action="stop" disabled>
-                                    <i class="fa-solid fa-stop"></i>
-                                    <span>{{ __('customer_portal.stop_recording') }}</span>
-                                </button>
-
-                                <button type="button" class="voice-clear-btn" data-action="clear" disabled>
-                                    <i class="fa-solid fa-trash"></i>
-                                    <span>{{ __('customer_portal.clear_voice') }}</span>
-                                </button>
+                                <span class="file-picker-name" data-default="{{ __('customer_portal.no_image_selected') }}">
+                                    {{ __('customer_portal.no_image_selected') }}
+                                </span>
                             </div>
 
-                            <span class="voice-status">
-                                {{ __('customer_portal.no_voice_selected') }}
-                            </span>
+                            <div class="voice-message-group">
+                                <input
+                                    type="file"
+                                    name="voice_message"
+                                    id="customerVoiceMessage"
+                                    accept="audio/*,.webm,.ogg,.mp3,.wav,.m4a,.aac,.mp4"
+                                    class="voice-file-input">
 
-                            <audio controls class="voice-preview"></audio>
+                                <div
+                                    class="voice-recorder"
+                                    data-target="customerVoiceMessage"
+                                    data-empty-label="{{ __('customer_portal.no_voice_selected') }}"
+                                    data-ready-label="{{ __('customer_portal.voice_ready') }}"
+                                    data-recording-label="{{ __('customer_portal.recording_in_progress') }}"
+                                    data-not-supported-label="{{ __('customer_portal.voice_not_supported') }}"
+                                    data-microphone-error-label="{{ __('customer_portal.microphone_error') }}">
+
+                                    <div class="voice-actions">
+                                        <button
+                                            type="button"
+                                            class="voice-record-btn"
+                                            data-action="record"
+                                            title="{{ __('customer_portal.record_voice') }}"
+                                            aria-label="{{ __('customer_portal.record_voice') }}">
+                                            <i class="fa-solid fa-microphone"></i>
+                                            <span class="composer-tool-text">{{ __('customer_portal.record_voice') }}</span>
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="voice-stop-btn"
+                                            data-action="stop"
+                                            title="{{ __('customer_portal.stop_recording') }}"
+                                            aria-label="{{ __('customer_portal.stop_recording') }}"
+                                            disabled>
+                                            <i class="fa-solid fa-stop"></i>
+                                            <span class="composer-tool-text">{{ __('customer_portal.stop_recording') }}</span>
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="voice-clear-btn"
+                                            data-action="clear"
+                                            title="{{ __('customer_portal.clear_voice') }}"
+                                            aria-label="{{ __('customer_portal.clear_voice') }}"
+                                            disabled>
+                                            <i class="fa-solid fa-trash"></i>
+                                            <span class="composer-tool-text">{{ __('customer_portal.clear_voice') }}</span>
+                                        </button>
+                                    </div>
+
+                                    <span class="voice-status">
+                                        {{ __('customer_portal.no_voice_selected') }}
+                                    </span>
+
+                                    <div class="voice-preview-wrap">
+                                        <audio controls class="voice-preview"></audio>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -227,15 +234,49 @@
                         {{ __('customer_portal.refresh_messages') }}
                     </div>
 
+                    @php
+                        $linkifyMessage = function ($text) {
+                            $text = (string) $text;
+                            $pattern = '~(?<!@)\b((?:https?://|www\.)[^\s<]+|(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,}(?:[/?#][^\s<]*)?)~iu';
+                            $result = '';
+                            $offset = 0;
+
+                            if (preg_match_all($pattern, $text, $matches, PREG_OFFSET_CAPTURE)) {
+                                foreach ($matches[0] as $match) {
+                                    [$rawUrl, $position] = $match;
+
+                                    $result .= e(substr($text, $offset, $position - $offset));
+
+                                    $url = $rawUrl;
+                                    $trailing = '';
+
+                                    while ($url !== '' && in_array(substr($url, -1), ['.', ',', ';', ':', '!', '?', ')'], true)) {
+                                        $trailing = substr($url, -1) . $trailing;
+                                        $url = substr($url, 0, -1);
+                                    }
+
+                                    $href = preg_match('~^https?://~i', $url) ? $url : 'https://' . $url;
+
+                                    $result .= '<a href="' . e($href) . '" target="_blank" rel="noopener noreferrer" class="message-inline-link">' . e($url) . '</a>';
+                                    $result .= e($trailing);
+
+                                    $offset = $position + strlen($rawUrl);
+                                }
+                            }
+
+                            return $result . e(substr($text, $offset));
+                        };
+                    @endphp
+
                     @forelse($messages as $message)
                         <div class="chat-message {{ $message->sender_type === 'customer' ? 'customer' : 'admin' }}">
                             <div class="message-content">
                                 @if($message->message)
-                                    <p>{{ $message->message }}</p>
+                                    <p>{!! $linkifyMessage($message->message) !!}</p>
                                 @endif
 
                                 @if($message->link)
-                                    <a href="{{ $message->link }}" target="_blank" class="message-link">
+                                    <a href="{{ $message->link }}" target="_blank" rel="noopener noreferrer" class="message-link">
                                         {{ $message->link }}
                                     </a>
                                 @endif
@@ -499,7 +540,7 @@ function setupVoiceRecorders() {
             empty: wrapper.dataset.emptyLabel || 'No voice message',
             ready: wrapper.dataset.readyLabel || 'Voice message ready',
             recording: wrapper.dataset.recordingLabel || 'Recording...',
-            notSupported: wrapper.dataset.notSupportedLabel || 'Recording is not supported. Upload an audio file instead.',
+            notSupported: wrapper.dataset.notSupportedLabel || 'Recording is not supported in this browser.',
             microphoneError: wrapper.dataset.microphoneErrorLabel || 'Microphone unavailable or permission denied.',
         };
 
@@ -580,6 +621,7 @@ function setupVoiceRecorders() {
 
             if (!file) {
                 hidePreview();
+                wrapper.classList.remove('has-voice', 'is-recording', 'is-unavailable');
 
                 status.textContent = labels.empty;
                 clearBtn.disabled = true;
@@ -589,6 +631,8 @@ function setupVoiceRecorders() {
             }
 
             showPreview(file);
+            wrapper.classList.add('has-voice');
+            wrapper.classList.remove('is-recording', 'is-unavailable');
 
             status.textContent = ready ? labels.ready : file.name;
             clearBtn.disabled = false;
@@ -608,6 +652,7 @@ function setupVoiceRecorders() {
 
         if (!navigator.mediaDevices || !window.MediaRecorder) {
             recordBtn.disabled = true;
+            wrapper.classList.add('is-unavailable');
             status.textContent = labels.notSupported;
             return;
         }
@@ -653,6 +698,7 @@ function setupVoiceRecorders() {
                     fileInput.files = transfer.files;
 
                     setPreviewFromFile(file, true);
+                    wrapper.classList.remove('is-recording');
                     stopStream();
 
                     recordBtn.disabled = false;
@@ -661,6 +707,8 @@ function setupVoiceRecorders() {
 
                 mediaRecorder.start();
 
+                wrapper.classList.add('is-recording');
+                wrapper.classList.remove('has-voice', 'is-unavailable');
                 recordBtn.disabled = true;
                 stopBtn.disabled = false;
                 clearBtn.disabled = true;
@@ -669,6 +717,8 @@ function setupVoiceRecorders() {
             } catch (error) {
                 stopStream();
 
+                wrapper.classList.remove('is-recording', 'has-voice');
+                wrapper.classList.add('is-unavailable');
                 recordBtn.disabled = false;
                 stopBtn.disabled = true;
                 clearBtn.disabled = false;

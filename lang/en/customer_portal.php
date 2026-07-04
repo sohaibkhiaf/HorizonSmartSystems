@@ -19,7 +19,7 @@ return [
 
     'contact_admin' => 'Contact Admin',
     'no_messages' => 'No messages yet.',
-'write_message' => 'Contact the administration: Write your request or message here...',
+'write_message' => 'Write your request or message here...',
 
     'optional_link' => 'Optional link',
     'send' => 'Send',

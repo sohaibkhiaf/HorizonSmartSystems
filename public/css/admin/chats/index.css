@@ -324,6 +324,19 @@
     text-decoration: underline;
 }
 
+.message-inline-link {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    word-break: break-word;
+}
+
+.message-card.customer .message-inline-link {
+    color: #2563eb;
+}
+
+
 .message-image {
     display: block;
     max-width: 230px;
