@@ -24,41 +24,26 @@
     margin-right: auto;
 }
 
+
 .portal-header {
-    margin-bottom: 26px;
-    padding: 24px;
+    margin-bottom: 16px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 18px;
-    background: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 22px;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
 }
 
-.welcome-label {
-    display: inline-flex;
-    margin-bottom: 10px;
-    color: #2563eb;
-    font-size: 14px;
-    font-weight: 600;
-}
 
 .portal-header h1 {
-    margin: 0 0 8px;
+    margin: 0;
+    padding: 0;
     color: #0f172a;
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 600;
-    line-height: 1.15;
+    line-height: 1;
 }
 
-.portal-header p {
-    margin: 0;
-    color: #64748b;
-    font-size: 15px;
-    line-height: 1.6;
-}
 
 .logout-btn {
     display: inline-flex;
@@ -222,7 +207,7 @@
 
 .portal-demo-image {
     position: relative;
-    height: 150px;
+    height: 120px;
     overflow: hidden;
     background: #eff6ff;
 }
@@ -271,17 +256,19 @@
 
 .portal-demo-content h3 {
     margin: 0 auto;
+    padding: 0;
     color: #ff3d2e;
-    font-size: 19px;
-    line-height: 1.4;
+    font-size: 17px;
+    line-height: 1;
     font-weight: 700;
 }
 
 .portal-demo-link {
     display: inline-flex;
     align-items: center;
+    padding: 0;
     gap: 7px;
-    margin: auto;
+    margin: 0 auto;
     color: #2563eb;
     font-size: 13px;
     font-weight: 500;
@@ -330,7 +317,6 @@
     padding: 18px;
     height: 560px;
     overflow-y: auto;
-    margin-bottom: 16px;
     scroll-behavior: smooth;
 }
 
@@ -412,7 +398,7 @@
 .chat-refresh {
     display: none;
     width: fit-content;
-    margin: 12px auto 0;
+    margin: 0px auto 12px;
     background: #2563eb;
     color: #ffffff;
     padding: 9px 15px;
@@ -497,6 +483,7 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    margin-bottom: 16px;
 }
 
 .chat-form > * {
@@ -940,17 +927,37 @@
     }
 
     .portal-header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 20px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 14px 10px;
+    }
+
+    .portal-header > div {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .portal-header form {
+        flex: 0 0 auto;
+        margin: 0;
     }
 
     .portal-header h1 {
-        font-size: 28px;
+        font-size: 22px;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .logout-btn {
-        width: 100%;
+        width: auto;
+        flex: 0 0 auto;
+        padding: 10px 12px;
+        font-size: 13px;
+        white-space: nowrap;
     }
 
     .portal-card {
@@ -1089,7 +1096,7 @@
     }
 
     .portal-header h1 {
-        font-size: 40px;
+        font-size: 30px;
     }
 
     .portal-card h2 {
@@ -1117,7 +1124,7 @@
     }
 
     .portal-header h1 {
-        font-size: 46px;
+        font-size: 34px;
     }
 
     .portal-card {

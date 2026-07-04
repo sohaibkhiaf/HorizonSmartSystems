@@ -13,15 +13,9 @@
 
     <div class="portal-header">
         <div>
-            <span class="welcome-label">
-                {{ __('customer_portal.welcome_label') }}
-            </span>
-
             <h1>
                 {{ __('customer_portal.hello', ['name' => $user->name]) }}
             </h1>
-
-            <p>{{ __('customer_portal.subtitle') }}</p>
         </div>
 
         <form method="POST" action="{{ route('logout') }}">
@@ -128,58 +122,6 @@
     <div class="main-grid">
         <div class="right-column">
             <div class="portal-card chat-card">
-                <h2>{{ __('customer_portal.contact_admin') }}</h2>
-
-                <div class="chat-box" id="chatBox">
-                    @forelse($messages as $message)
-                        <div class="chat-message {{ $message->sender_type === 'customer' ? 'customer' : 'admin' }}">
-                            <div class="message-content">
-                                @if($message->message)
-                                    <p>{{ $message->message }}</p>
-                                @endif
-
-                                @if($message->link)
-                                    <a href="{{ $message->link }}" target="_blank" class="message-link">
-                                        {{ $message->link }}
-                                    </a>
-                                @endif
-
-                                @if($message->image)
-                                    <a href="{{ asset('uploads/' . $message->image) }}" target="_blank">
-                                        <img
-                                            src="{{ asset('uploads/' . $message->image) }}"
-                                            alt="{{ __('customer_portal.message_image_alt') }}"
-                                            class="message-image">
-                                    </a>
-                                @endif
-
-                                @if($message->voice_message)
-                                    <audio controls preload="metadata" class="message-audio">
-                                        <source src="{{ asset('uploads/' . $message->voice_message) }}">
-                                        {{ __('customer_portal.audio_not_supported') }}
-                                    </audio>
-                                @endif
-
-                                <span>
-                                    {{ $message->sender_display_name }}
-                                    →
-                                    {{ $message->receiver_display_name }}
-                                    ·
-                                    {{ $message->created_at->format('d/m/Y H:i') }}
-                                </span>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="empty-text">
-                            {{ __('customer_portal.no_messages') }}
-                        </p>
-                    @endforelse
-
-                    <div id="refreshNotice" class="chat-refresh">
-                        <i class="fa-solid fa-arrow-rotate-right"></i>
-                        {{ __('customer_portal.refresh_messages') }}
-                    </div>
-                </div>
 
                 <form method="POST"
                       action="{{ route('customer.portal_chat.send') }}"
@@ -277,6 +219,59 @@
                         {{ __('customer_portal.send') }}
                     </button>
                 </form>
+
+                <div class="chat-box" id="chatBox">
+
+                    <div id="refreshNotice" class="chat-refresh">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                        {{ __('customer_portal.refresh_messages') }}
+                    </div>
+
+                    @forelse($messages as $message)
+                        <div class="chat-message {{ $message->sender_type === 'customer' ? 'customer' : 'admin' }}">
+                            <div class="message-content">
+                                @if($message->message)
+                                    <p>{{ $message->message }}</p>
+                                @endif
+
+                                @if($message->link)
+                                    <a href="{{ $message->link }}" target="_blank" class="message-link">
+                                        {{ $message->link }}
+                                    </a>
+                                @endif
+
+                                @if($message->image)
+                                    <a href="{{ asset('uploads/' . $message->image) }}" target="_blank">
+                                        <img
+                                            src="{{ asset('uploads/' . $message->image) }}"
+                                            alt="{{ __('customer_portal.message_image_alt') }}"
+                                            class="message-image">
+                                    </a>
+                                @endif
+
+                                @if($message->voice_message)
+                                    <audio controls preload="metadata" class="message-audio">
+                                        <source src="{{ asset('uploads/' . $message->voice_message) }}">
+                                        {{ __('customer_portal.audio_not_supported') }}
+                                    </audio>
+                                @endif
+
+                                <span>
+                                    {{ $message->sender_display_name }}
+                                    →
+                                    {{ $message->receiver_display_name }}
+                                    ·
+                                    {{ $message->created_at->format('d/m/Y H:i') }}
+                                </span>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="empty-text">
+                            {{ __('customer_portal.no_messages') }}
+                        </p>
+                    @endforelse
+
+                </div>
             
                 @if ($messages->hasPages())
                     <div class="navigator-container">
@@ -379,17 +374,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initDemosSwiper();
 
-    if (chatBox) {
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
     setupFilePickers();
     setupVoiceRecorders();
 
     setTimeout(() => {
-        if (refreshNotice && chatBox) {
+        if (refreshNotice) {
             refreshNotice.style.display = 'block';
-            chatBox.scrollTop = chatBox.scrollHeight;
         }
     }, 5000);
 

@@ -22,7 +22,7 @@ class CustomerPortalController extends Controller
 
         $messages = $user->chatMessages()
             ->with(['sender', 'receiver', 'customerGroup'])
-            ->oldest()
+            ->latest()
             ->paginate(99);
 
         $services = PublicService::all();

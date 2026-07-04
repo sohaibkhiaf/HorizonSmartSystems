@@ -1282,20 +1282,26 @@ a {
     
 }
 
-.software-demo-swiper .swiper-wrapper {
-    display: flex;
-    align-items: stretch;
+.software-demo-swiper {
     width: 100%;
-        gap: 20px;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.software-demo-swiper .swiper-wrapper {
+    align-items: stretch;
 }
 
 .software-demo-swiper .swiper-slide {
-    width: auto;
     height: auto;
-    flex-shrink: 0;
     display: flex;
 }
 
+.software-demo-swiper .software-demo-card {
+    width: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
+}
 .software-demo-swiper .software-demo-card {
     width: 100%;
 }

@@ -487,40 +487,47 @@ function initSoftwareDemoSwiper() {
     if (typeof Swiper === "undefined") return;
 
     document.querySelectorAll(".software-demo-swiper").forEach((swiperElement) => {
-        if (swiperElement.classList.contains("swiper-initialized")) return;
+        if (swiperElement.swiper) return;
 
         const shell = swiperElement.closest(".software-demo-slider-shell");
-
         if (!shell) return;
 
         new Swiper(swiperElement, {
             slidesPerView: 1.15,
             spaceBetween: 16,
             grabCursor: true,
+            simulateTouch: true,
+            allowTouchMove: true,
+            threshold: 6,
             centeredSlides: true,
+            watchOverflow: true,
+
+            preventClicks: true,
+            preventClicksPropagation: true,
+
             navigation: {
-                nextEl: shell.querySelector(".demo-next"),
-                prevEl: shell.querySelector(".demo-prev"),
+                nextEl: shell.querySelector(".software-demo-next"),
+                prevEl: shell.querySelector(".software-demo-prev"),
             },
+
             breakpoints: {
                 560: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 14,
                     centeredSlides: false,
-
                 },
-                900: {
-                    slidesPerView: 4,
+                768: {
+                    slidesPerView: 3,
                     spaceBetween: 16,
                     centeredSlides: false,
                 },
                 1100: {
-                    slidesPerView: 5,
+                    slidesPerView: 4,
                     spaceBetween: 18,
                     centeredSlides: false,
                 },
                 1300: {
-                    slidesPerView: 6,
+                    slidesPerView: 4,
                     spaceBetween: 18,
                     centeredSlides: false,
                 },
@@ -528,7 +535,6 @@ function initSoftwareDemoSwiper() {
         });
     });
 }
-
 document.addEventListener("DOMContentLoaded", initSoftwareDemoSwiper);
 </script>
 

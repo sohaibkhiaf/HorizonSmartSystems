@@ -785,7 +785,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-
 <script>
 function initSoftwareDemosSwipers() {
     if (typeof Swiper === "undefined") return;
