@@ -112,11 +112,11 @@
             {{ __('header.contact') }}
         </a>
 
-        <a class="nav-tab {{ $page == "AUTH" || $page == "CUSTOMER" ? 'active' : '' }}" 
-            href="/login">
-            <i class="fa-solid fa-circle-user"></i>
-            {{ __('header.customer_portal') }} 
-        </a>
+        <!-- <a class="nav-tab {{ $page == "AUTH" || $page == "CUSTOMER" ? 'active' : '' }}"  -->
+            <!-- href="/login"> -->
+            <!-- <i class="fa-solid fa-circle-user"></i> -->
+            <!-- {{ __('header.customer_portal') }}  -->
+        <!-- </a> -->
 
         @if ($page == "STORE")
         <a class="nav-tab active" href="/store">
@@ -126,6 +126,13 @@
         @endif
 
     </nav>
+
+    {{-- Customer Portal Button --}}
+    <a href="/login"
+    class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
+        <i class="fa-solid fa-circle-user"></i>
+        {{ __('header.customer_portal') }}
+    </a>
 
     {{-- Store Button --}}
     @if ($page != "STORE")

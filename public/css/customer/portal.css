@@ -1125,7 +1125,6 @@
         align-items: stretch;
         border-inline-start: 0;
         border-inline-end: 0;
-        border-top: 1px solid #e2e8f0;
     }
 
     .composer-file-picker,
@@ -1277,3 +1276,164 @@
     }
 }
 
+/* =========================================================
+   Message textarea controls: one row + slightly bigger
+   Paste this at the END of portal.css
+========================================================= */
+
+.message-composer {
+    --composer-tools-width: 250px;
+    --composer-tool-size: 42px;
+    --composer-tool-gap: 8px;
+}
+
+/* Put image + voice controls in one horizontal row */
+.composer-side-tools,
+.message-composer[dir="rtl"] .composer-side-tools {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--composer-tool-gap);
+    flex-wrap: nowrap;
+
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Image picker should not take full width */
+.composer-file-picker,
+.message-composer[dir="rtl"] .composer-file-picker {
+    width: auto;
+    flex: 0 0 auto;
+    justify-content: center;
+    gap: 0;
+}
+
+/* Voice group should sit beside image button */
+.voice-message-group {
+    width: auto;
+    flex: 0 0 auto;
+}
+
+/* Voice recorder should not create extra rows for buttons */
+.voice-recorder,
+.message-composer[dir="rtl"] .voice-recorder {
+    width: auto;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: var(--composer-tool-gap);
+    overflow: visible;
+}
+
+.voice-actions,
+.message-composer[dir="rtl"] .voice-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    gap: var(--composer-tool-gap);
+}
+
+/* Bigger buttons */
+.file-picker-btn,
+.voice-recorder button {
+    width: var(--composer-tool-size);
+    height: var(--composer-tool-size);
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+/* Hide labels/status inside compact toolbar to keep one clean row */
+.composer-side-tools .file-picker-name,
+.composer-side-tools .voice-status {
+    display: none !important;
+}
+
+/* Mobile: keep the controls in one row under textarea */
+@media (max-width: 650px) {
+    .message-composer,
+    .message-composer[dir="rtl"] {
+        --composer-min-height: 96px;
+        --composer-tools-width: 100%;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .composer-side-tools,
+    .message-composer[dir="rtl"] .composer-side-tools {
+        grid-column: 1;
+        grid-row: 2;
+        min-height: auto;
+        padding: 9px 10px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        gap: 8px;
+    }
+
+    .composer-file-picker,
+    .voice-message-group,
+    .voice-recorder,
+    .voice-actions {
+        width: auto;
+        flex: 0 0 auto;
+        flex-wrap: nowrap;
+    }
+}
+
+/* Align composer controls to the top instead of vertical center */
+.composer-side-tools,
+.message-composer[dir="rtl"] .composer-side-tools {
+    align-items: flex-start;
+}
+
+/* Keep the image and voice blocks starting from the top */
+.composer-file-picker,
+.voice-message-group,
+.voice-recorder,
+.voice-actions {
+    align-self: flex-start;
+}
+
+/* Voice buttons also align from the top */
+.voice-recorder,
+.message-composer[dir="rtl"] .voice-recorder,
+.voice-actions,
+.message-composer[dir="rtl"] .voice-actions {
+    align-items: flex-start;
+}
+
+
+/* Decrease textarea/composer height */
+.message-composer {
+    --composer-min-height: 78px;
+}
+
+/* Make the textarea itself shorter */
+.message-composer textarea,
+.chat-form .message-composer-textarea {
+    min-height: 78px;
+    height: 78px;
+}
+
+/* Mobile version */
+@media (max-width: 650px) {
+    .message-composer,
+    .message-composer[dir="rtl"] {
+        --composer-min-height: 72px;
+    }
+
+    .message-composer textarea,
+    .chat-form .message-composer-textarea,
+    .message-composer[dir="rtl"] textarea,
+    .message-composer[dir="rtl"] .message-composer-textarea {
+        min-height: 72px;
+        height: 72px;
+    }
+}
