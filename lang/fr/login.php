@@ -27,5 +27,8 @@ return [
 
     'login_button' => 'Se connecter',
 
+
+'customer_account_notice' => 'Vous souhaitez créer un compte client ?',
+'contact_us' => 'Contactez-nous',
 ];
 

@@ -222,12 +222,6 @@
                                         <p class="message-text">{!! $linkifyMessage($message->message) !!}</p>
                                     @endif
 
-                                    @if($message->link)
-                                        <a href="{{ $message->link }}" target="_blank" class="message-link">
-                                            {{ $message->link }}
-                                        </a>
-                                    @endif
-
                                     @if($messageImageUrl)
                                         <a href="{{ $messageImageUrl }}" target="_blank">
                                             <img src="{{ $messageImageUrl }}"

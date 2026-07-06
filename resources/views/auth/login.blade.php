@@ -17,6 +17,13 @@
             {{ __('login.login_subtitle') }}
         </p>
 
+        <p class="login-account-help">
+            {{ __('login.customer_account_notice') }}
+            <a href="/?section=contact">
+                {{ __('login.contact_us') }}
+            </a>
+        </p>
+
         @if($errors->any())
             <div class="alert danger">
                 <i class="fa-solid fa-circle-exclamation"></i>

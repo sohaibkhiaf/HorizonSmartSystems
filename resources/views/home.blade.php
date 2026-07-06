@@ -411,7 +411,7 @@
                 <i class="fas fa-phone"></i>
                 <div>
                     <h4>{{ __('home.phone_label') }}</h4>
-                    <p>
+                    <p dir="ltr">
                         0561 65 51 00
                         <br>0782 94 07 60
                         <br>0540 29 62 00

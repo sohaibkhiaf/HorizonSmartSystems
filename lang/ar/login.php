@@ -27,5 +27,7 @@ return [
 
     'login_button' => 'تسجيل الدخول',
 
+'customer_account_notice' => 'تريد إنشاء حساب عميل؟',
+'contact_us' => 'تواصل معنا',
 ];
 

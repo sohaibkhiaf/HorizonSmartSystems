@@ -208,3 +208,25 @@
         padding: 18px;
     }
 }
+
+
+.login-account-help {
+    margin: -10px 0 22px;
+
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.login-account-help a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-account-help a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+

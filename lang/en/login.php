@@ -27,4 +27,7 @@ return [
 
     'login_button' => 'Sign in',
 
+'customer_account_notice' => 'Would you like to create a customer account?',
+'contact_us' => 'Contact us',
+
 ];
