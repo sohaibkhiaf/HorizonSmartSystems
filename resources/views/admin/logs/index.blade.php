@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Historique des actions dans le panneau admin')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/logs/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/logs/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

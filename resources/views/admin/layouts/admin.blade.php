@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     
     {{-- Admin CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/admin/layout.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/layout.css') }}?v={{ config('app.asset_version') }}">
 
     @yield('style')
 </head>

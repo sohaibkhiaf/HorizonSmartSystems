@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Messages clients, messages internes et diffusion par groupes')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/chats/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/chats/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

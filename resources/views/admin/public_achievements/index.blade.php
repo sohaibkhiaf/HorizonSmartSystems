@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer tous les projets du site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_achievements/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_achievements/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

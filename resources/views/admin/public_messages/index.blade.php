@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer les messages de contact')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_messages/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_messages/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

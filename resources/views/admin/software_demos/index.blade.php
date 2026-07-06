@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer les démos liées aux logiciels publics')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/software_demos/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/software_demos/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

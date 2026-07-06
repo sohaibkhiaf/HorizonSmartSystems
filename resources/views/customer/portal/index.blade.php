@@ -3,7 +3,7 @@
 @section('title', __('customer_portal.title'))
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/customer/portal.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customer/portal.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

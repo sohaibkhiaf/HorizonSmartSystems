@@ -17,7 +17,7 @@
 @section('title', $softwareName . ' — ' . __('software.title_suffix'))
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/software.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/software.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

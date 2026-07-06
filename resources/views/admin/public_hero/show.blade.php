@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Mettre à jour la section principale du site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_hero/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_hero/show.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Mettre à jour les informations de le service')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_services/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_services/form.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

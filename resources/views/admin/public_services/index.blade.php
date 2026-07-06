@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer tous les services du site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_services/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_services/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

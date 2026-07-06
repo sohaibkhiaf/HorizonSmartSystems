@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer tous les utilisateurs')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/users/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/users/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Ajouter un nouveau logiciel à votre site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_software/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_software/form.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

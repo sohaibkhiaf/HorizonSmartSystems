@@ -3,7 +3,7 @@
 @section('title', __('login.title'))
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

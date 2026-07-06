@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Mettre à jour un produit')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/form.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

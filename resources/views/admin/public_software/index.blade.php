@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Gérer tous les logiciels du site')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/public_software/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/public_software/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

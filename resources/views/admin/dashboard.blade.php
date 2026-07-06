@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Vue d\'ensemble du site, de la boutique et de l\'espace client')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

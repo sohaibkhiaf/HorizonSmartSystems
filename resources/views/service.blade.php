@@ -11,7 +11,7 @@
 @endsection
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/service.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

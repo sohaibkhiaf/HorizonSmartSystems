@@ -5,7 +5,7 @@
 @section('page_subtitle', 'Mettre à jour les informations de la démo')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/software_demos/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/software_demos/form.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

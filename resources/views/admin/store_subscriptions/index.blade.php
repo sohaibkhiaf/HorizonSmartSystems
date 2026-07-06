@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Gestion des produits de store')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_subscriptions/index.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

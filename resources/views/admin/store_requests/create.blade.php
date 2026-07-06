@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Créer une demande pour un client')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/store_requests/create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_requests/create.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')

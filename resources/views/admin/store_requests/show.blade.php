@@ -4,7 +4,7 @@
 @section('page_subtitle', 'Gestion complète de la demande')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/admin/store_requests/show.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/store_requests/show.css') }}?v={{ config('app.asset_version') }}">
 @endsection
 
 @section('content')
