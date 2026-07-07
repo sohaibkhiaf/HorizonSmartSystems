@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="{{ \App\Support\Seo::htmlLang() }}" dir="{{ \App\Support\Seo::htmlDir() }}">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="icon" href="{{asset('images/hss_logo_icon.png')}}"/>
 
-    <title>@yield('title', 'Horizon Smart Systems')</title>
+    @include('partials.seo', ['seo' => $seo ?? []])
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ config('app.asset_version') }}">
     <link rel="stylesheet" href="{{ asset('css/components/header.css') }}?v={{ config('app.asset_version') }}">
@@ -37,4 +37,3 @@
 
 </body>
 </html>
-

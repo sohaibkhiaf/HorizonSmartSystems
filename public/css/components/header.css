@@ -350,8 +350,10 @@
     .customer-portal-btn {
         white-space: nowrap;
         flex-shrink: 0;
-        font-size: 12px;
+        font-size: 11px;
         padding: 10px 8px;
+        flex-shrink: 0;
+        line-height: 1;
     }
 
 
@@ -443,9 +445,6 @@
 .customer-portal-btn {
     background: #2563eb;
     color: #ffffff;
-    white-space: nowrap;
-    flex-shrink: 0;
-    line-height: 1;
 }
 
 .customer-portal-btn:hover,
@@ -463,4 +462,3 @@
     color: #ffffff;
     transform: translateY(-1px);
 }
-

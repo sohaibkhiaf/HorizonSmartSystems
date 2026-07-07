@@ -6,6 +6,7 @@ use App\Models\PublicAchievement;
 use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\PublicSoftware;
+use App\Support\Seo;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,6 +35,7 @@ class HomeController extends Controller
             'services' => $services, 
             'software' => $software, 
             'hero' => $hero,
+            'seo' => Seo::home($hero),
         ]);
     }
 
@@ -50,7 +52,9 @@ class HomeController extends Controller
         $services = PublicService::all();
         $hero = PublicHero::findOrFail(1);
 
-        return view('service', compact('service', 'services' , 'otherServices', 'hero'));
+        $seo = Seo::service($service, $hero);
+
+        return view('service', compact('service', 'services' , 'otherServices', 'hero', 'seo'));
     }
 
     public function software(PublicSoftware $software)
@@ -72,11 +76,14 @@ class HomeController extends Controller
         $services = PublicService::all();
         $hero = PublicHero::findOrFail(1);
 
+        $seo = Seo::software($software, $hero);
+
         return view('software', compact(
             'software',
             'services',
             'otherSoftware',
-            'hero'
+            'hero',
+            'seo'
         ));
     }
     

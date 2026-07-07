@@ -14,6 +14,7 @@ use App\Http\Controllers\PublicMessageController;
 use App\Http\Controllers\PublicServiceController;
 use App\Http\Controllers\PublicSoftwareController;
 use App\Http\Controllers\SoftwareDemoController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\StoreSubscriptionController;
@@ -21,6 +22,9 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // LANGUAGE SWITCHER ////////////////////////////////////////////////////////////////
+Route::get('/sitemap.xml', SitemapController::class)
+    ->name('sitemap');
+
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])
     ->name('language.switcher');
 
@@ -223,7 +227,6 @@ Route::middleware(['auth' , 'customer'])
         ->middleware('throttle:chat')
         ->name('portal_chat.send');
 });
-
 
 
 

@@ -69,7 +69,7 @@
 
         <div class="service-hero-image">
             @if($service->image)
-                <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $serviceName }}">
+                <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $serviceName }}" fetchpriority="high">
             @else
                 <div class="service-image-placeholder">
                     <i class="{{ $service->fa_icon ?? 'fa-solid fa-image' }}"></i>
@@ -446,4 +446,3 @@
 </script>
 
 @endsection
-

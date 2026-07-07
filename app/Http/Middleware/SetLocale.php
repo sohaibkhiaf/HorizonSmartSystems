@@ -16,12 +16,30 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = session('locale')
-            ?? $request->cookie('locale')
-            ?? config('app.locale');
+        $supportedLocales = ['ar', 'fr', 'en'];
+        $queryLocale = $request->query('lang');
+
+        if (in_array($queryLocale, $supportedLocales, true)) {
+            $locale = $queryLocale;
+            session(['locale' => $locale]);
+        } else {
+            $locale = session('locale')
+                ?? $request->cookie('locale')
+                ?? config('app.locale');
+        }
+
+        if (! in_array($locale, $supportedLocales, true)) {
+            $locale = config('app.fallback_locale', 'fr');
+        }
 
         App::setLocale($locale);
 
-        return $next($request);
+        $response = $next($request);
+
+        if (in_array($queryLocale, $supportedLocales, true)) {
+            $response->headers->setCookie(cookie('locale', $locale, 60 * 24 * 30));
+        }
+
+        return $response;
     }
 }

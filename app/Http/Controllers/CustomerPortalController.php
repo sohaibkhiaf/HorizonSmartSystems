@@ -6,6 +6,7 @@ use App\Models\ChatMessage;
 use App\Models\CustomerDemo;
 use App\Models\PublicHero;
 use App\Models\PublicService;
+use App\Support\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,8 +28,9 @@ class CustomerPortalController extends Controller
 
         $services = PublicService::all();
         $hero = PublicHero::findOrFail(1);
+        $seo = Seo::privatePage(__('customer_portal.title'));
 
-        return view('customer.portal.index', compact('user', 'demos', 'messages', 'services', 'hero'));
+        return view('customer.portal.index', compact('user', 'demos', 'messages', 'services', 'hero', 'seo'));
     }
 
     public function updateProfile(Request $request)

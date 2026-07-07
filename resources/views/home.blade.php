@@ -42,7 +42,7 @@
         </div>
 
         <div class="hero-image">
-            <img src="{{  asset('uploads/' .$hero->image )}}" alt="{{ __('home.hero_title') }}">
+            <img src="{{  asset('uploads/' .$hero->image )}}" alt="{{ __('home.hero_title') }}" fetchpriority="high">
         </div>
 
     </div>
@@ -72,11 +72,24 @@
 
                         @foreach ($services as $service )
                             @if ($service->type == 'main' && $service->is_published)
+                            @php
+                                $serviceName = app()->getLocale() == 'ar'
+                                    ? $service->ar_name
+                                    : (app()->getLocale() == 'fr'
+                                        ? $service->fr_name
+                                        : $service->en_name);
+
+                                $serviceShortDescription = app()->getLocale() == 'ar'
+                                    ? $service->ar_short_description
+                                    : (app()->getLocale() == 'fr'
+                                        ? $service->fr_short_description
+                                        : $service->en_short_description);
+                            @endphp
                             <div class="swiper-slide">
                                 <div class="service-card">
                                     <div class="service-image">
                                         @if($service->image)
-                                            <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $service->name }}">
+                                            <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $serviceName }}" loading="lazy">
                                         @else
                                             <div class="image-placeholder">
                                                 <i class="fa-solid fa-image"></i>
@@ -84,22 +97,10 @@
                                         @endif
                                     </div>
                                     <h3>
-                                        @if (app()->getLocale() == 'ar')
-                                            {{ $service->ar_name }}
-                                        @elseif(app()->getLocale() == 'fr')
-                                            {{ $service->fr_name }}
-                                        @else
-                                            {{ $service->en_name }}
-                                        @endif
+                                        {{ $serviceName }}
                                     </h3>
                                     <p>
-                                        @if (app()->getLocale() == 'ar')
-                                            {{ $service->ar_short_description }}
-                                        @elseif(app()->getLocale() == 'fr')
-                                            {{ $service->fr_short_description }}
-                                        @else
-                                            {{ $service->en_short_description }}
-                                        @endif
+                                        {{ $serviceShortDescription }}
                                     </p>
                                     <a href="{{ route('services.show', $service) }}" class="plus-link">
                                         {{ __('home.learn_more') }}
@@ -203,7 +204,7 @@
                             <div class="software-card-header">
                                 <div class="software-icon">
                                     @if($s->icon)
-                                        <img src="{{ asset('uploads/' . $s->icon) }}" alt="{{ $softwareName }}">
+                                        <img src="{{ asset('uploads/' . $s->icon) }}" alt="{{ $softwareName }}" loading="lazy">
                                     @else
                                         <div class="image-placeholder image-placeholder-sm">
                                             <i class="fa-solid fa-image"></i>
@@ -234,7 +235,7 @@
 
                         <div class="software-image">
                             @if($s->image)
-                                <img src="{{ asset('uploads/' . $s->image) }}" alt="{{ $softwareName }}">
+                                <img src="{{ asset('uploads/' . $s->image) }}" alt="{{ $softwareName }}" loading="lazy">
                             @else
                                 <div class="image-placeholder software-image-placeholder">
                                     <i class="fa-solid fa-image"></i>
@@ -329,11 +330,18 @@
                 <div class="swiper-wrapper">
 
                     @foreach($achievements as $achievement)
+                        @php
+                            $achievementTitle = app()->getLocale() == 'ar'
+                                ? $achievement->ar_title
+                                : (app()->getLocale() == 'fr'
+                                    ? $achievement->fr_title
+                                    : $achievement->en_title);
+                        @endphp
                         <div class="swiper-slide">
                             <div class="acheivement-card">
                                 <div class="acheivement-image">
                                     @if($achievement->image)
-                                        <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievement->title }}">
+                                        <img src="{{ asset('uploads/' . $achievement->image) }}" alt="{{ $achievementTitle }}" loading="lazy">
                                     @else
                                         <div class="image-placeholder">
                                             <i class="fa-solid fa-image"></i>
@@ -343,13 +351,7 @@
                                 <div class="acheivement-content">
                                     <div class="acheivement-header">
                                         <h3>
-                                            @if (app()->getLocale() == 'ar')
-                                                {{ $achievement->ar_title }}
-                                            @elseif(app()->getLocale() == 'fr')
-                                                {{ $achievement->fr_title }}
-                                            @else
-                                                {{ $achievement->en_title }}
-                                            @endif
+                                            {{ $achievementTitle }}
                                         </h3>
                                         <span class="type">
                                             @if (app()->getLocale() == 'ar')
@@ -835,4 +837,3 @@ document.addEventListener("DOMContentLoaded", initSoftwareDemosSwipers);
 </script>
 
 @endsection
-

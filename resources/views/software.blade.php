@@ -46,7 +46,7 @@
 
         <div class="software-hero-image">
             @if($software->image)
-                <img src="{{ asset('uploads/' . $software->image) }}" alt="{{ $softwareName }}">
+                <img src="{{ asset('uploads/' . $software->image) }}" alt="{{ $softwareName }}" fetchpriority="high">
             @else
                 <div class="software-image-placeholder">
                     <i class="{{ $software->icon ?? 'fa-solid fa-laptop-code' }}"></i>
@@ -151,7 +151,8 @@
                         <img
                             src="{{ asset('uploads/' . $item->icon) }}"
                             alt="{{ $itemName }}"
-                            class="side-software-icon">
+                            class="side-software-icon"
+                            loading="lazy">
                     @else
                         <span class="side-software-placeholder">
                             <i class="fa-solid fa-laptop-code"></i>

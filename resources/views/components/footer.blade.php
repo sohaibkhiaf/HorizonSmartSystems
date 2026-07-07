@@ -3,7 +3,7 @@
 
         {{-- Brand / Description --}}
         <div class="footer-section footer-brand">
-            <img src="{{ asset('images/hss_logo.png') }}" alt="Horizon Smart Systems Logo" class="footer-logo">
+            <img src="{{ asset('images/hss_logo.png') }}" alt="{{ config('seo.site_name') }}" class="footer-logo" width="1254" height="496" loading="lazy">
 
             <p class="footer-description">
                 {{ __('footer.footer_desc') }}
@@ -183,4 +183,3 @@
         <p>© 2026 Horizon Smart Systems — {{ __('footer.rights') }}</p>
     </div>
 </footer>
-

@@ -3,7 +3,7 @@
     {{-- Logo --}}
     <div class="logo">
         <a href="/">
-            <img src="{{ asset('images/hss_logo.png') }}" alt="Horizon Smart Systems Logo">
+            <img src="{{ asset('images/hss_logo.png') }}" alt="{{ config('seo.site_name') }}" width="1254" height="496">
         </a>
     </div>
 
@@ -251,4 +251,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
-

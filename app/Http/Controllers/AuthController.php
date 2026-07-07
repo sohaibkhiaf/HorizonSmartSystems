@@ -6,6 +6,7 @@ use App\Models\ActivityLog;
 use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\User;
+use App\Support\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,9 +26,10 @@ class AuthController extends Controller
 
         $services = PublicService::all();
         $hero = PublicHero::findOrFail(1);
+        $seo = Seo::privatePage(__('login.title'));
 
         // view
-        return view('auth/login', compact('services', 'hero'));
+        return view('auth/login', compact('services', 'hero', 'seo'));
     }
 
     public function login(Request $request)

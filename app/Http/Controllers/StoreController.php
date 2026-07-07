@@ -6,6 +6,7 @@ use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\StoreRequest;
 use App\Models\StoreSubscription;
+use App\Support\Seo;
 use Illuminate\Http\Request;
 
 class StoreController extends Controller
@@ -128,6 +129,7 @@ class StoreController extends Controller
             'categoryCounts' => $categoryCounts,
             'totalSubscriptions' => $totalSubscriptions,
             'discountedCount' => $discountedCount,
+            'seo' => Seo::storeIndex(),
         ]);
     }
 
@@ -141,7 +143,8 @@ class StoreController extends Controller
         return view('/store/order', [
             'subscription'=> $subscription, 
             'services' => $services, 
-            'hero' => $hero 
+            'hero' => $hero,
+            'seo' => Seo::privatePage(__('order.title')),
         ]);
     }
 
@@ -188,7 +191,8 @@ class StoreController extends Controller
         return view('/store/confirmed', [
             'request'=> $request, 
             'services' => $services, 
-            'hero' => $hero 
+            'hero' => $hero,
+            'seo' => Seo::privatePage(__('confirmed.title')),
         ]);
     }
 
