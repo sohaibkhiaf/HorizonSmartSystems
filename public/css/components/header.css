@@ -348,13 +348,13 @@
     }
 
     .customer-portal-btn {
-        padding: 8px 10px;
-        border-radius: 9px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 12px;
+        padding: 10px 8px;
     }
 
-    .customer-portal-btn span {
-        display: none;
-    }
+
 }
 /* =====================================================
    Header - Very Large Screens Only
@@ -443,6 +443,9 @@
 .customer-portal-btn {
     background: #2563eb;
     color: #ffffff;
+    white-space: nowrap;
+    flex-shrink: 0;
+    line-height: 1;
 }
 
 .customer-portal-btn:hover,
@@ -460,3 +463,4 @@
     color: #ffffff;
     transform: translateY(-1px);
 }
+
