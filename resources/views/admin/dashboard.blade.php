@@ -190,7 +190,7 @@
     <a href="{{ route('admin.store_subs.index') }}" class="tab-card">
         <i class="fas fa-box"></i>
         <h3>Produits boutique</h3>
-        <p>Gérer les produits, clés, comptes et invitations.</p>
+        <p>Gérer les produits, clés, comptes et liens d'activation.</p>
     </a>
 
     <a href="{{ route('admin.store_requests.index') }}" class="tab-card">

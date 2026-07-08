@@ -63,7 +63,7 @@
                     <option value="">-- Sélectionner --</option>
                     <option value="key" {{ $selectedType == 'key' ? 'selected' : '' }}>Clé</option>
                     <option value="account" {{ $selectedType == 'account' ? 'selected' : '' }}>Compte</option>
-                    <option value="invitation" {{ $selectedType == 'invitation' ? 'selected' : '' }}>Invitation</option>
+                    <option value="activation_link" {{ $selectedType == 'activation_link' ? 'selected' : '' }}>Lien d'activation</option>
                 </select>
             </div>
 

@@ -8,29 +8,28 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreSubscriptionController extends Controller
 {
-    public function index(Request $request)
-    {
-        $subscriptions = StoreSubscription::query()
-            ->when($request->filled('search'), function ($query) use ($request) {
-                $query->where('name', 'like', '%' . $request->search . '%');
-            })
-            ->when($request->filled('category'), function ($query) use ($request) {
-                $query->where('category', $request->category);
-            })
-            ->when($request->filled('type'), function ($query) use ($request) {
-                $query->where('type', $request->type);
-            })
-            ->when($request->has('is_published') && $request->is_published !== '', function ($query) use ($request) {
-                $query->where('is_published', (bool) $request->is_published);
-            })
-            ->orderByDesc('priority')
-            ->latest()
-            ->paginate(10)
-            ->withQueryString();
+public function index(Request $request)
+{
+    $subscriptions = StoreSubscription::query()
+        ->when($request->filled('search'), function ($query) use ($request) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        })
+        ->when($request->filled('category'), function ($query) use ($request) {
+            $query->where('category', $request->category);
+        })
+        ->when($request->filled('type'), function ($query) use ($request) {
+            $query->where('type', $request->type);
+        })
+        ->when($request->is_published !== null && $request->is_published !== '', function ($query) use ($request) {
+            $query->where('is_published', (int) $request->is_published);
+        })
+        ->orderByDesc('priority')
+        ->latest()
+        ->paginate(10)
+        ->withQueryString();
 
-        return view('admin.store_subscriptions.index', compact('subscriptions'));
-    }
-
+    return view('admin.store_subscriptions.index', compact('subscriptions'));
+}
     public function create()
     {
         return view('admin/store_subscriptions/create');
@@ -46,7 +45,7 @@ class StoreSubscriptionController extends Controller
             'priority'     => 'nullable|integer|min:0',
             'is_published' => 'nullable|boolean',
             'image'        => 'nullable',
-            'type'         => 'nullable|in:key,account,invitation',
+            'type'         => 'nullable|in:key,account,activation_link',
             'category'     => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 
@@ -92,7 +91,7 @@ class StoreSubscriptionController extends Controller
             'priority'     => 'nullable|integer|min:0',
             'is_published' => 'nullable|boolean',
             'image'        => 'nullable',
-            'type'         => 'nullable|in:key,account,invitation',
+            'type'         => 'nullable|in:key,account,activation_link',
             'category'     => 'required|in:games,gift_cards,software,subscriptions,in_game_currency,other',
         ]);
 

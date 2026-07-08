@@ -79,7 +79,7 @@
                         $types = [
                             'key'        => 'Clé',
                             'account'    => 'Compte',
-                            'invitation' => 'Invitation',
+                            'activation_link' => 'Lien d\'activation',
                         ];
                     @endphp
                     <input type="text"
@@ -175,7 +175,7 @@
     const types = {
         key: 'Clé',
         account: 'Compte',
-        invitation: 'Invitation'
+        activation_link: 'Lien d\'activation'
     };
 
     function recalcTotal() {

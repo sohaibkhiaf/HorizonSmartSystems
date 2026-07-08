@@ -24,7 +24,7 @@ return [
     'types' => [
         'key' => 'مفتاح',
         'account' => 'حساب',
-        'invitation' => 'دعوة',
+        'activation_link' => 'رابط التفعيل',
     ],
 
     'index' => [

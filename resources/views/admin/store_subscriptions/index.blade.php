@@ -60,8 +60,8 @@
                 <option value="account" {{ request('type') == 'account' ? 'selected' : '' }}>
                     Compte
                 </option>
-                <option value="invitation" {{ request('type') == 'invitation' ? 'selected' : '' }}>
-                    Invitation
+                <option value="activation_link" {{ request('type') == 'activation_link' ? 'selected' : '' }}>
+                    Lien d'activation
                 </option>
             </select>
         </div>
@@ -140,8 +140,8 @@
                             Clé
                         @elseif ($subscription->type == 'account')
                             Compte
-                        @elseif ($subscription->type == 'invitation')
-                            Invitation
+                        @elseif ($subscription->type == 'activation_link')
+                            Lien d'activation
                         @else
                             N/A
                         @endif

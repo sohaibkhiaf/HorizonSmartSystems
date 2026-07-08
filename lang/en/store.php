@@ -27,7 +27,7 @@ return [
     'types' => [
         'key' => 'Key',
         'account' => 'Account',
-        'invitation' => 'Invitation',
+        'activation_link' => 'Activation Link',
     ],
 
     'index' => [

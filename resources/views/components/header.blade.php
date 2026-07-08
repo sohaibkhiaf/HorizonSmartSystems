@@ -127,12 +127,16 @@
 
     </nav>
 
-    {{-- Customer Portal Button --}}
-    <a href="/login"
-    class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
-        <i class="fa-solid fa-circle-user"></i>
-        {{ __('header.customer_portal') }}
-    </a>
+{{-- Customer Portal Button --}}
+<a href="/login"
+class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
+    <i class="fa-solid fa-circle-user"></i>
+
+    <span class="customer-portal-text">
+        <span class="customer-portal-title">Espace Client</span>
+        <span class="customer-portal-subtitle">(فضاء العميل)</span>
+    </span>
+</a>
 
     {{-- Store Button --}}
     @if ($page != "STORE")

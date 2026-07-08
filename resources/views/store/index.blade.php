@@ -46,7 +46,7 @@
     $types = [
         'key' => __('store.types.key'),
         'account' => __('store.types.account'),
-        'invitation' => __('store.types.invitation'),
+        'activation_link' => __('store.types.activation_link'),
     ];
 
     $hasSearch = !empty($currentSearch);

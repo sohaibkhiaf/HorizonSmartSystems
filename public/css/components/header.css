@@ -167,10 +167,10 @@
 }
 
 /* =====================================================
-   Store Button
+   Header Buttons
 ===================================================== */
 
-.store-btn ,
+.store-btn,
 .customer-portal-btn {
     padding: 8px 16px;
     border-radius: 8px;
@@ -185,8 +185,11 @@
     cursor: pointer;
 
     transition: background 0.3s ease,
+                color 0.3s ease,
                 transform 0.2s ease;
 }
+
+/* Store Button */
 
 .store-btn-primary {
     background: #ff3d2e;
@@ -197,6 +200,40 @@
     background: #e63628;
     color: #ffffff;
     transform: translateY(-1px);
+}
+
+/* Customer Portal Button */
+
+.customer-portal-btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.customer-portal-btn-primary:hover,
+.customer-portal-btn-primary.active {
+    background: #1d4ed8;
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.customer-portal-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    line-height: 1.1;
+}
+
+.customer-portal-title {
+    font-size: inherit;
+    font-weight: 600;
+}
+
+.customer-portal-subtitle {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.9;
+    white-space: nowrap;
 }
 
 /* =====================================================
@@ -281,8 +318,7 @@
         padding: 15px 20px;
     }
 
-    .logo img,
-    .header.scrolled .logo img {
+    .logo img {
         height: 30px;
     }
 
@@ -348,19 +384,20 @@
     }
 
     .customer-portal-btn {
+        flex-shrink: 0;
         white-space: nowrap;
-        flex-shrink: 0;
+        padding: 8px;
         font-size: 11px;
-        padding: 10px 8px;
-        flex-shrink: 0;
         line-height: 1;
     }
 
-
+    .customer-portal-subtitle {
+        font-size: 8px;
+    }
 }
+
 /* =====================================================
-   Header - Very Large Screens Only
-   Add this block at the end of your header CSS
+   Large Screens
 ===================================================== */
 
 @media (min-width: 1440px) {
@@ -388,17 +425,18 @@
         padding: 10px 18px;
     }
 }
+
 @media (min-width: 1600px) {
     .header {
         padding-inline: 9%;
     }
 
-    .nav {
-        gap: 34px;
-    }
-
     .logo img {
         height: 54px;
+    }
+
+    .nav {
+        gap: 34px;
     }
 
     .nav a,
@@ -407,17 +445,18 @@
         font-size: 19px;
     }
 }
+
 @media (min-width: 1920px) {
     .header {
         padding-inline: 11%;
     }
 
-    .nav {
-        gap: 38px;
-    }
-
     .logo img {
         height: 58px;
+    }
+
+    .nav {
+        gap: 38px;
     }
 
     .nav a,
@@ -432,33 +471,3 @@
     }
 }
 
-/* =====================================================
-   Customer Portal Button
-===================================================== */
-
-
-/* =====================================================
-   Customer Portal Button
-   Same style as store button, different color only
-===================================================== */
-
-.customer-portal-btn {
-    background: #2563eb;
-    color: #ffffff;
-}
-
-.customer-portal-btn:hover,
-.customer-portal-btn.active {
-    background: #1d4ed8;
-    color: #ffffff;
-}
-.customer-portal-btn-primary {
-    background: #2563eb;
-    color: #ffffff;
-}
-
-.customer-portal-btn-primary:hover {
-    background: #1d4ed8;
-    color: #ffffff;
-    transform: translateY(-1px);
-}
