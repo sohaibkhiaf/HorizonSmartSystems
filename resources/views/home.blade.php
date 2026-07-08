@@ -263,10 +263,24 @@
                                     <div class="swiper demos-swiper software-demos-swiper" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
                                         <div class="swiper-wrapper">
                                             @foreach($softwareDemos as $demo)
+                                                @php
+                                                    $demoUrl = null;
+
+                                                    if (auth()->check() && !empty($demo->demo_link)) {
+                                                        $separator = str_contains($demo->demo_link, '?') ? '&' : '?';
+                                                        $demoUrl = $demo->demo_link . $separator . 'user=' . urlencode(auth()->user()->username);
+                                                    }
+                                                @endphp
+
                                                 <div class="swiper-slide">
-                                                    <a href="#contact_section"
-                                                       onclick="scrollToSection('contact_section'); return false;"
-                                                       class="portal-demo-card">
+                                                    <a href="{{ $demoUrl ?? '#contact_section' }}"
+                                                    @if($demoUrl)
+                                                        target="_blank"
+                                                        rel="noopener"
+                                                    @else
+                                                        onclick="scrollToSection('contact_section'); return false;"
+                                                    @endif
+                                                    class="portal-demo-card">
 
                                                         <div class="portal-demo-image">
                                                             @if($demo->image)
