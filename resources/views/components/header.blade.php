@@ -130,7 +130,7 @@
 {{-- Customer Portal Button --}}
 <a href="/login"
 class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
-    <i class="fa-solid fa-circle-user"></i>
+    <i class="fa-brands fa-redhat"></i>
 
     <span class="customer-portal-text">
         <span class="customer-portal-title">Espace Client</span>
