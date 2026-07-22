@@ -54,7 +54,7 @@
                         @if ($page == 'APP')
                             onclick="scrollToSection('home_section')"
                         @else
-                            href="/"
+                            href="{{ \App\Support\LocalizedUrl::route('home.index') }}"
                         @endif
                         >
                         <i class="fa-solid fa-house"></i>
@@ -67,7 +67,7 @@
                         @if ($page == 'APP')
                             onclick="scrollToSection('services_section')"
                         @else
-                            href="/?section=services"
+                            href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=services"
                         @endif
                         >
                         <i class="fa-solid fa-arrow-pointer"></i>
@@ -80,7 +80,7 @@
                         @if ($page == 'APP')
                             onclick="scrollToSection('software_section')"
                         @else
-                            href="/?section=software"
+                            href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=software"
                         @endif
                         >
                         <i class="fa-brands fa-microsoft"></i>
@@ -93,7 +93,7 @@
                         @if ($page == 'APP')
                             onclick="scrollToSection('achievements_section')"
                         @else
-                            href="/?section=achievements"
+                            href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=achievements"
                         @endif
                         >
                         <i class="fa-solid fa-medal"></i>
@@ -102,7 +102,7 @@
                 </li>
 
                 <li>
-                    <a href="/store" class="footer-link">
+                    <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="footer-link">
                         <i class="fa-solid fa-cart-shopping"></i>
                         {{ __('footer.store') }}
                     </a>
@@ -113,7 +113,7 @@
                         @if ($page == 'APP')
                             onclick="scrollToSection('contact_section')"
                         @else
-                            href="/?section=contact"
+                            href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=contact"
                         @endif
                         >
                         <i class="fa-solid fa-message"></i>
@@ -133,7 +133,10 @@
                     @if ($service->is_published && $service->type == "main")
                     <li>
                         <a class="footer-link" 
-                            href="{{ route('services.show', $service) }}">
+                            href="{{ \App\Support\LocalizedUrl::route(
+                                'services.show',
+                                ['service' => $service]
+                            ) }}">
                             <i class="{{ $service->fa_icon }}"></i>
                             @if(app()->getLocale() == 'ar')
                                 {{ $service->ar_name }}

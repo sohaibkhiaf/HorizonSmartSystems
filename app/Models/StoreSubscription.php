@@ -21,7 +21,10 @@ class StoreSubscription extends Model
         'type', 
         'priority',
         'is_published', 
-        'category',
+        'category', 
+        'ar_slug',
+        'fr_slug',
+        'en_slug',
     ];
 
     public function requests() {

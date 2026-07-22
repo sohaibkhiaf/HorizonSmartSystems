@@ -49,7 +49,7 @@
         </div>
 
         <div class="action">
-            <a href="{{ route('store.index') }}" class="continue-btn">
+            <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="continue-btn">
                 {{ __('confirmed.continue_shopping') }}
                 <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-arrow-left' : 'fa-solid fa-arrow-right' }}"></i>
             </a>

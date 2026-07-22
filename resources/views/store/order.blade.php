@@ -27,14 +27,20 @@
 
 <main class="order-page {{ app()->getLocale() === 'ar' ? 'is-rtl' : 'is-ltr' }}">
 
-    <a href="{{ route('store.index') }}" class="back-link">
+    <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="back-link">
         <i class="{{ app()->getLocale() === 'ar' ? 'fa-solid fa-arrow-right' : 'fa-solid fa-arrow-left' }}"></i>
         {{ __('order.back_to_catalog') }}
     </a>
 
     <form
         id="orderForm"
-        action="{{ route('store.confirm', ['subscription' => $subscription]) }}"
+        action="{{ \App\Support\LocalizedUrl::route(
+            'store.confirm',
+            ['subscription' => $subscription],
+            null,
+            [],
+            false
+        )  }}"
         method="POST"
         class="order-container">
         @csrf

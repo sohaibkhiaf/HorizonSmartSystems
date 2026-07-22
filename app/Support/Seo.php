@@ -173,23 +173,28 @@ class Seo
             'json_ld' => [],
         ];
     }
-
     public static function robotsForCurrentRequest(): string
     {
         $request = request();
 
-        if (! $request->isMethod('GET')) {
+        if (!$request->isMethod('GET')) {
             return 'noindex, nofollow';
         }
 
+        $routeName = LocalizedUrl::logicalRouteName(
+            $request->route()?->getName()
+        );
+
         if (
-            $request->routeIs('login.*')
-            || $request->routeIs('admin.*')
-            || $request->routeIs('customer.*')
-            || $request->routeIs('store.order')
-            || $request->routeIs('store.confirmed')
-            || $request->is('admin') || $request->is('admin/*')
-            || $request->is('customer') || $request->is('customer/*')
+            str_starts_with($routeName, 'login.')
+            || str_starts_with($routeName, 'admin.')
+            || str_starts_with($routeName, 'customer.')
+            || $routeName === 'store.order'
+            || $routeName === 'store.confirmed'
+            || $request->is('admin')
+            || $request->is('admin/*')
+            || $request->is('customer')
+            || $request->is('customer/*')
             || $request->is('password/*')
         ) {
             return 'noindex, nofollow';

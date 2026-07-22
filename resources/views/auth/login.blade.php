@@ -19,7 +19,7 @@
 
         <p class="login-account-help">
             {{ __('login.customer_account_notice') }}
-            <a href="/?section=contact">
+            <a href="{{  \App\Support\LocalizedUrl::route('home.index') }}?section=contact">
                 {{ __('login.contact_us') }}
             </a>
         </p>
@@ -38,7 +38,7 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login.submit') }}">
+        <form method="POST" action="{{ \App\Support\LocalizedUrl::route('login.submit', [],null, [], false)}}">
             @csrf
 
             <div class="form-group">

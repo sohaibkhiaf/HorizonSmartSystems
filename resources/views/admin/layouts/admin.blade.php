@@ -153,7 +153,9 @@
 
         </nav>
         
-        <form method="POST" action="{{ route('logout') }}" class="logout-form">
+        <form method="POST" action="{{ \App\Support\LocalizedUrl::route(
+                'logout', [], null, [], false
+            ) }}" class="logout-form">
             @csrf
             <button type="submit">
                 <i class="fas fa-right-from-bracket"></i>

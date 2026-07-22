@@ -48,7 +48,7 @@
             <div class="service-actions">
 
                 @if ($service->fa_icon == "fa-solid fa-credit-card")
-                <a href="/store" class="btn btn-primary">
+                <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn btn-primary">
                     {{ __('header.our_store') }}
                     <i class="fa-solid fa-shopping-cart"></i>
                 </a>
@@ -59,7 +59,7 @@
                 </a>
                 @endif
 
-                <a href="/" class="btn btn-outline-light">
+                <a href="{{ \App\Support\LocalizedUrl::route('home.index') }}" class="btn btn-outline-light">
                     {{ __('service.back_home') }}
                     <i class="fa-solid fa-house"></i>
                 </a>
@@ -91,7 +91,7 @@
             </p>
 
             @if ($service->fa_icon == "fa-solid fa-credit-card")
-            <a href="/store" class="btn btn-primary">
+            <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn btn-primary">
                 {{ __('header.our_store') }}
                 <i class="fa-solid fa-shopping-cart"></i>
             </a>
@@ -115,7 +115,10 @@
                             : $item->en_name);
                 @endphp
 
-                <a href="{{ route('services.show', $item) }}" class="side-service-link">
+                <a href="{{\App\Support\LocalizedUrl::route(
+                        'services.show',
+                        ['service' => $item]
+                    ) }}" class="side-service-link">
                     <i class="{{ $item->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
                     <span>{{ $itemName }}</span>
                 </a>
@@ -234,7 +237,13 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('contact.message') }}">
+            <form method="POST" action="{{ \App\Support\LocalizedUrl::route(
+                    'contact.message',
+                    [],
+                    null,
+                    [],
+                    false
+                ) }}">
                 @csrf
 
                 <div class="form-grid">

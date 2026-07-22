@@ -37,7 +37,7 @@
                     <i class="fa-solid fa-paper-plane"></i>
                 </a>
 
-                <a href="{{ url('/') }}" class="btn btn-outline-dark">
+                <a href="{{ \App\Support\LocalizedUrl::route('home.index') }}" class="btn btn-outline-dark">
                     {{ __('software.back_home') }}
                     <i class="fa-solid fa-house"></i>
                 </a>
@@ -158,7 +158,10 @@
                     $itemName = $item->{$nameField};
                 @endphp
 
-                <a href="{{ route('software.show', $item) }}" class="side-software-link">
+                <a href="{{ \App\Support\LocalizedUrl::route(
+                        'software.show',
+                        ['software' => $item]
+                    )  }}" class="side-software-link">
 
                     @if($item->icon)
                         <img
@@ -291,7 +294,13 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('contact.message') }}">
+            <form method="POST" action="{{  \App\Support\LocalizedUrl::route(
+                    'contact.message',
+                    [],
+                    null,
+                    [],
+                    false
+                ) }}">
                 @csrf
 
                 <div class="form-grid">

@@ -19,47 +19,222 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\StoreRequestController;
 use App\Http\Controllers\StoreSubscriptionController;
 use App\Http\Controllers\UserController;
+use App\Support\LocalizedUrl;
 use Illuminate\Support\Facades\Route;
 
-// LANGUAGE SWITCHER ////////////////////////////////////////////////////////////////
+/*
+|--------------------------------------------------------------------------
+| Global routes
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/sitemap.xml', SitemapController::class)
     ->name('sitemap');
 
-Route::get('/language/{locale}', [LanguageController::class, 'switch'])
+/*
+|--------------------------------------------------------------------------
+| Redirect the root URL to the preferred language
+|--------------------------------------------------------------------------
+|
+| Examples:
+| /  -> /ar
+| /  -> /fr
+| /  -> /en
+|
+*/
+
+Route::get('/', function () {
+    return redirect()->to(
+        LocalizedUrl::route(
+            'home.index',
+            [],
+            app()->getLocale(),
+            [],
+            false
+        )
+    );
+})->name('root');
+
+/*
+|--------------------------------------------------------------------------
+| Language switcher
+|--------------------------------------------------------------------------
+*/
+
+Route::get(
+    '/language/{locale}',
+    [LanguageController::class, 'switch']
+)
+    ->whereIn('locale', ['ar', 'fr', 'en'])
     ->name('language.switcher');
 
-// HOME /////////////////////////////////////////////////////////////////////////////
-Route::get('/', [HomeController::class, 'home'])
-    ->name('home.index');
+/*
+|--------------------------------------------------------------------------
+| Localized route segments
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/services/{service}', [HomeController::class, 'show'])
-    ->name('services.show');
+$localizedRoutes = [
+    'ar' => [
+        'services' => 'الخدمات',
+        'software' => 'البرامج',
+        'store' => 'المتجر',
+        'order' => 'طلب',
+        'confirm' => 'تأكيد',
+        'confirmed' => 'تم-التأكيد',
+        'contact' => 'اتصل-بنا',
+        'login' => 'تسجيل-الدخول',
+        'logout' => 'تسجيل-الخروج',
+    ],
 
-Route::get('/software/{software}', [HomeController::class, 'software'])
-    ->name('software.show');
+    'fr' => [
+        'services' => 'services',
+        'software' => 'logiciels',
+        'store' => 'boutique',
+        'order' => 'commande',
+        'confirm' => 'confirmer',
+        'confirmed' => 'commande-confirmee',
+        'contact' => 'contact',
+        'login' => 'connexion',
+        'logout' => 'deconnexion',
+    ],
 
-// STORE /////////////////////////////////////////////////////////////////////////////
-Route::get('/store', [StoreController::class, 'index'])
-    ->name('store.index');
-Route::get('/store/{subscription}/order', [StoreController::class, 'order'])
-    ->name('store.order');
-Route::post('/store/{subscription}/confirm', [StoreController::class, 'confirm'])
-    ->middleware('throttle:order')
-    ->name('store.confirm');
-Route::get('/store/{request}/confirmed', [StoreController::class, 'confirmed'])
-    ->name('store.confirmed');
+    'en' => [
+        'services' => 'services',
+        'software' => 'software',
+        'store' => 'store',
+        'order' => 'order',
+        'confirm' => 'confirm',
+        'confirmed' => 'confirmed',
+        'contact' => 'contact',
+        'login' => 'login',
+        'logout' => 'logout',
+    ],
+];
 
-// CONTACT US /////////////////////////////////////////////////////////////////////
-Route::post('/contact', [PublicMessageController::class, 'store'])
-    ->middleware('throttle:contact')
-    ->name('contact.message');
+/*
+|--------------------------------------------------------------------------
+| Register localized public routes
+|--------------------------------------------------------------------------
+*/
 
-// AUTHENTICATION ////////////////////////////////////////////////////////////////
-Route::get('/login', [AuthController::class, 'loginPage'])->name('login.page');
-Route::post('/login', [AuthController::class, 'login'])
-    ->middleware('throttle:login')
-    ->name('login.submit');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+foreach ($localizedRoutes as $locale => $segments) {
+    Route::prefix($locale)
+        ->name($locale . '.')
+        ->group(function () use ($locale, $segments) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Home
+            |--------------------------------------------------------------------------
+            */
+
+            Route::get(
+                '/',
+                [HomeController::class, 'home']
+            )->name('home.index');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Services
+            |--------------------------------------------------------------------------
+            |
+            | Arabic:  {service:ar_slug}
+            | French:  {service:fr_slug}
+            | English: {service:en_slug}
+            |
+            */
+
+            Route::get(
+                '/' . $segments['services']
+                . '/{service:' . $locale . '_slug}',
+                [HomeController::class, 'show']
+            )->name('services.show');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Software
+            |--------------------------------------------------------------------------
+            */
+
+            Route::get(
+                '/' . $segments['software']
+                . '/{software:' . $locale . '_slug}',
+                [HomeController::class, 'software']
+            )->name('software.show');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Store
+            |--------------------------------------------------------------------------
+            */
+
+            Route::get(
+                '/' . $segments['store'],
+                [StoreController::class, 'index']
+            )->name('store.index');
+
+            Route::get(
+                '/' . $segments['store']
+                . '/{subscription:' . $locale . '_slug}'
+                . '/' . $segments['order'],
+                [StoreController::class, 'order']
+            )->name('store.order');
+
+            Route::post(
+                '/' . $segments['store']
+                . '/{subscription:' . $locale . '_slug}'
+                . '/' . $segments['confirm'],
+                [StoreController::class, 'confirm']
+            )
+                ->middleware('throttle:order')
+                ->name('store.confirm');
+
+            Route::get(
+                '/' . $segments['store']
+                . '/{request}'
+                . '/' . $segments['confirmed'],
+                [StoreController::class, 'confirmed']
+            )->name('store.confirmed');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Contact
+            |--------------------------------------------------------------------------
+            */
+
+            Route::post(
+                '/' . $segments['contact'],
+                [PublicMessageController::class, 'store']
+            )
+                ->middleware('throttle:contact')
+                ->name('contact.message');
+
+            /*
+            |--------------------------------------------------------------------------
+            | Authentication
+            |--------------------------------------------------------------------------
+            */
+
+            Route::get(
+                '/' . $segments['login'],
+                [AuthController::class, 'loginPage']
+            )->name('login.page');
+
+            Route::post(
+                '/' . $segments['login'],
+                [AuthController::class, 'login']
+            )
+                ->middleware('throttle:login')
+                ->name('login.submit');
+
+            Route::post(
+                '/' . $segments['logout'],
+                [AuthController::class, 'logout']
+            )->name('logout');
+        });
+}
+
 
 // ADMIN //////////////////////////////////////////////////////////////////////
 Route::prefix('admin')

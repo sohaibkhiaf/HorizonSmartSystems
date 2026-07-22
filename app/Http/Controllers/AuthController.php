@@ -6,105 +6,179 @@ use App\Models\ActivityLog;
 use App\Models\PublicHero;
 use App\Models\PublicService;
 use App\Models\User;
+use App\Support\LocalizedUrl;
 use App\Support\Seo;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function loginPage()
+    /**
+     * Display the login page.
+     */
+    public function loginPage(): View|RedirectResponse
     {
-        // forward
-        if (auth()->check() && auth()->user()->role == "admin") {
-            return redirect()->route('admin.dashboard.index');
-        } else if (auth()->check() && auth()->user()->role == "operator") {
-            return redirect()->route('admin.store_requests.index');
-        } else if (auth()->check() && auth()->user()->role == "customer") {
-            return redirect()->route('customer.portal.index');
+        if (
+            auth()->check()
+            && auth()->user()->role === 'admin'
+        ) {
+            return redirect()->route(
+                'admin.dashboard.index'
+            );
         }
 
-        $services = PublicService::all();
-        $hero = PublicHero::findOrFail(1);
-        $seo = Seo::privatePage(__('login.title'));
+        if (
+            auth()->check()
+            && auth()->user()->role === 'operator'
+        ) {
+            return redirect()->route(
+                'admin.store_requests.index'
+            );
+        }
 
-        // view
-        return view('auth/login', compact('services', 'hero', 'seo'));
+        if (
+            auth()->check()
+            && auth()->user()->role === 'customer'
+        ) {
+            return redirect()->route(
+                'customer.portal.index'
+            );
+        }
+
+        $services = PublicService::query()
+            ->where('is_published', true)
+            ->get();
+
+        $hero = PublicHero::findOrFail(1);
+
+        $seo = Seo::privatePage(
+            __('login.title')
+        );
+
+        return view(
+            'auth.login',
+            compact(
+                'services',
+                'hero',
+                'seo'
+            )
+        );
     }
 
-    public function login(Request $request)
-    {
-        // validate
+    /**
+     * Authenticate the user.
+     */
+    public function login(
+        Request $request
+    ): RedirectResponse {
         $credentials = $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required'],
+            'username' => [
+                'required',
+                'string',
+            ],
+
+            'password' => [
+                'required',
+            ],
         ]);
 
-        // remember
-        $remember = $request->boolean('remember');
+        $remember = $request->boolean(
+            'remember'
+        );
 
-        // attempt
-        if (!Auth::attempt($credentials, $remember)) {
+        if (
+            !Auth::attempt(
+                $credentials,
+                $remember
+            )
+        ) {
             return back()
-                ->withErrors(['username' => 'Username ou mot de passe invalide.'])
+                ->withErrors([
+                    'username' =>
+                        'Username ou mot de passe invalide.',
+                ])
                 ->onlyInput('username');
         }
 
-        // session
         $request->session()->regenerate();
 
-        // redirect
-        if (auth()->user()->isAdmin() ) {
-            ActivityLog::create([
-                'user_id'    => auth()->id(),
-                'action'     => 'login',
-                'model_type' => User::class,
-                'model_id'   => auth()->user()->id,
-            ]);
-            return redirect()->route('admin.dashboard.index');
-        }else if (auth()->user()->isOperator() ) {
-            ActivityLog::create([
-                'user_id'    => auth()->id(),
-                'action'     => 'login',
-                'model_type' => User::class,
-                'model_id'   => auth()->user()->id,
-            ]);
-            return redirect()->route('admin.store_requests.index');
-        }else if (auth()->user()->isCustomer() ) {
-            ActivityLog::create([
-                'user_id'    => auth()->id(),
-                'action'     => 'login',
-                'model_type' => User::class,
-                'model_id'   => auth()->user()->id,
-            ]);
-            return redirect()->route('customer.portal.index');
-        }else{
-            Auth::logout();
+        $user = auth()->user();
 
-            return back()->withErrors([
-                'username' => 'Votre compte n’est pas autorisé à accéder à l’espace client.',
+        if (
+            $user->isAdmin()
+            || $user->isOperator()
+            || $user->isCustomer()
+        ) {
+            ActivityLog::create([
+                'user_id' => $user->id,
+                'action' => 'login',
+                'model_type' => User::class,
+                'model_id' => $user->id,
             ]);
         }
 
-    }
+        if ($user->isAdmin()) {
+            return redirect()->route(
+                'admin.dashboard.index'
+            );
+        }
 
-    public function logout(Request $request)
-    {
-        ActivityLog::create([
-            'user_id'    => auth()->id(),
-            'action'     => 'logout',
-            'model_type' => User::class,
-            'model_id'   => auth()->user()->id,
-        ]);
+        if ($user->isOperator()) {
+            return redirect()->route(
+                'admin.store_requests.index'
+            );
+        }
 
-        // logout
+        if ($user->isCustomer()) {
+            return redirect()->route(
+                'customer.portal.index'
+            );
+        }
+
         Auth::logout();
 
-        // session invalidate
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        // redirect
-        return redirect()->route('login.page');
+        return back()->withErrors([
+            'username' =>
+                'Votre compte n’est pas autorisé à accéder à l’espace client.',
+        ]);
+    }
+
+    /**
+     * Log the user out.
+     */
+    public function logout(
+        Request $request
+    ): RedirectResponse {
+        $user = auth()->user();
+
+        if ($user !== null) {
+            ActivityLog::create([
+                'user_id' => $user->id,
+                'action' => 'logout',
+                'model_type' => User::class,
+                'model_id' => $user->id,
+            ]);
+        }
+
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->to(
+            LocalizedUrl::route(
+                'login.page',
+                [],
+                app()->getLocale(),
+                [],
+                false
+            )
+        );
     }
 }
+

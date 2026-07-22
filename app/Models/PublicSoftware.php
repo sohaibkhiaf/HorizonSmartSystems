@@ -25,6 +25,10 @@ class PublicSoftware extends Model
         'ar_description' ,
         'fr_description' ,
         'en_description' ,
+
+        'ar_slug',
+        'fr_slug',
+        'en_slug',
         
         'image' ,
         'icon' ,

@@ -17,7 +17,7 @@
             </h1>
         </div>
 
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ \App\Support\LocalizedUrl::route('logout', [], null, [], false) }}">
             @csrf
 
             <button class="logout-btn"

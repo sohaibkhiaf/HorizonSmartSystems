@@ -2,48 +2,105 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\LocalizedUrl;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class LanguageController extends Controller
 {
-    public function switch($locale) {
+    /**
+     * Switch the current public language.
+     */
+    public function switch(
+        Request $request,
+        string $locale
+    ): RedirectResponse {
+        abort_unless(
+            in_array(
+                $locale,
+                LocalizedUrl::locales(),
+                true
+            ),
+            404
+        );
 
-        // switch
-        if (in_array($locale, ['en', 'fr', 'ar'])) {
+        session([
+            'locale' => $locale,
+        ]);
 
-            session(['locale' => $locale]);
+        App::setLocale($locale);
 
-            // back + cookie
-            return redirect()->to($this->localizedPreviousUrl($locale))
-                ->withCookie(cookie('locale', $locale, 60 * 24 * 30));
+        $redirect = trim(
+            (string) $request->query(
+                'redirect',
+                ''
+            )
+        );
+
+        if (
+            !$this->isValidLocalizedRedirect(
+                $redirect,
+                $locale
+            )
+        ) {
+            $redirect = LocalizedUrl::route(
+                'home.index',
+                [],
+                $locale,
+                [],
+                false
+            );
         }
 
-        // back
-        return redirect()->back();
+        return redirect()
+            ->to($redirect)
+            ->withCookie(
+                cookie(
+                    'locale',
+                    $locale,
+                    60 * 24 * 30
+                )
+            );
     }
 
-    private function localizedPreviousUrl(string $locale): string
-    {
-        $previous = url()->previous();
-        $parts = parse_url($previous);
-        $query = [];
-
-        if (! empty($parts['query'])) {
-            parse_str($parts['query'], $query);
+    /**
+     * Prevent external redirect URLs.
+     */
+    private function isValidLocalizedRedirect(
+        string $redirect,
+        string $locale
+    ): bool {
+        if (
+            $redirect === ''
+            || !str_starts_with($redirect, '/')
+            || str_starts_with($redirect, '//')
+        ) {
+            return false;
         }
 
-        $query['lang'] = $locale;
+        $parts = parse_url($redirect);
 
-        $scheme = isset($parts['scheme']) ? $parts['scheme'] . '://' : '';
-        $host = $parts['host'] ?? '';
-        $port = isset($parts['port']) ? ':' . $parts['port'] : '';
-        $path = $parts['path'] ?? '/';
-        $fragment = isset($parts['fragment']) ? '#' . $parts['fragment'] : '';
-
-        if (str_starts_with($path, '/language/')) {
-            $path = '/';
+        if ($parts === false) {
+            return false;
         }
 
-        return $scheme . $host . $port . $path . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986) . $fragment;
+        if (
+            isset($parts['scheme'])
+            || isset($parts['host'])
+        ) {
+            return false;
+        }
+
+        $path = rawurldecode(
+            $parts['path'] ?? ''
+        );
+
+        return $path === '/' . $locale
+            || str_starts_with(
+                $path,
+                '/' . $locale . '/'
+            );
     }
 }
+

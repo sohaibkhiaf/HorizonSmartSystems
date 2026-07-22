@@ -34,7 +34,7 @@
                     <i class="fa-solid fa-laptop-code"></i>
                 </a>
 
-                <a href="/store" class="btn btn-store-mobile">
+                <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn btn-store-mobile">
                     {{ __('home.hero_btn_store') }}
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
@@ -102,7 +102,10 @@
                                     <p>
                                         {{ $serviceShortDescription }}
                                     </p>
-                                    <a href="{{ route('services.show', $service) }}" class="plus-link">
+                                    <a href="{{ \App\Support\LocalizedUrl::route(
+                                            'services.show',
+                                            ['service' => $service]
+                                        )  }}" class="plus-link">
                                         {{ __('home.learn_more') }}
                                         <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                                     </a>
@@ -125,7 +128,10 @@
         <div class="other-services">
             @foreach ($services as $service )
                 @if ($service->type == 'other' && $service->is_published)
-                <a href="{{ route('services.show', [$service]) }}" class="other-service-card">
+                <a href="{{ \App\Support\LocalizedUrl::route(
+                        'services.show',
+                        ['service' => $service]
+                    )  }}" class="other-service-card">
                     <div class="other-service-icon">
                         <i class="{{ $service->fa_icon }}"></i>
                     </div>
@@ -227,7 +233,10 @@
                                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                             </a>
 
-                            <a href="{{ route('software.show', $s) }}" class="software-orange-link">
+                            <a href="{{  \App\Support\LocalizedUrl::route(
+                                    'software.show',
+                                    ['software' => $s]
+                                )  }}" class="software-orange-link">
                                 {{ __('home.learn_more') }}
                                 <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                             </a>
@@ -248,7 +257,10 @@
                             <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                         </a>
 
-                        <a href="{{ route('software.show', $s) }}" class="software-orange-link-mobile">
+                        <a href="{{ \App\Support\LocalizedUrl::route(
+                                'software.show',
+                                ['software' => $s]
+                            ) }}" class="software-orange-link-mobile">
                             {{ __('home.learn_more') }}
                             <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
                         </a>
@@ -504,7 +516,13 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('contact.message') }}">
+            <form method="POST" action="{{ \App\Support\LocalizedUrl::route(
+                    'contact.message',
+                    [],
+                    null,
+                    [],
+                    false
+                ) }}">
                 @csrf
 
                 <div class="form-grid">

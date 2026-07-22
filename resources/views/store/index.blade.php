@@ -143,7 +143,12 @@
                 @endphp
 
                 <a
-                    href="{{ route('store.index', ['category' => $key]) }}"
+                    href="{{ \App\Support\LocalizedUrl::route(
+                            'store.index',
+                            [],
+                            null,
+                            ['category' => $key]
+                        ) }}"
                     class="category-pill {{ $currentCategory === $key || ($key === 'all' && empty(request('category'))) ? 'active' : '' }}">
                     <i class="{{ $item['icon'] }}"></i>
                     <span>{{ $item['label'] }}</span>
@@ -155,7 +160,7 @@
 
     <!-- Search + Categories Combined -->
     <section class="store-search-section" id="search_section">
-        <form method="GET" action="{{ route('store.index') }}" class="search-form">
+        <form method="GET" action="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="search-form">
 
             <div class="search-input-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -182,7 +187,7 @@
 
             <div class="search-actions">
                 @if (!empty($currentSearch) || $currentCategory !== 'all')
-                    <a href="{{ route('store.index') }}" class="btn-reset" aria-label="{{ __('store.reset') }}">
+                    <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn-reset" aria-label="{{ __('store.reset') }}">
                         <i class="fa-solid fa-rotate"></i>
                     </a>
                 @endif
@@ -229,7 +234,11 @@
                             @endphp
 
                             <div class="swiper-slide">
-                                <a class="bestseller-card" href="{{ route('store.order', ['subscription' => $item]) }}">
+                                <a class="bestseller-card" 
+                                    href="{{ \App\Support\LocalizedUrl::route(
+                                        'store.order',
+                                        ['subscription' => $item]
+                                    ) }}">
 
                                     <div class="bestseller-image">
                                         @if($item->image)
@@ -319,7 +328,10 @@
 
                     <a
                         class="subscription-card"
-                        href="{{ route('store.order', ['subscription' => $subscription]) }}"
+                        href="{{ \App\Support\LocalizedUrl::route(
+                            'store.order',
+                            ['subscription' => $subscription]
+                        ) }}"
                         data-category="{{ \Illuminate\Support\Str::slug($subscription->category ?? '') }}"
                         data-type="{{ \Illuminate\Support\Str::slug($subscription->type ?? '') }}"
                         data-id="{{ $subscription->id }}">
@@ -395,7 +407,13 @@
                         <h3>{{ __('store.no_results_title') }}</h3>
                         <p>{{ __('store.no_results_text') }}</p>
 
-                        <a href="{{ route('store.index', ['category' => 'all']) }}" class="no-results-link">
+                        <a href="{{ \App\Support\LocalizedUrl::route(
+                                'store.index',
+                                [],
+                                null,
+                                ['category' => 'all']
+                            ) }}"
+                        class="no-results-link">
                             {{ __('store.reset') }}
                             <i class="fa-solid fa-arrow-rotate-right"></i>
                         </a>

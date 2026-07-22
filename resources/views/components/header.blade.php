@@ -2,7 +2,7 @@
 
     {{-- Logo --}}
     <div class="logo">
-        <a href="/">
+        <a href="{{ \App\Support\LocalizedUrl::route('home.index') }}">
             <img src="{{ asset('images/hss_logo.png') }}" alt="{{ config('seo.site_name') }}" width="1254" height="496">
         </a>
     </div>
@@ -14,7 +14,7 @@
             @if ($page == 'APP')
                 onclick="scrollToSection('home_section')"
             @else
-                href="/"
+                href="{{  \App\Support\LocalizedUrl::route('home.index') }}"
             @endif
            data-target="home">
             {{ __('header.home') }}
@@ -27,7 +27,7 @@
                 @if ($page == 'APP')
                     onclick="scrollToSection('services_section')"
                 @else
-                    href="/?section=services"
+                    href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=services"
                 @endif
                data-target="services">
                 {{ __('header.services') }}
@@ -42,7 +42,10 @@
 
                     @foreach($services as $service)
                         @if ($service->is_published && $service->type == "main")
-                        <a class="service-link" href="{{ route('services.show', $service) }}">
+                        <a class="service-link" href="{{ \App\Support\LocalizedUrl::route(
+                                'services.show',
+                                ['service' => $service]
+                            ) }}">
                             <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
                             <span>
                                 @if(app()->getLocale() == 'ar')
@@ -63,7 +66,10 @@
 
                     @foreach($services as $service)
                         @if ($service->is_published && $service->type == "other")
-                        <a class="service-link" href="{{ route('services.show', $service) }}">
+                        <a class="service-link" href="{{ \App\Support\LocalizedUrl::route(
+                                'services.show',
+                                ['service' => $service]
+                            ) }}">
                             <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
                             <span>
                                 @if(app()->getLocale() == 'ar')
@@ -86,7 +92,7 @@
             @if ($page == 'APP')
                 onclick="scrollToSection('software_section')"
             @else
-                href="/?section=software"
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=software"
             @endif
             data-target="software">
             {{ __('header.software') }}
@@ -96,7 +102,7 @@
             @if ($page == 'APP')
                 onclick="scrollToSection('achievements_section')"
             @else
-                href="/?section=achievements"
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=achievements"
             @endif
             data-target="achievements">
             {{ __('header.achievements') }}
@@ -106,7 +112,7 @@
             @if ($page == 'APP' || $page == 'SERVICE' || $page == 'SOFTWARE' )
                 onclick="scrollToSection('contact_section')"
             @else
-                href="/?section=contact"
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=contact"
             @endif
             data-target="contact">
             {{ __('header.contact') }}
@@ -119,7 +125,7 @@
         <!-- </a> -->
 
         @if ($page == "STORE")
-        <a class="nav-tab active" href="/store">
+        <a class="nav-tab active" href="{{ \App\Support\LocalizedUrl::route('store.index') }}">
             <i class="fa-solid fa-cart-shopping"></i>
             {{ __('header.store') }}
         </a>
@@ -128,8 +134,9 @@
     </nav>
 
 {{-- Customer Portal Button --}}
-<a href="/login"
-class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
+<a href="{{ \App\Support\LocalizedUrl::route(
+        'login.submit', [], null, [], false ) }}"
+    class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}">
     <i class="fa-brands fa-redhat"></i>
 
     <span class="customer-portal-text">
@@ -140,29 +147,74 @@ class="customer-portal-btn customer-portal-btn-primary {{ $page == 'AUTH' || $pa
 
     {{-- Store Button --}}
     @if ($page != "STORE")
-    <a href="/store" class="store-btn store-btn-primary">
+    <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="store-btn store-btn-primary">
         <i class="fa-solid fa-cart-shopping"></i>
         {{ __('header.our_store') }}
     </a>
     @endif
 
     {{-- Language Switcher --}}
+    @php
+        $currentQuery = request()->query();
+
+        // Remove the old language query parameter if it still exists.
+        unset($currentQuery['lang']);
+    @endphp
+
     <div class="actions">
         <div class="language-switcher">
-            <a href="{{ route('language.switcher', 'fr') }}"
-               class="{{ app()->getLocale() == 'fr' ? 'active' : '' }}">
+
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'fr',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'fr',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'fr' ? 'active' : '' }}"
+                hreflang="fr"
+                lang="fr"
+                aria-label="Français"
+            >
                 FR
             </a>
 
-            <a href="{{ route('language.switcher', 'en') }}"
-               class="{{ app()->getLocale() == 'en' ? 'active' : '' }}">
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'en',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'en',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'en' ? 'active' : '' }}"
+                hreflang="en"
+                lang="en"
+                aria-label="English"
+            >
                 EN
             </a>
 
-            <a href="{{ route('language.switcher', 'ar') }}"
-               class="{{ app()->getLocale() == 'ar' ? 'active' : '' }}">
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'ar',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'ar',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'ar' ? 'active' : '' }}"
+                hreflang="ar"
+                lang="ar"
+                aria-label="العربية"
+            >
                 ع
             </a>
+
         </div>
     </div>
 

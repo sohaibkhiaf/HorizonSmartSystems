@@ -48,6 +48,10 @@
     font-style: normal;
 }
 
+.form-group input.half {
+    width: 50%;
+}
+
 .form-group textarea {
     min-height: 120px;
     resize: vertical;
