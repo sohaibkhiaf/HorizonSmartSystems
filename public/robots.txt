@@ -1,18 +1,10 @@
 User-agent: *
-Allow: /
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /uploads/
-Allow: /fontawesome/
-Allow: /swiper/
-Disallow: /admin/
-Disallow: /customer/
-Disallow: /login
-Disallow: /logout
-Disallow: /language/
-Disallow: /password/
-Disallow: /store/*/order
-Disallow: /store/*/confirmed
+
+Disallow: /admin
+Disallow: /customer
+Disallow: /language
+Disallow: /password
 
 Sitemap: https://hssdz.com/sitemap.xml
+
+
