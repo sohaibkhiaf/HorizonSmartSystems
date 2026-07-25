@@ -3,7 +3,7 @@
 return [
     'default' => [
         'title' => 'Horizon Smart Systems | HSS',
-        'description' => 'Horizon Smart Systems builds websites, software, custom management systems, IT support and digital solutions for businesses in Algeria.',
+        'description' => 'Development of websites, software, management systems, and IT solutions designed for Algerian businesses.',
     ],
 
     'home' => [

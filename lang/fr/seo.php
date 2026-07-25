@@ -3,7 +3,7 @@
 return [
     'default' => [
         'title' => 'Horizon Smart Systems | HSS',
-        'description' => 'Horizon Smart Systems crée des sites web, logiciels, systèmes de gestion, solutions IT, hébergement et accompagnement digital pour les entreprises en Algérie.',
+        'description' => 'Création de sites web, de logiciels, de systèmes de gestion et de solutions informatiques conçus pour les entreprises algériennes.',
     ],
 
     'home' => [
