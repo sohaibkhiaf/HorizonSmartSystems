@@ -1,0 +1,19 @@
+@extends('admin.layouts.admin')
+
+@section('title', 'Créer une réalisation')
+@section('page_title', 'Créer une réalisation')
+@section('page_subtitle', 'Ajouter un nouveau projet à votre site')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin/public_achievements/form.css') }}?v={{ config('app.asset_version') }}">
+@endsection
+
+@section('content')
+
+@include('admin.public_achievements.form', [
+    'realisation' => null,
+    'buttonText' => 'Créer une réalisation'
+])
+
+@endsection
+

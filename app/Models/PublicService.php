@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Models;
+
+use Database\Factories\PublicServiceFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class PublicService extends Model
+{
+    /** @use HasFactory<PublicServiceFactory> */
+    use HasFactory;
+
+    use SoftDeletes;
+
+    protected $fillable = [
+        'ar_name',
+        'fr_name',
+        'en_name',
+
+        'ar_short_description',
+        'fr_short_description',
+        'en_short_description',
+
+        'ar_description',
+        'fr_description',
+        'en_description',
+
+        'ar_slug',
+        'fr_slug',
+        'en_slug',
+
+        'image',
+        'type',
+
+        'fa_icon',
+
+        'is_published',
+    ];
+}

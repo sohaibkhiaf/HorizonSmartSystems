@@ -1,0 +1,112 @@
+/* WILI Finance workspace.
+   Keeps treasury entry, analytics and transaction archive separate while
+   preserving the existing finance element ids used by the application code. */
+
+#view-finance .finance-shell {
+  display: grid;
+  gap: 14px;
+}
+
+#view-finance .finance-tabbar {
+  margin-bottom: 0;
+}
+
+#view-finance .finance-tab-btn {
+  min-width: 110px;
+}
+
+#view-finance .finance-pane {
+  display: none;
+}
+
+#view-finance .finance-pane.active {
+  display: grid;
+  gap: 14px;
+}
+
+#view-finance .finance-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+#view-finance .finance-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid #e8f2ee;
+  padding-bottom: 10px;
+}
+
+#view-finance .finance-card-head h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+#view-finance .finance-card-head p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#view-finance #financeForm {
+  display: grid;
+  grid-template-columns: minmax(150px, .75fr) minmax(150px, .75fr) minmax(220px, 1.15fr) minmax(150px, .8fr) minmax(170px, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+}
+
+#view-finance #financeForm > * {
+  min-width: 0;
+}
+
+#view-finance .finance-filter-card #financeFilterForm {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(150px, .8fr) minmax(140px, .72fr) minmax(140px, .72fr) minmax(220px, 1.2fr) minmax(110px, .55fr) auto;
+  gap: 8px;
+  align-items: end;
+}
+
+#view-finance .finance-filter-card #financeFilterForm > * {
+  min-width: 0;
+}
+
+#view-finance .finance-archive-card {
+  min-width: 0;
+}
+
+#view-finance .finance-archive-card .table-wrap {
+  margin-top: 0;
+}
+
+#view-finance .finance-pager {
+  margin-top: 0;
+}
+
+@media (max-width: 1200px) {
+  #view-finance #financeForm,
+  #view-finance .finance-filter-card #financeFilterForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  #view-finance .finance-tabbar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+  }
+
+  #view-finance .finance-tab-btn {
+    flex: 0 0 auto;
+  }
+
+  #view-finance #financeForm,
+  #view-finance .finance-filter-card #financeFilterForm {
+    grid-template-columns: 1fr;
+  }
+}

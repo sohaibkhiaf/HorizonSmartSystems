@@ -1,0 +1,232 @@
+:root {
+    --body-color: hsl(0, 0%, 98%);
+    --color-surface: #ffffff;
+
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-soft: #eff6ff;
+
+    --color-dark: #111827;
+    --color-muted: #6b7280;
+    --color-border: #e5e7eb;
+
+    --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    --shadow-blue: 0 12px 26px rgba(37, 99, 235, 0.22);
+
+    --transition: 0.25s ease;
+}
+
+.login-section {
+    min-height: 100vh;
+    padding: 120px 18px 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--body-color);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 30px;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
+}
+
+.login-card h2 {
+    margin: 0 0 8px;
+
+    color: var(--color-primary);
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.login-subtitle {
+    margin: 0 0 24px;
+
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.alert {
+    margin-bottom: 18px;
+    padding: 13px 15px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.alert.danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+}
+
+.alert.success {
+    background: #ecfdf5;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+
+    display: block;
+
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+
+    transform: translateY(-50%);
+
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px 14px 13px 42px;
+
+    background: var(--body-color);
+    border: 1px solid #dbe3ef;
+    border-radius: 12px;
+    outline: none;
+
+    color: var(--color-dark);
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: var(--transition);
+}
+
+.input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+.input-wrapper input:focus {
+    background: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-soft);
+}
+
+.checkbox-row {
+    margin: 2px 0 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--color-muted);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checkbox-row input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--color-primary);
+}
+
+.login-btn {
+    width: 100%;
+    min-height: 50px;
+    padding: 14px 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border: none;
+    border-radius: 12px;
+    background: var(--color-primary);
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+
+    box-shadow: var(--shadow-blue);
+    transition: var(--transition);
+}
+
+.login-btn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .login-section {
+        padding: 100px 16px 36px;
+    }
+
+    .login-card {
+        padding: 22px;
+    }
+
+    .login-card h2 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 420px) {
+    .login-section {
+        padding-inline: 14px;
+    }
+
+    .login-card {
+        padding: 18px;
+    }
+}
+
+
+.login-account-help {
+    margin: -10px 0 22px;
+
+    color: var(--color-muted);
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.login-account-help a {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-account-help a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+

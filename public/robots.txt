@@ -1,0 +1,10 @@
+User-agent: *
+
+Disallow: /admin
+Disallow: /customer
+Disallow: /language
+Disallow: /password
+
+Sitemap: https://hssdz.com/sitemap.xml
+
+

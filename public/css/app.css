@@ -1,0 +1,79 @@
+
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap'); */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+:root {
+    --body-color: hsl(0, 0%, 98%);
+    --color-surface: #ffffff;
+    --color-surface-soft: #f8fafc;
+
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-soft: #eff6ff;
+
+    --color-danger: #ff3d2e;
+    --color-danger-dark: #e63628;
+    --color-danger-soft: #ffe5e2;
+
+    --color-dark: #111827;
+    --color-muted: #64748b;
+    --color-muted-2: #6b7280;
+    --color-border: #e5e7eb;
+    --color-border-soft: #dbeafe;
+
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+    --shadow-md: 0 8px 22px rgba(15, 23, 42, 0.07);
+    --shadow-blue: 0 12px 26px rgba(37, 99, 235, 0.13);
+    --shadow-danger: 0 12px 26px rgba(255, 61, 46, 0.18);
+
+    --container-x: 8%;
+    --section-gap: 120px;
+    --transition: 0.25s ease;
+}
+
+*{
+    font-family: "Cairo", sans-serif;
+    font-weight: 500;
+    font-optical-sizing: auto;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    font-style: normal;
+}
+
+html{
+    overflow-x: hidden;
+    color: var(--normal-black);
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--body-color);
+}
+
+
+/* media queries */
+
+
+@media (max-width: 992px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    html {
+        font-size: 85%;
+    }
+}
+
+

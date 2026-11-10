@@ -1,0 +1,296 @@
+<header class="header" id="main_header">
+
+    {{-- Logo --}}
+    <div class="logo">
+        <a href="{{ \App\Support\LocalizedUrl::route('home.index') }}">
+            <img src="{{ asset('images/hss_logo.png') }}" alt="{{ config('seo.site_name') }}" width="1254" height="496">
+        </a>
+    </div>
+
+    {{-- Navigation --}}
+    <nav class="nav" id="navMenu">
+
+        <a class="nav-tab"
+            @if ($page == 'APP')
+                onclick="scrollToSection('home_section')"
+            @else
+                href="{{  \App\Support\LocalizedUrl::route('home.index') }}"
+            @endif
+           data-target="home">
+            {{ __('header.home') }}
+        </a>
+
+        {{-- Services --}}
+        <div class="nav-item has-dropdown">
+
+            <a class="nav-tab {{ $page == "SERVICE" ? 'active' : '' }}"
+                @if ($page == 'APP')
+                    onclick="scrollToSection('services_section')"
+                @else
+                    href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=services"
+                @endif
+               data-target="services">
+                {{ __('header.services') }}
+                <span class="caret-down">
+                    <i class="fa-solid fa-caret-down"></i>
+                </span>
+            </a>
+
+            <div class="mega-menu">
+                <div class="mega-column">
+                    <h4>{{ __('header.services_title') }}</h4>
+
+                    @foreach($services as $service)
+                        @if ($service->is_published && $service->type == "main")
+                        <a class="service-link" href="{{ \App\Support\LocalizedUrl::route(
+                                'services.show',
+                                ['service' => $service]
+                            ) }}">
+                            <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
+                            <span>
+                                @if(app()->getLocale() == 'ar')
+                                    {{ $service->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_name }}
+                                @else
+                                    {{ $service->en_name }}
+                                @endif
+                            </span>
+                        </a>
+                        @endif
+                    @endforeach
+                </div>
+
+                <div class="mega-column">
+                    <h4>{{ __('header.other_services_title') }}</h4>
+
+                    @foreach($services as $service)
+                        @if ($service->is_published && $service->type == "other")
+                        <a class="service-link" href="{{ \App\Support\LocalizedUrl::route(
+                                'services.show',
+                                ['service' => $service]
+                            ) }}">
+                            <i class="{{ $service->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
+                            <span>
+                                @if(app()->getLocale() == 'ar')
+                                    {{ $service->ar_name }}
+                                @elseif(app()->getLocale() == 'fr')
+                                    {{ $service->fr_name }}
+                                @else
+                                    {{ $service->en_name }}
+                                @endif
+                            </span>
+                        </a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        {{-- Software --}}
+        <a class="nav-tab {{ $page == "SOFTWARE" ? 'active' : '' }}"
+            @if ($page == 'APP')
+                onclick="scrollToSection('software_section')"
+            @else
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=software"
+            @endif
+            data-target="software">
+            {{ __('header.software') }}
+        </a>
+
+        <a class="nav-tab"
+            @if ($page == 'APP')
+                onclick="scrollToSection('achievements_section')"
+            @else
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=achievements"
+            @endif
+            data-target="achievements">
+            {{ __('header.achievements') }}
+        </a>
+
+        <a class="nav-tab"
+            @if ($page == 'APP' || $page == 'SERVICE' || $page == 'SOFTWARE' )
+                onclick="scrollToSection('contact_section')"
+            @else
+                href="{{ \App\Support\LocalizedUrl::route('home.index') }}/?section=contact"
+            @endif
+            data-target="contact">
+            {{ __('header.contact') }}
+        </a>
+
+        <a class="nav-tab {{ $page == 'AUTH' || $page == 'CUSTOMER' ? 'active' : '' }}"
+            href="{{ \App\Support\LocalizedUrl::route('login.page', [], null, [], false) }}">
+            {{ __('header.customer_portal') }}
+        </a>
+
+        @if ($page == "STORE")
+        <a class="nav-tab active" href="{{ \App\Support\LocalizedUrl::route('store.index') }}">
+            <i class="fa-solid fa-cart-shopping"></i>
+            {{ __('header.store') }}
+        </a>
+        @endif
+
+    </nav>
+
+    {{-- Store Button --}}
+    @if ($page != "STORE")
+    <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="store-btn store-btn-primary">
+        <i class="fa-solid fa-cart-shopping"></i>
+        {{ __('header.our_store') }}
+    </a>
+    @endif
+
+    {{-- Language Switcher --}}
+    @php
+        $currentQuery = request()->query();
+
+        // Remove the old language query parameter if it still exists.
+        unset($currentQuery['lang']);
+    @endphp
+
+    <div class="actions">
+        <div class="language-switcher">
+
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'fr',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'fr',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'fr' ? 'active' : '' }}"
+                hreflang="fr"
+                lang="fr"
+                aria-label="Français"
+            >
+                FR
+            </a>
+
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'en',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'en',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'en' ? 'active' : '' }}"
+                hreflang="en"
+                lang="en"
+                aria-label="English"
+            >
+                EN
+            </a>
+
+            <a
+                href="{{ route('language.switcher', [
+                    'locale' => 'ar',
+                    'redirect' => \App\Support\LocalizedUrl::current(
+                        'ar',
+                        $currentQuery,
+                        false
+                    ),
+                ]) }}"
+                class="{{ app()->getLocale() === 'ar' ? 'active' : '' }}"
+                hreflang="ar"
+                lang="ar"
+                aria-label="العربية"
+            >
+                ع
+            </a>
+
+        </div>
+    </div>
+
+    {{-- Mobile Menu Button --}}
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+</header>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ==========================================================================
+       Elements
+    ========================================================================== */
+
+    const header = document.getElementById("main_header");
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    const sections = document.querySelectorAll("[data-section]");
+    const tabs = document.querySelectorAll(".nav-tab");
+
+    /* ==========================================================================
+       Navigation Active Tab
+    ========================================================================== */
+
+    function updateActiveTab() {
+
+        let current = "";
+
+        sections.forEach(section => {
+
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute("data-section");
+            }
+        });
+
+        tabs.forEach(tab => {
+
+            tab.classList.remove("active");
+
+            if (tab.getAttribute("data-target") === current) {
+                tab.classList.add("active");
+            }
+        });
+    }
+
+    /* ==========================================================================
+       Mobile Menu
+    ========================================================================== */
+
+    if (menuToggle && navMenu) {
+
+        menuToggle.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+
+    }
+
+    /* ==========================================================================
+       Scroll Events
+    ========================================================================== */
+
+    window.addEventListener("scroll", () => {
+
+        if (
+            @json($page != 'STORE') &&
+            @json($page != 'AUTH') &&
+            @json($page != 'SERVICE') &&
+            @json($page != 'SOFTWARE') &&
+            @json($page != 'CUSTOMER')
+        ) {
+            updateActiveTab();
+        }
+
+    });
+
+    /* ==========================================================================
+       Initial State
+    ========================================================================== */
+
+    if (@json($page == "APP")) {
+        tabs[0].classList.add("active");
+    }
+
+});
+</script>

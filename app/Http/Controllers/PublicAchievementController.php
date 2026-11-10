@@ -1,0 +1,123 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\PublicAchievement;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class PublicAchievementController extends Controller
+{
+    public function index()
+    {
+        // fetch
+        $achievements = PublicAchievement::paginate(9)
+            ->withQueryString();
+
+        // view
+        return view('admin/public_achievements/index', compact('achievements'));
+    }
+
+    public function create()
+    {
+        // view
+        return view('admin/public_achievements/create');
+    }
+
+    public function store(Request $request)
+    {
+        // validate
+        $data = $request->validate([
+            'ar_title' => ['required', 'string', 'max:255'],
+            'en_title' => ['required', 'string', 'max:255'],
+            'fr_title' => ['required', 'string', 'max:255'],
+            'ar_type' => ['required', 'string', 'max:100'],
+            'en_type' => ['required', 'string', 'max:100'],
+            'fr_type' => ['required', 'string', 'max:100'],
+            'ar_short_description' => ['required', 'string', 'max:255'],
+            'en_short_description' => ['required', 'string', 'max:255'],
+            'fr_short_description' => ['required', 'string', 'max:255'],
+            'ar_description' => ['nullable', 'string'],
+            'en_description' => ['nullable', 'string'],
+            'fr_description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'project_url' => ['nullable', 'url', 'max:255'],
+            'is_published' => ['nullable', 'boolean'],
+        ]);
+
+        // is published
+        $data['is_published'] = $request->boolean('is_published');
+
+        // image
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('achievements', 'public');
+        }
+
+        // create
+        PublicAchievement::create($data);
+
+        // redirect
+        return redirect()
+            ->route('admin.achievements.index')
+            ->with('success', 'Réalisation créée avec succès.');
+    }
+
+    public function edit(PublicAchievement $achievement)
+    {
+        // view
+        return view('admin/public_achievements/edit', compact('achievement'));
+    }
+
+    public function update(Request $request, PublicAchievement $achievement)
+    {
+        // validate
+        $data = $request->validate([
+            'ar_title' => ['required', 'string', 'max:255'],
+            'en_title' => ['required', 'string', 'max:255'],
+            'fr_title' => ['required', 'string', 'max:255'],
+            'ar_type' => ['required', 'string', 'max:100'],
+            'en_type' => ['required', 'string', 'max:100'],
+            'fr_type' => ['required', 'string', 'max:100'],
+            'ar_short_description' => ['required', 'string', 'max:255'],
+            'en_short_description' => ['required', 'string', 'max:255'],
+            'fr_short_description' => ['required', 'string', 'max:255'],
+            'ar_description' => ['nullable', 'string'],
+            'en_description' => ['nullable', 'string'],
+            'fr_description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+            'project_url' => ['nullable', 'url', 'max:255'],
+            'is_published' => ['nullable', 'boolean'],
+        ]);
+
+        // is published
+        $data['is_published'] = $request->boolean('is_published');
+
+        // image
+        if ($request->hasFile('image')) {
+            if ($achievement->image) {
+                Storage::disk('public')->delete($achievement->image);
+            }
+
+            $data['image'] = $request->file('image')->store('achievements', 'public');
+        }
+
+        // update
+        $achievement->update($data);
+
+        // redirect
+        return redirect()
+            ->route('admin.achievements.index')
+            ->with('success', 'Réalisation mise à jour avec succès.');
+    }
+
+    public function destroy(PublicAchievement $achievement)
+    {
+        // delete
+        $achievement->delete();
+
+        // redirect
+        return redirect()
+            ->route('admin.achievements.index')
+            ->with('success', 'Réalisation supprimée avec succès.');
+    }
+}

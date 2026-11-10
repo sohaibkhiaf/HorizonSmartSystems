@@ -1,0 +1,457 @@
+@extends('layouts.service')
+
+@section('title')
+    @if(app()->getLocale() == 'ar')
+        {{ $service->ar_name }} — HSS
+    @elseif(app()->getLocale() == 'fr')
+        {{ $service->fr_name }} — HSS
+    @else
+        {{ $service->en_name }} — HSS
+    @endif
+@endsection
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/service.css') }}?v={{ config('app.asset_version') }}">
+@endsection
+
+@section('content')
+
+@php
+    $serviceName = app()->getLocale() == 'ar'
+        ? $service->ar_name
+        : (app()->getLocale() == 'fr'
+            ? $service->fr_name
+            : $service->en_name);
+
+    $serviceShort = app()->getLocale() == 'ar'
+        ? $service->ar_short_description
+        : (app()->getLocale() == 'fr'
+            ? $service->fr_short_description
+            : $service->en_short_description);
+
+    $serviceDescription = app()->getLocale() == 'ar'
+        ? $service->ar_description
+        : (app()->getLocale() == 'fr'
+            ? $service->fr_description
+            : $service->en_description);
+@endphp
+
+<section class="service-hero" id="service_section" data-section="service">
+    <div class="service-hero-container">
+
+        <div class="service-hero-content">
+
+            <h1>{{ $serviceName }}</h1>
+
+            <p>{{ $serviceShort }}</p>
+
+            <div class="service-actions">
+
+                @if ($service->fa_icon == "fa-solid fa-credit-card")
+                <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn btn-primary">
+                    {{ __('header.our_store') }}
+                    <i class="fa-solid fa-shopping-cart"></i>
+                </a>
+                @else 
+                <a onclick="scrollToSection('contact_section')" class="btn btn-primary">
+                    {{ __('service.request_service') }}
+                    <i class="fa-solid fa-paper-plane"></i>
+                </a>
+                @endif
+
+                <a href="{{ \App\Support\LocalizedUrl::route('home.index') }}" class="btn btn-outline-light">
+                    {{ __('service.back_home') }}
+                    <i class="fa-solid fa-house"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="service-hero-image">
+            @if($service->image)
+                <img src="{{ asset('uploads/' . $service->image) }}" alt="{{ $serviceName }}" fetchpriority="high">
+            @else
+                <div class="service-image-placeholder">
+                    <i class="{{ $service->fa_icon ?? 'fa-solid fa-image' }}"></i>
+                </div>
+            @endif
+        </div>
+
+    </div>
+</section>
+
+<section class="service-details" id="service_details_section" data-section="service">
+    <div class="service-details-container">
+
+        <div class="service-main-card">
+            <h2>{{ $serviceName }}</h2>
+
+            <p>
+                {!! nl2br(e($serviceDescription)) !!}
+            </p>
+
+            @if ($service->fa_icon == "fa-solid fa-credit-card")
+            <a href="{{ \App\Support\LocalizedUrl::route('store.index') }}" class="btn btn-primary">
+                {{ __('header.our_store') }}
+                <i class="fa-solid fa-shopping-cart"></i>
+            </a>
+            @else 
+            <a onclick="scrollToSection('contact_section')" class="service-cta">
+                {{ __('service.contact_us') }}
+                <i class="{{ app()->getLocale() == 'ar' ? 'fas fa-arrow-left' : 'fas fa-arrow-right' }}"></i>
+            </a>
+            @endif
+        </div>
+
+        <aside class="service-side-card">
+            <h3>{{ __('service.other_services') }}</h3>
+
+            @foreach($otherServices as $item)
+                @php
+                    $itemName = app()->getLocale() == 'ar'
+                        ? $item->ar_name
+                        : (app()->getLocale() == 'fr'
+                            ? $item->fr_name
+                            : $item->en_name);
+                @endphp
+
+                <a href="{{\App\Support\LocalizedUrl::route(
+                        'services.show',
+                        ['service' => $item]
+                    ) }}" class="side-service-link">
+                    <i class="{{ $item->fa_icon ?? 'fa-solid fa-circle-info' }}"></i>
+                    <span>{{ $itemName }}</span>
+                </a>
+            @endforeach
+        </aside>
+
+    </div>
+</section>
+
+<!-- Contact ------------------------------------------------------------------- -->
+<section class="contact-section" id="contact_section" data-section="contact">
+
+    <div class="contact-heading">
+        <h2>{{ __('home.contact_title') }}</h2>
+
+        <p class="contact-description">
+            {{ __('home.contact_description') }}
+        </p>
+    </div>
+
+    <div class="contact-container">
+
+        <!-- LEFT: CONTACT INFOS -->
+        <div class="contact-info">
+
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>{{ __('home.phone_label') }}</h4>
+
+                    <p dir="ltr">
+                        0561 65 51 00
+                        <br>0782 94 07 60
+                        <br>0540 29 62 00
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+
+                <div>
+                    <h4>{{ __('home.email_label') }}</h4>
+                    <p>horizonsmartsystems@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fab fa-facebook-f"></i>
+
+                <div>
+                    <h4>{{ __('home.facebook_label') }}</h4>
+                    <p>facebook.com/HorizonSmartSystems</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-location-dot"></i>
+
+                <div>
+                    <h4>{{ __('home.address_label') }}</h4>
+                    <p>{{ __('home.address_value') }}</p>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <i class="fas fa-clock"></i>
+
+                <div>
+                    <h4>{{ __('home.hours_title') }}</h4>
+
+                    <div class="contact-hours">
+
+                        <div class="hour-row">
+                            <span>
+                                {{ __('home.saturday') }}
+                                -
+                                {{ __('home.wednesday') }}
+                            </span>
+
+                            <span>08:30 - 16:30</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.thursday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+
+                        <div class="hour-row closed">
+                            <span>{{ __('home.friday') }}</span>
+                            <span>{{ __('home.closed') }}</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT: CONTACT FORM -->
+        <div class="contact-form">
+
+            @if(session('success'))
+                <div class="form-alert success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="form-alert danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ \App\Support\LocalizedUrl::route(
+                    'contact.message',
+                    [],
+                    null,
+                    [],
+                    false
+                ) }}">
+                @csrf
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_fullname') }}</label>
+
+                        <input
+                            type="text"
+                            name="full_name"
+                            value="{{ old('full_name') }}"
+                            placeholder="{{ __('home.form_fullname_ph') }}"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_email') }}</label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            value="{{ old('email') }}"
+                            placeholder="{{ __('home.form_email_ph') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_phone') }}</label>
+
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ old('phone') }}"
+                            placeholder="{{ __('home.form_phone_ph') }}"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ __('home.form_subject') }}</label>
+
+                        <input
+                            type="text"
+                            name="subject"
+                            value="{{ old('subject') }}"
+                            placeholder="{{ __('home.form_subject_ph') }}"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="form-group message-group">
+                    <label>{{ __('home.form_message') }}</label>
+
+                    <textarea
+                        name="message"
+                        placeholder="{{ __('home.form_message_ph') }}"
+                        required>{{ old('message') }}</textarea>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="consent" checked>
+
+                    <label for="consent">
+                        {{ __('home.form_consent') }}
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    {{ __('home.form_submit') }}
+                    <i class="fa-regular fa-paper-plane"></i>
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Floating Navigation Buttons -->
+<div class="float-nav">
+    <button id="btnScrollTop" class="float-btn is-hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <button id="btnScrollNext" class="float-btn float-btn-down">
+        <i class="fas fa-arrow-down"></i>
+    </button>
+</div>
+
+<!-- Floating Social Buttons -->
+<div class="social-float">
+    
+    <!-- Facebook -->
+    @if ($hero->facebook_url)
+    <a href="{{ $hero->facebook_url }}" target="_blank" class="social-btn fb">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    @endif
+
+    <!-- Instagram -->
+    @if ($hero->instagram_url)
+    <a href="{{ $hero->instagram_url  }}" target="_blank" class="social-btn ig">
+        <i class="fa-brands fa-square-instagram"></i>
+    </a>
+    @endif
+
+    <!-- WhatsApp -->
+    @if ($hero->whatsapp_url)
+    <a href="{{ $hero->whatsapp_url  }}" target="_blank" class="social-btn wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    @endif
+
+    <!-- Linkedin -->
+    @if ($hero->linked_in_url)
+    <a href="{{ $hero->linked_in_url  }}" target="_blank" class="social-btn li">
+        <i class="fa-brands fa-linkedin"></i>
+    </a>
+    @endif
+
+</div>
+
+<script>
+    const HEADER_OFFSET = 40;
+
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+
+        if (!element) return;
+
+        window.scrollTo({
+            top: element.offsetTop - HEADER_OFFSET,
+            behavior: "smooth"
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnTop = document.getElementById("btnScrollTop");
+        const btnNext = document.getElementById("btnScrollNext");
+        const sections = Array.from(document.querySelectorAll("[data-section]"));
+        const footer = document.querySelector("footer");
+
+        if (!btnTop || !btnNext || sections.length === 0) return;
+
+        function getCurrentSectionIndex() {
+            let currentIndex = 0;
+
+            sections.forEach((section, index) => {
+                if (window.scrollY >= section.offsetTop - HEADER_OFFSET - 20) {
+                    currentIndex = index;
+                }
+            });
+
+            return currentIndex;
+        }
+
+        function isFooterVisible() {
+            if (!footer) return false;
+
+            return window.scrollY + window.innerHeight >= footer.offsetTop - 20;
+        }
+
+        function updateFloatingButtons() {
+            const currentIndex = getCurrentSectionIndex();
+
+            if (currentIndex > 0 || window.scrollY > 120) {
+                btnTop.classList.remove("is-hidden");
+            } else {
+                btnTop.classList.add("is-hidden");
+            }
+
+            if (isFooterVisible()) {
+                btnNext.classList.add("is-hidden");
+            } else {
+                btnNext.classList.remove("is-hidden");
+            }
+        }
+
+        btnTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        btnNext.addEventListener("click", () => {
+            const currentIndex = getCurrentSectionIndex();
+            const nextSection = sections[currentIndex + 1];
+
+            if (nextSection) {
+                window.scrollTo({
+                    top: nextSection.offsetTop - HEADER_OFFSET,
+                    behavior: "smooth"
+                });
+            } else {
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: "smooth"
+                });
+            }
+        });
+
+        window.addEventListener("scroll", updateFloatingButtons);
+        window.addEventListener("resize", updateFloatingButtons);
+
+        updateFloatingButtons();
+    });
+</script>
+
+@endsection
